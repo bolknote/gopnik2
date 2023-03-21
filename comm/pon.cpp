@@ -21,17 +21,17 @@ int pon()
   main_hero = cur_game->main_hero;
 
   settextattr(YELLOW);
-  printw(mess[0], main_hero->get_att());
+  printf(mess[0], main_hero->get_att());
 
   if (main_hero->get_att() > 0)
   {
     settextattr(GREEN);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[2]);
+    printf("%s", mess[2]);
   }
 
   return 0;

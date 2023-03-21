@@ -59,10 +59,10 @@ int sstay()
       if (cur_game->get_stay_mar() == 1)
       {
         settextattr(WHITE);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         settextattr(YELLOW);
-        printw("%s", mess[9]);
+        printf("%s", mess[9]);
 
         getch();
       }
@@ -70,10 +70,10 @@ int sstay()
       if (cur_game->get_stay_kl() == 1)
       {
         settextattr(WHITE);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         settextattr(YELLOW);
-        printw("%s", mess[10]);
+        printf("%s", mess[10]);
 
         getch();
       }
@@ -81,10 +81,10 @@ int sstay()
       if (cur_game->stay_met == 1)
       {
         settextattr(WHITE);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         settextattr(YELLOW);
-        printw("%s", mess[11]);
+        printf("%s", mess[11]);
 
         getch();
       }
@@ -93,10 +93,10 @@ int sstay()
       if (cur_game->stay_str == 5)
       {
         settextattr(WHITE);
-        printw("%s", mess[12]);
+        printf("%s", mess[12]);
 
         settextattr(YELLOW);
-        printw("%s", mess[14]);
+        printf("%s", mess[14]);
 
         getch();
       }
@@ -123,10 +123,10 @@ int sstay()
         }
 
         settextattr(WHITE);
-        printw("%s", mess[12]);
+        printf("%s", mess[12]);
 
         settextattr(YELLOW);
-        printw("%s", mess[15]);
+        printf("%s", mess[15]);
 
         getch();
       }
@@ -134,10 +134,10 @@ int sstay()
       if (cur_game->stay_eog == 25)
       {
         settextattr(WHITE);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         settextattr(YELLOW);
-        printw("%s", mess[16]);
+        printf("%s", mess[16]);
 
         getch();
       }
@@ -145,10 +145,10 @@ int sstay()
       if (cur_game->stay_eog == 1)
       {
         settextattr(WHITE);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         settextattr(YELLOW);
-        printw("%s", mess[17]);
+        printf("%s", mess[17]);
 
         getch();
       }
@@ -164,7 +164,7 @@ int sstay()
           (chance(1, 10)) &&
           (cur_game->end_of_game == 0))
       {
-        printw("%s", mess[3]);
+        printf("%s", mess[3]);
         cur_game->set_loc(0);
 
         // удаляем объект "братвы"
@@ -176,7 +176,7 @@ int sstay()
       }
 
       main_hero->stoned = 0;
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
     }
 
     if (cur_game->stay_mh == 1)
@@ -185,12 +185,12 @@ int sstay()
           (cur_game->active_loc == 1) &&
           (strcmp(cur_game->enemy->get_type(), "Ветер") == 0))
       {
-        printw("%s", mess[2]);
+        printf("%s", mess[2]);
         cur_game->set_loc(0);
       }
 
       main_hero->drunk = 0;
-      printw("%s", mess[1]);
+      printf("%s", mess[1]);
     }
 
     if (cur_game->stay_v > 0)
@@ -224,7 +224,7 @@ int sstay()
           if (cur_game->get_open_d() != 2)
           {
             settextattr(YELLOW);
-            printw("%s", mess[4]);
+            printf("%s", mess[4]);
           }
         }
 
@@ -248,10 +248,10 @@ int sstay()
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
           settextattr(WHITE);
-          printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+          printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
           settextattr(YELLOW);
-          printw("%s", mess[6]);
+          printf("%s", mess[6]);
 
           getch();
         }
@@ -266,10 +266,10 @@ int sstay()
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
           settextattr(WHITE);
-          printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+          printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
           settextattr(YELLOW);
-          printw("%s", mess[7]);
+          printf("%s", mess[7]);
 
           getch();
         }
@@ -286,10 +286,10 @@ int sstay()
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
           settextattr(WHITE);
-          printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+          printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
           settextattr(YELLOW);
-          printw("%s", mess[13]);
+          printf("%s", mess[13]);
 
           getch();
         }

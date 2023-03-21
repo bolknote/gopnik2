@@ -49,14 +49,14 @@ int rsl(
     if (chance(2, 3))
     {
       settextattr(YELLOW);
-      printw("%s", mess[1]);
+      printf("%s", mess[1]);
 
       smart = 1;
     }
     else
     {
       settextattr(RED);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       main_hero->broken_jaw = 1;
     }
@@ -67,14 +67,14 @@ int rsl(
     if (chance(1, 3))
     {
       settextattr(YELLOW);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       smart = 2;
     }
     else
     {
       settextattr(RED);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       main_hero->broken_jaw = 1;
     }
@@ -85,14 +85,14 @@ int rsl(
     if (chance(2, 5))
     {
       settextattr(YELLOW);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       smart = 3;
     }
     else
     {
       settextattr(RED);
-      printw("%s", mess[5]);
+      printf("%s", mess[5]);
 
       main_hero->broken_foot = 1;
     }
@@ -103,14 +103,14 @@ int rsl(
     if (chance(1, 5))
     {
       settextattr(YELLOW);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       smart = 4;
     }
     else
     {
       settextattr(RED);
-      printw("%s", mess[7]);
+      printf("%s", mess[7]);
 
       main_hero->broken_foot = 1;
       main_hero->broken_jaw = 1;
@@ -123,7 +123,7 @@ int rsl(
     if (main_hero->add_smart())
     {
       settextattr(WHITE);
-      printw("%s", mess[8]);
+      printf("%s", mess[8]);
 
       // переход к новой локации
       cur_game->set_loc(8);
@@ -131,12 +131,12 @@ int rsl(
     else
     {
       settextattr(GREEN);
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
 
       settextattr(BLUE);
       main_hero->add_smart(smart);
 
-      printw("%s", "\n");
+      printf("%s", "\n");
     }
   }
   else

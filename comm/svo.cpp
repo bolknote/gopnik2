@@ -19,11 +19,11 @@ int svo()
     }
 
     settextattr(RED);
-    printw(
+    printf(
         "%s %i",
         cur_game->str_enemy[i]->get_type(),
         cur_game->str_enemy[i]->get_level());
-    printw(
+    printf(
         " (%i/%i)\n",
         cur_game->str_enemy[i]->get_health(),
         cur_game->str_enemy[i]->get_max_health());

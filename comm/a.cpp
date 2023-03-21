@@ -22,10 +22,10 @@ int a()
     cur_game->set_open_bmar(1);
 
     settextattr(YELLOW);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     settextattr(GREEN);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
   }
 
   return 0;

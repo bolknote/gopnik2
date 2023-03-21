@@ -36,7 +36,7 @@ int mar()
       (main_hero->station == 0))
   {
     settextattr(RED);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     return 0;
   }
@@ -44,13 +44,13 @@ int mar()
   if (cur_game->get_stay_mar() > 0)
   {
     settextattr(YELLOW);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
 
   settextattr(WHITE);
-  printw("%s", (main_hero->station) ? (mess[3]) : (mess[2]));
+  printf("%s", (main_hero->station) ? (mess[3]) : (mess[2]));
 
   // переход к новой локации
   cur_game->set_loc((main_hero->station) ? (11) : (3));

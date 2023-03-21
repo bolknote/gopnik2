@@ -24,10 +24,10 @@ int ssl()
   for (i = 0; i < 4; i++)
   {
     settextattr(WHITE);
-    printw("%i - ", i + 1);
+    printf("%i - ", i + 1);
 
     settextattr(YELLOW);
-    printw("%s", mess[i]);
+    printf("%s", mess[i]);
   }
 
   return 0;

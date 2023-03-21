@@ -102,9 +102,9 @@ int superrandom(
 void backspace()
 {
   //  gotoxy (wherex () - 1, wherey ());
-  //  printw (" ");
+  //  printf (" ");
   //  gotoxy (wherex () - 1, wherey ());
-  //  printw ("\0");
+  //  printf ("\0");
   printf("\033[D");
   printf(" ");
   printf("\033[D");
@@ -149,12 +149,12 @@ int getch(bool echo)
   {
     settextattr(RESET);
     showcursor();
-    printw("Ctrl+C hit, exiting...\n");
+    printf("Ctrl+C hit, exiting...\n");
     exit(0);
   }
-  /*  printw(" %d ",t);
+  /*  printf(" %d ",t);
     t=c[t-1]+(t>1)?0xFF:0;
-    printw("%d ",t);
+    printf("%d ",t);
     return t; */
   if (t == 1)
     return c[0];

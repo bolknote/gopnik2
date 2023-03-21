@@ -74,7 +74,7 @@ int w()
     if (cur_game->open_mar)
     {
       settextattr(BLUE);
-      printw("%s", mess[9]);
+      printf("%s", mess[9]);
     }
   }
 
@@ -89,7 +89,7 @@ int w()
     if (cur_game->open_rep)
     {
       settextattr(BLUE);
-      printw("%s", mess[10]);
+      printf("%s", mess[10]);
     }
   }
 
@@ -104,7 +104,7 @@ int w()
     if (cur_game->get_open_kl())
     {
       settextattr(BLUE);
-      printw("%s", mess[12]);
+      printf("%s", mess[12]);
     }
   }
 
@@ -138,7 +138,7 @@ int w()
             settextattr(YELLOW);
           }
 
-          printw("%s\n", cur_game->we[i].event);
+          printf("%s\n", cur_game->we[i].event);
 
           break;
         }
@@ -198,7 +198,7 @@ then:
   if (level > -1)
   {
     settextattr(YELLOW);
-    printw(mess[0], cur_game->ht[ht_index].type, level);
+    printf(mess[0], cur_game->ht[ht_index].type, level);
 
     flag = 0;
 
@@ -221,10 +221,10 @@ then:
       }
 
       settextattr(GREEN);
-      printw("-%s\n", ph_addr);
+      printf("-%s\n", ph_addr);
 
       settextattr(RED);
-      printw("-%s\n", ph_reply);
+      printf("-%s\n", ph_reply);
     }
     else
     {
@@ -242,7 +242,7 @@ then:
               (chance(1, 2)) &&
               (ht_index != cur_game->search_ht("Мент")))
           {
-            printw(mess[11], cur_game->ht[ht_index].type);
+            printf(mess[11], cur_game->ht[ht_index].type);
 
             goto then1;
           }
@@ -252,14 +252,14 @@ then:
               (main_hero->inv[cur_game->search_inv(main_hero, "Затемнённые очки")].have) &&
               (ht_index == cur_game->search_ht("Мент")))
           {
-            printw("%s", mess[13]);
+            printf("%s", mess[13]);
 
             goto then1;
           }
 
           flag = 1;
 
-          printw("%s", mess[5]);
+          printf("%s", mess[5]);
 
           if (cur_game->ht[ht_index].enemy_phrase_amount > 0)
           {
@@ -275,14 +275,14 @@ then:
           }
 
           settextattr(RED);
-          printw("-%s\n", ph_addr);
+          printf("-%s\n", ph_addr);
 
           settextattr(GREEN);
-          printw("-%s\n", ph_reply);
+          printf("-%s\n", ph_reply);
         }
         else
         {
-          printw("%s", mess[8]);
+          printf("%s", mess[8]);
         }
       }
     }
@@ -340,11 +340,11 @@ then:
         (cur_game->num_empty_w > 5) &&
         (chance(1, 5)))
     {
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
     }
     else
     {
-      printw("%s", mess[1]);
+      printf("%s", mess[1]);
     }
 
     cur_game->num_empty_w++;

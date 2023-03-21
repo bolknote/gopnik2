@@ -49,15 +49,15 @@ int i()
     if (cur_game->loc[cur_game->active_loc].command_active[i])
     {
       settextattr(YELLOW);
-      printw("%s", cur_game->loc[cur_game->active_loc].command[i]);
+      printf("%s", cur_game->loc[cur_game->active_loc].command[i]);
 
       for (j = 0; j < (max_len - strlen(cur_game->loc[cur_game->active_loc].command[i])); j++)
       {
-        printw("%s", " ");
+        printf("%s", " ");
       }
 
       settextattr(WHITE);
-      printw("%s\n", cur_game->loc[cur_game->active_loc].command_desc[i]);
+      printf("%s\n", cur_game->loc[cur_game->active_loc].command_desc[i]);
     }
   }
 

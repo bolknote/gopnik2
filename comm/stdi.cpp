@@ -37,20 +37,20 @@ int stdi()
   if (chance(2, 11))
   {
     settextattr(YELLOW);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     settextattr(GREEN);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     settextattr(BLUE);
     main_hero->add_smart(5);
 
-    printw("%s", "\n");
+    printf("%s", "\n");
 
     if (main_hero->add_smart())
     {
       settextattr(WHITE);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       // переход к новой локации
       cur_game->set_loc(8);
@@ -62,7 +62,7 @@ int stdi()
     if (chance(1, 2))
     {
       settextattr(RED);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       main_hero->broken_foot = 1;
       main_hero->broken_jaw = 1;
@@ -74,13 +74,13 @@ int stdi()
       cur_game->set_stay_kl(-1);
 
       settextattr(RED);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       ht_index = cur_game->search_ht("Охранник");
       level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
       settextattr(YELLOW);
-      printw(mess[5], level);
+      printf(mess[5], level);
 
       cur_game->gen_enemy_obj(ht_index, level);
 

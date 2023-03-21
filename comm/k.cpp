@@ -153,7 +153,7 @@ int k()
   if (cur_game->active_loc == 0)
   {
     settextattr(YELLOW);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
@@ -202,13 +202,13 @@ int k()
     if (cur_game->enemy == NULL)
     {
       cur_game->enemy = cur_game->str_enemy[0];
-      // printw ("%s","gotofight\n"); // !!!
+      // printf ("%s","gotofight\n"); // !!!
 
       goto end_fight;
     }
 
     settextattr(YELLOW);
-    printw(mess[18], cur_game->enemy->get_type(), cur_game->enemy->get_level());
+    printf(mess[18], cur_game->enemy->get_type(), cur_game->enemy->get_level());
   }
   // end стрела #1
   // -------------
@@ -227,7 +227,7 @@ int k()
     if (main_hero->inv[inv_index].have == 0)
     {
       settextattr(RED);
-      printw("%s", mess[16]);
+      printf("%s", mess[16]);
 
       return 0;
     }
@@ -240,7 +240,7 @@ int k()
           (main_hero->station))
       {
         settextattr(RED);
-        printw("%s", mess[17]);
+        printf("%s", mess[17]);
 
         return 0;
       }
@@ -263,7 +263,7 @@ int k()
     if (cur_game->num_k == 4)
     {
       settextattr(WHITE);
-      printw("%s", audience_mess[0]);
+      printf("%s", audience_mess[0]);
     }
 
     if (cur_game->num_k > 4)
@@ -271,7 +271,7 @@ int k()
       if (chance(1, 5))
       {
         settextattr(YELLOW);
-        printw("Голоса из толпы: %s", audience_mess[getrandom(0, 9)]);
+        printf("Голоса из толпы: %s", audience_mess[getrandom(0, 9)]);
       }
     }
   }
@@ -310,11 +310,11 @@ int k()
 
         if (i == 0)
         {
-          printw("%s", mess[21]);
+          printf("%s", mess[21]);
         }
         else
         {
-          printw("%s", mess[22]);
+          printf("%s", mess[22]);
         }
 
         cur_game->kick_realiz(
@@ -327,7 +327,7 @@ int k()
           cur_game->str_hero[j]->str_free = 0;
 
           settextattr(RED);
-          printw("%s", mess[20]);
+          printf("%s", mess[20]);
         }
 
         i++;
@@ -354,7 +354,7 @@ int k()
       if ((lads->get_health() == 0) && (enemy->get_health() > 0))
       {
         settextattr(RED);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
       }
     }
     else
@@ -363,7 +363,7 @@ int k()
       cur_game->lads_init = 0;
 
       settextattr(YELLOW);
-      printw("%s", mess[9]);
+      printf("%s", mess[9]);
     }
   }
 
@@ -442,14 +442,14 @@ int k()
         j++;
 
         settextattr(RED);
-        printw("%s", mess[20]);
+        printf("%s", mess[20]);
       }
 
       // выводим сообщение, что запинали противника
       if (hero2->get_health() == 0)
       {
         settextattr(GREEN);
-        printw("%s", mess[19]);
+        printf("%s", mess[19]);
 
         // делаем свободным текущего союзника
         hero1->str_free = 1;
@@ -464,7 +464,7 @@ int k()
       cur_game->str_dead_mess = 1;
 
       settextattr(RED);
-      printw("%s", mess[23]);
+      printf("%s", mess[23]);
     }
 
     // если текущий противник главного героя мёртв,
@@ -497,7 +497,7 @@ end_fight:
     main_hero->empty_kick_count = 0;
 
     settextattr(GREEN);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     old_level = main_hero->get_level();
     old_district = main_hero->add_exp(
@@ -515,7 +515,7 @@ end_fight:
       inv_index = cur_game->search_inv(main_hero, enemy->inv[i].name);
 
       main_hero->inv[inv_index].have++;
-      printw(mess[3], main_hero->inv[inv_index].name);
+      printf(mess[3], main_hero->inv[inv_index].name);
 
       // дополнительные заморочки с русским языком...
       if (strcmp(
@@ -524,10 +524,10 @@ end_fight:
               "а") == 0)
       {
         backspace();
-        printw("%s", "у");
+        printf("%s", "у");
       }
 
-      printw("%s", "\n");
+      printf("%s", "\n");
 
       // дополнительный перебор инвентаря...
       cur_game->supple_inv_run_over(inv_index);
@@ -555,12 +555,12 @@ end_fight:
 
     if (enemy->get_ciga() > 0)
     {
-      printw(mess[4], enemy->get_type());
+      printf(mess[4], enemy->get_type());
 
       main_hero->add_ciga(enemy->get_ciga());
     }
 
-    printw("%s", mess[5]);
+    printf("%s", mess[5]);
 
     new_loc = 0;
 
@@ -570,7 +570,7 @@ end_fight:
       cur_game->set_stay_mar(20);
 
       settextattr(YELLOW);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
     }
 
     // борьба в клубе
@@ -579,7 +579,7 @@ end_fight:
       cur_game->set_stay_kl(40);
 
       settextattr(YELLOW);
-      printw("%s", mess[14]);
+      printf("%s", mess[14]);
     }
 
     // борьба в метро
@@ -588,7 +588,7 @@ end_fight:
       cur_game->stay_met = 10;
 
       settextattr(YELLOW);
-      printw("%s", mess[15]);
+      printf("%s", mess[15]);
     }
 
     // открытие доступа к притону
@@ -601,7 +601,7 @@ end_fight:
       cur_game->set_open_pr();
 
       settextattr(BLUE);
-      printw("%s", mess[7]);
+      printf("%s", mess[7]);
     }
 
     // отпин мудака в притоне
@@ -612,10 +612,10 @@ end_fight:
       new_loc = 4;
 
       settextattr(YELLOW);
-      printw("%s", mess[10]);
+      printf("%s", mess[10]);
 
       settextattr(BLUE);
-      printw(mess[11], enemy->get_max_health());
+      printf(mess[11], enemy->get_max_health());
     }
 
     // отпин мента в притоне
@@ -632,10 +632,10 @@ end_fight:
         new_loc = 4;
 
         settextattr(YELLOW);
-        printw("%s", mess[13]);
+        printf("%s", mess[13]);
 
         settextattr(BLUE);
-        printw(mess[11], att);
+        printf(mess[11], att);
       }
     }
 
@@ -678,24 +678,24 @@ end_fight:
 
       if (cur_game->str_dead_mess)
       {
-        printw(mess[24], STR_AMOUNT * 2 - 1);
-        printw("%s", mess[25]);
-        printw("%s", mess[26]);
+        printf(mess[24], STR_AMOUNT * 2 - 1);
+        printf("%s", mess[25]);
+        printf("%s", mess[26]);
       }
       else
       {
-        printw("%s", mess[27]);
+        printf("%s", mess[27]);
       }
 
-      printw("%s", mess[28]);
+      printf("%s", mess[28]);
 
       settextattr(BLUE);
-      printw(mess[11], att);
+      printf(mess[11], att);
 
       getch();
 
       settextattr(YELLOW);
-      printw("%s", mess[29]);
+      printf("%s", mess[29]);
 
       // корректная очистка
       // ----
@@ -792,7 +792,7 @@ end_fight:
       main_hero->sub_ciga(main_hero->get_ciga());
 
       settextattr(BLUE);
-      printw("%s", mess[12]);
+      printf("%s", mess[12]);
 
       // переход к новой локации
       cur_game->set_loc(0);
@@ -800,7 +800,7 @@ end_fight:
     else
     {
       settextattr(RED);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
       getch();
     }
 

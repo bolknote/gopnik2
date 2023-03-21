@@ -46,7 +46,7 @@ int meet()
   if (cur_game->open_girl)
   {
     settextattr(YELLOW);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
@@ -54,8 +54,8 @@ int meet()
   if (chance(1, 5))
   {
     settextattr(YELLOW);
-    printw("%s", mess[2]);
-    printw("%s", mess[3]);
+    printf("%s", mess[2]);
+    printf("%s", mess[3]);
 
     getch();
 
@@ -67,7 +67,7 @@ int meet()
         cur_game->open_girl = main_hero->station + 1;
 
         settextattr(GREEN);
-        printw("%s", mess[10]);
+        printf("%s", mess[10]);
 
         return 0;
       }
@@ -75,8 +75,8 @@ int meet()
       // вероятность, что не повезёт
       if (chance(1, 20))
       {
-        printw("%s", (chance(1, 3)) ? (mess[6]) : (mess[5]));
-        printw("%s", mess[4]);
+        printf("%s", (chance(1, 3)) ? (mess[6]) : (mess[5]));
+        printf("%s", mess[4]);
 
         return 0;
       }
@@ -84,7 +84,7 @@ int meet()
       // вероятность, что наедут
       if (chance(1, 10))
       {
-        printw("%s", mess[9]);
+        printf("%s", mess[9]);
 
         cur_game->set_stay_kl(-1);
 
@@ -96,10 +96,10 @@ int meet()
         level += 2;
         cur_game->gen_enemy_obj(ht_index, level);
 
-        printw(mess[7], cur_game->ht[ht_index].type, level);
+        printf(mess[7], cur_game->ht[ht_index].type, level);
 
         settextattr(RED);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         // переход к новой локации
         cur_game->set_loc(1);
@@ -111,7 +111,7 @@ int meet()
   else
   {
     settextattr(RED);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
   }
 
   return 0;

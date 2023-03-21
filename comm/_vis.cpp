@@ -42,30 +42,30 @@ int _vis()
     {
       for (i = 0; i < 26; i++)
       {
-        printw(" %X", getrandom(15, 255));
+        printf(" %X", getrandom(15, 255));
       }
 
-      printw("\n");
+      printf("\n");
     }
     else
     {
-      printw("\n\n\n\n\n");
-      printw("                                                       ██\n");
-      printw("                                                      █  █\n");
-      printw("                        ███ ████ ████ █  █ █  █ █  █      █\n");
-      printw("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
-      printw("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
-      printw("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
-      printw("                        █   ████ █  █ █  █ █  █ █  █  █\n");
-      printw("                                                      █████\n");
-      printw("\n\n\n");
-      printw("                             ███ ОКОРЕНИЕ\n");
-      printw("                             █ █\n");
-      printw("                             █ █    █ █ УЛЬТУРНОЙ\n");
-      printw("                                    ██\n");
-      printw("                                    █ █     ██ ТОЛИЦЫ\n");
-      printw("                                            █\n");
-      printw("                                            ██\n");
+      printf("\n\n\n\n\n");
+      printf("                                                       ██\n");
+      printf("                                                      █  █\n");
+      printf("                        ███ ████ ████ █  █ █  █ █  █      █\n");
+      printf("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
+      printf("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
+      printf("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
+      printf("                        █   ████ █  █ █  █ █  █ █  █  █\n");
+      printf("                                                      █████\n");
+      printf("\n\n\n");
+      printf("                             ███ ОКОРЕНИЕ\n");
+      printf("                             █ █\n");
+      printf("                             █ █    █ █ УЛЬТУРНОЙ\n");
+      printf("                                    ██\n");
+      printf("                                    █ █     ██ ТОЛИЦЫ\n");
+      printf("                                            █\n");
+      printf("                                            ██\n");
     }
 
     if (kbhit())

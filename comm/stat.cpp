@@ -19,7 +19,7 @@ int stat()
   for (i = 0; i < cur_game->stn_amount; i++)
   {
     settextattr(WHITE);
-    printw("%2i - ", i + 1);
+    printf("%2i - ", i + 1);
 
     if (main_hero->station == i)
     {
@@ -37,7 +37,7 @@ int stat()
       }
     }
 
-    printw("%s\n", cur_game->stn[i].name);
+    printf("%s\n", cur_game->stn[i].name);
   }
 
   return 0;

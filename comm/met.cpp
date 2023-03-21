@@ -22,13 +22,13 @@ int met()
   if (cur_game->stay_met > 0)
   {
     settextattr(YELLOW);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     return 0;
   }
 
   settextattr(WHITE);
-  printw(mess[0], cur_game->stn[main_hero->station].name);
+  printf(mess[0], cur_game->stn[main_hero->station].name);
 
   // переход к новой локации
   cur_game->set_loc(9);

@@ -12,7 +12,7 @@ int e()
   const char *mess[1] = {
       "Уже уходишь? Очканул, сука?! (y/n)\n"};
   settextattr(YELLOW);
-  printw("%s", mess[0]);
+  printf("%s", mess[0]);
   if (cur_game->wait_answ())
   {
     return 1;

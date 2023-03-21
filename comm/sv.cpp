@@ -64,16 +64,16 @@ int sv()
       (strcmp(enemy->get_type(), "Вахтёрша") == 0) ||
       (strcmp(enemy->get_type(), "Коменда") == 0))
   {
-    printw(mess[9], enemy->get_type(), enemy->get_level());
+    printf(mess[9], enemy->get_type(), enemy->get_level());
   }
   else
   {
-    printw(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);
+    printf(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);
   }
 
   // навыки (сила, ловкость, живучесть, удача)
   settextattr(WHITE);
-  printw(
+  printf(
       mess[1],
       enemy->get_force(),
       enemy->get_smart(),
@@ -82,7 +82,7 @@ int sv()
 
   // урон
   settextattr(WHITE);
-  printw(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
+  printf(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
 
   // здоровье
 
@@ -104,21 +104,21 @@ int sv()
     }
   }
 
-  printw(mess[3], enemy->get_health(), enemy->get_max_health());
+  printf(mess[3], enemy->get_health(), enemy->get_max_health());
 
   if (enemy->broken_jaw)
   {
     settextattr(RED);
-    printw("%s", mess[7]);
+    printf("%s", mess[7]);
   }
 
   if (enemy->broken_foot)
   {
     settextattr(RED);
-    printw("%s", mess[8]);
+    printf("%s", mess[8]);
   }
 
-  printw("\n");
+  printf("\n");
 
   // точность
 
@@ -126,18 +126,18 @@ int sv()
 
   if ((kick_count = enemy->get_kick_count()) == 1)
   {
-    printw(mess[4], enemy->get_accuracy_of_last_kick());
+    printf(mess[4], enemy->get_accuracy_of_last_kick());
   }
   else
   {
-    printw(mess[5], kick_count - 1, kick_count, enemy->get_accuracy_of_last_kick());
+    printf(mess[5], kick_count - 1, kick_count, enemy->get_accuracy_of_last_kick());
   }
 
   // броня
   if (enemy->get_armo() > 0)
   {
     settextattr(GREEN);
-    printw(mess[6], enemy->get_armo());
+    printf(mess[6], enemy->get_armo());
   }
 
   return 0;

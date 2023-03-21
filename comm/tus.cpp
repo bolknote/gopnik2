@@ -41,22 +41,22 @@ int tus()
   if (main_hero->add_smart())
   {
     settextattr(GREEN);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
   }
   else
   {
     settextattr(GREEN);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     settextattr(BLUE);
     main_hero->add_smart(1);
 
-    printw("\n");
+    printf("\n");
 
     if (chance(1, 2))
     {
       settextattr(YELLOW);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       cur_game->set_stay_kl(-1);
 
@@ -68,10 +68,10 @@ int tus()
       level += 2;
 
       settextattr(YELLOW);
-      printw(mess[3], cur_game->ht[ht_index].type, level);
+      printf(mess[3], cur_game->ht[ht_index].type, level);
 
       settextattr(RED);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       cur_game->gen_enemy_obj(ht_index, level);
 

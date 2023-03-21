@@ -36,10 +36,10 @@ void show_timer(time_t sec_amount)
       da = getdigitamount(sec_amount);
       while (da < max_da)
       {
-        printw("0");
+        printf("0");
         da++;
       }
-      printw("%ld", sec_amount);
+      printf("%ld", sec_amount);
 #warning Надо разобраться, зачем здесь gotoxy
       //      gotoxy (wherex () - max_da, wherey ());
     }
@@ -110,26 +110,26 @@ int cstat(
       }
 
       settextattr(YELLOW);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       settextattr(BLUE);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       show_timer(time);
 
       settextattr(WHITE);
-      printw(mess[1], cur_game->stn[index].name);
+      printf(mess[1], cur_game->stn[index].name);
     }
     else
     {
       settextattr(RED);
-      printw("%s", cur_game->stn[index].unavail_reason);
+      printf("%s", cur_game->stn[index].unavail_reason);
     }
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
   }
 
   return 0;

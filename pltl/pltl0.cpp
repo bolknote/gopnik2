@@ -60,11 +60,11 @@ int pltl0(
     if (cur_game->active_pltl == pltl_index)
     {
       settextattr(WHITE);
-      printw("%s", mess[8]);
-      printw("%s", mess[9]);
+      printf("%s", mess[8]);
+      printf("%s", mess[9]);
 
       settextattr(YELLOW);
-      printw("i.\r\n");
+      printf("i.\r\n");
 
       cur_game->active_pltl = -1;
       cur_game->pltl[pltl_index].active++;
@@ -72,42 +72,42 @@ int pltl0(
     else
     {
       settextattr(WHITE);
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
 
       getch(0);
 
       settextattr(WHITE);
-      printw("%s", mess[1]);
+      printf("%s", mess[1]);
 
       getch(0);
 
       settextattr(YELLOW);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       getch(0);
 
       settextattr(GREEN);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       getch(0);
 
       settextattr(YELLOW);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       getch(0);
 
       settextattr(WHITE);
-      printw("%s", mess[5]);
+      printf("%s", mess[5]);
 
       getch(0);
 
       settextattr(RED);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       getch(0);
 
       settextattr(WHITE);
-      printw("%s", mess[7]);
+      printf("%s", mess[7]);
 
       ret = 1;
       cur_game->active_pltl = pltl_index;
@@ -123,7 +123,7 @@ int pltl0(
         (cur_game->active_pltl != pltl_index))
     {
       settextattr(RED);
-      printw("%s", mess[22]);
+      printf("%s", mess[22]);
 
       getch();
 
@@ -136,21 +136,21 @@ int pltl0(
         (main_hero->station == 1))
     {
       settextattr(WHITE);
-      printw("%s", mess[10]);
+      printf("%s", mess[10]);
 
       getch();
 
-      printw("%s", mess[11]);
+      printf("%s", mess[11]);
 
       getch();
 
-      printw("%s", mess[12]);
+      printf("%s", mess[12]);
 
       settextattr(RED);
-      printw("%s", mess[13]);
+      printf("%s", mess[13]);
 
       settextattr(WHITE);
-      printw("%s", mess[14]);
+      printf("%s", mess[14]);
 
       getch();
 
@@ -185,29 +185,29 @@ int pltl0(
       if (main_hero->get_health() == 0)
       {
         settextattr(WHITE);
-        printw("%s", mess[18]);
+        printf("%s", mess[18]);
 
         getch();
       }
       else
       {
         settextattr(WHITE);
-        printw("%s", mess[15]);
+        printf("%s", mess[15]);
 
         getch();
 
         settextattr(YELLOW);
-        printw("%s", mess[16]);
+        printf("%s", mess[16]);
 
         getch();
 
         settextattr(GREEN);
-        printw("%s", mess[17]);
+        printf("%s", mess[17]);
 
         getch();
 
         settextattr(YELLOW);
-        printw("%s", mess[20]);
+        printf("%s", mess[20]);
 
         getch();
 
@@ -244,7 +244,7 @@ int pltl0(
       if (main_hero->get_health() == 0)
       {
         settextattr(WHITE);
-        printw("%s", mess[18]);
+        printf("%s", mess[18]);
 
         getch();
       }
@@ -253,12 +253,12 @@ int pltl0(
         getch();
 
         settextattr(WHITE);
-        printw("%s", mess[19]);
+        printf("%s", mess[19]);
 
         getch();
 
         settextattr(RED);
-        printw("%s", mess[21]);
+        printf("%s", mess[21]);
 
         getch();
 

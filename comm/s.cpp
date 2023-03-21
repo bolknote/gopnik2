@@ -85,32 +85,32 @@ int s()
   }
 
   settextattr(GREEN);
-  printw(mess[0], main_hero->get_type(), main_hero->get_level(), cur_level_type);
+  printf(mess[0], main_hero->get_type(), main_hero->get_level(), cur_level_type);
 
   settextattr(RED);
 
   if (main_hero->stoned)
   {
-    printw("%s", mess[27]);
+    printf("%s", mess[27]);
   }
 
   if (main_hero->drunk)
   {
-    printw("%s", mess[28]);
+    printf("%s", mess[28]);
   }
 
-  printw("\n");
+  printf("\n");
 
   settextattr(GREEN);
-  printw("%s", mess[1]);
+  printf("%s", mess[1]);
 
   // имя
   settextattr(WHITE);
-  printw("%s\n", main_hero->get_name());
+  printf("%s\n", main_hero->get_name());
 
   // опыт
   settextattr(YELLOW);
-  printw(mess[2], main_hero->get_exp(), main_hero->get_max_exp());
+  printf(mess[2], main_hero->get_exp(), main_hero->get_max_exp());
 
   // навыки (сила, ловкость, живучесть, удача)
 
@@ -126,7 +126,7 @@ int s()
   }
 
   settextattr(WHITE);
-  printw("%s", mess[3]);
+  printf("%s", mess[3]);
 
   if (
       (force > 0) ||
@@ -135,10 +135,10 @@ int s()
     settextattr(BLUE);
   }
 
-  printw("%i ", main_hero->get_force());
+  printf("%i ", main_hero->get_force());
 
   settextattr(WHITE);
-  printw("%s", mess[4]);
+  printf("%s", mess[4]);
 
   if (
       (smart > 0) ||
@@ -152,10 +152,10 @@ int s()
     settextattr(RED);
   }
 
-  printw("%i ", main_hero->get_smart());
+  printf("%i ", main_hero->get_smart());
 
   settextattr(WHITE);
-  printw("%s", mess[5]);
+  printf("%s", mess[5]);
 
   if (
       (vita > 0) ||
@@ -164,10 +164,10 @@ int s()
     settextattr(BLUE);
   }
 
-  printw("%i ", main_hero->get_vita());
+  printf("%i ", main_hero->get_vita());
 
   settextattr(WHITE);
-  printw("%s", mess[6]);
+  printf("%s", mess[6]);
 
   if (
       (luck > 0) ||
@@ -176,7 +176,7 @@ int s()
     settextattr(BLUE);
   }
 
-  printw("%i\n", main_hero->get_luck());
+  printf("%i\n", main_hero->get_luck());
 
   // феньки
 
@@ -196,52 +196,52 @@ int s()
         if (flag == 0)
         {
           settextattr(WHITE);
-          printw("%s", mess[7]);
+          printf("%s", mess[7]);
 
           settextattr(BLUE);
 
           flag = 1;
         }
 
-        printw("%s", main_hero->inv[i].name);
+        printf("%s", main_hero->inv[i].name);
 
         if ((force == smart) && (smart == vita) && (vita == luck))
         {
-          printw(mess[8], force);
+          printf(mess[8], force);
         }
         else
         {
-          printw(" (");
+          printf(" (");
 
           if (force > 0)
           {
-            printw(mess[9], force);
+            printf(mess[9], force);
           }
 
           if (smart > 0)
           {
-            printw(mess[10], smart);
+            printf(mess[10], smart);
           }
 
           if (vita > 0)
           {
-            printw(mess[11], vita);
+            printf(mess[11], vita);
           }
 
           if (luck > 0)
           {
-            printw(mess[12], luck);
+            printf(mess[12], luck);
           }
 
-          printw("%c%c)", 8, 8);
+          printf("%c%c)", 8, 8);
         }
 
         if (main_hero->inv[i].have > 1)
         {
-          printw(mess[29], main_hero->inv[i].have);
+          printf(mess[29], main_hero->inv[i].have);
         }
 
-        printw("%s", "\n");
+        printf("%s", "\n");
       }
     }
   }
@@ -264,7 +264,7 @@ int s()
       if (flag == 0)
       {
         settextattr(WHITE);
-        printw("%s", mess[13]);
+        printf("%s", mess[13]);
 
         flag = 1;
       }
@@ -278,21 +278,21 @@ int s()
         settextattr(RED);
       }
 
-      printw("%s", main_hero->inv[i].name);
+      printf("%s", main_hero->inv[i].name);
 
       if (main_hero->inv[i].have > 1)
       {
-        printw(mess[29], main_hero->inv[i].have);
+        printf(mess[29], main_hero->inv[i].have);
       }
 
-      printw("%s", "\n");
+      printf("%s", "\n");
     }
   }
 
   // урон
 
   settextattr(WHITE);
-  printw("%s", mess[14]);
+  printf("%s", mess[14]);
 
   flag = 0;
 
@@ -303,34 +303,34 @@ int s()
       if (flag == 0)
       {
         settextattr(BLUE);
-        printw("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
+        printf("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
         flag = 1;
       }
 
       if (main_hero->inv[i].active == 1)
       {
         settextattr(BLUE);
-        printw(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].loss);
+        printf(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].loss);
       }
       else
       {
         settextattr(RED);
-        printw(" %s", main_hero->inv[i].name);
+        printf(" %s", main_hero->inv[i].name);
       }
 
       if (main_hero->inv[i].have > 1)
       {
-        printw(mess[29], main_hero->inv[i].have);
+        printf(mess[29], main_hero->inv[i].have);
       }
     }
   }
 
   if (flag == 0)
   {
-    printw("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
+    printf("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
   }
 
-  printw("%s", "\n");
+  printf("%s", "\n");
 
   // здоровье
 
@@ -352,21 +352,21 @@ int s()
     }
   }
 
-  printw(mess[15], main_hero->get_health(), main_hero->get_max_health());
+  printf(mess[15], main_hero->get_health(), main_hero->get_max_health());
 
   if (main_hero->broken_jaw)
   {
     settextattr(RED);
-    printw("%s", mess[25]);
+    printf("%s", mess[25]);
   }
 
   if (main_hero->broken_foot)
   {
     settextattr(RED);
-    printw("%s", mess[26]);
+    printf("%s", mess[26]);
   }
 
-  printw("%s", "\n");
+  printf("%s", "\n");
 
   // точность
 
@@ -374,11 +374,11 @@ int s()
 
   if ((kick_count = main_hero->get_kick_count()) == 1)
   {
-    printw(mess[16], main_hero->get_accuracy_of_last_kick());
+    printf(mess[16], main_hero->get_accuracy_of_last_kick());
   }
   else
   {
-    printw(mess[17], kick_count - 1, kick_count, main_hero->get_accuracy_of_last_kick());
+    printf(mess[17], kick_count - 1, kick_count, main_hero->get_accuracy_of_last_kick());
   }
 
   // броня
@@ -386,7 +386,7 @@ int s()
   if (main_hero->get_armo() > 0)
   {
     settextattr(GREEN);
-    printw("%s", mess[18]);
+    printf("%s", mess[18]);
 
     flag = 0;
 
@@ -397,34 +397,34 @@ int s()
         if (flag == 0)
         {
           settextattr(BLUE);
-          printw("%i", main_hero->get_armo());
+          printf("%i", main_hero->get_armo());
           flag = 1;
         }
 
         if (main_hero->inv[i].active == 1)
         {
           settextattr(BLUE);
-          printw(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].armo);
+          printf(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].armo);
         }
         else
         {
           settextattr(RED);
-          printw(" %s", main_hero->inv[i].name);
+          printf(" %s", main_hero->inv[i].name);
         }
 
         if (main_hero->inv[i].have > 1)
         {
-          printw(mess[29], main_hero->inv[i].have);
+          printf(mess[29], main_hero->inv[i].have);
         }
       }
     }
 
     if (flag == 0)
     {
-      printw("%i", main_hero->get_armo());
+      printf("%i", main_hero->get_armo());
     }
 
-    printw("%s", "\n");
+    printf("%s", "\n");
   }
 
   // пиво
@@ -432,12 +432,12 @@ int s()
   if (main_hero->get_beer() > 0)
   {
     settextattr(WHITE);
-    printw(mess[19], main_hero->get_beer());
+    printf(mess[19], main_hero->get_beer());
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[20]);
+    printf("%s", mess[20]);
   }
 
   // бабки
@@ -445,12 +445,12 @@ int s()
   if (main_hero->get_money() > 0)
   {
     settextattr(WHITE);
-    printw(mess[21], main_hero->get_money());
+    printf(mess[21], main_hero->get_money());
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[22]);
+    printf("%s", mess[22]);
   }
 
   // косяки
@@ -458,7 +458,7 @@ int s()
   if (main_hero->get_ciga() > 0)
   {
     settextattr(WHITE);
-    printw(mess[23], main_hero->get_ciga());
+    printf(mess[23], main_hero->get_ciga());
   }
 
   // хлам
@@ -466,7 +466,7 @@ int s()
   if (main_hero->get_stuff() > 0)
   {
     settextattr(WHITE);
-    printw(mess[24], main_hero->get_stuff());
+    printf(mess[24], main_hero->get_stuff());
   }
 
   return 0;

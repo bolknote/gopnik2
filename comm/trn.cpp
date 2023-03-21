@@ -29,13 +29,13 @@ int trn()
   if (cur_game->get_open_trn() == 0)
   {
     settextattr(RED);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
 
   settextattr(WHITE);
-  printw("%s", mess[1]);
+  printf("%s", mess[1]);
 
   // переход к новой локации
   cur_game->set_loc(7);

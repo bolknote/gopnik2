@@ -40,7 +40,7 @@ int loa()
     if (cur_game->num_comm > 0)
     {
       settextattr (14);
-      printw (mess [6], cur_game->file_name);
+      printf (mess [6], cur_game->file_name);
 
       if (cur_game->wait_answ () == 0)
       {
@@ -49,7 +49,7 @@ int loa()
     }
 
     settextattr (9);
-    printw (mess [3], cur_game->file_name);
+    printf (mess [3], cur_game->file_name);
 
     if (
   //       (findfirst (cur_game->file_name, &ffblk, 0) == 0)
@@ -61,7 +61,7 @@ int loa()
       if ((load_file = fopen (cur_game->file_name, "rb")) == NULL)
       {
         settextattr (12);
-        printw (mess [4], cur_game->file_name);
+        printf (mess [4], cur_game->file_name);
 
         return -1;
       }
@@ -71,12 +71,12 @@ int loa()
       if (VERSION < vers)
       {
         settextattr (12);
-        printw ("%s",mess [0]);
-        printw ("%s",mess [1]);
+        printf ("%s",mess [0]);
+        printf ("%s",mess [1]);
 
         fclose (load_file);
 
-        // printw ("%s","%f %f", VERSION, vers);
+        // printf ("%s","%f %f", VERSION, vers);
 
         return -1;
       }
@@ -84,8 +84,8 @@ int loa()
     else
     {
       settextattr (12);
-      printw ("%s",mess [0]);
-      printw ("%s",mess [2]);
+      printf ("%s",mess [0]);
+      printf ("%s",mess [2]);
 
       return -1;
     }
@@ -113,11 +113,11 @@ int loa()
     }
 
     settextattr (9);
-    printw ("%s",mess [5]);
+    printf ("%s",mess [5]);
 
     fclose (load_file);
 
     return 0;*/
-  printw("Загрузка пока не поддерживается\n");
+  printf("Загрузка пока не поддерживается\n");
   return -1;
 }

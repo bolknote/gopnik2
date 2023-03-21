@@ -10,7 +10,6 @@
 #define WHITE   0x7
 #define BLACK   0x8
 
-#define printw printf
 #define getrandom(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
 #define chance(m, n) (getrandom(0, (int)(n)) <= (m)) ? (1) : (0)
 #define sub(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)

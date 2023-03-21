@@ -41,7 +41,7 @@ int sl()
   if (cur_game->active_loc == 13)
   {
     settextattr(WHITE);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
 
     // переход к новой локации
     cur_game->set_loc(8);
@@ -62,7 +62,7 @@ int sl()
         //        buf1 = (char *) calloc (ffblk.ff_fsize + 1, sizeof (char));
         //        buf2 = (char *) calloc (ffblk.ff_fsize + 1, sizeof (char));
 
-        // printw ("%s","r%i s%i", fread (buf, sizeof (char), ffblk.ff_fsize, stream), ffblk.ff_fsize);
+        // printf ("%s","r%i s%i", fread (buf, sizeof (char), ffblk.ff_fsize, stream), ffblk.ff_fsize);
         //        fread (buf1, sizeof (char), ffblk.ff_fsize, stream);
         /*        fclose (stream);
 
@@ -100,7 +100,7 @@ int sl()
                   cur_game->st [cur_game->st_amount] = strdup (buf2);
                   cur_game->st_amount++;
 
-                  // printw ("%s","%s ^^^ ", buf2);
+                  // printf ("%s","%s ^^^ ", buf2);
                 }
 
                 free (buf1);
@@ -113,7 +113,7 @@ int sl()
     if (main_hero->add_smart())
     {
       settextattr(GREEN);
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
 
       return 0;
     }
@@ -123,7 +123,7 @@ int sl()
         (main_hero->broken_foot))
     {
       settextattr(RED);
-      printw("%s", mess[5]);
+      printf("%s", mess[5]);
 
       return 0;
     }
@@ -131,7 +131,7 @@ int sl()
     if (main_hero->broken_jaw)
     {
       settextattr(RED);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       return 0;
     }
@@ -139,22 +139,22 @@ int sl()
     if (main_hero->broken_foot)
     {
       settextattr(RED);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       return 0;
     }
 
     settextattr(WHITE);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     if (cur_game->st_amount > 0)
     {
       settextattr(YELLOW);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       settextattr(BLUE);
-      printw("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
-      printw("%s", "\n");
+      printf("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
+      printf("%s", "\n");
     }
 
     // переход к новой локации

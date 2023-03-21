@@ -29,14 +29,14 @@ int kos()
     if (cur_game->stay_kos > 0)
     {
       settextattr(YELLOW);
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
     }
     else
     {
       if (main_hero->broken_jaw)
       {
         settextattr(RED);
-        printw("%s", mess[3]);
+        printf("%s", mess[3]);
       }
       else
       {
@@ -53,14 +53,14 @@ int kos()
         }
 
         settextattr(BLUE);
-        printw("%s", mess[1]);
+        printf("%s", mess[1]);
       }
     }
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[2]);
+    printf("%s", mess[2]);
   }
 
   return 0;

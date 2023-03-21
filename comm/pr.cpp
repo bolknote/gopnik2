@@ -39,7 +39,7 @@ int pr()
       (main_hero->station == 0))
   {
     settextattr(RED);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
@@ -49,13 +49,13 @@ int pr()
     if (main_hero->inv[cur_game->search_inv(main_hero, "Пропуск в общагу")].have == 0)
     {
       settextattr(YELLOW);
-      printw("%s", mess[5]);
+      printf("%s", mess[5]);
 
       settextattr(RED);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       settextattr(YELLOW);
-      printw("%s", mess[7]);
+      printf("%s", mess[7]);
 
       cur_game->set_open_pr(0);
 
@@ -68,7 +68,7 @@ int pr()
   }
 
   settextattr(WHITE);
-  printw("%s", (main_hero->station) ? (mess[8]) : (mess[1]));
+  printf("%s", (main_hero->station) ? (mess[8]) : (mess[1]));
 
   if (
       (cur_game->get_open_a() == 0) &&
@@ -81,19 +81,19 @@ int pr()
   if (cur_game->get_open_a())
   {
     settextattr(YELLOW);
-    printw("%s", mess[4]);
+    printf("%s", mess[4]);
   }
 
   if (cur_game->get_open_hp())
   {
     settextattr(YELLOW);
-    printw("%s", mess[2]);
+    printf("%s", mess[2]);
   }
 
   if (cur_game->get_open_d())
   {
     settextattr(YELLOW);
-    printw("%s", mess[3]);
+    printf("%s", mess[3]);
   }
 
   if (
@@ -101,7 +101,7 @@ int pr()
       (main_hero->station == 4))
   {
     settextattr(YELLOW);
-    printw("%s", mess[9]);
+    printf("%s", mess[9]);
   }
 
   // переход к новой локации

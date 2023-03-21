@@ -66,7 +66,7 @@ int wes()
     if (main_hero->inv_have_amount == 0)
     {
       settextattr(RED);
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
 
       return 0;
     }

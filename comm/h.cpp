@@ -35,7 +35,7 @@ int h(
     {
       main_hero->add_health(5);
 
-      printw(mess[0], main_hero->get_health(), main_hero->get_max_health());
+      printf(mess[0], main_hero->get_health(), main_hero->get_max_health());
 
       if (main_hero->get_max_health() == main_hero->get_health())
       {
@@ -46,7 +46,7 @@ int h(
     }
     else
     {
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
     }
     break;
 
@@ -58,7 +58,7 @@ int h(
       main_hero->broken_jaw = 0;
       main_hero->broken_foot = 0;
 
-      printw("%s", mess[1]);
+      printf("%s", mess[1]);
 
       cur_game->pl[pl_index].members[plm_index].buy_phrase_print_mode = 0;
 
@@ -66,7 +66,7 @@ int h(
     }
     else
     {
-      printw("%s", mess[2]);
+      printf("%s", mess[2]);
     }
     break;
   }

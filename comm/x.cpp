@@ -32,12 +32,12 @@ int x()
     main_hero->sub_stuff(main_hero->get_stuff());
 
     settextattr(GREEN);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
   }
   else
   {
     settextattr(RED);
-    printw("%s", mess[1]);
+    printf("%s", mess[1]);
   }
 
   return 0;

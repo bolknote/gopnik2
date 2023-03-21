@@ -41,7 +41,7 @@ int sav()
     if(1)
     {
       settextattr (14);
-      printw (mess [0], cur_game->file_name);
+      printf (mess [0], cur_game->file_name);
 
       if (cur_game->wait_answ () == 0)
       {
@@ -52,13 +52,13 @@ int sav()
     if ((sav_file = fopen (cur_game->file_name, "wb")) == NULL)
     {
       settextattr (12);
-      printw (mess [1], cur_game->file_name);
+      printf (mess [1], cur_game->file_name);
 
       return 0;
     }
 
     settextattr (9);
-    printw (mess [2], cur_game->file_name);
+    printf (mess [2], cur_game->file_name);
 
     // пишем версию
     vers = VERSION;
@@ -73,8 +73,8 @@ int sav()
     fclose (sav_file);
 
     settextattr (9);
-    printw ("%s",mess [3]);
+    printf ("%s",mess [3]);
 
     return 0; */
-  printw("Сохранение пока не поддерживается");
+  printf("Сохранение пока не поддерживается");
 }

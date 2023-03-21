@@ -39,7 +39,7 @@ int d()
     main_hero = cur_game->main_hero;
 
     settextattr(YELLOW);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     getch();
 
@@ -49,14 +49,14 @@ int d()
       if (chance(1, 20))
       {
         settextattr(YELLOW);
-        printw("%s", mess[1]);
-        printw("%s", mess[2]);
+        printf("%s", mess[1]);
+        printf("%s", mess[2]);
 
         main_hero->add_att(20);
         main_hero->add_money(getrandom(19, 20 + 20 * main_hero->district));
 
         settextattr(BLUE);
-        printw(mess[3], 20);
+        printf(mess[3], 20);
 
         // переход к новой локации
         cur_game->set_loc(4);
@@ -70,13 +70,13 @@ int d()
       if (chance(1, 20))
       {
         settextattr(YELLOW);
-        printw("%s", mess[4]);
+        printf("%s", mess[4]);
 
         settextattr(RED);
-        printw("%s", mess[5]);
+        printf("%s", mess[5]);
 
         settextattr(YELLOW);
-        printw("%s", mess[6]);
+        printf("%s", mess[6]);
 
         // переход к новой локации
         cur_game->set_loc(4);
@@ -90,19 +90,19 @@ int d()
       if (chance(1, 10))
       {
         settextattr(YELLOW);
-        printw("%s", mess[4]);
+        printf("%s", mess[4]);
 
         settextattr(RED);
-        printw("%s", mess[5]);
+        printf("%s", mess[5]);
 
         ht_index = cur_game->search_ht("Мент");
         level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
         settextattr(YELLOW);
-        printw(mess[7], level);
+        printf(mess[7], level);
 
         settextattr(RED);
-        printw("%s", mess[8]);
+        printf("%s", mess[8]);
 
         cur_game->gen_enemy_obj(ht_index, level);
 

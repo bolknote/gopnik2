@@ -45,19 +45,19 @@ int up(
     if (main_hero->add_vita())
     {
       settextattr(RED);
-      printw(mess[1], mess[2]);
+      printf(mess[1], mess[2]);
 
       *flag = 0;
     }
     else
     {
       settextattr(GREEN);
-      printw("%s", mess[0]);
+      printf("%s", mess[0]);
 
       settextattr(BLUE);
       main_hero->add_vita(1);
 
-      printw("\n");
+      printf("\n");
 
       *flag = 1;
     }
@@ -67,14 +67,14 @@ int up(
     if (main_hero->trn_foot >= 10)
     {
       settextattr(RED);
-      printw(mess[1], mess[3]);
+      printf(mess[1], mess[3]);
 
       *flag = 0;
     }
     else
     {
       settextattr(GREEN);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       main_hero->trn_foot += 1;
 
@@ -86,17 +86,17 @@ int up(
     if (main_hero->add_armo())
     {
       settextattr(RED);
-      printw(mess[1], mess[7]);
+      printf(mess[1], mess[7]);
 
       *flag = 0;
     }
     else
     {
       settextattr(GREEN);
-      printw("%s", mess[5]);
+      printf("%s", mess[5]);
 
       settextattr(BLUE);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       main_hero->add_armo(1);
 
@@ -108,19 +108,19 @@ int up(
     if (main_hero->add_force())
     {
       settextattr(RED);
-      printw(mess[1], mess[8]);
+      printf(mess[1], mess[8]);
 
       *flag = 0;
     }
     else
     {
       settextattr(GREEN);
-      printw("%s", mess[9]);
+      printf("%s", mess[9]);
 
       settextattr(BLUE);
       main_hero->add_force(1);
 
-      printw("\n");
+      printf("\n");
 
       *flag = 1;
     }
@@ -130,7 +130,7 @@ int up(
     if ((main_hero->get_max_exp() - main_hero->get_exp()) < 10)
     {
       settextattr(RED);
-      printw("%s", mess[10]);
+      printf("%s", mess[10]);
 
       *flag = 0;
     }

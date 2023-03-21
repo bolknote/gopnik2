@@ -353,14 +353,14 @@ int hero::add_exp(
 
   if (print_mode)
   {
-    printw("Ты получаешь %i качков опыта\n", d);
+    printf("Ты получаешь %i качков опыта\n", d);
   }
 
   if ((get_exp() + d) >= get_max_exp())
   {
     while ((get_exp() + d) >= get_max_exp())
     {
-      // printw ( "d=%i ge=%i gme=%i\n", d, get_exp (), get_max_exp ());
+      // printf ( "d=%i ge=%i gme=%i\n", d, get_exp (), get_max_exp ());
 
       d = (get_exp() + d) - get_max_exp();
       exp = 0;
@@ -372,7 +372,7 @@ int hero::add_exp(
 
     if (print_mode)
     {
-      printw(
+      printf(
           "Сейчас у тебя %i качков опыта. До следующей прокачки надо %i\n",
           get_exp(), get_max_exp());
     }
@@ -433,7 +433,7 @@ int hero::add_level()
 
   if (print_mode)
   {
-    printw("Понтовость увеличивается:");
+    printf("Понтовость увеличивается:");
   }
 
   add_force(chance_ar[0]);
@@ -443,7 +443,7 @@ int hero::add_level()
 
   if (print_mode)
   {
-    printw("\n");
+    printf("\n");
   }
 
   if (flag_health)
@@ -469,7 +469,7 @@ int hero::add_force(int d)
 
     if (print_mode)
     {
-      printw(" Сила +%i", d);
+      printf(" Сила +%i", d);
     }
   }
 
@@ -491,7 +491,7 @@ int hero::add_smart(int d)
 
     if (print_mode)
     {
-      printw(" Ловкость +%i", d);
+      printf(" Ловкость +%i", d);
     }
   }
 
@@ -513,7 +513,7 @@ int hero::add_vita(int d)
 
     if (print_mode)
     {
-      printw(" Живучесть +%i", d);
+      printf(" Живучесть +%i", d);
     }
   }
 
@@ -535,7 +535,7 @@ int hero::add_luck(int d)
 
     if (print_mode)
     {
-      printw(" Удача +%i", d);
+      printf(" Удача +%i", d);
     }
   }
 

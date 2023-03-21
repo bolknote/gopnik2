@@ -42,7 +42,7 @@ int kl()
   if (cur_game->get_open_kl() == 0)
   {
     settextattr(RED);
-    printw("%s", mess[0]);
+    printf("%s", mess[0]);
 
     return 0;
   }
@@ -50,7 +50,7 @@ int kl()
   if (cur_game->get_stay_kl() > 0)
   {
     settextattr(YELLOW);
-    printw("%s", mess[2]);
+    printf("%s", mess[2]);
 
     return 0;
   }
@@ -62,7 +62,7 @@ int kl()
     if (main_hero->get_money() >= 20)
     {
       settextattr(YELLOW);
-      printw("%s", mess[3]);
+      printf("%s", mess[3]);
 
       if (!cur_game->wait_answ())
       {
@@ -76,7 +76,7 @@ int kl()
     else
     {
       settextattr(RED);
-      printw("%s", mess[4]);
+      printf("%s", mess[4]);
 
       return 0;
     }
@@ -87,15 +87,15 @@ int kl()
     if (main_hero->station)
     {
       settextattr(WHITE);
-      printw("%s", mess[6]);
+      printf("%s", mess[6]);
 
       settextattr(BLUE);
-      printw("%s", mess[7]);
+      printf("%s", mess[7]);
     }
     else
     {
       settextattr(YELLOW);
-      printw("%s", mess[8]);
+      printf("%s", mess[8]);
 
       return 0;
     }
@@ -103,7 +103,7 @@ int kl()
   else
   {
     settextattr(WHITE);
-    printw("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
+    printf("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
   }
 
   // переход к новой локации
