@@ -949,9 +949,9 @@ int game::headband()
   settextattr(14);
   printw("V.P.\n");
   settextattr(7);
-  printw("Программирование . . . . . . . . . . . . . . ");
+  printw("Программирование . . . . . . . . . ");
   settextattr(14);
-  printw("d-maxx & tiandrey\n");
+  printw("d-maxx, tiandrey & bolknote.\n");
 
   ch = getch();
 
