@@ -28,7 +28,7 @@ int met()
   }
 
   settextattr(15);
-  printw(mess[0], cur_game->stn[main_hero->station]);
+  printw(mess[0], cur_game->stn[main_hero->station].name);
 
   // переход к новой локации
   cur_game->set_loc(9);
