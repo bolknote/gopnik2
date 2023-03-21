@@ -24,12 +24,12 @@ int p()
     main_hero->sub_beer(1);
     main_hero->add_att(5);
 
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[0]);
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[1]);
   }
 

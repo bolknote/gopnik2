@@ -44,7 +44,7 @@ int hp()
       ht_index = cur_game->search_ht("Студент");
     }
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw(mess[0], cur_game->ht[ht_index].type, level);
 
     cur_game->gen_enemy_obj(ht_index, level);

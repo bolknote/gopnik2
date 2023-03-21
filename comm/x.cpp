@@ -31,12 +31,12 @@ int x()
 
     main_hero->sub_stuff(main_hero->get_stuff());
 
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[0]);
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[1]);
   }
 

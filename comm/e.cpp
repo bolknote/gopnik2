@@ -11,7 +11,7 @@ int e()
 {
   const char *mess[1] = {
       "Уже уходишь? Очканул, сука?! (y/n)\n"};
-  settextattr(14);
+  settextattr(YELLOW);
   printw("%s", mess[0]);
   if (cur_game->wait_answ())
   {

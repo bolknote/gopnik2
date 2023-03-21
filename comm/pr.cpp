@@ -38,7 +38,7 @@ int pr()
       (cur_game->get_open_pr() == 0) &&
       (main_hero->station == 0))
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[0]);
 
     return 0;
@@ -48,13 +48,13 @@ int pr()
   {
     if (main_hero->inv[cur_game->search_inv(main_hero, "Пропуск в общагу")].have == 0)
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[5]);
 
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[6]);
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[7]);
 
       cur_game->set_open_pr(0);
@@ -67,7 +67,7 @@ int pr()
     }
   }
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", (main_hero->station) ? (mess[8]) : (mess[1]));
 
   if (
@@ -80,19 +80,19 @@ int pr()
 
   if (cur_game->get_open_a())
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[4]);
   }
 
   if (cur_game->get_open_hp())
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[2]);
   }
 
   if (cur_game->get_open_d())
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[3]);
   }
 
@@ -100,7 +100,7 @@ int pr()
       (cur_game->open_raid) &&
       (main_hero->station == 4))
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[9]);
   }
 

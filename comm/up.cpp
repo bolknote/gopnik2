@@ -44,17 +44,17 @@ int up(
   case 0:
     if (main_hero->add_vita())
     {
-      settextattr(12);
+      settextattr(RED);
       printw(mess[1], mess[2]);
 
       *flag = 0;
     }
     else
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[0]);
 
-      settextattr(9);
+      settextattr(BLUE);
       main_hero->add_vita(1);
 
       printw("\n");
@@ -66,14 +66,14 @@ int up(
   case 1:
     if (main_hero->trn_foot >= 10)
     {
-      settextattr(12);
+      settextattr(RED);
       printw(mess[1], mess[3]);
 
       *flag = 0;
     }
     else
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[4]);
 
       main_hero->trn_foot += 1;
@@ -85,17 +85,17 @@ int up(
   case 2:
     if (main_hero->add_armo())
     {
-      settextattr(12);
+      settextattr(RED);
       printw(mess[1], mess[7]);
 
       *flag = 0;
     }
     else
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[5]);
 
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[6]);
 
       main_hero->add_armo(1);
@@ -107,17 +107,17 @@ int up(
   case 3:
     if (main_hero->add_force())
     {
-      settextattr(12);
+      settextattr(RED);
       printw(mess[1], mess[8]);
 
       *flag = 0;
     }
     else
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[9]);
 
-      settextattr(9);
+      settextattr(BLUE);
       main_hero->add_force(1);
 
       printw("\n");
@@ -129,7 +129,7 @@ int up(
   case 4:
     if ((main_hero->get_max_exp() - main_hero->get_exp()) < 10)
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[10]);
 
       *flag = 0;

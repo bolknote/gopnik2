@@ -20,53 +20,32 @@ int settextattr(int new_attr)
 #ifndef nocolors
   switch (new_attr)
   {
-  case 0x0:
+  case RESET:
     printf("\033[00m");
     break;
-  case 0x1:
+  case BLUE:
     printf("\033[01;34m");
     break;
-  case 0x2:
+  case GREEN:
     printf("\033[01;32m");
     break;
-  case 0x3:
+  case CYAN:
     printf("\033[01;36m");
     break;
-  case 0x4:
+  case RED:
     printf("\033[01;31m");
     break;
-  case 0x5:
+  case MAGENTA:
     printf("\033[01;35m");
     break;
-  case 0x6:
+  case YELLOW:
     printf("\033[01;33m");
     break;
-  case 0x7:
+  case WHITE:
     printf("\033[01;37m");
     break;
-  case 0x8:
+  case BLACK:
     printf("\033[01;30m");
-    break;
-  case 0x9:
-    printf("\033[01;34m");
-    break;
-  case 0xA:
-    printf("\033[01;32m");
-    break;
-  case 0xB:
-    printf("\033[01;36m");
-    break;
-  case 0xC:
-    printf("\033[01;31m");
-    break;
-  case 0xD:
-    printf("\033[01;35m");
-    break;
-  case 0xE:
-    printf("\033[01;33m");
-    break;
-  case 0xF:
-    printf("\033[01;37m");
     break;
   }
 #endif
@@ -168,7 +147,7 @@ int getch(bool echo)
   tcsetattr(0, TCSANOW, &savetty);
   if (c[0] == 0x03) // Ctrl+C
   {
-    settextattr(0);
+    settextattr(RESET);
     showcursor();
     printw("Ctrl+C hit, exiting...\n");
     exit(0);

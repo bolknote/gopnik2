@@ -59,11 +59,11 @@ int pltl0(
   case 0:
     if (cur_game->active_pltl == pltl_index)
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[8]);
       printw("%s", mess[9]);
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("i.\r\n");
 
       cur_game->active_pltl = -1;
@@ -71,42 +71,42 @@ int pltl0(
     }
     else
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[0]);
 
       getch(0);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[1]);
 
       getch(0);
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[2]);
 
       getch(0);
 
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[3]);
 
       getch(0);
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[4]);
 
       getch(0);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[5]);
 
       getch(0);
 
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[6]);
 
       getch(0);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[7]);
 
       ret = 1;
@@ -122,7 +122,7 @@ int pltl0(
         (cur_game->stay_eog == 0) &&
         (cur_game->active_pltl != pltl_index))
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[22]);
 
       getch();
@@ -135,7 +135,7 @@ int pltl0(
         (strcmp(cur_game->active_cmd, "eog") == 0) &&
         (main_hero->station == 1))
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[10]);
 
       getch();
@@ -146,10 +146,10 @@ int pltl0(
 
       printw("%s", mess[12]);
 
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[13]);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[14]);
 
       getch();
@@ -184,29 +184,29 @@ int pltl0(
     {
       if (main_hero->get_health() == 0)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[18]);
 
         getch();
       }
       else
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[15]);
 
         getch();
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[16]);
 
         getch();
 
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[17]);
 
         getch();
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[20]);
 
         getch();
@@ -243,7 +243,7 @@ int pltl0(
 
       if (main_hero->get_health() == 0)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[18]);
 
         getch();
@@ -252,12 +252,12 @@ int pltl0(
       {
         getch();
 
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[19]);
 
         getch();
 
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[21]);
 
         getch();

@@ -45,7 +45,7 @@ int meet()
 
   if (cur_game->open_girl)
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[0]);
 
     return 0;
@@ -53,7 +53,7 @@ int meet()
 
   if (chance(1, 5))
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[2]);
     printw("%s", mess[3]);
 
@@ -66,7 +66,7 @@ int meet()
       {
         cur_game->open_girl = main_hero->station + 1;
 
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[10]);
 
         return 0;
@@ -98,7 +98,7 @@ int meet()
 
         printw(mess[7], cur_game->ht[ht_index].type, level);
 
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[8]);
 
         // переход к новой локации
@@ -110,7 +110,7 @@ int meet()
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[1]);
   }
 

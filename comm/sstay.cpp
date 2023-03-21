@@ -58,10 +58,10 @@ int sstay()
     {
       if (cur_game->get_stay_mar() == 1)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[8]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[9]);
 
         getch();
@@ -69,10 +69,10 @@ int sstay()
 
       if (cur_game->get_stay_kl() == 1)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[8]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[10]);
 
         getch();
@@ -80,10 +80,10 @@ int sstay()
 
       if (cur_game->stay_met == 1)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[8]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[11]);
 
         getch();
@@ -92,10 +92,10 @@ int sstay()
       // стрела #1
       if (cur_game->stay_str == 5)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[12]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[14]);
 
         getch();
@@ -122,10 +122,10 @@ int sstay()
           main_hero->station = 0;
         }
 
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[12]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[15]);
 
         getch();
@@ -133,10 +133,10 @@ int sstay()
 
       if (cur_game->stay_eog == 25)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[8]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[16]);
 
         getch();
@@ -144,17 +144,17 @@ int sstay()
 
       if (cur_game->stay_eog == 1)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[8]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[17]);
 
         getch();
       }
     }
 
-    settextattr(14);
+    settextattr(YELLOW);
 
     if (cur_game->stay_kos == 1)
     {
@@ -223,7 +223,7 @@ int sstay()
 
           if (cur_game->get_open_d() != 2)
           {
-            settextattr(14);
+            settextattr(YELLOW);
             printw("%s", mess[4]);
           }
         }
@@ -247,10 +247,10 @@ int sstay()
 
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
-          settextattr(15);
+          settextattr(WHITE);
           printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
-          settextattr(14);
+          settextattr(YELLOW);
           printw("%s", mess[6]);
 
           getch();
@@ -265,10 +265,10 @@ int sstay()
 
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
-          settextattr(15);
+          settextattr(WHITE);
           printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
-          settextattr(14);
+          settextattr(YELLOW);
           printw("%s", mess[7]);
 
           getch();
@@ -285,10 +285,10 @@ int sstay()
 
         if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have)
         {
-          settextattr(15);
+          settextattr(WHITE);
           printw("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
-          settextattr(14);
+          settextattr(YELLOW);
           printw("%s", mess[13]);
 
           getch();

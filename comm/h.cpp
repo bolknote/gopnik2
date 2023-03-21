@@ -26,7 +26,7 @@ int h(
 
   main_hero = cur_game->main_hero;
 
-  settextattr(10);
+  settextattr(GREEN);
 
   switch (plm_index)
   {

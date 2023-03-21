@@ -18,22 +18,22 @@ int stat()
 
   for (i = 0; i < cur_game->stn_amount; i++)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%2i - ", i + 1);
 
     if (main_hero->station == i)
     {
-      settextattr(8);
+      settextattr(BLACK);
     }
     else
     {
       if (cur_game->stn[i].avail)
       {
-        settextattr(14);
+        settextattr(YELLOW);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
       }
     }
 

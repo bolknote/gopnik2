@@ -18,7 +18,7 @@ int help()
 
   main_hero = cur_game->main_hero;
 
-  settextattr(7);
+  settextattr(WHITE);
   printw(mess[0], main_hero->get_name());
 
   switch (cur_game->active_loc)

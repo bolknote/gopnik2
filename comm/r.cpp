@@ -24,12 +24,12 @@ int r()
     main_hero->sub_att(10);
     main_hero->add_money(4);
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[0]);
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[1]);
   }
 

@@ -109,26 +109,26 @@ int cstat(
         main_hero->station = index;
       }
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[2]);
 
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[3]);
 
       show_timer(time);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw(mess[1], cur_game->stn[index].name);
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", cur_game->stn[index].unavail_reason);
     }
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[0]);
   }
 

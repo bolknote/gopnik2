@@ -23,10 +23,10 @@ int ssl()
 
   for (i = 0; i < 4; i++)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%i - ", i + 1);
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[i]);
   }
 

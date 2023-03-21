@@ -48,14 +48,14 @@ int rsl(
   case 0:
     if (chance(2, 3))
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[1]);
 
       smart = 1;
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[2]);
 
       main_hero->broken_jaw = 1;
@@ -66,14 +66,14 @@ int rsl(
   case 1:
     if (chance(1, 3))
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[3]);
 
       smart = 2;
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[2]);
 
       main_hero->broken_jaw = 1;
@@ -84,14 +84,14 @@ int rsl(
   case 2:
     if (chance(2, 5))
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[4]);
 
       smart = 3;
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[5]);
 
       main_hero->broken_foot = 1;
@@ -102,14 +102,14 @@ int rsl(
   case 3:
     if (chance(1, 5))
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[6]);
 
       smart = 4;
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[7]);
 
       main_hero->broken_foot = 1;
@@ -122,7 +122,7 @@ int rsl(
   {
     if (main_hero->add_smart())
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[8]);
 
       // переход к новой локации
@@ -130,10 +130,10 @@ int rsl(
     }
     else
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[0]);
 
-      settextattr(9);
+      settextattr(BLUE);
       main_hero->add_smart(smart);
 
       printw("%s", "\n");

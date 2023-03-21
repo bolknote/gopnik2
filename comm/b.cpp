@@ -47,12 +47,12 @@ int b(
     {
       if (main_hero->broken_jaw)
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[1]);
       }
       else
       {
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[0]);
       }
     }

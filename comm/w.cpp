@@ -73,7 +73,7 @@ int w()
 
     if (cur_game->open_mar)
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[9]);
     }
   }
@@ -88,7 +88,7 @@ int w()
 
     if (cur_game->open_rep)
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[10]);
     }
   }
@@ -103,7 +103,7 @@ int w()
 
     if (cur_game->get_open_kl())
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[12]);
     }
   }
@@ -131,11 +131,11 @@ int w()
 
           if (cur_game->we[i].type == 1)
           {
-            settextattr(9);
+            settextattr(BLUE);
           }
           else
           {
-            settextattr(14);
+            settextattr(YELLOW);
           }
 
           printw("%s\n", cur_game->we[i].event);
@@ -197,7 +197,7 @@ then:
   // если противник имеет место быть
   if (level > -1)
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw(mess[0], cur_game->ht[ht_index].type, level);
 
     flag = 0;
@@ -220,10 +220,10 @@ then:
         ph_reply = mess[4];
       }
 
-      settextattr(10);
+      settextattr(GREEN);
       printw("-%s\n", ph_addr);
 
-      settextattr(12);
+      settextattr(RED);
       printw("-%s\n", ph_reply);
     }
     else
@@ -274,10 +274,10 @@ then:
             ph_reply = mess[7];
           }
 
-          settextattr(12);
+          settextattr(RED);
           printw("-%s\n", ph_addr);
 
-          settextattr(10);
+          settextattr(GREEN);
           printw("-%s\n", ph_reply);
         }
         else
@@ -334,7 +334,7 @@ then:
   {
     // выводим, что ничё не происходит
 
-    settextattr(15);
+    settextattr(WHITE);
 
     if (
         (cur_game->num_empty_w > 5) &&

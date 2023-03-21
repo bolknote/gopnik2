@@ -49,7 +49,7 @@ int t()
       money = getrandom(0, 20 + 20 * main_hero->district);
       main_hero->add_money(money);
 
-      settextattr(10);
+      settextattr(GREEN);
       printw(mess[0], money);
     }
 
@@ -72,10 +72,10 @@ int t()
 
     level += 2;
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw(mess[1], cur_game->ht[ht_index].type, level);
 
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[2]);
 
     cur_game->gen_enemy_obj(ht_index, level);

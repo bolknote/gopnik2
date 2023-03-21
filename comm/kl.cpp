@@ -41,7 +41,7 @@ int kl()
 
   if (cur_game->get_open_kl() == 0)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[0]);
 
     return 0;
@@ -49,7 +49,7 @@ int kl()
 
   if (cur_game->get_stay_kl() > 0)
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[2]);
 
     return 0;
@@ -61,7 +61,7 @@ int kl()
   {
     if (main_hero->get_money() >= 20)
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[3]);
 
       if (!cur_game->wait_answ())
@@ -75,7 +75,7 @@ int kl()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[4]);
 
       return 0;
@@ -86,15 +86,15 @@ int kl()
   {
     if (main_hero->station)
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[6]);
 
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[7]);
     }
     else
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[8]);
 
       return 0;
@@ -102,7 +102,7 @@ int kl()
   }
   else
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
   }
 

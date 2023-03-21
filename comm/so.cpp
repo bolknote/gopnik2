@@ -13,7 +13,7 @@ int so()
 
   for (i = 1; i < STR_AMOUNT; i++)
   {
-    settextattr(10);
+    settextattr(GREEN);
     printw(
         "%s %i",
         cur_game->str_hero[i]->get_type(),

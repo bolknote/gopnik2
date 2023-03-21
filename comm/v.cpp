@@ -30,7 +30,7 @@ int v()
 
   if (cur_game->get_open_hp() == 2)
   {
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[8]);
 
     return 0;
@@ -42,19 +42,19 @@ int v()
 
     if (lads->get_health() == 0)
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[7]);
     }
     else
     {
       if (main_hero->get_att() > 0)
       {
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[3]);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[2]);
       }
     }
@@ -64,7 +64,7 @@ int v()
 
   if (cur_game->stay_v > 0)
   {
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[4]);
 
     return 0;
@@ -78,27 +78,27 @@ int v()
       {
         cur_game->stay_v = 5;
 
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[5]);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[6]);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[2]);
       }
     }
     else
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[1]);
     }
   }
   else
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[0]);
   }
 

@@ -48,7 +48,7 @@ int i()
   {
     if (cur_game->loc[cur_game->active_loc].command_active[i])
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", cur_game->loc[cur_game->active_loc].command[i]);
 
       for (j = 0; j < (max_len - strlen(cur_game->loc[cur_game->active_loc].command[i])); j++)
@@ -56,7 +56,7 @@ int i()
         printw("%s", " ");
       }
 
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s\n", cur_game->loc[cur_game->active_loc].command_desc[i]);
     }
   }

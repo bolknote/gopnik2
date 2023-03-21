@@ -1,4 +1,15 @@
 #include <stdio.h>
+
+#define RESET   0x0
+#define BLUE    0x1
+#define GREEN   0x2
+#define CYAN    0x3
+#define RED     0x4
+#define MAGENTA 0x5
+#define YELLOW  0x6
+#define WHITE   0x7
+#define BLACK   0x8
+
 #define printw printf
 #define getrandom(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
 #define chance(m, n) (getrandom(0, (int)(n)) <= (m)) ? (1) : (0)

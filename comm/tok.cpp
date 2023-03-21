@@ -28,12 +28,12 @@ int tok()
     // переход к новой локации
     cur_game->set_loc(0);
 
-    settextattr(15);
+    settextattr(WHITE);
     printw(mess[0], cur_game->stn[main_hero->station]);
 
     if (main_hero->station == 0)
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[4]);
     }
 
@@ -50,14 +50,14 @@ int tok()
     {
       if (!main_hero->inv[cur_game->search_inv(main_hero, "Проездной")].have)
       {
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[2]);
 
         main_hero->inv[cur_game->search_inv(main_hero, "Жетон")].have--;
       }
       else
       {
-        settextattr(14);
+        settextattr(YELLOW);
         printw("%s", mess[3]);
       }
 
@@ -68,7 +68,7 @@ int tok()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[1]);
     }
   }

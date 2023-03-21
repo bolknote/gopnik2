@@ -23,7 +23,7 @@ int girl()
 
   if (cur_game->open_girl == 0)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[0]);
 
     return 0;
@@ -31,7 +31,7 @@ int girl()
 
   if (main_hero->station != (cur_game->open_girl - 1))
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[1]);
 
     return 0;
@@ -45,12 +45,12 @@ int girl()
 
     main_hero->inv[cur_game->search_inv(main_hero, "Цветы и конфеты")].have--;
 
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[3]);
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[2]);
   }
 

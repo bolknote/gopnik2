@@ -61,7 +61,7 @@ int pltl2(
 
     if (chance(1, 50))
     {
-      settextattr(15);
+      settextattr(WHITE);
       printw("%s", mess[0]);
 
       getch();
@@ -70,17 +70,17 @@ int pltl2(
 
       getch();
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[2]);
 
       if (cur_game->wait_answ())
       {
-        settextattr(10);
+        settextattr(GREEN);
         printw("%s", mess[4]);
 
         getch();
 
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[5]);
 
         getch();
@@ -115,7 +115,7 @@ int pltl2(
       }
       else
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[3]);
       }
     }
@@ -129,7 +129,7 @@ int pltl2(
       cur_game->open_girl = main_hero->station + 1;
       cur_game->pltl[pltl_index].active = -1;
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[6]);
     }
     break;

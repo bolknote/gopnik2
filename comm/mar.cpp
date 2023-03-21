@@ -35,7 +35,7 @@ int mar()
       (cur_game->open_mar == 0) &&
       (main_hero->station == 0))
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[1]);
 
     return 0;
@@ -43,13 +43,13 @@ int mar()
 
   if (cur_game->get_stay_mar() > 0)
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[0]);
 
     return 0;
   }
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", (main_hero->station) ? (mess[3]) : (mess[2]));
 
   // переход к новой локации

@@ -28,14 +28,14 @@ int kos()
   {
     if (cur_game->stay_kos > 0)
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[0]);
     }
     else
     {
       if (main_hero->broken_jaw)
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[3]);
       }
       else
@@ -52,14 +52,14 @@ int kos()
           main_hero->add_health(main_hero->get_max_health() - main_hero->get_health());
         }
 
-        settextattr(9);
+        settextattr(BLUE);
         printw("%s", mess[1]);
       }
     }
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[2]);
   }
 

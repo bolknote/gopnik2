@@ -25,7 +25,7 @@ int raid()
     cur_game->open_raid = 0;
     cur_game->stay_str = 10;
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[getrandom(-1, 1)]);
   }
 

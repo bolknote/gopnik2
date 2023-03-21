@@ -41,7 +41,7 @@ int str()
     return 0;
   }
 
-  settextattr(14);
+  settextattr(YELLOW);
   printw("%s", mess[4]);
 
   getch();
@@ -104,10 +104,10 @@ int str()
 
   // вывод списка героев
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[0]);
 
-  settextattr(10);
+  settextattr(GREEN);
   printw(mess[3], str_hero[0]->get_type(), str_hero[0]->get_level());
   printw("%s", mess[2]);
   printw("\n");
@@ -118,10 +118,10 @@ int str()
     printw("\n");
   }
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[1]);
 
-  settextattr(12);
+  settextattr(RED);
 
   for (i = 0; i < STR_AMOUNT; i++)
   {

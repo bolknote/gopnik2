@@ -415,10 +415,10 @@ int game::wait_command()
 
   while (1)
   {
-    old_attr = settextattr(8);
+    old_attr = settextattr(BLACK);
     printw("%s", loc[active_loc].name);
 
-    settextattr(15);
+    settextattr(WHITE);
     printw("\\");
 
     for (i = 0; i < 10; i++)
@@ -924,7 +924,7 @@ int game::headband()
   int old_attr, ch;
   _clsc();
   hidecursor();
-  old_attr = settextattr(15);
+  old_attr = settextattr(WHITE);
   printw("\n\n\n\n\n");
   printw("                                               ██\n");
   printw("                                              █  █\n");
@@ -943,14 +943,14 @@ int game::headband()
   printw("                                    █\n");
   printw("                                    ██\n");
   printw("\n\n\n\n\n\n\n");
-  settextattr(7);
+  settextattr(WHITE);
   printw("                     Version %4.2f Release\n\n", VERSION);
   printw("Концепция. . . . . . . . . . . . . . . . . . . . . . . . . ");
-  settextattr(14);
+  settextattr(YELLOW);
   printw("V.P.\n");
-  settextattr(7);
+  settextattr(WHITE);
   printw("Программирование . . . . . . . . . ");
-  settextattr(14);
+  settextattr(YELLOW);
   printw("d-maxx, tiandrey & bolknote.\n");
 
   ch = getch();
@@ -1628,12 +1628,12 @@ int game::gen_kick_count()
       main_hero->kick_count = main_hero->get_kick_count() - enemy->get_kick_count() + 1;
     }
 
-    settextattr(10);
+    settextattr(GREEN);
     printw(
         "Из-за твоей хорошей ловкости враг сможет пнуть тебя %i раз(а) вместо %i\n",
         enemy->kick_count, enemy->get_kick_count());
 
-    settextattr(12);
+    settextattr(RED);
     printw(
         "Из-за хорошей ловкости врага ты сможешь пнуть его %i раз(а) вместо %i\n",
         main_hero->kick_count, main_hero->get_kick_count());
@@ -1870,7 +1870,7 @@ int game::new_district()
 
     if (!end_of_game)
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("Ты запинал кучу мудаков и стал по-жестокому крутым\n");
       printw("Самое время отправится в общагу и отомстить коменде!\n");
 
@@ -1918,10 +1918,10 @@ int game::new_district()
 
   main_hero->set_att((main_hero->district + 1) * 100);
 
-  settextattr(9);
+  settextattr(BLUE);
   printw("Ты стал самым крутым в этом районе. Отправляйся в следующий.\n");
 
-  settextattr(14);
+  settextattr(YELLOW);
   printw("Хочешь сохранить свои достижения? (y/n)\n");
 
   if (wait_answ())
@@ -2065,7 +2065,7 @@ int game::buy_realiz()
             (plm.no_repeat) &&
             (main_hero->inv[inv_index].have))
         {
-          settextattr(14);
+          settextattr(YELLOW);
           printw("У тебя уже это есть. Точно хочешь купить ещё раз? (y/n)\n");
 
           flag2 = wait_answ();
@@ -2092,7 +2092,7 @@ int game::buy_realiz()
       {
         i = getrandom(-1, plm.buy_phrase_amount - 1);
 
-        settextattr(14);
+        settextattr(YELLOW);
         printf("%s\n", plm.buy_phrase[i]);
       }
 
@@ -2110,7 +2110,7 @@ int game::buy_realiz()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("не хватает бабла\n");
     }
   }
@@ -2374,9 +2374,9 @@ int game::start()
       *tmp;
   //    ,*cmd;
 
-  old_attr = settextattr(15);
+  old_attr = settextattr(WHITE);
   printw("%s", mess[0]);
-  settextattr(14);
+  settextattr(YELLOW);
   printw("%s", mess[1]);
   printw("%s", mess[2]);
   printw("%s", mess[3]);
@@ -2402,7 +2402,7 @@ int game::start()
 
     default:
       i = 1;
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[7]);
     }
   } while (i);
@@ -2417,10 +2417,10 @@ int game::start()
   {
     pltl[0].plot_line_func(0);
   }
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[8]);
 
-  settextattr(14);
+  settextattr(YELLOW);
   j = 0;
 
   for (i = 0; i < ht_amount; i++)
@@ -2442,7 +2442,7 @@ int game::start()
 
     if ((user_ht_index - '1') == j)
     {
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", mess[17]);
       printw("%s", mess[18]);
       printw("%s", mess[19]);
@@ -2459,7 +2459,7 @@ int game::start()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[7]);
     }
   }
@@ -2479,10 +2479,10 @@ int game::start()
     break;
   }
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[9]);
 
-  settextattr(14);
+  settextattr(YELLOW);
   printw("%s", mess[10]);
   printw("%s", mess[11]);
   printw("%s", mess[12]);
@@ -2501,7 +2501,7 @@ int game::start()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[7]);
     }
   }
@@ -2512,10 +2512,10 @@ int game::start()
   {
     //    buf [0] = 19;
 
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[13]);
 
-    settextattr(15);
+    settextattr(WHITE);
     user_name = fgets(buf, 99, stdin);
     tmp = user_name + strlen(user_name);
     while ((tmp >= user_name) && ((*tmp == 10) || (*tmp == 0)))
@@ -2529,7 +2529,7 @@ int game::start()
 
       if (isdigitstr(user_name))
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[14]);
       }
       else
@@ -2539,7 +2539,7 @@ int game::start()
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[15]);
     }
   }

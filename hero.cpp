@@ -348,7 +348,7 @@ int hero::add_exp(
   // старое значение района
   int old_district;
 
-  old_attr = settextattr(14);
+  old_attr = settextattr(YELLOW);
   old_district = district;
 
   if (print_mode)
@@ -427,7 +427,7 @@ int hero::add_level()
     }
   } while (i < 4);
 
-  old_attr = settextattr(9);
+  old_attr = settextattr(BLUE);
 
   level++;
 

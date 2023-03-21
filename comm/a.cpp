@@ -21,10 +21,10 @@ int a()
     cur_game->set_open_trn(1);
     cur_game->set_open_bmar(1);
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[0]);
 
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[1]);
   }
 

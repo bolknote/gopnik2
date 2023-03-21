@@ -31,7 +31,7 @@ int rep()
 
   if (cur_game->open_rep == 0)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[2]);
 
     return 0;
@@ -42,7 +42,7 @@ int rep()
       (main_hero->broken_jaw) ||
       (main_hero->broken_foot))
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%s", mess[0]);
 
     // переход к новой локации
@@ -72,7 +72,7 @@ int rep()
   }
   else
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[1]);
 
     // переход к новой локации

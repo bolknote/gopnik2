@@ -68,19 +68,19 @@ int vpl()
         continue;
       }
 
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%2i", i + 1);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw(" - ");
 
       if (main_hero->get_money() >= plm[i].price)
       {
-        settextattr(8);
+        settextattr(BLACK);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
       }
 
       j = getdigitamount(plm[i].price);
@@ -93,7 +93,7 @@ int vpl()
 
       printw("%i", plm[i].price);
 
-      settextattr(15);
+      settextattr(WHITE);
       printw(" руб. %s ", plm[i].name);
 
       if (strlen(plm[i].comment) > 0)

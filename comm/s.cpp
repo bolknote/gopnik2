@@ -84,10 +84,10 @@ int s()
     cur_level_type = level_type[main_hero->get_level()];
   }
 
-  settextattr(10);
+  settextattr(GREEN);
   printw(mess[0], main_hero->get_type(), main_hero->get_level(), cur_level_type);
 
-  settextattr(12);
+  settextattr(RED);
 
   if (main_hero->stoned)
   {
@@ -101,15 +101,15 @@ int s()
 
   printw("\n");
 
-  settextattr(10);
+  settextattr(GREEN);
   printw("%s", mess[1]);
 
   // имя
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s\n", main_hero->get_name());
 
   // опыт
-  settextattr(14);
+  settextattr(YELLOW);
   printw(mess[2], main_hero->get_exp(), main_hero->get_max_exp());
 
   // навыки (сила, ловкость, живучесть, удача)
@@ -125,55 +125,55 @@ int s()
     }
   }
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[3]);
 
   if (
       (force > 0) ||
       (main_hero->stoned))
   {
-    settextattr(9);
+    settextattr(BLUE);
   }
 
   printw("%i ", main_hero->get_force());
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[4]);
 
   if (
       (smart > 0) ||
       (main_hero->stoned))
   {
-    settextattr(9);
+    settextattr(BLUE);
   }
 
   if (main_hero->drunk)
   {
-    settextattr(12);
+    settextattr(RED);
   }
 
   printw("%i ", main_hero->get_smart());
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[5]);
 
   if (
       (vita > 0) ||
       (main_hero->stoned))
   {
-    settextattr(9);
+    settextattr(BLUE);
   }
 
   printw("%i ", main_hero->get_vita());
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[6]);
 
   if (
       (luck > 0) ||
       (main_hero->stoned))
   {
-    settextattr(9);
+    settextattr(BLUE);
   }
 
   printw("%i\n", main_hero->get_luck());
@@ -195,10 +195,10 @@ int s()
       {
         if (flag == 0)
         {
-          settextattr(15);
+          settextattr(WHITE);
           printw("%s", mess[7]);
 
-          settextattr(9);
+          settextattr(BLUE);
 
           flag = 1;
         }
@@ -263,7 +263,7 @@ int s()
     {
       if (flag == 0)
       {
-        settextattr(15);
+        settextattr(WHITE);
         printw("%s", mess[13]);
 
         flag = 1;
@@ -271,11 +271,11 @@ int s()
 
       if (main_hero->inv[i].active)
       {
-        settextattr(9);
+        settextattr(BLUE);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
       }
 
       printw("%s", main_hero->inv[i].name);
@@ -291,7 +291,7 @@ int s()
 
   // урон
 
-  settextattr(15);
+  settextattr(WHITE);
   printw("%s", mess[14]);
 
   flag = 0;
@@ -302,19 +302,19 @@ int s()
     {
       if (flag == 0)
       {
-        settextattr(9);
+        settextattr(BLUE);
         printw("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
         flag = 1;
       }
 
       if (main_hero->inv[i].active == 1)
       {
-        settextattr(9);
+        settextattr(BLUE);
         printw(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].loss);
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
         printw(" %s", main_hero->inv[i].name);
       }
 
@@ -338,17 +338,17 @@ int s()
 
   if (fi > 0.5)
   {
-    settextattr(10);
+    settextattr(GREEN);
   }
   else
   {
     if (fi > 0.25)
     {
-      settextattr(14);
+      settextattr(YELLOW);
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
     }
   }
 
@@ -356,13 +356,13 @@ int s()
 
   if (main_hero->broken_jaw)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[25]);
   }
 
   if (main_hero->broken_foot)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[26]);
   }
 
@@ -370,7 +370,7 @@ int s()
 
   // точность
 
-  settextattr(15);
+  settextattr(WHITE);
 
   if ((kick_count = main_hero->get_kick_count()) == 1)
   {
@@ -385,7 +385,7 @@ int s()
 
   if (main_hero->get_armo() > 0)
   {
-    settextattr(10);
+    settextattr(GREEN);
     printw("%s", mess[18]);
 
     flag = 0;
@@ -396,19 +396,19 @@ int s()
       {
         if (flag == 0)
         {
-          settextattr(9);
+          settextattr(BLUE);
           printw("%i", main_hero->get_armo());
           flag = 1;
         }
 
         if (main_hero->inv[i].active == 1)
         {
-          settextattr(9);
+          settextattr(BLUE);
           printw(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].armo);
         }
         else
         {
-          settextattr(12);
+          settextattr(RED);
           printw(" %s", main_hero->inv[i].name);
         }
 
@@ -431,12 +431,12 @@ int s()
 
   if (main_hero->get_beer() > 0)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw(mess[19], main_hero->get_beer());
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[20]);
   }
 
@@ -444,12 +444,12 @@ int s()
 
   if (main_hero->get_money() > 0)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw(mess[21], main_hero->get_money());
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[22]);
   }
 
@@ -457,7 +457,7 @@ int s()
 
   if (main_hero->get_ciga() > 0)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw(mess[23], main_hero->get_ciga());
   }
 
@@ -465,7 +465,7 @@ int s()
 
   if (main_hero->get_stuff() > 0)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw(mess[24], main_hero->get_stuff());
   }
 

@@ -18,7 +18,7 @@ int svo()
       continue;
     }
 
-    settextattr(12);
+    settextattr(RED);
     printw(
         "%s %i",
         cur_game->str_enemy[i]->get_type(),

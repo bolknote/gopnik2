@@ -21,7 +21,7 @@ int _vis()
       br,
       hex;
 
-  settextattr(15);
+  settextattr(WHITE);
   del = 1;
   br = 0;
   hex = 0;

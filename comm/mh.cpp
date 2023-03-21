@@ -37,7 +37,7 @@ int mh()
   {
     if (main_hero->broken_jaw)
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[3]);
     }
     else
@@ -46,7 +46,7 @@ int mh()
       {
         if (cur_game->stay_mh > 0)
         {
-          settextattr(14);
+          settextattr(YELLOW);
           printw("%s", mess[5]);
         }
         else
@@ -81,7 +81,7 @@ int mh()
             main_hero->add_health(i);
           }
 
-          settextattr(10);
+          settextattr(GREEN);
           printw(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer());
 
           // больше лимита опьянения
@@ -90,21 +90,21 @@ int mh()
             cur_game->stay_mh = 10;
             main_hero->drunk = 1;
 
-            settextattr(14);
+            settextattr(YELLOW);
             printw("%s", mess[4]);
           }
         }
       }
       else
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[1]);
       }
     }
   }
   else
   {
-    settextattr(14);
+    settextattr(YELLOW);
     printw("%s", mess[2]);
   }
 

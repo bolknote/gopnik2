@@ -90,13 +90,13 @@ int bsale(
 
     price = (int)price * 0.5;
 
-    settextattr(15);
+    settextattr(WHITE);
     printw("%s", mess[0]);
 
-    settextattr(9);
+    settextattr(BLUE);
     printw("%s", main_hero->inv[i].name);
 
-    settextattr(14);
+    settextattr(YELLOW);
     printw(mess[1], price);
 
     if (cur_game->wait_answ())
@@ -106,13 +106,13 @@ int bsale(
 
       cur_game->supple_inv_run_over(i); // !!!
 
-      settextattr(15);
+      settextattr(WHITE);
       printw(mess[2], price);
     }
   }
   else
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[3]);
   }
 

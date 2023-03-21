@@ -40,7 +40,7 @@ int sl()
 
   if (cur_game->active_loc == 13)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%s", mess[1]);
 
     // переход к новой локации
@@ -112,7 +112,7 @@ int sl()
 
     if (main_hero->add_smart())
     {
-      settextattr(10);
+      settextattr(GREEN);
       printw("%s", mess[2]);
 
       return 0;
@@ -122,7 +122,7 @@ int sl()
         (main_hero->broken_jaw) &&
         (main_hero->broken_foot))
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[5]);
 
       return 0;
@@ -130,7 +130,7 @@ int sl()
 
     if (main_hero->broken_jaw)
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[3]);
 
       return 0;
@@ -138,21 +138,21 @@ int sl()
 
     if (main_hero->broken_foot)
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[4]);
 
       return 0;
     }
 
-    settextattr(15);
+    settextattr(WHITE);
     printw("%s", mess[0]);
 
     if (cur_game->st_amount > 0)
     {
-      settextattr(14);
+      settextattr(YELLOW);
       printw("%s", mess[6]);
 
-      settextattr(9);
+      settextattr(BLUE);
       printw("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
       printw("%s", "\n");
     }

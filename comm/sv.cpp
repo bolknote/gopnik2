@@ -58,7 +58,7 @@ int sv()
     cur_level_type = level_type[enemy->get_level()];
   }
 
-  settextattr(10);
+  settextattr(GREEN);
 
   if (
       (strcmp(enemy->get_type(), "Вахтёрша") == 0) ||
@@ -72,7 +72,7 @@ int sv()
   }
 
   // навыки (сила, ловкость, живучесть, удача)
-  settextattr(15);
+  settextattr(WHITE);
   printw(
       mess[1],
       enemy->get_force(),
@@ -81,7 +81,7 @@ int sv()
       enemy->get_luck());
 
   // урон
-  settextattr(15);
+  settextattr(WHITE);
   printw(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
 
   // здоровье
@@ -90,17 +90,17 @@ int sv()
 
   if (fi > 0.5)
   {
-    settextattr(10);
+    settextattr(GREEN);
   }
   else
   {
     if (fi > 0.25)
     {
-      settextattr(14);
+      settextattr(YELLOW);
     }
     else
     {
-      settextattr(12);
+      settextattr(RED);
     }
   }
 
@@ -108,13 +108,13 @@ int sv()
 
   if (enemy->broken_jaw)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[7]);
   }
 
   if (enemy->broken_foot)
   {
-    settextattr(12);
+    settextattr(RED);
     printw("%s", mess[8]);
   }
 
@@ -122,7 +122,7 @@ int sv()
 
   // точность
 
-  settextattr(15);
+  settextattr(WHITE);
 
   if ((kick_count = enemy->get_kick_count()) == 1)
   {
@@ -136,7 +136,7 @@ int sv()
   // броня
   if (enemy->get_armo() > 0)
   {
-    settextattr(10);
+    settextattr(GREEN);
     printw(mess[6], enemy->get_armo());
   }
 

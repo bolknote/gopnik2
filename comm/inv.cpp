@@ -29,10 +29,10 @@ int inv()
 
   for (i = 0; i < main_hero->inv_have_amount; i++)
   {
-    settextattr(15);
+    settextattr(WHITE);
     printw("%2i - ", i + 1);
 
-    settextattr(9);
+    settextattr(BLUE);
     printw("%s", main_hero->inv[main_hero->inv_have[i]].name);
 
     if (main_hero->inv[main_hero->inv_have[i]].have > 1)
@@ -42,14 +42,14 @@ int inv()
 
     if (!main_hero->inv[main_hero->inv_have[i]].have)
     {
-      settextattr(12);
+      settextattr(RED);
       printw("%s", mess[2]);
     }
     else
     {
       if (!main_hero->inv[main_hero->inv_have[i]].active)
       {
-        settextattr(12);
+        settextattr(RED);
         printw("%s", mess[1]);
       }
     }
