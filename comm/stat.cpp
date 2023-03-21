@@ -7,39 +7,37 @@
 
 extern game *cur_game;
 
-
-
-int stat ()
+int stat()
 {
-  // объект героя          
+  // объект героя
   hero *main_hero;
-  
+
   int i;
-  
+
   main_hero = cur_game->main_hero;
-  
+
   for (i = 0; i < cur_game->stn_amount; i++)
   {
-    settextattr (15);
-    printw ("%2i - ", i + 1);
+    settextattr(15);
+    printw("%2i - ", i + 1);
 
     if (main_hero->station == i)
     {
-      settextattr (8);
+      settextattr(8);
     }
     else
     {
-      if (cur_game->stn [i].avail)
+      if (cur_game->stn[i].avail)
       {
-        settextattr (14);
+        settextattr(14);
       }
       else
       {
-        settextattr (12);
+        settextattr(12);
       }
     }
 
-    printw ("%s\n", cur_game->stn [i].name);
+    printw("%s\n", cur_game->stn[i].name);
   }
 
   return 0;

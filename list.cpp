@@ -10,34 +10,35 @@
 #define OUFO(STR)
 // printf("\nFrom list::"STR" ...\n")
 
-list::list ()
+list::list()
 {
   INFO("list");
   cur_p = NULL;
 }
 
-list::~list ()
+list::~list()
 {
   INFO("~list");
   node *old_p;
   while (cur_p)
   {
     old_p = cur_p;
-    cur_p = del (old_p);
+    cur_p = del(old_p);
   }
   OUFO("~list");
 }
 
-void list::add ( const char *val )
+void list::add(const char *val)
 {
   INFO("add");
   node *new_p;
-  if (strlen (val))
+  if (strlen(val))
   {
     if (cur_p) // список не пуст
     {
-      while (cur_p->next) cur_p = cur_p->next; // идём в конец списка
-      new_p = new node(); // новый элемент
+      while (cur_p->next)
+        cur_p = cur_p->next; // идём в конец списка
+      new_p = new node();    // новый элемент
       new_p->next = NULL;
       new_p->prev = cur_p;
       new_p->val = strdup(val);
@@ -55,7 +56,7 @@ void list::add ( const char *val )
   OUFO("add");
 }
 
-const char *list::down ()
+const char *list::down()
 {
   INFO("down");
   if (!cur_p)
@@ -63,14 +64,16 @@ const char *list::down ()
     OUFO("down");
     return "";
   }
-  if (cur_p->next) cur_p=cur_p->next;
-  else return "";
+  if (cur_p->next)
+    cur_p = cur_p->next;
+  else
+    return "";
   OUFO("down");
-//  printf("=%s\n",cur_p->val);
+  //  printf("=%s\n",cur_p->val);
   return cur_p->val;
 }
 
-const char *list::up ()
+const char *list::up()
 {
   char *ret;
   INFO("up");
@@ -80,28 +83,32 @@ const char *list::up ()
     return "";
   }
   ret = strdup(cur_p->val);
-  if (cur_p->prev) cur_p=cur_p->prev;
+  if (cur_p->prev)
+    cur_p = cur_p->prev;
   OUFO("up");
   return ret;
 }
 
-node *list::find ( const char *val )
+node *list::find(const char *val)
 {
   INFO("find");
   node *p;
-  if (!cur_p) return NULL;
+  if (!cur_p)
+    return NULL;
   p = cur_p;
-  while (p->prev) p=p->prev; // бежим в вершину списка
+  while (p->prev)
+    p = p->prev; // бежим в вершину списка
   while (p)
   {
-    if (strcmp (p->val, val) == 0) break;
+    if (strcmp(p->val, val) == 0)
+      break;
     p = p->prev;
   }
   OUFO("find");
   return p;
 }
 
-node *list::del ( node *p )
+node *list::del(node *p)
 {
   INFO("del");
   node *tmp_p;
@@ -110,16 +117,23 @@ node *list::del ( node *p )
     OUFO("del");
     return NULL;
   }
-  if (p==cur_p)
+  if (p == cur_p)
   {
-    if (p->prev) cur_p=p->prev;
-    else cur_p=p->next;
+    if (p->prev)
+      cur_p = p->prev;
+    else
+      cur_p = p->next;
   }
-  if (p->next) p->next->prev = p->prev;
-  if (p->prev) p->prev->next = p->next;
-  if (p->val) free (p->val);
-  if (p->next) tmp_p = p->next;
-  else tmp_p = p->prev;
+  if (p->next)
+    p->next->prev = p->prev;
+  if (p->prev)
+    p->prev->next = p->next;
+  if (p->val)
+    free(p->val);
+  if (p->next)
+    tmp_p = p->next;
+  else
+    tmp_p = p->prev;
   delete p;
   OUFO("del");
   return tmp_p;

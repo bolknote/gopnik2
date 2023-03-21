@@ -11,109 +11,99 @@
 
 extern game *cur_game;
 
-
-
-int vpl ()
+int vpl()
 {
   // объект героя
   hero *main_hero;
-  
+
   // элементы прайс-листа
   price_list_memb *plm;
 
   int
-    // индекс прайс-листа
-    pl_index,
-    // индекс инвентаря
-    inv_index;            
+      // индекс прайс-листа
+      pl_index,
+      // индекс инвентаря
+      inv_index;
 
-  int 
-    // максимальное кол-во цифр в цене на товар
-    max_price,
-    i, j;
-  
+  int
+      // максимальное кол-во цифр в цене на товар
+      max_price,
+      i, j;
+
   main_hero = cur_game->main_hero;
-  
-  cur_game->supple_pl_run_over ();
 
-  if ((pl_index = cur_game->search_pl (cur_game->active_loc)) != -1)
+  cur_game->supple_pl_run_over();
+
+  if ((pl_index = cur_game->search_pl(cur_game->active_loc)) != -1)
   {
-    plm = cur_game->pl [pl_index].members;
+    plm = cur_game->pl[pl_index].members;
 
-    max_price = getdigitamount (plm [0].price);
+    max_price = getdigitamount(plm[0].price);
 
-    for (i = 1; i < cur_game->pl [pl_index].member_amount; i++)
-    {              
-      if (
-           (
-             ((inv_index = cur_game->search_inv (main_hero, plm [i].name)) != -1)
-               &&
-             (main_hero->inv [inv_index].district > main_hero->district)
-           )
-             ||
-           (plm [i].price == 0)
-         )
-      {
-        continue;
-      }
-        
-      if (getdigitamount (plm [i].price) > max_price)
-      {
-        max_price = getdigitamount (plm [i].price);
-      }
-    }
-    
-    for (i = 0; i < cur_game->pl [pl_index].member_amount; i++)
+    for (i = 1; i < cur_game->pl[pl_index].member_amount; i++)
     {
       if (
-           (
-             ((inv_index = cur_game->search_inv (main_hero, plm [i].name)) != -1)
-               &&
-             (main_hero->inv [inv_index].district > main_hero->district)
-           )
-             ||
-           (plm [i].price == 0)
-         )
+          (
+              ((inv_index = cur_game->search_inv(main_hero, plm[i].name)) != -1) &&
+              (main_hero->inv[inv_index].district > main_hero->district)) ||
+          (plm[i].price == 0))
       {
         continue;
-      }              
-      
-      settextattr (14);
-      printw ("%2i", i + 1);
+      }
 
-      settextattr (15);
-      printw (" - ");
-
-      if (main_hero->get_money () >= plm [i].price)
+      if (getdigitamount(plm[i].price) > max_price)
       {
-        settextattr (8);
+        max_price = getdigitamount(plm[i].price);
+      }
+    }
+
+    for (i = 0; i < cur_game->pl[pl_index].member_amount; i++)
+    {
+      if (
+          (
+              ((inv_index = cur_game->search_inv(main_hero, plm[i].name)) != -1) &&
+              (main_hero->inv[inv_index].district > main_hero->district)) ||
+          (plm[i].price == 0))
+      {
+        continue;
+      }
+
+      settextattr(14);
+      printw("%2i", i + 1);
+
+      settextattr(15);
+      printw(" - ");
+
+      if (main_hero->get_money() >= plm[i].price)
+      {
+        settextattr(8);
       }
       else
       {
-        settextattr (12);
+        settextattr(12);
       }
 
-      j = getdigitamount (plm [i].price);
+      j = getdigitamount(plm[i].price);
 
       while (j < max_price)
       {
-        printw (" ");
+        printw(" ");
         j++;
       }
-      
-      printw ("%i", plm [i].price);
 
-      settextattr (15);
-      printw (" руб. %s ", plm [i].name);
+      printw("%i", plm[i].price);
 
-      if (strlen (plm [i].comment) > 0)
+      settextattr(15);
+      printw(" руб. %s ", plm[i].name);
+
+      if (strlen(plm[i].comment) > 0)
       {
-        printw ("(%s)", plm [i].comment);
+        printw("(%s)", plm[i].comment);
       }
 
-      printw ("\n");
+      printw("\n");
     }
   }
-  
+
   return 0;
-}         
+}

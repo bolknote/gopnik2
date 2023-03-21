@@ -7,34 +7,31 @@
 
 extern game *cur_game;
 
-
-
-int p ()
+int p()
 {
-  // объект героя          
-  hero *main_hero;          
+  // объект героя
+  hero *main_hero;
 
   // сообщения функции
-  const char *mess [2] = {
-                    "Ты угостил пацанов пивом. Твоя понтовость повысилась на 5\n",
-                    "у тебя нету пива\n"
-                  };
+  const char *mess[2] = {
+      "Ты угостил пацанов пивом. Твоя понтовость повысилась на 5\n",
+      "у тебя нету пива\n"};
 
   main_hero = cur_game->main_hero;
 
-  if (main_hero->get_beer () > 0)
+  if (main_hero->get_beer() > 0)
   {
-    main_hero->sub_beer (1);
-    main_hero->add_att (5);
+    main_hero->sub_beer(1);
+    main_hero->add_att(5);
 
-    settextattr (10);
-    printw ("%s",mess [0]);
+    settextattr(10);
+    printw("%s", mess[0]);
   }
   else
   {
-    settextattr (12);
-    printw ("%s",mess [1]);
+    settextattr(12);
+    printw("%s", mess[1]);
   }
-  
+
   return 0;
 }

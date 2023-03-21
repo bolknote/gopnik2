@@ -9,62 +9,60 @@
 
 extern game *cur_game;
 
-
-
-int mh ()
+int mh()
 {
   // объект героя
   hero *main_hero;
-  
+
   // сообщения функции
-  const char *mess [6] = {
-                    "Пиво прибавляет %iз. Здоровье: %i/%i. Осталось %d бутылок пива\n",
-                    "Пива нету\n",
-                    "Чувак, у тебя и так дохрена здоровья\n",
-                    "Ты не можешь пить из-за сломанной челюсти\n",
-                    "Ты выпил слишком много пива за раз и опьянел. Лв -1\n",
-                    "Куда те ещё пить? И так пьяный!\n"
-                  };
+  const char *mess[6] = {
+      "Пиво прибавляет %iз. Здоровье: %i/%i. Осталось %d бутылок пива\n",
+      "Пива нету\n",
+      "Чувак, у тебя и так дохрена здоровья\n",
+      "Ты не можешь пить из-за сломанной челюсти\n",
+      "Ты выпил слишком много пива за раз и опьянел. Лв -1\n",
+      "Куда те ещё пить? И так пьяный!\n"};
 
   int
-    // кол-во пива, которое должно быть использовано
-    d;
-  
+      // кол-во пива, которое должно быть использовано
+      d;
+
   int
-    i, j;
-  
+      i,
+      j;
+
   main_hero = cur_game->main_hero;
 
-  if (main_hero->get_health () < main_hero->get_max_health ())
+  if (main_hero->get_health() < main_hero->get_max_health())
   {
     if (main_hero->broken_jaw)
     {
-      settextattr (12);
-      printw ("%s",mess [3]);
+      settextattr(12);
+      printw("%s", mess[3]);
     }
     else
     {
-      if (main_hero->get_beer () > 0)
+      if (main_hero->get_beer() > 0)
       {
         if (cur_game->stay_mh > 0)
         {
-          settextattr (14);
-          printw ("%s",mess [5]);
+          settextattr(14);
+          printw("%s", mess[5]);
         }
         else
-        {  
-          if (strcmp (cur_game->active_cmd, "mh") == 0)
+        {
+          if (strcmp(cur_game->active_cmd, "mh") == 0)
           {
-            d = main_hero->get_beer ();
+            d = main_hero->get_beer();
           }
           else
           {
             d = 1;
           }
 
-          if ((d * 5) >= (main_hero->get_max_health () - main_hero->get_health ()))
+          if ((d * 5) >= (main_hero->get_max_health() - main_hero->get_health()))
           {
-            i = main_hero->get_max_health () - main_hero->get_health ();
+            i = main_hero->get_max_health() - main_hero->get_health();
             j = i;
 
             while ((j % 5) != 0)
@@ -72,19 +70,19 @@ int mh ()
               j++;
             }
 
-            main_hero->sub_beer (d = j / 5);
-            main_hero->add_health (main_hero->get_max_health () - main_hero->get_health ());
+            main_hero->sub_beer(d = j / 5);
+            main_hero->add_health(main_hero->get_max_health() - main_hero->get_health());
           }
           else
           {
             i = d * 5;
 
-            main_hero->sub_beer (d);
-            main_hero->add_health (i);
+            main_hero->sub_beer(d);
+            main_hero->add_health(i);
           }
 
-          settextattr (10);
-          printw (mess [0], i, main_hero->get_health (), main_hero->get_max_health (), main_hero->get_beer ());
+          settextattr(10);
+          printw(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer());
 
           // больше лимита опьянения
           if (d >= ((main_hero->district + 1)))
@@ -92,23 +90,23 @@ int mh ()
             cur_game->stay_mh = 10;
             main_hero->drunk = 1;
 
-            settextattr (14);
-            printw ("%s",mess [4]);
+            settextattr(14);
+            printw("%s", mess[4]);
           }
         }
       }
       else
       {
-        settextattr (12);
-        printw ("%s",mess [1]);
+        settextattr(12);
+        printw("%s", mess[1]);
       }
     }
   }
   else
   {
-    settextattr (14);
-    printw ("%s",mess [2]);
+    settextattr(14);
+    printw("%s", mess[2]);
   }
-  
+
   return 0;
 }

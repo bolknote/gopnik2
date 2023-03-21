@@ -10,20 +10,18 @@
 
 extern game *cur_game;
 
-
-
-int _vis ()
+int _vis()
 {
   char
-    ch;
+      ch;
 
   int
-    i,
-    del,
-    br,
-    hex;
+      i,
+      del,
+      br,
+      hex;
 
-  settextattr (15);          
+  settextattr(15);
   del = 1;
   br = 0;
   hex = 0;
@@ -32,60 +30,60 @@ int _vis ()
   {
     if (del)
     {
-      sleep (20);
+      sleep(20);
     }
 
     if (br)
     {
       break;
     }
-    
+
     if (hex)
     {
       for (i = 0; i < 26; i++)
       {
-        printw (" %X", getrandom (15, 255));
+        printw(" %X", getrandom(15, 255));
       }
 
-      printw ("\n");
+      printw("\n");
     }
     else
     {
-      printw ("\n\n\n\n\n");
-      printw ("                                                       ██\n");
-      printw ("                                                      █  █\n");
-      printw ("                        ███ ████ ████ █  █ █  █ █  █      █\n");
-      printw ("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
-      printw ("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
-      printw ("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
-      printw ("                        █   ████ █  █ █  █ █  █ █  █  █\n");
-      printw ("                                                      █████\n");
-      printw ("\n\n\n");
-      printw ("                             ███ ОКОРЕНИЕ\n");
-      printw ("                             █ █\n");
-      printw ("                             █ █    █ █ УЛЬТУРНОЙ\n");
-      printw ("                                    ██\n");
-      printw ("                                    █ █     ██ ТОЛИЦЫ\n");
-      printw ("                                            █\n");
-      printw ("                                            ██\n");
+      printw("\n\n\n\n\n");
+      printw("                                                       ██\n");
+      printw("                                                      █  █\n");
+      printw("                        ███ ████ ████ █  █ █  █ █  █      █\n");
+      printw("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
+      printw("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
+      printw("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
+      printw("                        █   ████ █  █ █  █ █  █ █  █  █\n");
+      printw("                                                      █████\n");
+      printw("\n\n\n");
+      printw("                             ███ ОКОРЕНИЕ\n");
+      printw("                             █ █\n");
+      printw("                             █ █    █ █ УЛЬТУРНОЙ\n");
+      printw("                                    ██\n");
+      printw("                                    █ █     ██ ТОЛИЦЫ\n");
+      printw("                                            █\n");
+      printw("                                            ██\n");
     }
 
-    if (kbhit ())
+    if (kbhit())
     {
-      ch = getch ();
-    
+      ch = getch();
+
       switch (ch)
       {
-        case 115 :
-          del = 0;
-        break;                
-        
-        case 27 :
-          br = 1;
+      case 115:
+        del = 0;
         break;
 
-        case 104 :
-          hex = 1;
+      case 27:
+        br = 1;
+        break;
+
+      case 104:
+        hex = 1;
         break;
       }
     }

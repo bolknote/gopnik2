@@ -10,29 +10,27 @@
 
 extern game *cur_game;
 
-
-
-int i ()
-{          
+int i()
+{
   int
-    // старый видеоатрибут
-    old_attr,
-    // длина команды, состоящей из 
-    // максимального количества символов
-    max_len,
-    // длина текущей команды
-    len,
-    i, j;
+      // старый видеоатрибут
+      old_attr,
+      // длина команды, состоящей из
+      // максимального количества символов
+      max_len,
+      // длина текущей команды
+      len,
+      i, j;
 
-  cur_game->supple_loc_run_over ();
-  
-  max_len = strlen (cur_game->loc [cur_game->active_loc].command [0]);
+  cur_game->supple_loc_run_over();
 
-  for (i = 1; i < cur_game->loc [cur_game->active_loc].comm_amount; i++)
+  max_len = strlen(cur_game->loc[cur_game->active_loc].command[0]);
+
+  for (i = 1; i < cur_game->loc[cur_game->active_loc].comm_amount; i++)
   {
-    if (cur_game->loc [cur_game->active_loc].command_active [i])
+    if (cur_game->loc[cur_game->active_loc].command_active[i])
     {
-      len = strlen (cur_game->loc [cur_game->active_loc].command [i]);
+      len = strlen(cur_game->loc[cur_game->active_loc].command[i]);
 
       if (len > max_len)
       {
@@ -43,27 +41,27 @@ int i ()
 
   max_len++;
 
-//  old_attr = gettextattr ();
+  //  old_attr = gettextattr ();
   old_attr = 0;
 
-  for (i = 0; i < cur_game->loc [cur_game->active_loc].comm_amount; i++)
+  for (i = 0; i < cur_game->loc[cur_game->active_loc].comm_amount; i++)
   {
-    if (cur_game->loc [cur_game->active_loc].command_active [i])
-    {            
-      settextattr (14);
-      printw ("%s",cur_game->loc [cur_game->active_loc].command [i]);
+    if (cur_game->loc[cur_game->active_loc].command_active[i])
+    {
+      settextattr(14);
+      printw("%s", cur_game->loc[cur_game->active_loc].command[i]);
 
-      for (j = 0; j < (max_len - strlen (cur_game->loc [cur_game->active_loc].command [i])); j++)
+      for (j = 0; j < (max_len - strlen(cur_game->loc[cur_game->active_loc].command[i])); j++)
       {
-        printw ("%s"," ");
+        printw("%s", " ");
       }
 
-      settextattr (15);
-      printw ("%s\n",cur_game->loc [cur_game->active_loc].command_desc [i]);
+      settextattr(15);
+      printw("%s\n", cur_game->loc[cur_game->active_loc].command_desc[i]);
     }
   }
 
-  settextattr (old_attr);
+  settextattr(old_attr);
 
   return 0;
 }

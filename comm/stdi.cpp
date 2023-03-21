@@ -9,86 +9,85 @@
 
 extern game *cur_game;
 
-int stdi ()
+int stdi()
 {
-  // объект героя          
+  // объект героя
   hero *main_hero;
 
   // сообщения функции
-  const char *mess [6] = {
-                    "Ты слэмишься",
-                    "Ты забрался на сцену и не задумываясь прыгнул в толпу.\nУдивительно, но она перед тобой не разошлась\n",
-                    "Тебя вынесло из слэма\n",
-                    "Ты решил прынуть ногами вперёд, но, когда прыгал, толпа почему-то\nперед тобой разошлась. Ты сломал всё, что только можно.\n",
-                    "Стоя на сцене, ты слишком долго раздумывал - прыгать или не прыгать.\nКак раз к этому моменту подошла охрана...\n",
-                    "Это Охранник %i уровня!\n"
-                  };
-  
-  int
-    // индекс генерируемого типа героя
-    ht_index;
+  const char *mess[6] = {
+      "Ты слэмишься",
+      "Ты забрался на сцену и не задумываясь прыгнул в толпу.\nУдивительно, но она перед тобой не разошлась\n",
+      "Тебя вынесло из слэма\n",
+      "Ты решил прынуть ногами вперёд, но, когда прыгал, толпа почему-то\nперед тобой разошлась. Ты сломал всё, что только можно.\n",
+      "Стоя на сцене, ты слишком долго раздумывал - прыгать или не прыгать.\nКак раз к этому моменту подошла охрана...\n",
+      "Это Охранник %i уровня!\n"};
 
   int
-    // уровень генерируемого героя
-    level;
-  
+      // индекс генерируемого типа героя
+      ht_index;
+
+  int
+      // уровень генерируемого героя
+      level;
+
   main_hero = cur_game->main_hero;
 
   // вероятность, что повезёт
-  if (chance (2, 11))
+  if (chance(2, 11))
   {
-    settextattr (14);
-    printw ("%s",mess [1]);
+    settextattr(14);
+    printw("%s", mess[1]);
 
-    settextattr (10);
-    printw ("%s",mess [0]);
+    settextattr(10);
+    printw("%s", mess[0]);
 
-    settextattr (9);
-    main_hero->add_smart (5);
+    settextattr(9);
+    main_hero->add_smart(5);
 
-    printw ("%s","\n");
+    printw("%s", "\n");
 
-    if (main_hero->add_smart ())
+    if (main_hero->add_smart())
     {
-      settextattr (15);
-      printw ("%s",mess [2]);
+      settextattr(15);
+      printw("%s", mess[2]);
 
       // переход к новой локации
-      cur_game->set_loc (8);
+      cur_game->set_loc(8);
     }
   }
   else
   {
     // вероятность, что расшибёшься
-    if (chance (1, 2))
+    if (chance(1, 2))
     {
-      settextattr (12);
-      printw ("%s",mess [3]);
+      settextattr(12);
+      printw("%s", mess[3]);
 
       main_hero->broken_foot = 1;
       main_hero->broken_jaw = 1;
-      
-      sl ();
+
+      sl();
     }
     else
     {
-      cur_game->set_stay_kl (-1);              
+      cur_game->set_stay_kl(-1);
 
-      settextattr (12);
-      printw ("%s",mess [4]);
+      settextattr(12);
+      printw("%s", mess[4]);
 
-      ht_index = cur_game->search_ht ("Охранник");
-      level = getrandom (main_hero->get_level () + 1, main_hero->get_level () + 5);
-      
-      settextattr (14);
-      printw (mess [5], level);
+      ht_index = cur_game->search_ht("Охранник");
+      level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
-      cur_game->gen_enemy_obj (ht_index, level);
+      settextattr(14);
+      printw(mess[5], level);
+
+      cur_game->gen_enemy_obj(ht_index, level);
 
       // переход к новой локации
-      cur_game->set_loc (1);
+      cur_game->set_loc(1);
     }
   }
-  
+
   return 0;
 }

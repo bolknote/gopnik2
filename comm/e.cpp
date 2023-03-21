@@ -7,14 +7,13 @@
 
 extern game *cur_game;
 
-int e ()
+int e()
 {
-  const char *mess [1] = {
-                    "Уже уходишь? Очканул, сука?! (y/n)\n"
-                  };
-  settextattr (14);
-  printw ("%s",mess [0]);
-  if (cur_game->wait_answ ())
+  const char *mess[1] = {
+      "Уже уходишь? Очканул, сука?! (y/n)\n"};
+  settextattr(14);
+  printw("%s", mess[0]);
+  if (cur_game->wait_answ())
   {
     return 1;
   }

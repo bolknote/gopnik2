@@ -7,58 +7,53 @@
 
 extern game *cur_game;
 
-
-
-int bsale (
-            // индекс временного
-            // динамического массива "int *inv_have"
-            int index
-          )
+int bsale(
+    // индекс временного
+    // динамического массива "int *inv_have"
+    int index)
 {
-  // объект героя          
+  // объект героя
   hero *main_hero;
 
   // сообщения функции
-  const char *mess [4] = {
-                    "Ты толкаешь следующую вещь - ",
-                    "Барыги предлагают за неё %i руб. Ты согласен? (y/n)\n",
-                    "Ты толкнул одну из своих вещей и получил %i руб.\n",
-                    "Ты эту вещь уже продал\n"
-                  };
+  const char *mess[4] = {
+      "Ты толкаешь следующую вещь - ",
+      "Барыги предлагают за неё %i руб. Ты согласен? (y/n)\n",
+      "Ты толкнул одну из своих вещей и получил %i руб.\n",
+      "Ты эту вещь уже продал\n"};
 
   int
-    // индекс прайс-листа
-    pl_index,
-    // индекс элемента прайс-листа
-    plm_index,
-    // цена на товар
-    price,
-    cur_price;
+      // индекс прайс-листа
+      pl_index,
+      // индекс элемента прайс-листа
+      plm_index,
+      // цена на товар
+      price,
+      cur_price;
 
   int
-    i, flag;
-  
-  main_hero = cur_game->main_hero;          
-  
+      i,
+      flag;
+
+  main_hero = cur_game->main_hero;
+
   if (
-       (index < 0)
-         ||
-       (index >= main_hero->inv_have_amount)
-     )
+      (index < 0) ||
+      (index >= main_hero->inv_have_amount))
   {
     return 0;
   }
-  
-  i = main_hero->inv_have [index];
 
-  if (main_hero->inv [i].have)
+  i = main_hero->inv_have[index];
+
+  if (main_hero->inv[i].have)
   {
     pl_index = 0;
-    plm_index = 0;            
+    plm_index = 0;
     flag = 0;
     price = -1;
 
-    while ((cur_price = cur_game->search_plm_price (&pl_index, &plm_index, main_hero->inv [i].name)) != -1)
+    while ((cur_price = cur_game->search_plm_price(&pl_index, &plm_index, main_hero->inv[i].name)) != -1)
     {
       if (flag == 0)
       {
@@ -72,14 +67,14 @@ int bsale (
         {
           price = cur_price;
         }
-      }             
+      }
     }
 
     if (price == -1)
     {
-      if (main_hero->inv [i].events > 0)
+      if (main_hero->inv[i].events > 0)
       {
-        price = main_hero->inv [i].events;
+        price = main_hero->inv[i].events;
       }
       else
       {
@@ -88,38 +83,38 @@ int bsale (
     }
 
     // доп. условие
-    if (i == cur_game->search_inv (main_hero, "Патроны"))
+    if (i == cur_game->search_inv(main_hero, "Патроны"))
     {
-      price = (int) price / 5;
+      price = (int)price / 5;
     }
 
-    price = (int) price * 0.5;
-    
-    settextattr (15);
-    printw ("%s",mess [0]);
+    price = (int)price * 0.5;
 
-    settextattr (9);
-    printw ("%s",main_hero->inv [i].name);
+    settextattr(15);
+    printw("%s", mess[0]);
 
-    settextattr (14);
-    printw (mess [1], price);
+    settextattr(9);
+    printw("%s", main_hero->inv[i].name);
 
-    if (cur_game->wait_answ ())
+    settextattr(14);
+    printw(mess[1], price);
+
+    if (cur_game->wait_answ())
     {
-      main_hero->inv [i].have--;
-      main_hero->add_money (price);
-      
-      cur_game->supple_inv_run_over (i); // !!!
+      main_hero->inv[i].have--;
+      main_hero->add_money(price);
 
-      settextattr (15);
-      printw (mess [2], price);
+      cur_game->supple_inv_run_over(i); // !!!
+
+      settextattr(15);
+      printw(mess[2], price);
     }
   }
   else
   {
-    settextattr (12);
-    printw ("%s",mess [3]);
+    settextattr(12);
+    printw("%s", mess[3]);
   }
-  
+
   return 0;
 }

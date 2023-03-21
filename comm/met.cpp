@@ -7,34 +7,31 @@
 
 extern game *cur_game;
 
-
-
-int met ()
+int met()
 {
-  // объект героя          
-  hero *main_hero;          
+  // объект героя
+  hero *main_hero;
 
   // сообщения функции
-  const char *mess [2] = {
-                    "Ты пришёл на станцию \"%s\"\n",
-                    "В метро пока идти нельзя - могут загрести\n"
-                  };
-  
+  const char *mess[2] = {
+      "Ты пришёл на станцию \"%s\"\n",
+      "В метро пока идти нельзя - могут загрести\n"};
+
   main_hero = cur_game->main_hero;
-  
+
   if (cur_game->stay_met > 0)
   {
-    settextattr (14);
-    printw ("%s",mess [1]);
+    settextattr(14);
+    printw("%s", mess[1]);
 
     return 0;
-  }          
-  
-  settextattr (15);          
-  printw (mess [0], cur_game->stn [main_hero->station]);
-  
+  }
+
+  settextattr(15);
+  printw(mess[0], cur_game->stn[main_hero->station]);
+
   // переход к новой локации
-  cur_game->set_loc (9);
+  cur_game->set_loc(9);
 
   return 0;
 }

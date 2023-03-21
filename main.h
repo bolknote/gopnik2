@@ -1,10 +1,10 @@
-#define VERSION (float) 1.13
+#define VERSION (float)1.13
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
-typedef int (*FP) ();
-typedef int (*FP2) (int, int, int *);
-typedef int (*FP3) (int);
+typedef int (*FP)();
+typedef int (*FP2)(int, int, int *);
+typedef int (*FP3)(int);
 
 typedef struct _node
 {
@@ -15,24 +15,24 @@ typedef struct _node
 
 typedef struct _hero_type
 {
-  char* type;
+  char *type;
   bool gamer;
-  int desc [4]; // начальные навыки
+  int desc[4]; // начальные навыки
   int min_level_inc;
   int events;
   bool active;
   /*количество событий, увеличивающих вероятность появления:*/
-  int inv_desc_events; // инвентаря, повышающего характеристики героя
-  int inv_armo_events; // инвентаря, повышающего уровень брони
-  int inv_loss_events; // инвентаря, повышающего уровень удара
+  int inv_desc_events;  // инвентаря, повышающего характеристики героя
+  int inv_armo_events;  // инвентаря, повышающего уровень брони
+  int inv_loss_events;  // инвентаря, повышающего уровень удара
   int inv_other_events; // остального инвентаря
   int money_events;
-  int stuff_events; // хлама
-  int ciga_events; // косяков
-  char **hero_addr; // обращения героя к противнику
+  int stuff_events;  // хлама
+  int ciga_events;   // косяков
+  char **hero_addr;  // обращения героя к противнику
   char **hero_reply; // ответы противника герою
   int hero_phrase_amount;
-  char **enemy_addr; // обращения противника к герою
+  char **enemy_addr;  // обращения противника к герою
   char **enemy_reply; // ответы героя противнику
   int enemy_phrase_amount;
 } hero_type;
@@ -40,11 +40,11 @@ typedef struct _hero_type
 typedef struct _location
 {
   char *name;
-  FP *command_func; // функция обработки команд
-  FP3 num_func; // функция обработки числовых команд по умолчанию
+  FP *command_func;     // функция обработки команд
+  FP3 num_func;         // функция обработки числовых команд по умолчанию
   bool *command_active; // доступность команд
-  char **command; // сами команды
-  char **command_desc; // описания команд
+  char **command;       // сами команды
+  char **command_desc;  // описания команд
   int comm_amount;
 } location;
 
@@ -80,7 +80,7 @@ typedef struct _price_list_memb
   char **buy_phrase;
   int buy_phrase_amount;
   int buy_phrase_print_mode;
-  bool no_repeat; //ex-warn_mess
+  bool no_repeat; // ex-warn_mess
 } price_list_memb;
 
 typedef struct _price_list
@@ -94,7 +94,7 @@ typedef struct _price_list
 typedef struct _station
 {
   char *name;
-  bool avail; // ex-active
+  bool avail;           // ex-active
   char *unavail_reason; // ex-inactive_reason
 } station;
 
@@ -140,4 +140,3 @@ ap add_new_element (
   return cur_ap;
 }
 */
-

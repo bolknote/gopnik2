@@ -10,74 +10,73 @@
 
 extern game *cur_game;
 
-int tus ()
+int tus()
 {
-  // объект героя          
-  hero *main_hero;          
+  // объект героя
+  hero *main_hero;
 
   // сообщения функции
-  const char *mess [5] = {
-                    "Да чё-та не охота тусовать\n",
-                    "Ты тусишь на дискотеке",
-                    "Ты слишком сильно размахивал своими клешнями и кого-то задел...\n",
-                    "Это %s %i уровня!\n",
-                    "-Схуяли тут размахался, мудила?!\n"
-                  };
+  const char *mess[5] = {
+      "Да чё-та не охота тусовать\n",
+      "Ты тусишь на дискотеке",
+      "Ты слишком сильно размахивал своими клешнями и кого-то задел...\n",
+      "Это %s %i уровня!\n",
+      "-Схуяли тут размахался, мудила?!\n"};
 
   int
-    // индекс генерируемого типа героя
-    ht_index;
+      // индекс генерируемого типа героя
+      ht_index;
 
   int
-    // уровень генерируемого героя
-    level;
-  
+      // уровень генерируемого героя
+      level;
+
   main_hero = cur_game->main_hero;
 
-  if (strcmp (main_hero->get_type (), "Нефор") == 0)
+  if (strcmp(main_hero->get_type(), "Нефор") == 0)
   {
     return 0;
   }
-  
-  if (main_hero->add_smart ())
+
+  if (main_hero->add_smart())
   {
-    settextattr (10);
-    printw ("%s",mess [0]);
+    settextattr(10);
+    printw("%s", mess[0]);
   }
   else
   {
-    settextattr (10);
-    printw ("%s",mess [1]);
+    settextattr(10);
+    printw("%s", mess[1]);
 
-    settextattr (9);
-    main_hero->add_smart (1);
+    settextattr(9);
+    main_hero->add_smart(1);
 
-    printw ("\n");
+    printw("\n");
 
-    if (chance (1, 2))
+    if (chance(1, 2))
     {
-      settextattr (14);
-      printw ("%s",mess [2]);
+      settextattr(14);
+      printw("%s", mess[2]);
 
-      cur_game->set_stay_kl (-1);
-      
+      cur_game->set_stay_kl(-1);
+
       do
       {
-        level = cur_game->gen_enemy (&ht_index);
+        level = cur_game->gen_enemy(&ht_index);
       } while (level == -1);
-      
+
       level += 2;
-      
-      settextattr (14);
-      printw (mess [3], cur_game->ht [ht_index].type, level);
 
-      settextattr (12);
-      printw ("%s",mess [4]);
+      settextattr(14);
+      printw(mess[3], cur_game->ht[ht_index].type, level);
 
-      cur_game->gen_enemy_obj (ht_index, level);
+      settextattr(12);
+      printw("%s", mess[4]);
+
+      cur_game->gen_enemy_obj(ht_index, level);
 
       // переход к новой локации
-      cur_game->set_loc (1);
+      cur_game->set_loc(1);
     }
   }
 

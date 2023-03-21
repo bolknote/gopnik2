@@ -7,25 +7,21 @@
 
 extern game *cur_game;
 
-
-
-int so ()
-{          
+int so()
+{
   int i;
-  
+
   for (i = 1; i < STR_AMOUNT; i++)
-  {                                                                                                
-    settextattr (10);
-    printw (
-              "%s %i", 
-              cur_game->str_hero [i] ->get_type (),
-              cur_game->str_hero [i] ->get_level ()
-            );
-    printw (
-              " (%i/%i)\n",
-              cur_game->str_hero [i] ->get_health (),
-              cur_game->str_hero [i] ->get_max_health ()
-            );
+  {
+    settextattr(10);
+    printw(
+        "%s %i",
+        cur_game->str_hero[i]->get_type(),
+        cur_game->str_hero[i]->get_level());
+    printw(
+        " (%i/%i)\n",
+        cur_game->str_hero[i]->get_health(),
+        cur_game->str_hero[i]->get_max_health());
   }
 
   return 0;
