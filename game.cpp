@@ -855,7 +855,7 @@ int game::add_buy_phrase(
   return (pl[pl_index].members[plm_index].buy_phrase_amount - 1);
 } // end int game::add_buy_phrase (int, int, TEXT)
 
-int game::add_stantion(
+int game::add_station(
     // название станции
     const char *name,
     // является ли доступной

@@ -90,7 +90,7 @@ public:
   int add_price_list(int, FP2);
   int add_price_list_memb(int, const char *, const char *, int);
   int add_buy_phrase(int, int, const char *);
-  int add_stantion(const char *, int, const char *);
+  int add_station(const char *, int, const char *);
   int add_plot_line(FP3);
   int is_gamer_hero_type(int);
   int is_active_location_command(const char *); // никогда не называйте так команды

@@ -496,11 +496,11 @@ int main()
   cur_game->loc[loc_index].num_func = &rsl;
 
   // добавляем станции метро
-  cur_game->add_stantion("Купчино", 1, "");
-  cur_game->add_stantion("Парк Победы", 0, "Ты чё, сдурел? Пока не прокачаешься - туда не суйся!");
-  cur_game->add_stantion("Сенная площадь", 1, "");
-  cur_game->add_stantion("Невский проспект", 1, "");
-  cur_game->add_stantion("Петроградская", 1, "");
+  cur_game->add_station("Купчино", 1, "");
+  cur_game->add_station("Парк Победы", 0, "Ты чё, сдурел? Пока не прокачаешься - туда не суйся!");
+  cur_game->add_station("Сенная площадь", 1, "");
+  cur_game->add_station("Невский проспект", 1, "");
+  cur_game->add_station("Петроградская", 1, "");
 
   // добавляем функции обработки сюжетных линий
   cur_game->add_plot_line(&pltl0);
