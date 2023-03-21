@@ -2,7 +2,7 @@ OBJS=utils.o game.o hero.o list.o main.o comm/a.o comm/_ae.o comm/bar.o comm/bb.
 CXXFLAGS=-Wall -ggdb
 
 all: comm pltl $(OBJS)
-	g++ -o gop $(OBJS) -lncursesw
+	g++ -o gop $(OBJS) -lncurses
 
 comm:
 	make -C comm
