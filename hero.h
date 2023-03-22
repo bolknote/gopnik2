@@ -53,7 +53,7 @@ public:
 
     int get_exp() const;
 
-    int get_max_exp();
+    int get_max_exp() const;
 
     int get_level() const;
 
@@ -91,9 +91,9 @@ public:
 
     int get_beer() const;
 
-    int get_stuff();
+    int get_stuff() const;
 
-    int get_ciga();
+    int get_ciga() const;
 
     int get_att();
 

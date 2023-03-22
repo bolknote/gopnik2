@@ -112,7 +112,7 @@ int hero::get_exp() const {
     return exp;
 }
 
-int hero::get_max_exp() {
+int hero::get_max_exp() const {
     return get_level() * 10 + 10;
 }
 
@@ -268,11 +268,11 @@ int hero::get_beer() const {
     return beer;
 }
 
-int hero::get_stuff() {
+int hero::get_stuff() const {
     return stuff;
 }
 
-int hero::get_ciga() {
+int hero::get_ciga() const {
     return ciga;
 }
 
