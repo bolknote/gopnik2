@@ -12,125 +12,125 @@ extern game *cur_game;
 void show_timer(time_t); // вывести таймер, отсчитывающего время от данного количества секунд до нуля
 void show_timer(time_t sec_amount)
 {
-  time_t last_time;
+    time_t last_time;
 
-  int
-      max_da,
-      da,
-      ch;
+    int
+        max_da,
+        da,
+        ch;
 
-  last_time = time(NULL);
+    last_time = time(NULL);
 
-  //  _setcursortype (_NOCURSOR);
+    hidecursor();
 
-  max_da = getdigitamount(sec_amount);
+    max_da = getdigitamount(sec_amount);
 
-  sec_amount++;
+    sec_amount++;
 
-  while (sec_amount > 0)
-  {
-    if ((time(NULL) - last_time) == 1)
+    while (sec_amount > 0)
     {
-      last_time = time(NULL);
-      sec_amount--;
-      da = getdigitamount(sec_amount);
-      while (da < max_da)
-      {
-        printf("0");
-        da++;
-      }
-      printf("%ld", sec_amount);
+        if (time(NULL) - last_time == 1)
+        {
+            last_time = time(NULL);
+            sec_amount--;
+            da = getdigitamount(sec_amount);
+            while (da < max_da)
+            {
+                printf("0");
+                da++;
+            }
+            printf("%ld", sec_amount);
 #warning Надо разобраться, зачем здесь gotoxy
-      //      gotoxy (wherex () - max_da, wherey ());
+            //      gotoxy (wherex () - max_da, wherey ());
+        }
+        if (kbhit())
+        {
+            ch = getch();
+
+            if (ch == 2)
+            {
+                break;
+            }
+        }
     }
-    if (kbhit())
-    {
-      ch = getch();
 
-      if (ch == 2)
-      {
-        break;
-      }
-    }
-  }
+    //  gotoxy (wherex () + max_da, wherey ());
 
-  //  gotoxy (wherex () + max_da, wherey ());
-
-  showcursor();
+    showcursor();
 }
 
 int cstat(
     int index)
 {
-  // объект героя
-  hero *main_hero;
+    // объект героя
+    hero *main_hero;
 
-  // сообщения функции
-  const char *mess[4] = {
-      "Ты щас на этой станции находишься\n",
-      "\nТы приехал на станцию \"%s\"\n",
-      "Ты вошёл в вагон и тебя со всех сторон сжала толпа.\nВ воздухе пронёсся голос машиниста:\n-Чё за мудаки держат двери?! Ща выйду - въебу!\nПоезд дёрнулся и понёсся по тёмному тоннелю...",
-      "До прибытия на станцию осталось "};
+    // сообщения функции
+    const char *mess[4] = {
+        "Ты щас на этой станции находишься\n",
+        "\nТы приехал на станцию \"%s\"\n",
+        "Ты вошёл в вагон и тебя со всех сторон сжала толпа.\nВ воздухе пронёсся голос машиниста:\n-Чё за мудаки держат двери?! Ща выйду - въебу!\nПоезд дёрнулся и понёсся по тёмному тоннелю...",
+        "До прибытия на станцию осталось "};
 
-  main_hero = cur_game->main_hero;
+    main_hero = cur_game->main_hero;
 
-  int
-      // время следования до станции
-      time;
+    int
+        // время следования до станции
+        time;
 
-  if (
-      (index < 0) ||
-      (index >= cur_game->stn_amount))
-  {
-    return 0;
-  }
-
-  if (index != main_hero->station)
-  {
-    if (cur_game->stn[index].avail)
+    if (
+        (index < 0) ||
+        (index >= cur_game->stn_amount))
     {
-      time = (main_hero->station - index) * 10;
+        return 0;
+    }
 
-      if (time < 0)
-      {
-        time *= (-1);
-      }
+    if (index != main_hero->station)
+    {
+        if (cur_game->stn[index].avail)
+        {
+            time = (main_hero->station - index) * 10;
 
-      if (
-          (main_hero->station == 0) ||
-          (index == 0))
-      {
-        main_hero->station = index;
+            if (time < 0)
+            {
+                time *= (-1);
+            }
 
-        cur_game->new_station();
-      }
-      else
-      {
-        main_hero->station = index;
-      }
+            if (
+                (main_hero->station == 0) ||
+                (index == 0))
+            {
+                main_hero->station = index;
 
-      settextattr(YELLOW);
-      printf("%s", mess[2]);
+                cur_game->new_station();
+            }
+            else
+            {
+                main_hero->station = index;
+            }
 
-      settextattr(BLUE);
-      printf("%s", mess[3]);
+            settextattr(YELLOW);
+            printf("%s", mess[2]);
 
-      show_timer(time);
+            settextattr(BLUE);
+            printf("%s", mess[3]);
 
-      settextattr(WHITE);
-      printf(mess[1], cur_game->stn[index].name);
+            show_timer(time);
+
+            settextattr(WHITE);
+            printf(mess[1], cur_game->stn[index].name);
+        }
+        else
+        {
+            settextattr(RED);
+            printf("%s", cur_game->stn[index].unavail_reason);
+        }
     }
     else
     {
-      settextattr(RED);
-      printf("%s", cur_game->stn[index].unavail_reason);
+        settextattr(RED);
+        printf("%s", mess[0]);
     }
-  }
-  else
-  {
-    settextattr(RED);
-    printf("%s", mess[0]);
-  }
 
-  return 0;
+    return 0;
 }

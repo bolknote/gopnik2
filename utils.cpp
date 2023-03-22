@@ -163,7 +163,6 @@ int getch(bool echo)
 
 int kbhit()
 {
-  printf(" ... in utils::kbhit() ... ");
   struct timeval tv;
   fd_set read_fd;
   tv.tv_sec = 0;
