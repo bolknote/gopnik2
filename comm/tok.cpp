@@ -27,7 +27,7 @@ int tok() {
         cur_game->set_loc(0);
 
         settextattr(WHITE);
-        printf(mess[0], cur_game->stn[main_hero->station]);
+        printf(mess[0], cur_game->stn[main_hero->station].name);
 
         if (main_hero->station == 0) {
             settextattr(BLUE);
