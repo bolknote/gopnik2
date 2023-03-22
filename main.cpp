@@ -119,7 +119,13 @@ int main() {
     cur_game->add_enemy_phrase(ht_index, "Слышь, пацан, а ты случайно не хачик?", "А тебе случайно не въебать?");
 
     ht_index = cur_game->add_hero_type("Охранник", 0, 5, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_phrase(ht_index, "Слышь, урюк, чего пялишься?", "Охуел что ли, пидарас гнойный?");
+    cur_game->add_enemy_phrase(ht_index, "Эй, баран, куда пошёл, бля?", "Тебя ебёт что ли, сука?");
+
     ht_index = cur_game->add_hero_type("Маньяк", 0, 6, 3, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_phrase(ht_index, "Ты откуда такой пидор взялся?",
+                              "Чё сказал? Ща я тебя на пику насажу, гандон!");
+    cur_game->add_enemy_phrase(ht_index, "Эй, сучоныш, ушёл на хуй с дороги!", "Бля, готовься ловить пизды!");
 
     // типы героев, появляющиеся в центре города
 
@@ -143,8 +149,13 @@ int main() {
                                "А? Чё? Кто такой Чернышевский?");
 
     ht_index = cur_game->add_hero_type("Вахтёрша", 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    ht_index = cur_game->add_hero_type("Коменда", 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_phrase(ht_index, "Свали на хуй, кошёлка старая!", "Ах ты, говнюк мелкий!");
+    cur_game->add_enemy_phrase(ht_index, "Опять ты, наркоман, не сторчался ещё?", "Завали ебало, сучья бабка!");
+
     ht_index = cur_game->add_hero_type("Уличный маг", 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_phrase(ht_index, "Хули ты тут трёшься, Дэвид Блейн?", "Всё бля, ща будут в рот те ноги!");
+    cur_game->add_enemy_phrase(ht_index, "Сучара, не наколдовать ли тебе пизды?",
+                               "Чё сказал? Я тебе твою палочку в жопу затолкаю!");
 
     // добавляем локации игры
     loc_index = cur_game->add_location("");
@@ -534,9 +545,10 @@ int main() {
 
     // cprintf ("%s\n", main_hero->get_name () + strlen (main_hero->get_name ()) - 1);
 
-//     main_hero->add_exp (280);
-//     main_hero->add_money (50000);
-//     main_hero->add_beer (500);
+//    main_hero->add_exp(280);
+//    main_hero->add_money(500000);
+//    main_hero->add_beer(5000000);
+//    main_hero->add_force(10000);
 
     // инвентарь, повышающий характеристики героя
     game::add_inventory(main_hero, "Кольцо \"Помоги Господи\"", 0, 10, 0, 0, 0, 1, 1, 0, 0);
