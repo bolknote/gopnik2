@@ -7,26 +7,24 @@
 
 extern game *cur_game;
 
-int a()
-{
-  // сообщения функции
-  const char *mess[2] = {
-      "-Тут есть пара хороших мест, куда можно сходить\n",
-      "Ты узнал, где находятся барыги и качалка\n"};
+int a() {
+    // сообщения функции
+    const char *mess[2] = {
+            "-Тут есть пара хороших мест, куда можно сходить\n",
+            "Ты узнал, где находятся барыги и качалка\n"};
 
-  if (cur_game->get_open_a())
-  {
-    cur_game->set_open_a(0);
+    if (cur_game->get_open_a()) {
+        cur_game->set_open_a(0);
 
-    cur_game->set_open_trn(1);
-    cur_game->set_open_bmar(1);
+        cur_game->set_open_trn(1);
+        cur_game->set_open_bmar(1);
 
-    settextattr(YELLOW);
-    printf("%s", mess[0]);
+        settextattr(YELLOW);
+        printf("%s", mess[0]);
 
-    settextattr(GREEN);
-    printf("%s", mess[1]);
-  }
+        settextattr(GREEN);
+        printf("%s", mess[1]);
+    }
 
-  return 0;
+    return 0;
 }

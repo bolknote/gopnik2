@@ -9,126 +9,106 @@
 
 extern game *cur_game;
 
-int kl()
-{
-  // объект героя
-  hero *main_hero;
+int kl() {
+    // объект героя
+    hero *main_hero;
 
-  // сообщения функции
-  const char *mess[9] = {
-      "Ты не знаешь, где находится клуб\n",
-      "Ты пришёл в клуб\n",
-      "В клуб лучше пока не соваться - может отпинать охрана\n",
-      "Проходка в клуб стоит 20 руб. Хочешь раскошелится? (y/n)\n",
-      "Чувак, у тебя слишком мало бабла для такого понтового клуба\n",
-      "Ты пришёл в клуб \"Пятница\"\n",
-      "Ты пришёл в клуб \"Порт\"\n",
-      "Надпись на стене: \"Под забой и ширнуться в кайф\"\n",
-      "Ты чё! Ты же нефор! Неужели ты попрёшься в клуб, где включают одну попсу?!\n"};
+    // сообщения функции
+    const char *mess[9] = {
+            "Ты не знаешь, где находится клуб\n",
+            "Ты пришёл в клуб\n",
+            "В клуб лучше пока не соваться - может отпинать охрана\n",
+            "Проходка в клуб стоит 20 руб. Хочешь раскошелится? (y/n)\n",
+            "Чувак, у тебя слишком мало бабла для такого понтового клуба\n",
+            "Ты пришёл в клуб \"Пятница\"\n",
+            "Ты пришёл в клуб \"Порт\"\n",
+            "Надпись на стене: \"Под забой и ширнуться в кайф\"\n",
+            "Ты чё! Ты же нефор! Неужели ты попрёшься в клуб, где включают одну попсу?!\n"};
 
-  int
-      // индекс прайс-листа
-      pl_index;
+    int
+    // индекс прайс-листа
+    pl_index;
 
-  main_hero = cur_game->main_hero;
+    main_hero = cur_game->main_hero;
 
-  if (
-      (main_hero->station != 0) &&
-      (main_hero->station != 2))
-  {
-    return 0;
-  }
-
-  if (cur_game->get_open_kl() == 0)
-  {
-    settextattr(RED);
-    printf("%s", mess[0]);
-
-    return 0;
-  }
-
-  if (cur_game->get_stay_kl() > 0)
-  {
-    settextattr(YELLOW);
-    printf("%s", mess[2]);
-
-    return 0;
-  }
-
-  if (
-      (main_hero->station != 0) &&
-      (strcmp(main_hero->get_type(), "Нефор") != 0))
-  {
-    if (main_hero->get_money() >= 20)
-    {
-      settextattr(YELLOW);
-      printf("%s", mess[3]);
-
-      if (!cur_game->wait_answ())
-      {
+    if (
+            (main_hero->station != 0) &&
+            (main_hero->station != 2)) {
         return 0;
-      }
-      else
-      {
-        main_hero->sub_money(20);
-      }
     }
-    else
-    {
-      settextattr(RED);
-      printf("%s", mess[4]);
 
-      return 0;
+    if (cur_game->get_open_kl() == 0) {
+        settextattr(RED);
+        printf("%s", mess[0]);
+
+        return 0;
     }
-  }
 
-  if (strcmp(main_hero->get_type(), "Нефор") == 0)
-  {
-    if (main_hero->station)
-    {
-      settextattr(WHITE);
-      printf("%s", mess[6]);
+    if (cur_game->get_stay_kl() > 0) {
+        settextattr(YELLOW);
+        printf("%s", mess[2]);
 
-      settextattr(BLUE);
-      printf("%s", mess[7]);
+        return 0;
     }
-    else
-    {
-      settextattr(YELLOW);
-      printf("%s", mess[8]);
 
-      return 0;
+    if (
+            (main_hero->station != 0) &&
+            (strcmp(main_hero->get_type(), "Нефор") != 0)) {
+        if (main_hero->get_money() >= 20) {
+            settextattr(YELLOW);
+            printf("%s", mess[3]);
+
+            if (!cur_game->wait_answ()) {
+                return 0;
+            } else {
+                main_hero->sub_money(20);
+            }
+        } else {
+            settextattr(RED);
+            printf("%s", mess[4]);
+
+            return 0;
+        }
     }
-  }
-  else
-  {
-    settextattr(WHITE);
-    printf("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
-  }
 
-  // переход к новой локации
-  cur_game->set_loc(8);
+    if (strcmp(main_hero->get_type(), "Нефор") == 0) {
+        if (main_hero->station) {
+            settextattr(WHITE);
+            printf("%s", mess[6]);
 
-  // доп. условия
+            settextattr(BLUE);
+            printf("%s", mess[7]);
+        } else {
+            settextattr(YELLOW);
+            printf("%s", mess[8]);
 
-  pl_index = cur_game->search_pl(cur_game->active_loc);
+            return 0;
+        }
+    } else {
+        settextattr(WHITE);
+        printf("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
+    }
 
-  if (
-      (main_hero->get_health() == main_hero->get_max_health()) ||
-      (main_hero->broken_jaw))
-  {
-    cur_game->pl[pl_index].members[0].buy_phrase_print_mode = 0;
-    cur_game->pl[pl_index].members[1].buy_phrase_print_mode = 0;
-    cur_game->pl[pl_index].members[2].buy_phrase_print_mode = 0;
-    cur_game->pl[pl_index].members[3].buy_phrase_print_mode = 0;
-  }
-  else
-  {
-    cur_game->pl[pl_index].members[0].buy_phrase_print_mode = 1;
-    cur_game->pl[pl_index].members[1].buy_phrase_print_mode = 1;
-    cur_game->pl[pl_index].members[2].buy_phrase_print_mode = 1;
-    cur_game->pl[pl_index].members[3].buy_phrase_print_mode = 1;
-  }
+    // переход к новой локации
+    cur_game->set_loc(8);
 
-  return 0;
+    // доп. условия
+
+    pl_index = cur_game->search_pl(cur_game->active_loc);
+
+    if (
+            (main_hero->get_health() == main_hero->get_max_health()) ||
+            (main_hero->broken_jaw)) {
+        cur_game->pl[pl_index].members[0].buy_phrase_print_mode = 0;
+        cur_game->pl[pl_index].members[1].buy_phrase_print_mode = 0;
+        cur_game->pl[pl_index].members[2].buy_phrase_print_mode = 0;
+        cur_game->pl[pl_index].members[3].buy_phrase_print_mode = 0;
+    } else {
+        cur_game->pl[pl_index].members[0].buy_phrase_print_mode = 1;
+        cur_game->pl[pl_index].members[1].buy_phrase_print_mode = 1;
+        cur_game->pl[pl_index].members[2].buy_phrase_print_mode = 1;
+        cur_game->pl[pl_index].members[3].buy_phrase_print_mode = 1;
+    }
+
+    return 0;
 }

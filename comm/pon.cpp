@@ -7,32 +7,28 @@
 
 extern game *cur_game;
 
-int pon()
-{
-  // объект героя
-  hero *main_hero;
+int pon() {
+    // объект героя
+    hero *main_hero;
 
-  // сообщения функции
-  const char *mess[3] = {
-      "Твоя понтовость %i\n",
-      "Если какие проблемы, то за тебя впрягутся\n",
-      "За тебя никто не хочет впрягаться\n"};
+    // сообщения функции
+    const char *mess[3] = {
+            "Твоя понтовость %i\n",
+            "Если какие проблемы, то за тебя впрягутся\n",
+            "За тебя никто не хочет впрягаться\n"};
 
-  main_hero = cur_game->main_hero;
+    main_hero = cur_game->main_hero;
 
-  settextattr(YELLOW);
-  printf(mess[0], main_hero->get_att());
+    settextattr(YELLOW);
+    printf(mess[0], main_hero->get_att());
 
-  if (main_hero->get_att() > 0)
-  {
-    settextattr(GREEN);
-    printf("%s", mess[1]);
-  }
-  else
-  {
-    settextattr(RED);
-    printf("%s", mess[2]);
-  }
+    if (main_hero->get_att() > 0) {
+        settextattr(GREEN);
+        printf("%s", mess[1]);
+    } else {
+        settextattr(RED);
+        printf("%s", mess[2]);
+    }
 
-  return 0;
+    return 0;
 }

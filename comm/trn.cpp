@@ -7,38 +7,35 @@
 
 extern game *cur_game;
 
-int trn()
-{
-  // объект героя
-  hero *main_hero;
+int trn() {
+    // объект героя
+    hero *main_hero;
 
-  // сообщения функции
-  const char *mess[2] = {
-      "Ты пока не знаешь, где находится качалка\n",
-      "Ты пришёл в качалку\n"};
+    // сообщения функции
+    const char *mess[2] = {
+            "Ты пока не знаешь, где находится качалка\n",
+            "Ты пришёл в качалку\n"};
 
-  main_hero = cur_game->main_hero;
+    main_hero = cur_game->main_hero;
 
-  if (
-      (main_hero->station != 0) &&
-      (main_hero->station != 4))
-  {
+    if (
+            (main_hero->station != 0) &&
+            (main_hero->station != 4)) {
+        return 0;
+    }
+
+    if (cur_game->get_open_trn() == 0) {
+        settextattr(RED);
+        printf("%s", mess[0]);
+
+        return 0;
+    }
+
+    settextattr(WHITE);
+    printf("%s", mess[1]);
+
+    // переход к новой локации
+    cur_game->set_loc(7);
+
     return 0;
-  }
-
-  if (cur_game->get_open_trn() == 0)
-  {
-    settextattr(RED);
-    printf("%s", mess[0]);
-
-    return 0;
-  }
-
-  settextattr(WHITE);
-  printf("%s", mess[1]);
-
-  // переход к новой локации
-  cur_game->set_loc(7);
-
-  return 0;
 }

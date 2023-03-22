@@ -7,27 +7,24 @@
 
 extern game *cur_game;
 
-int svo()
-{
-  int i;
+int svo() {
+    int i;
 
-  for (i = 0; i < STR_AMOUNT; i++)
-  {
-    if (cur_game->str_enemy[i] == cur_game->enemy)
-    {
-      continue;
+    for (i = 0; i < STR_AMOUNT; i++) {
+        if (cur_game->str_enemy[i] == cur_game->enemy) {
+            continue;
+        }
+
+        settextattr(RED);
+        printf(
+                "%s %i",
+                cur_game->str_enemy[i]->get_type(),
+                cur_game->str_enemy[i]->get_level());
+        printf(
+                " (%i/%i)\n",
+                cur_game->str_enemy[i]->get_health(),
+                cur_game->str_enemy[i]->get_max_health());
     }
 
-    settextattr(RED);
-    printf(
-        "%s %i",
-        cur_game->str_enemy[i]->get_type(),
-        cur_game->str_enemy[i]->get_level());
-    printf(
-        " (%i/%i)\n",
-        cur_game->str_enemy[i]->get_health(),
-        cur_game->str_enemy[i]->get_max_health());
-  }
-
-  return 0;
+    return 0;
 }

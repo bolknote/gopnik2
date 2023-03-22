@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int _clsc()
-{
+int _clsc() {
     //    clear();
     printf("\033[2J");
     printf("\033[0;0H");

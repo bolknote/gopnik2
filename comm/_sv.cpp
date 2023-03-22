@@ -6,13 +6,12 @@
 
 extern game *cur_game;
 
-int _sv()
-{
-  cur_game->enemy_desc = 1;
+int _sv() {
+    cur_game->enemy_desc = 1;
 
-  s();
+    s();
 
-  cur_game->enemy_desc = 0;
+    cur_game->enemy_desc = 0;
 
-  return 0;
+    return 0;
 }

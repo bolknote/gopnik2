@@ -8,10 +8,9 @@
 
 extern game *cur_game;
 
-int _w()
-{
-  // переход к новой локации
-  cur_game->set_loc(0);
+int _w() {
+    // переход к новой локации
+    cur_game->set_loc(0);
 
-  return 0;
+    return 0;
 }

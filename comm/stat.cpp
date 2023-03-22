@@ -7,38 +7,30 @@
 
 extern game *cur_game;
 
-int stat()
-{
-  // объект героя
-  hero *main_hero;
+int stat() {
+    // объект героя
+    hero *main_hero;
 
-  int i;
+    int i;
 
-  main_hero = cur_game->main_hero;
+    main_hero = cur_game->main_hero;
 
-  for (i = 0; i < cur_game->stn_amount; i++)
-  {
-    settextattr(WHITE);
-    printf("%2i - ", i + 1);
+    for (i = 0; i < cur_game->stn_amount; i++) {
+        settextattr(WHITE);
+        printf("%2i - ", i + 1);
 
-    if (main_hero->station == i)
-    {
-      settextattr(BLACK);
-    }
-    else
-    {
-      if (cur_game->stn[i].avail)
-      {
-        settextattr(YELLOW);
-      }
-      else
-      {
-        settextattr(RED);
-      }
+        if (main_hero->station == i) {
+            settextattr(BLACK);
+        } else {
+            if (cur_game->stn[i].avail) {
+                settextattr(YELLOW);
+            } else {
+                settextattr(RED);
+            }
+        }
+
+        printf("%s\n", cur_game->stn[i].name);
     }
 
-    printf("%s\n", cur_game->stn[i].name);
-  }
-
-  return 0;
+    return 0;
 }

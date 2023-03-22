@@ -7,28 +7,26 @@
 
 extern game *cur_game;
 
-int ssl()
-{
-  // объект героя
-  // hero *main_hero;
+int ssl() {
+    // объект героя
+    // hero *main_hero;
 
-  // сообщения функции
-  const char *mess[4] = {
-      "Лёгкий слэм\n",
-      "Агрессивный слэм\n",
-      "Прыгнуть в центр круга перед рубиловом\n",
-      "Поучаствовать в стенке на стенку\n"};
+    // сообщения функции
+    const char *mess[4] = {
+            "Лёгкий слэм\n",
+            "Агрессивный слэм\n",
+            "Прыгнуть в центр круга перед рубиловом\n",
+            "Поучаствовать в стенке на стенку\n"};
 
-  int i;
+    int i;
 
-  for (i = 0; i < 4; i++)
-  {
-    settextattr(WHITE);
-    printf("%i - ", i + 1);
+    for (i = 0; i < 4; i++) {
+        settextattr(WHITE);
+        printf("%i - ", i + 1);
 
-    settextattr(YELLOW);
-    printf("%s", mess[i]);
-  }
+        settextattr(YELLOW);
+        printf("%s", mess[i]);
+    }
 
-  return 0;
+    return 0;
 }
