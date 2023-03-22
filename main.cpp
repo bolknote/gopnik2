@@ -376,7 +376,7 @@ int main() {
     loc_index = cur_game->add_location("Клуб");
 
     cur_game->add_location_command(loc_index, &vpl, 1, "bar", "поглядеть, чё продают в баре");
-    cur_game->add_location_command(loc_index, &tus, 1, "tus", "потусоаться на дискотеке");
+    cur_game->add_location_command(loc_index, &tus, 1, "tus", "потусоваться на дискотеке");
     cur_game->add_location_command(loc_index, &sl, 0, "sl", "послэмиться");
     cur_game->add_location_command(loc_index, &meet, 0, "meet", "попробовать закадрить девчонку");
     cur_game->add_location_command(loc_index, &w, 1, "w", "уйти из клуба");

@@ -27,7 +27,7 @@ int v() {
 
     main_hero = cur_game->main_hero;
 
-    if (cur_game->get_open_hp() == 2) {
+    if (cur_game->get_open_hp()) {
         settextattr(GREEN);
         printf("%s", mess[8]);
 
@@ -61,7 +61,7 @@ int v() {
     }
 
     if (cur_game->get_open_pr()) {
-        if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
+        if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
             if (main_hero->get_att() > 0) {
                 cur_game->stay_v = 5;
 
