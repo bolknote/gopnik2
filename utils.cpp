@@ -1,10 +1,10 @@
-#include <ctime>
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
 #include <unistd.h>
 #include <termios.h>
 #include <sys/select.h>
+#include <cstddef>
 
 #include "utils.h"
 
@@ -111,8 +111,7 @@ void showcursor() {
 
 int get_key(bool echo) {
     char c[4];
-    int t = 0;
-    struct termios tty, savetty;
+    struct termios tty = {}, savetty = {};
     fflush(stdout);     // вывели буфер
     tcgetattr(0, &tty); // получили структуру termios
     savetty = tty;      // сохранили
@@ -121,7 +120,7 @@ int get_key(bool echo) {
         tty.c_lflag &= ~ECHO;
     tty.c_cc[VMIN] = 1;
     tcsetattr(0, TCSAFLUSH, &tty);
-    t = read(0, c, 4);
+    ssize_t t = read(0, c, 4);
     tcsetattr(0, TCSANOW, &savetty);
     if (c[0] == 0x03) // Ctrl+C
     {
@@ -139,16 +138,16 @@ int get_key(bool echo) {
     return c[t - 1] + 0xFF;
 }
 
-int kbhit() {
-    struct timeval tv;
+bool kbhit() {
+    struct timeval tv = {};
     fd_set read_fd;
     tv.tv_sec = 0;
     tv.tv_usec = 0;
     FD_ZERO(&read_fd);
     FD_SET(0, &read_fd);
-    if (select(1, &read_fd, NULL, NULL, &tv) == -1)
-        return 0;
+    if (select(1, &read_fd, nullptr, nullptr, &tv) == -1)
+        return false;
     if (FD_ISSET(0, &read_fd))
-        return 1;
-    return 0;
+        return true;
+    return false;
 }

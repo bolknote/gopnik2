@@ -24,6 +24,6 @@ void hidecursor();
 
 void showcursor();
 
-int kbhit();
+bool kbhit();
 
 int get_key(bool = true);
