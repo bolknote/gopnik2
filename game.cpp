@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cctype>
+#include <cstddef>
 
 #include "main.h"
 #include "hero.h"
@@ -564,7 +565,7 @@ int game::add_hero_phrase(
         // обращение героя к противнику
         const char *hero_addr,
         // ответ противника на обращения героя
-        const char *hero_reply) {
+        const char *hero_reply) const {
     ht[ht_index].hero_addr = add_new_element(
             ht[ht_index].hero_addr,
             ht[ht_index].hero_phrase_amount,
@@ -588,7 +589,7 @@ int game::add_enemy_phrase(
         // обращение противника к герою
         const char *enemy_addr,
         // ответ героя на обращение противника
-        const char *enemy_reply) {
+        const char *enemy_reply) const {
     ht[ht_index].enemy_addr = add_new_element(
             ht[ht_index].enemy_addr,
             ht[ht_index].enemy_phrase_amount,
@@ -613,7 +614,7 @@ int game::add_location(
 
     loc[loc_amount].name = strdup(name);
     loc[loc_amount].comm_amount = 0;
-    loc[loc_amount].num_func = NULL;
+    loc[loc_amount].num_func = nullptr;
 
     loc_amount++;
 
@@ -630,7 +631,7 @@ int game::add_location_command(
         // команда
         const char *command,
         // описание команды
-        const char *command_desc) {
+        const char *command_desc) const {
     loc[loc_index].command_func = add_new_element(
             loc[loc_index].command_func,
             loc[loc_index].comm_amount,
@@ -696,7 +697,7 @@ int game::add_inventory(
     cur_hero->inv[cur_hero->inv_amount].att = 1;
 
     // активность инвентаря ставим по умолчанию
-    cur_hero->inv[cur_hero->inv_amount].active = 1;
+    cur_hero->inv[cur_hero->inv_amount].active = true;
 
     cur_hero->inv_amount++;
 
@@ -717,11 +718,11 @@ int game::add_w_event(
     we[we_amount].event = strdup(event);
 
     // активность ставим по умолчанию
-    we[we_amount].active = 1;
+    we[we_amount].active = true;
 
     we_amount++;
 
-    return (we_amount - 1);
+    return we_amount - 1;
 } // end int game::add_w_event (int, int, TEXT)
 
 int game::add_price_list(
@@ -748,7 +749,7 @@ int game::add_price_list_memb(
         // комментарий к товару
         const char *comment,
         // цена на товар
-        int price) {
+        int price) const {
     pl[pl_index].members = add_new_element(
             pl[pl_index].members,
             pl[pl_index].member_amount,
@@ -759,14 +760,14 @@ int game::add_price_list_memb(
     pl[pl_index].members[pl[pl_index].member_amount].price = price;
     pl[pl_index].members[pl[pl_index].member_amount].buy_phrase_amount = 0;
 
-    pl[pl_index].members[pl[pl_index].member_amount].no_repeat = 1; // !!!
+    pl[pl_index].members[pl[pl_index].member_amount].no_repeat = true; // !!!
 
     // режим отображения ставим по умолчанию
     pl[pl_index].members[pl[pl_index].member_amount].buy_phrase_print_mode = 1;
 
     pl[pl_index].member_amount++;
 
-    return (pl[pl_index].member_amount - 1);
+    return pl[pl_index].member_amount - 1;
 } // end int game::add_price_list_memb (int, TEXT, TEXT, int)
 
 int game::add_buy_phrase(
@@ -775,7 +776,7 @@ int game::add_buy_phrase(
         // индекс элемента прайс-листа
         int plm_index,
         // фраза при покупке
-        const char *buy_phrase) {
+        const char *buy_phrase) const {
     pl[pl_index].members[plm_index].buy_phrase = add_new_element(
             pl[pl_index].members[plm_index].buy_phrase,
             pl[pl_index].members[plm_index].buy_phrase_amount,
@@ -803,7 +804,7 @@ int game::add_station(
 
     stn_amount++;
 
-    return (stn_amount - 1);
+    return stn_amount - 1;
 } // end int game::add_stantion (TEXT, int, TEXT)
 
 int game::add_plot_line(
@@ -816,12 +817,12 @@ int game::add_plot_line(
 
     pltl_amount++;
 
-    return (pltl_amount - 1);
+    return pltl_amount - 1;
 } // end int game::add_plot_line (FP3)
 
 int game::is_gamer_hero_type(
         // индекс типа героя
-        int ht_index) {
+        int ht_index) const {
     if (ht_index < ht_amount) // !!!
     {
         return ht[ht_index].gamer;
@@ -832,7 +833,7 @@ int game::is_gamer_hero_type(
 
 int game::is_active_location_command(
         // команда
-        const char *cmd) {
+        const char *cmd) const {
     int i;
 
     for (i = 0; i < loc[active_loc].comm_amount; i++) {
@@ -845,10 +846,10 @@ int game::is_active_location_command(
 } // end int game::is_active_location_command (TEXT)
 
 int game::headband() {
-    int old_attr, ch;
+    int ch;
     _clsc();
     hidecursor();
-    old_attr = settextattr(WHITE);
+    settextattr(WHITE);
     printf("\n\n\n\n\n");
     printf("                                               ██\n");
     printf("                                              █  █\n");
@@ -1017,7 +1018,7 @@ int game::search_inv(
 
 int game::search_pl(
         // индекс локации
-        int loc_index) {
+        int loc_index) const {
     int
     // индекс прайс-листа
     pl_index;
@@ -1037,7 +1038,7 @@ int game::search_pl(
 
 int game::search_ht(
         // название типа героя
-        const char *type) {
+        const char *type) const {
     int
     // индекс типа героя
     ht_index;
@@ -1063,7 +1064,7 @@ int game::search_plm_price(
         // индекс элемента прайс-листа
         int *plm_index,
         // название товара
-        const char *name) {
+        const char *name) const {
     int
     // цена на товар
     price;
@@ -1116,11 +1117,11 @@ int game::supple_inv_run_over(
                         ((main_hero->inv[j].loss <= 2) &&
                          (main_hero->inv[inv_index].loss <= 2))) {
                     if (main_hero->inv[j].loss > main_hero->inv[inv_index].loss) {
-                        main_hero->inv[inv_index].active = (main_hero->inv[inv_index].have) ? (0) : (1);
+                        main_hero->inv[inv_index].active = !main_hero->inv[inv_index].have;
 
                         break;
                     } else {
-                        main_hero->inv[j].active = (main_hero->inv[inv_index].have) ? (0) : (1);
+                        main_hero->inv[j].active = !main_hero->inv[inv_index].have;
 
                         break;
                     }
@@ -1136,11 +1137,11 @@ int game::supple_inv_run_over(
                         ((main_hero->inv[j].armo <= 2) &&
                          (main_hero->inv[inv_index].armo <= 2))) {
                     if (main_hero->inv[j].armo > main_hero->inv[inv_index].armo) {
-                        main_hero->inv[inv_index].active = (main_hero->inv[inv_index].have) ? (0) : (1);
+                        main_hero->inv[inv_index].active = !main_hero->inv[inv_index].have;
 
                         break;
                     } else {
-                        main_hero->inv[j].active = (main_hero->inv[inv_index].have) ? (0) : (1);
+                        main_hero->inv[j].active = !main_hero->inv[inv_index].have;
 
                         break;
                     }
@@ -1160,7 +1161,7 @@ int game::supple_loc_run_over() {
 
     active_loc = 0;
 
-    loc[active_loc].command_active[is_active_location_command("rep")] = (main_hero->station) ? (0) : (open_rep);
+    loc[active_loc].command_active[is_active_location_command("rep")] = main_hero->station ? (0) : (open_rep);
     loc[active_loc].command_active[is_active_location_command("mar")] = (main_hero->station == 2) ? (1)
                                                                                                   : ((main_hero->station)
                                                                                                      ? (0)
@@ -1215,7 +1216,7 @@ int game::supple_loc_run_over() {
     return 0;
 } // end int game::supple_loc_run_over ()
 
-int game::supple_pl_run_over() {
+int game::supple_pl_run_over() const {
     // -- выглядит тупо, а куда деваться? что-то совершенствовать уже влом...
 
     int
@@ -1262,7 +1263,7 @@ int game::supple_pltl_run_over() {
 
 int game::gen_enemy(
         // индекс типа героя
-        int *ht_index) {
+        int *ht_index) const {
     int
     // уровеь врага
     level,
@@ -1478,7 +1479,7 @@ int game::gen_enemy_obj(
     return 0;
 } // end int game::gen_enemy_obj (int, int, int)
 
-int game::gen_kick_count() {
+int game::gen_kick_count() const {
     if (
             (main_hero->get_kick_count() > 1) &&
             (enemy->get_kick_count() > 1)) {
@@ -1753,7 +1754,7 @@ int game::new_district() {
     return 0;
 } // end int game::new_district ()
 
-int game::new_station() {
+int game::new_station() const {
     int
             pl_index;
 
@@ -1842,7 +1843,7 @@ int game::buy_realiz() {
     supple_pl_run_over();
 
     pl_index = search_pl(active_loc);
-    plm_index = (int) strtod(active_cmd, NULL) - 1;
+    plm_index = (int) strtod(active_cmd, nullptr) - 1;
 
     if (
             (pl_index != -1) &&
@@ -1896,7 +1897,7 @@ int game::buy_realiz() {
             }
 
             // вызываем функцию по обработке прайс-листа
-            if (pl[pl_index].buy_func != NULL) {
+            if (pl[pl_index].buy_func != nullptr) {
                 pl[pl_index].buy_func(pl_index, plm_index, &flag);
             }
 
@@ -1909,7 +1910,7 @@ int game::buy_realiz() {
             printf("не хватает бабла\n");
         }
     } else {
-        if (loc[active_loc].num_func != NULL) {
+        if (loc[active_loc].num_func != nullptr) {
             loc[active_loc].num_func(plm_index);
         }
     }
@@ -1975,7 +1976,7 @@ int game::fire_realiz(
         }
     }
 
-    if (mess != NULL) {
+    if (mess != nullptr) {
         if (hero1->inv[inv_index].have > 0) {
             if (loss == 0) {
                 settextattr(attr2);

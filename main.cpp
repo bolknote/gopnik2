@@ -71,18 +71,10 @@ int main() {
     pl_index,
     // индекс элемента прайс-листа
     plm_index,
-    // старый графический режим
-    old_mode,
     // индекс инвентаря
     inv_index;
 
     srand((unsigned) time(nullptr));
-
-//  gettextinfo (&ti);
-#warning Unimplemented gettextinfo!
-    //  old_mode = ti.currmode;
-    old_mode = 0;
-#warning Unimplemented textmode
 
     cur_game = new game();
 
@@ -542,9 +534,9 @@ int main() {
 
     // cprintf ("%s\n", main_hero->get_name () + strlen (main_hero->get_name ()) - 1);
 
-    // main_hero->add_exp (28);
-    // main_hero->add_money (500);
-    // main_hero->add_beer (5);
+//     main_hero->add_exp (280);
+//     main_hero->add_money (500);
+//     main_hero->add_beer (50);
 
     // инвентарь, повышающий характеристики героя
     cur_game->add_inventory(main_hero, "Кольцо \"Помоги Господи\"", 0, 10, 0, 0, 0, 1, 1, 0, 0);
