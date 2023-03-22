@@ -1,5 +1,5 @@
-#include <string.h>
-#include <stdlib.h>
+#include <cstring>
+#include <cstdlib>
 
 #include "pltl.h"
 #include "../main.h"
@@ -210,8 +210,8 @@ int pltl1(
                 printf("%s", mess[16]);
 
                 main_hero->sub_beer(main_hero->get_beer());
-                main_hero->broken_jaw = 1;
-                main_hero->broken_foot = 1;
+                main_hero->broken_jaw = true;
+                main_hero->broken_foot = true;
 
                 cur_game->pltl[pltl_index].active++;
 

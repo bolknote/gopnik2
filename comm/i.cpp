@@ -1,5 +1,5 @@
 
-#include <string.h>
+#include <cstring>
 
 #include "comm.h"
 #include "../main.h"
@@ -13,10 +13,10 @@ extern game *cur_game;
 int i() {
     int
     // старый видеоатрибут
-    old_attr,
+    old_attr;
     // длина команды, состоящей из
     // максимального количества символов
-    max_len,
+    size_t max_len,
     // длина текущей команды
     len,
             i, j;

@@ -1,4 +1,5 @@
-#include <string.h>
+#include <cstring>
+#include <cstddef>
 
 #include "comm.h"
 #include "../main.h"
@@ -41,7 +42,7 @@ int sv() {
 
     enemy = cur_game->enemy;
 
-    if (enemy == NULL) {
+    if (enemy == nullptr) {
         return 0;
     }
 

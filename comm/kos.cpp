@@ -37,7 +37,7 @@ int kos() {
                 flag = (main_hero->get_health() == main_hero->get_max_health()) ? (1) : (0);
 
                 cur_game->stay_kos = 20;
-                main_hero->stoned = 1;
+                main_hero->stoned = true;
 
                 if (flag) {
                     main_hero->add_health(main_hero->get_max_health() - main_hero->get_health());

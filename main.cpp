@@ -1,6 +1,6 @@
-// #include <locale.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
+#include <cstddef>
 
 #include "main.h"
 #include "list.h"
@@ -76,7 +76,7 @@ int main() {
     // индекс инвентаря
     inv_index;
 
-    srand((unsigned) time(NULL));
+    srand((unsigned) time(nullptr));
 
 //  gettextinfo (&ti);
 #warning Unimplemented gettextinfo!
@@ -157,7 +157,7 @@ int main() {
     // добавляем локации игры
     loc_index = cur_game->add_location("");
 
-    cur_game->add_location_command(loc_index, NULL, 0, "eog", "идти в общагу пинать коменду");
+    cur_game->add_location_command(loc_index, nullptr, 0, "eog", "идти в общагу пинать коменду");
     cur_game->add_location_command(loc_index, &w, 1, "w", "шататься по окрестностям - искать на свою жопу приключений");
     cur_game->add_location_command(loc_index, &str, 0, "str", "идти на стрелу");
     cur_game->add_location_command(loc_index, &ob, 0, "ob", "искать лохов для равзода на деньги");
@@ -334,7 +334,7 @@ int main() {
 
     plm_index = cur_game->add_price_list_memb(pl_index, "Патроны", "5 штук", 0);
 
-    cur_game->pl[pl_index].members[plm_index].no_repeat = 0;
+    cur_game->pl[pl_index].members[plm_index].no_repeat = false;
 
     cur_game->add_buy_phrase(pl_index, plm_index, "Держи 5 пуль");
 
@@ -418,11 +418,11 @@ int main() {
     cur_game->add_location_command(loc_index, &e, 1, "e", "выйти");
     cur_game->add_location_command(loc_index, &i, 1, "i", "посмотреть описания команд");
 
-    pl_index = cur_game->add_price_list(loc_index, NULL);
+    pl_index = cur_game->add_price_list(loc_index, nullptr);
 
     plm_index = cur_game->add_price_list_memb(pl_index, "Жетон", "", 7);
 
-    cur_game->pl[pl_index].members[plm_index].no_repeat = 0;
+    cur_game->pl[pl_index].members[plm_index].no_repeat = false;
 
     cur_game->add_buy_phrase(pl_index, plm_index,
                              "Кассирша: Скока-скока жетонов? Ебать тя в рот, не можешь громче сказать!");
@@ -457,7 +457,7 @@ int main() {
     cur_game->add_location_command(loc_index, &e, 1, "e", "выйти");
     cur_game->add_location_command(loc_index, &i, 1, "i", "посмотреть описания команд");
 
-    pl_index = cur_game->add_price_list(loc_index, NULL);
+    pl_index = cur_game->add_price_list(loc_index, nullptr);
 
     plm_index = cur_game->add_price_list_memb(pl_index, "Затемнённые очки", "что б менты не узнали", 10);
 

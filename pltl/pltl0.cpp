@@ -1,4 +1,4 @@
-#include <string.h>
+#include <cstring>
 
 #include "pltl.h"
 #include "../main.h"

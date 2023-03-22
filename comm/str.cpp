@@ -1,4 +1,5 @@
-#include <stdlib.h>
+#include <cstdlib>
+#include <cstddef>
 
 #include "comm.h"
 #include "../main.h"
@@ -120,9 +121,9 @@ int str() {
         printf("\n");
     }
 
-    cur_game->enemy = NULL; // str_enemy [getrandom (-1, STR_AMOUNT - 1)];
+    cur_game->enemy = nullptr; // str_enemy [getrandom (-1, STR_AMOUNT - 1)];
 
-    cur_game->open_str = 2;
+    cur_game->open_str = true;
 
     // переход к новой локации
     cur_game->set_loc(12);

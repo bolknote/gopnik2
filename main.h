@@ -8,13 +8,13 @@ typedef int (*FP2)(int, int, int *);
 
 typedef int (*FP3)(int);
 
-typedef struct _node {
-    struct _node *prev; // ex-p1
-    struct _node *next; // ex-p2
+typedef struct node {
+    struct node *prev; // ex-p1
+    struct node *next; // ex-p2
     char *val;
 } node;
 
-typedef struct _hero_type {
+typedef struct hero_type {
     char *type;
     bool gamer;
     int desc[4]; // начальные навыки
@@ -37,7 +37,7 @@ typedef struct _hero_type {
     int enemy_phrase_amount;
 } hero_type;
 
-typedef struct _location {
+typedef struct location {
     char *name;
     FP *command_func;     // функция обработки команд
     FP3 num_func;         // функция обработки числовых команд по умолчанию
@@ -47,7 +47,7 @@ typedef struct _location {
     int comm_amount;
 } location;
 
-typedef struct _inventory {
+typedef struct inventory {
     char *name;
     int district;
     int events; // количество событий, увеличивающих вероятность появления
@@ -62,14 +62,14 @@ typedef struct _inventory {
     int att;
 } inventory;
 
-typedef struct _w_event {
+typedef struct w_event {
     int type;
     int events;
     char *event;
     bool active;
 } w_event;
 
-typedef struct _price_list_memb {
+typedef struct price_list_memb {
     char *name;
     char *comment;
     int price;
@@ -79,20 +79,20 @@ typedef struct _price_list_memb {
     bool no_repeat; // ex-warn_mess
 } price_list_memb;
 
-typedef struct _price_list {
+typedef struct price_list {
     int loc_index;
     FP2 buy_func;
     price_list_memb *members;
     int member_amount;
 } price_list;
 
-typedef struct _station {
+typedef struct station {
     char *name;
     bool avail;           // ex-active
     char *unavail_reason; // ex-inactive_reason
 } station;
 
-typedef struct _plot_line {
+typedef struct plot_line {
     int active;
     FP3 plot_line_func;
 } plot_line;

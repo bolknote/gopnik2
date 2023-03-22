@@ -8,9 +8,6 @@
 extern game *cur_game;
 
 int ssl() {
-    // объект героя
-    // hero *main_hero;
-
     // сообщения функции
     const char *mess[4] = {
             "Лёгкий слэм\n",

@@ -1,5 +1,5 @@
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 #include "main.h"
 #include "hero.h"
@@ -9,27 +9,25 @@ hero::hero(
         // структура типа героя
         hero_type ht,
         // индекс типа героя
-        int _ht_index) {
+        int _ht_index) : ht_index(), desc(), name(), inv(), inv_have() {
     int i;
-
-    ht_index = _ht_index;
 
     level_of_complexity = 0;
 
     inv_amount = 0;
     district = 0;
-    broken_jaw = 0;
-    broken_foot = 0;
+    broken_jaw = false;
+    broken_foot = false;
     trn_foot = 0;
     kick_count = 0;
     empty_kick_count = 0;
-    stoned = 0;
-    drunk = 0;
+    stoned = false;
+    drunk = false;
     old_att = 0;
     station = 0;
 
     inv_have_amount = 0;
-    str_free = 0;
+    str_free = false;
 
     print_mode = 1;
 
@@ -65,7 +63,6 @@ hero::~hero() {
 
     free(name);
 
-    // **inv**
     if (inv_amount > 0) {
         for (i = 0; i < inv_amount; i++) {
             free(inv[i].name);
@@ -73,7 +70,6 @@ hero::~hero() {
 
         free(inv);
     }
-    // *******
 }
 
 // функции назначения характеристик героя
@@ -112,7 +108,7 @@ char *hero::get_type() {
     return type;
 }
 
-int hero::get_exp() {
+int hero::get_exp() const {
     return exp;
 }
 
@@ -120,14 +116,14 @@ int hero::get_max_exp() {
     return get_level() * 10 + 10;
 }
 
-int hero::get_level() {
+int hero::get_level() const {
     return level;
 }
 
-int hero::get_force() {
-    int i, d = 0;
+int hero::get_force() const {
+    int d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if (inv[i].have) {
             d += inv[i].force;
         }
@@ -140,10 +136,10 @@ int hero::get_force() {
     return force + d;
 }
 
-int hero::get_smart() {
-    int i, d = 0;
+int hero::get_smart() const {
+    int d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if (inv[i].have) {
             d += inv[i].smart;
         }
@@ -160,7 +156,7 @@ int hero::get_smart() {
     return smart + d;
 }
 
-int hero::get_vita() {
+int hero::get_vita() const {
     int i, d = 0;
 
     for (i = 0; i < inv_amount; i++) {
@@ -176,10 +172,10 @@ int hero::get_vita() {
     return vita + d;
 }
 
-int hero::get_luck() {
-    int i, d = 0;
+int hero::get_luck() const {
+    int d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if (inv[i].have) {
             d += inv[i].luck;
         }
@@ -216,18 +212,18 @@ int hero::get_health() {
     return health;
 }
 
-int hero::get_max_health() {
+int hero::get_max_health() const {
     return get_vita() * 5 + get_force() + 10;
 }
 
-int hero::get_exact() {
+int hero::get_exact() const {
     return get_smart() * 5 + 20;
 }
 
-int hero::get_min_loss() {
-    int i, d = 0;
+int hero::get_min_loss() const {
+    int d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if ((inv[i].have) && (inv[i].active)) {
             d += inv[i].loss;
         }
@@ -236,10 +232,10 @@ int hero::get_min_loss() {
     return (int) get_force() / 2 + d;
 }
 
-int hero::get_max_loss() {
-    int i, d = 0;
+int hero::get_max_loss() const {
+    int  d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if ((inv[i].have) && (inv[i].active)) {
             d += inv[i].loss;
         }
@@ -248,10 +244,10 @@ int hero::get_max_loss() {
     return get_force() + d;
 }
 
-int hero::get_armo() {
-    int i, d = 0;
+int hero::get_armo() const {
+    int d = 0;
 
-    for (i = 0; i < inv_amount; i++) {
+    for (int i = 0; i < inv_amount; i++) {
         if ((inv[i].have) && (inv[i].active)) {
             d += inv[i].armo;
         }
@@ -260,15 +256,15 @@ int hero::get_armo() {
     return armo + d;
 }
 
-int hero::get_max_armo() {
+int hero::get_max_armo() const {
     return (4 * (district + 1));
 }
 
-int hero::get_money() {
+int hero::get_money() const {
     return money;
 }
 
-int hero::get_beer() {
+int hero::get_beer() const {
     return beer;
 }
 
@@ -573,7 +569,7 @@ int hero::sub_att(
     return 0;
 }
 
-int hero::get_kick_count() {
+int hero::get_kick_count() const {
     if ((get_exact() % 90) != 0) {
         return ((int) get_exact() / 90) + 1;
     } else {
@@ -581,7 +577,7 @@ int hero::get_kick_count() {
     }
 }
 
-int hero::get_accuracy_of_last_kick() {
+int hero::get_accuracy_of_last_kick() const {
     if ((get_exact() % 90) != 0) {
         return (get_exact() % 90);
     } else {
@@ -589,6 +585,6 @@ int hero::get_accuracy_of_last_kick() {
     }
 }
 
-int hero::get_min_empty_kick_count() {
+int hero::get_min_empty_kick_count() const {
     return level_of_complexity * 5;
 }

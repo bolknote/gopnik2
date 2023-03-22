@@ -51,19 +51,19 @@ public:
 
     char *get_type();
 
-    int get_exp();
+    int get_exp() const;
 
     int get_max_exp();
 
-    int get_level();
+    int get_level() const;
 
-    int get_force();
+    int get_force() const;
 
-    int get_smart();
+    int get_smart() const;
 
-    int get_vita();
+    int get_vita() const;
 
-    int get_luck();
+    int get_luck() const;
 
     int get_max_force();
 
@@ -75,21 +75,21 @@ public:
 
     int get_health();
 
-    int get_max_health();
+    int get_max_health() const;
 
-    int get_exact();
+    int get_exact() const;
 
-    int get_min_loss();
+    int get_min_loss() const;
 
-    int get_max_loss();
+    int get_max_loss() const;
 
-    int get_armo();
+    int get_armo() const;
 
-    int get_max_armo();
+    int get_max_armo() const;
 
-    int get_money();
+    int get_money() const;
 
-    int get_beer();
+    int get_beer() const;
 
     int get_stuff();
 
@@ -135,9 +135,9 @@ public:
 
     int sub_att(int);
 
-    int get_kick_count();
+    int get_kick_count() const;
 
-    int get_accuracy_of_last_kick();
+    int get_accuracy_of_last_kick() const;
 
-    int get_min_empty_kick_count();
+    int get_min_empty_kick_count() const;
 };

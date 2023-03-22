@@ -1,6 +1,5 @@
 
-#include <time.h>
-#include <string.h>
+#include <cstring>
 
 #include "comm.h"
 #include "../main.h"

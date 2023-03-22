@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 
 #define RESET   0x0
 #define BLUE    0x1
@@ -26,4 +26,4 @@ void showcursor();
 
 int kbhit();
 
-int get_key(bool = 1);
+int get_key(bool = true);

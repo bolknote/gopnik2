@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "comm.h"
 #include "../main.h"
@@ -55,7 +55,7 @@ int meet() {
 
         get_key();
 
-        while (1) {
+        for (;;) {
             // вероятность, что повезёт
             if (chance(1, 30)) {
                 cur_game->open_girl = main_hero->station + 1;

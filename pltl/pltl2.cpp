@@ -1,5 +1,5 @@
-#include <string.h>
-#include <stdlib.h>
+#include <cstring>
+#include <cstdlib>
 
 #include "pltl.h"
 #include "../main.h"

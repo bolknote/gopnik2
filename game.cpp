@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include <cstdlib>
+#include <cstring>
+#include <cctype>
 
 #include "main.h"
 #include "hero.h"
@@ -26,7 +26,7 @@ ap add_new_element(
     return cur_ap;
 }
 
-game::game() {
+game::game() : file_name(), st_file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(), we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
     strcpy(file_name, "gop2_1.sav");
     strcpy(st_file_name, "gop2.st");
     load_game = 0;
@@ -52,26 +52,26 @@ game::game() {
     new_district_norealiz = 0;
     end_of_game = 0;
 
-    open_mar = 1;
-    open_rep = 1;
-    open_pr1 = 0;
-    open_pr2 = 0;
-    open_hp1 = 0;
-    open_hp2 = 0;
-    open_d1 = 0;
-    open_d2 = 0;
-    open_trn1 = 0;
-    open_trn2 = 0;
-    open_bmar1 = 0;
-    open_bmar2 = 0;
-    open_a1 = 0;
-    open_a2 = 0;
-    open_kl1 = 0;
-    open_kl2 = 1;
-    open_girl = 0;
-    open_str = 0;
-    open_raid = 0;
-    open_ob = 0;
+    open_mar = true;
+    open_rep = true;
+    open_pr1 = false;
+    open_pr2 = false;
+    open_hp1 = false;
+    open_hp2 = false;
+    open_d1 = false;
+    open_d2 = false;
+    open_trn1 = false;
+    open_trn2 = false;
+    open_bmar1 = false;
+    open_bmar2 = false;
+    open_a1 = false;
+    open_a2 = false;
+    open_kl1 = false;
+    open_kl2 = true;
+    open_girl = false;
+    open_str = false;
+    open_raid = false;
+    open_ob = false;
 
     num_w = 0;
     num_empty_w = 0;
@@ -95,7 +95,7 @@ game::game() {
     stay_eog = 0;
 
     st_amount = 0;
-} // end game::game ()
+}
 
 game::~game() {
     clean_mem();
@@ -115,9 +115,9 @@ game::~game() {
     if (cmd_list_init) {
         delete cmd_list;
     }
-} // end game::~game ()
+}
 
-int game::clean_mem() {
+int game::clean_mem() const {
     int i, j, k;
 
     // **ht**
@@ -2204,7 +2204,7 @@ int game::start() {
 
     switch (user_ht_index) {
         case 0:
-            open_girl = 1;
+            open_girl = true;
             break;
 
         case 1:
@@ -2212,7 +2212,7 @@ int game::start() {
             break;
 
         case 2:
-            open_ob = 1;
+            open_ob = true;
             break;
     }
 

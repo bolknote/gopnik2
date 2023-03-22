@@ -1,4 +1,5 @@
-#include <time.h>
+#include <ctime>
+#include <cstddef>
 
 #include "comm.h"
 #include "../main.h"
@@ -18,7 +19,7 @@ void show_timer(time_t sec_amount) {
             da,
             ch;
 
-    last_time = time(NULL);
+    last_time = time(nullptr);
 
     hidecursor();
 
@@ -27,8 +28,8 @@ void show_timer(time_t sec_amount) {
     sec_amount++;
 
     while (sec_amount > 0) {
-        if (time(NULL) - last_time == 1) {
-            last_time = time(NULL);
+        if (time(nullptr) - last_time == 1) {
+            last_time = time(nullptr);
             sec_amount--;
             da = getdigitamount(sec_amount);
             while (da < max_da) {
