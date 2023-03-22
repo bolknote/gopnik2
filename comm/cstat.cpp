@@ -95,7 +95,7 @@ int cstat(
             printf(mess[1], cur_game->stn[index].name);
         } else {
             settextattr(RED);
-            printf("%s", cur_game->stn[index].unavail_reason);
+            printf("%s\n", cur_game->stn[index].unavail_reason);
         }
     } else {
         settextattr(RED);
