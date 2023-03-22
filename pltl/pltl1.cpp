@@ -88,11 +88,11 @@ int pltl1(
       settextattr(WHITE);
       printf("%s", mess[2]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[3]);
 
-      getch();
+      get_key();
 
       settextattr(YELLOW);
       printf("%s", mess[4]);
@@ -108,47 +108,47 @@ int pltl1(
         printf("%s", mess[6]);
       }
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s %s", mess[1], mess[7], mess[8]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[9]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[10]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[11]);
 
-      getch();
+      get_key();
 
       settextattr(YELLOW);
       printf("%s", mess[12]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[13]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[14]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[15]);
 
-      getch();
+      get_key();
 
       settextattr(WHITE);
       printf("%s", mess[16]);
@@ -173,46 +173,46 @@ int pltl1(
       settextattr(WHITE);
       printf("%s", mess[2]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[3]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s\r\n", mess[1], mess[7]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[17]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[18]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[19]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[20]);
 
-      getch();
+      get_key();
 
       settextattr(WHITE);
       printf("%s", mess[21]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[22]);
 
-      getch();
+      get_key();
 
       settextattr(WHITE);
       printf("%s", mess[16]);
@@ -237,51 +237,51 @@ int pltl1(
       settextattr(WHITE);
       printf("%s", mess[2]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[3]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[23]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[24]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[25]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[26]);
 
-      getch();
+      get_key();
 
       settextattr(WHITE);
       printf("%s", mess[27]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[28]);
 
-      getch();
+      get_key();
 
       settextattr(BLUE);
       printf("%s: %s", mess[1], mess[14]);
 
-      getch();
+      get_key();
 
       settextattr(GREEN);
       printf("%s: %s", mess[0], mess[29]);
 
-      getch();
+      get_key();
 
       settextattr(WHITE);
       printf("%s", mess[16]);
@@ -308,21 +308,21 @@ int pltl1(
         settextattr(WHITE);
         printf("%s", mess[2]);
 
-        getch();
+        get_key();
 
         printf("%s", mess[3]);
 
-        getch();
+        get_key();
 
         settextattr(BLUE);
         printf("%s: %s", mess[1], mess[30]);
 
-        getch();
+        get_key();
 
         settextattr(GREEN);
         printf("%s: %s", mess[0], mess[31]);
 
-        getch();
+        get_key();
 
         ht_index = cur_game->search_ht("Уличный маг");
         level = 40;

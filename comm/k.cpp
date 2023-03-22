@@ -692,7 +692,7 @@ end_fight:
       settextattr(BLUE);
       printf(mess[11], att);
 
-      getch();
+      get_key();
 
       settextattr(YELLOW);
       printf("%s", mess[29]);
@@ -801,7 +801,7 @@ end_fight:
     {
       settextattr(RED);
       printf("%s", mess[2]);
-      getch();
+      get_key();
     }
 
     // удаляем объект "братвы"

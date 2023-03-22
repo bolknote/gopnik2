@@ -74,37 +74,37 @@ int pltl0(
       settextattr(WHITE);
       printf("%s", mess[0]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(WHITE);
       printf("%s", mess[1]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(YELLOW);
       printf("%s", mess[2]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(GREEN);
       printf("%s", mess[3]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(YELLOW);
       printf("%s", mess[4]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(WHITE);
       printf("%s", mess[5]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(RED);
       printf("%s", mess[6]);
 
-      getch(0);
+      get_key(0);
 
       settextattr(WHITE);
       printf("%s", mess[7]);
@@ -125,7 +125,7 @@ int pltl0(
       settextattr(RED);
       printf("%s", mess[22]);
 
-      getch();
+      get_key();
 
       cur_game->pltl[pltl_index].active = -1;
     }
@@ -138,11 +138,11 @@ int pltl0(
       settextattr(WHITE);
       printf("%s", mess[10]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[11]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[12]);
 
@@ -152,7 +152,7 @@ int pltl0(
       settextattr(WHITE);
       printf("%s", mess[14]);
 
-      getch();
+      get_key();
 
       cur_game->stay_eog = 0;
 
@@ -187,29 +187,29 @@ int pltl0(
         settextattr(WHITE);
         printf("%s", mess[18]);
 
-        getch();
+        get_key();
       }
       else
       {
         settextattr(WHITE);
         printf("%s", mess[15]);
 
-        getch();
+        get_key();
 
         settextattr(YELLOW);
         printf("%s", mess[16]);
 
-        getch();
+        get_key();
 
         settextattr(GREEN);
         printf("%s", mess[17]);
 
-        getch();
+        get_key();
 
         settextattr(YELLOW);
         printf("%s", mess[20]);
 
-        getch();
+        get_key();
 
         ht_index = cur_game->search_ht("Коменда");
         level = 47;
@@ -246,21 +246,21 @@ int pltl0(
         settextattr(WHITE);
         printf("%s", mess[18]);
 
-        getch();
+        get_key();
       }
       else
       {
-        getch();
+        get_key();
 
         settextattr(WHITE);
         printf("%s", mess[19]);
 
-        getch();
+        get_key();
 
         settextattr(RED);
         printf("%s", mess[21]);
 
-        getch();
+        get_key();
 
         cur_game->pltl[pltl_index].active = -1;
       }

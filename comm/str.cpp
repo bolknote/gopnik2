@@ -44,11 +44,11 @@ int str()
   settextattr(YELLOW);
   printf("%s", mess[4]);
 
-  getch();
+  get_key();
 
   printf("%s", mess[5]);
 
-  getch();
+  get_key();
 
   str_hero = new hero *[STR_AMOUNT];
   str_enemy = new hero *[STR_AMOUNT];
@@ -73,7 +73,7 @@ int str()
     /*
         cur_game->enemy = tmp;
         sv ();
-        getch ();
+        get_key ();
     */
     if (flag)
     {

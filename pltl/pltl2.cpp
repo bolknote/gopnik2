@@ -64,11 +64,11 @@ int pltl2(
       settextattr(WHITE);
       printf("%s", mess[0]);
 
-      getch();
+      get_key();
 
       printf("%s", mess[1]);
 
-      getch();
+      get_key();
 
       settextattr(YELLOW);
       printf("%s", mess[2]);
@@ -78,12 +78,12 @@ int pltl2(
         settextattr(GREEN);
         printf("%s", mess[4]);
 
-        getch();
+        get_key();
 
         settextattr(RED);
         printf("%s", mess[5]);
 
-        getch();
+        get_key();
 
         ht_index = cur_game->search_ht("Маньяк");
         level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);

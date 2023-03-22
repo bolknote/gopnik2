@@ -41,7 +41,7 @@ int d()
     settextattr(YELLOW);
     printf("%s", mess[0]);
 
-    getch();
+    get_key();
 
     while (1)
     {

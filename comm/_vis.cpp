@@ -70,7 +70,7 @@ int _vis()
 
     if (kbhit())
     {
-      ch = getch();
+      ch = get_key();
 
       switch (ch)
       {

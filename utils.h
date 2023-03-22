@@ -22,4 +22,4 @@ int getdigitamount(int);             // получить количество ц
 void hidecursor();
 void showcursor();
 int kbhit();
-int getch(bool = 1);
+int get_key(bool = 1);

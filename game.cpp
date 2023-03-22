@@ -430,7 +430,7 @@ int game::wait_command()
 
     while (1) // считывание команды пользователя
     {
-      q = getch(0);
+      q = get_key(0);
       if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
       {
         printf("%c", q);
@@ -535,7 +535,7 @@ int game::wait_answ()
 
   while (1)
   {
-    answ = getch(0);
+    answ = get_key(0);
     if (answ == 'y')
     {
       //      settextattr(old_attr);
@@ -953,7 +953,7 @@ int game::headband()
   settextattr(YELLOW);
   printf("d-maxx, tiandrey & bolknote.\n");
 
-  ch = getch();
+  ch = get_key();
 
   showcursor();
 
@@ -965,7 +965,7 @@ int game::headband()
   {
     if (ch == 0)
     {
-      getch();
+      get_key();
     }
     _clsc();
 
@@ -2384,7 +2384,7 @@ int game::start()
   do
   {
     i = 0;
-    user_choice = getch(0);
+    user_choice = get_key(0);
     //      printf("\n");
     switch (user_choice)
     {
@@ -2437,7 +2437,7 @@ int game::start()
   // определение типа героя пользователя
   while (1)
   {
-    user_ht_index = getch(0);
+    user_ht_index = get_key(0);
     //    printf("\n");
 
     if ((user_ht_index - '1') == j)
@@ -2489,7 +2489,7 @@ int game::start()
 
   while (1)
   {
-    user_level_of_complexity = getch(0);
+    user_level_of_complexity = get_key(0);
     //    printf("\n");
 
     if (

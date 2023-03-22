@@ -45,7 +45,7 @@ void show_timer(time_t sec_amount)
         }
         if (kbhit())
         {
-            ch = getch();
+            ch = get_key();
 
             if (ch == 2)
             {

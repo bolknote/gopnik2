@@ -64,7 +64,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[9]);
 
-        getch();
+        get_key();
       }
 
       if (cur_game->get_stay_kl() == 1)
@@ -75,7 +75,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[10]);
 
-        getch();
+        get_key();
       }
 
       if (cur_game->stay_met == 1)
@@ -86,7 +86,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[11]);
 
-        getch();
+        get_key();
       }
 
       // стрела #1
@@ -98,7 +98,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[14]);
 
-        getch();
+        get_key();
       }
 
       // стрела #2
@@ -128,7 +128,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[15]);
 
-        getch();
+        get_key();
       }
 
       if (cur_game->stay_eog == 25)
@@ -139,7 +139,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[16]);
 
-        getch();
+        get_key();
       }
 
       if (cur_game->stay_eog == 1)
@@ -150,7 +150,7 @@ int sstay()
         settextattr(YELLOW);
         printf("%s", mess[17]);
 
-        getch();
+        get_key();
       }
     }
 
@@ -253,7 +253,7 @@ int sstay()
           settextattr(YELLOW);
           printf("%s", mess[6]);
 
-          getch();
+          get_key();
         }
       }
 
@@ -271,7 +271,7 @@ int sstay()
           settextattr(YELLOW);
           printf("%s", mess[7]);
 
-          getch();
+          get_key();
         }
       }
 
@@ -291,7 +291,7 @@ int sstay()
           settextattr(YELLOW);
           printf("%s", mess[13]);
 
-          getch();
+          get_key();
         }
       }
     }

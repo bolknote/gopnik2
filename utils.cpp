@@ -130,7 +130,7 @@ void showcursor()
   printf("\033[?25h");
 }
 
-int getch(bool echo)
+int get_key(bool echo)
 {
   char c[4];
   int t = 0;

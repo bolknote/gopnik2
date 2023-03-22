@@ -57,7 +57,7 @@ int meet()
     printf("%s", mess[2]);
     printf("%s", mess[3]);
 
-    getch();
+    get_key();
 
     while (1)
     {
