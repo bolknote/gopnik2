@@ -160,7 +160,7 @@ int sstay() {
                 }
             }
 
-            main_hero->stoned = 0;
+            main_hero->stoned = false;
             printf("%s", mess[0]);
         }
 

@@ -1700,7 +1700,7 @@ int game::new_district() {
             end_of_game = 1;
 
             stay_eog = 50;
-            stn[1].avail = 1;
+            stn[1].avail = true;
         }
 
         return 0;
@@ -1716,14 +1716,14 @@ int game::new_district() {
 
     // обновляем некоторые переменные
 
-    open_mar = 0;
-    open_rep = 0;
-    open_pr1 = 0;
-    open_hp1 = 0;
-    open_d1 = 0;
-    open_bmar1 = 0;
-    open_trn1 = 0;
-    open_kl1 = 0;
+    open_mar = false;
+    open_rep = false;
+    open_pr1 = false;
+    open_hp1 = false;
+    open_d1 = false;
+    open_bmar1 = false;
+    open_trn1 = false;
+    open_kl1 = false;
 
     num_w = 0;
     num_empty_w = 0;
