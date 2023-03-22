@@ -96,8 +96,8 @@ int sstay() {
 
             // стрела #2
             if (cur_game->stay_str == 1) {
-                cur_game->open_str = 0;
-                cur_game->open_raid = 0;
+                cur_game->open_str = false;
+                cur_game->open_raid = false;
 
                 flag = 0;
 

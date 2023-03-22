@@ -46,14 +46,14 @@ int settextattr(int new_attr) {
     return old_attr;
 }
 
-int isdigitstr(const char *str) {
+bool isdigitstr(const char *str) {
     unsigned int i;
     for (i = 0; i < strlen(str); i++) {
         if (!isdigit(str[i])) {
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
 int superrandom(
@@ -62,10 +62,9 @@ int superrandom(
         int amount, // кол-во приращений
         int start   // номер уровня, относительно которого нужно воспроизводить приращения
 ) {
-    int flag, i, j;
-    flag = 1;
-    i = start;
-    j = 0;
+    int flag = 1;
+    int i = start;
+    int j = 0;
 
     while ((j < amount) && (getrandom(-1, N) != 0)) {
         j++;
@@ -83,16 +82,17 @@ int superrandom(
     }
 }
 
-void backspace() {
-    //  gotoxy (wherex () - 1, wherey ());
-    //  printf (" ");
-    //  gotoxy (wherex () - 1, wherey ());
-    //  printf ("\0");
-    printf("\033[D");
-    printf(" ");
-    printf("\033[D");
+void backspace(int cnt) {
+    for (int i = 0; i<cnt;i++) {
+        printf("\033[D \033[D");
+    }
 }
 
+void forward(int cnt) {
+    printf("\033[%dC", cnt);
+}
+
+// Количество разрядов в числе
 int getdigitamount(int number) {
     int i = 1;
     while ((number /= 10) > 0) {
@@ -139,10 +139,8 @@ int get_key(bool echo) {
 }
 
 bool kbhit() {
-    struct timeval tv = {};
+    struct timeval tv = {.tv_sec = 0, .tv_usec = 0};
     fd_set read_fd;
-    tv.tv_sec = 0;
-    tv.tv_usec = 0;
     FD_ZERO(&read_fd);
     FD_SET(0, &read_fd);
     if (select(1, &read_fd, nullptr, nullptr, &tv) == -1)

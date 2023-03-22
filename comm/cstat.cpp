@@ -1,5 +1,6 @@
 #include <ctime>
 #include <cstddef>
+#include <unistd.h>
 
 #include "comm.h"
 #include "../main.h"
@@ -10,47 +11,37 @@
 
 extern game *cur_game;
 
-void show_timer(time_t); // вывести таймер, отсчитывающего время от данного количества секунд до нуля
+// вывести таймер, отсчитывающего время от данного количества секунд до нуля
 void show_timer(time_t sec_amount) {
-    time_t last_time;
+    fflush(stdout);
 
-    int
-            max_da,
-            da,
-            ch;
-
-    last_time = time(nullptr);
-
+    time_t last_time = 0;
     hidecursor();
 
-    max_da = getdigitamount(sec_amount);
-
+    int max_da = getdigitamount((int) sec_amount);
     sec_amount++;
 
     while (sec_amount > 0) {
-        if (time(nullptr) - last_time == 1) {
+        if (time(nullptr) != last_time) {
             last_time = time(nullptr);
             sec_amount--;
-            da = getdigitamount(sec_amount);
-            while (da < max_da) {
+            for (int da = getdigitamount((int) sec_amount); da < max_da; da++) {
                 printf("0");
-                da++;
             }
             printf("%ld", sec_amount);
-#warning Надо разобраться, зачем здесь gotoxy
-            //      gotoxy (wherex () - max_da, wherey ());
-        }
-        if (kbhit()) {
-            ch = get_key();
+            fflush(stdout);
 
-            if (ch == 2) {
-                break;
-            }
+            backspace(max_da);
+        } else {
+            usleep(1e5);
+        }
+
+        if (kbhit() && get_key(false) == 2) {
+            break;
         }
     }
 
-    //  gotoxy (wherex () + max_da, wherey ());
-
+    forward(max_da);
     showcursor();
 }
 
@@ -63,7 +54,7 @@ int cstat(
     const char *mess[4] = {
             "Ты щас на этой станции находишься\n",
             "\nТы приехал на станцию \"%s\"\n",
-            "Ты вошёл в вагон и тебя со всех сторон сжала толпа.\nВ воздухе пронёсся голос машиниста:\n-Чё за мудаки держат двери?! Ща выйду - въебу!\nПоезд дёрнулся и понёсся по тёмному тоннелю...",
+            "Ты вошёл в вагон и тебя со всех сторон сжала толпа.\nВ воздухе пронёсся голос машиниста:\n-Чё за мудаки держат двери?! Ща выйду - въебу!\nПоезд дёрнулся и понёсся по тёмному тоннелю...\n",
             "До прибытия на станцию осталось "};
 
     main_hero = cur_game->main_hero;
@@ -72,9 +63,7 @@ int cstat(
     // время следования до станции
     time;
 
-    if (
-            (index < 0) ||
-            (index >= cur_game->stn_amount)) {
+    if (index < 0 || index >= cur_game->stn_amount) {
         return 0;
     }
 
@@ -83,12 +72,10 @@ int cstat(
             time = (main_hero->station - index) * 10;
 
             if (time < 0) {
-                time *= (-1);
+                time = -time;
             }
 
-            if (
-                    (main_hero->station == 0) ||
-                    (index == 0)) {
+            if (main_hero->station == 0 || index == 0) {
                 main_hero->station = index;
 
                 cur_game->new_station();

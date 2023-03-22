@@ -25,7 +25,7 @@ int _vis() {
     br = 0;
     hex = 0;
 
-    while (1) {
+    for (;;) {
         if (del) {
             sleep(20);
         }

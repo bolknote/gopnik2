@@ -41,7 +41,7 @@ int d() {
 
         get_key();
 
-        while (1) {
+        for (;;) {
             // вероятность, что повезёт
             if (chance(1, 20)) {
                 settextattr(YELLOW);

@@ -374,7 +374,7 @@ int game::wait_command() {
 
     n = 0;
 
-    while (1) {
+    for (;;) {
         old_attr = settextattr(BLACK);
         printf("%s", loc[active_loc].name);
 
@@ -387,9 +387,9 @@ int game::wait_command() {
 
         i = 0;
 
-        while (1) // считывание команды пользователя
+        for (;;) // считывание команды пользователя
         {
-            q = get_key(0);
+            q = get_key(false);
             if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
             {
                 printf("%c", q);
@@ -479,8 +479,8 @@ int game::wait_answ() {
 
     //  old_attr = settextattr (12);
 
-    while (1) {
-        answ = get_key(0);
+    for (;;) {
+        answ = get_key(false);
         if (answ == 'y') {
             //      settextattr(old_attr);
             return 1;
@@ -918,7 +918,7 @@ int game::create_hero(
   int
     done;
 
-  while (1)
+  for (;;)
   {
     if (find_first)
     {
@@ -1278,7 +1278,7 @@ int game::gen_enemy(
 
     i = 0;
 
-    while (1) {
+    for (;;) {
         i = getrandom(-1, ht_amount - 1);
 
         if (ht[i].active == 0) {
@@ -2132,7 +2132,7 @@ int game::start() {
 
     do {
         i = 0;
-        user_choice = get_key(0);
+        user_choice = get_key(false);
         //      printf("\n");
         switch (user_choice) {
             case '1':
@@ -2178,8 +2178,8 @@ int game::start() {
     printf("%i-%s\n", j + 1, mess[16]);
 
     // определение типа героя пользователя
-    while (1) {
-        user_ht_index = get_key(0);
+    for (;;) {
+        user_ht_index = get_key(false);
         //    printf("\n");
 
         if ((user_ht_index - '1') == j) {
@@ -2208,7 +2208,7 @@ int game::start() {
             break;
 
         case 1:
-            open_trn2 = 1;
+            open_trn2 = true;
             break;
 
         case 2:
@@ -2224,8 +2224,8 @@ int game::start() {
     printf("%s", mess[11]);
     printf("%s", mess[12]);
 
-    while (1) {
-        user_level_of_complexity = get_key(0);
+    for (;;) {
+        user_level_of_complexity = get_key(false);
         //    printf("\n");
 
         if (
@@ -2241,7 +2241,7 @@ int game::start() {
 
     // определение имени героя пользователя
     showcursor();
-    while (1) {
+    for (;;) {
         //    buf [0] = 19;
 
         settextattr(GREEN);

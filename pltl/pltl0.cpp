@@ -69,37 +69,37 @@ int pltl0(
                 settextattr(WHITE);
                 printf("%s", mess[0]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(WHITE);
                 printf("%s", mess[1]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(YELLOW);
                 printf("%s", mess[2]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(GREEN);
                 printf("%s", mess[3]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(YELLOW);
                 printf("%s", mess[4]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(WHITE);
                 printf("%s", mess[5]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(RED);
                 printf("%s", mess[6]);
 
-                get_key(0);
+                get_key(false);
 
                 settextattr(WHITE);
                 printf("%s", mess[7]);

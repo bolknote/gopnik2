@@ -16,9 +16,10 @@
 extern int textattr;
 
 int settextattr(int);                // сменить цвет
-int isdigitstr(const char *);        // состоит ли строка исключительно из символов цифр
+bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
 int superrandom(int, int, int, int); // возвращает номер приращения событий, на котором выпадает текущая вероятность
-void backspace();                    // удаление с экрана символа, стоящего слева от курсора
+void backspace(int = 1);             // удаление с экрана символов, стоящих слева от курсора
+void forward(int = 1);               // передвинуть курсор на указанное количество символов вправо
 int getdigitamount(int);             // получить количество цифр в числе
 void hidecursor();
 
