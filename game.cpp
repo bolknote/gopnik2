@@ -873,9 +873,17 @@ int game::headband() {
     settextattr(YELLOW);
     printf("V.P.\n");
     settextattr(WHITE);
-    printf("Программирование . . . . . . . . . ");
+    printf("Программирование . . . . . . . . . . . . . . . . . . . . ");
     settextattr(YELLOW);
-    printf("d-maxx, tiandrey & bolknote.\n");
+    printf("d-maxx\n");
+    settextattr(WHITE);
+    printf("Порт под Linux . . . . . . . . . . . . . . . . . . . . ");
+    settextattr(YELLOW);
+    printf("tiandrey\n");
+    settextattr(WHITE);
+    printf("Исправление ошибок и дальнейшее портирование . . . . . ");
+    settextattr(YELLOW);
+    printf("bolknote\n");
 
     ch = get_key();
 
