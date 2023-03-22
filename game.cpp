@@ -27,7 +27,9 @@ ap add_new_element(
     return cur_ap;
 }
 
-game::game() : file_name(), st_file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(), we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
+game::game()
+        : file_name(), st_file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
+          we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
     strcpy(file_name, "gop2_1.sav");
     strcpy(st_file_name, "gop2.st");
     load_game = 0;
@@ -1161,55 +1163,44 @@ int game::supple_loc_run_over() {
 
     active_loc = 0;
 
-    loc[active_loc].command_active[is_active_location_command("rep")] = main_hero->station ? (0) : (open_rep);
-    loc[active_loc].command_active[is_active_location_command("mar")] = (main_hero->station == 2) ? (1)
-                                                                                                  : ((main_hero->station)
-                                                                                                     ? (0)
-                                                                                                     : (open_mar));
-    loc[active_loc].command_active[is_active_location_command("pr")] = (main_hero->station == 4) ? (1)
-                                                                                                 : ((main_hero->station)
-                                                                                                    ? (0)
-                                                                                                    : (get_open_pr()));
-    loc[active_loc].command_active[is_active_location_command("trn")] = ((main_hero->station == 4) ||
-                                                                         (main_hero->station == 0)) ? (get_open_trn())
-                                                                                                    : (0);
-    loc[active_loc].command_active[is_active_location_command("bmar")] = ((main_hero->station == 3) ||
-                                                                          (main_hero->station == 0)) ? (get_open_bmar())
-                                                                                                     : (0);
-    loc[active_loc].command_active[is_active_location_command("kl")] = (main_hero->station == 2) ? (1)
-                                                                                                 : ((main_hero->station)
-                                                                                                    ? (0)
-                                                                                                    : (get_open_kl()));
-    loc[active_loc].command_active[is_active_location_command("girl")] = (main_hero->station == (open_girl - 1)) ? (1)
-                                                                                                                 : (0);
-    loc[active_loc].command_active[is_active_location_command("str")] = (main_hero->station) ? (0) : (open_str);
+    loc[active_loc].command_active[is_active_location_command("rep")] = main_hero->station == 0 && open_rep;
+    loc[active_loc].command_active[is_active_location_command("mar")] =
+            main_hero->station == 2 ||
+            (main_hero->station == 0 && open_mar);
+    loc[active_loc].command_active[is_active_location_command("pr")] =
+            main_hero->station == 4 ||
+            (main_hero->station == 0 && get_open_pr());
+    loc[active_loc].command_active[is_active_location_command("trn")] =
+            (main_hero->station == 4 ||
+             main_hero->station == 0) && get_open_trn();
+    loc[active_loc].command_active[is_active_location_command("bmar")] =
+            (main_hero->station == 3 ||
+             main_hero->station == 0) && get_open_bmar();
+    loc[active_loc].command_active[is_active_location_command("kl")] =
+            main_hero->station == 2 || (main_hero->station == 0 && get_open_kl());
+    loc[active_loc].command_active[is_active_location_command("girl")] = main_hero->station == open_girl - 1;
+    loc[active_loc].command_active[is_active_location_command("str")] = main_hero->station == 0 && open_str;
     loc[active_loc].command_active[is_active_location_command("ob")] = open_ob;
-    loc[active_loc].command_active[is_active_location_command("eog")] = (main_hero->station == 1) ? ((stay_eog) ? (1)
-                                                                                                                : (0))
-                                                                                                  : (0);
+    loc[active_loc].command_active[is_active_location_command("eog")] = main_hero->station == 1 && stay_eog;
 
     active_loc = 1;
 
     loc[active_loc].command_active[is_active_location_command("v")] = get_open_pr();
-    loc[active_loc].command_active[is_active_location_command("f")] = (main_hero->inv[search_inv(main_hero,
-                                                                                                 "Пистолет")].have)
-                                                                      ? (1) : (0);
+    loc[active_loc].command_active[is_active_location_command("f")] =
+            main_hero->inv[search_inv(main_hero, "Пистолет")].have;
 
     active_loc = 4;
 
     loc[active_loc].command_active[is_active_location_command("a")] = get_open_a();
     loc[active_loc].command_active[is_active_location_command("hp")] = get_open_hp();
     loc[active_loc].command_active[is_active_location_command("d")] = get_open_d();
-    loc[active_loc].command_active[is_active_location_command("raid")] = (main_hero->station) ? (open_raid) : (0);
+    loc[active_loc].command_active[is_active_location_command("raid")] = main_hero->station != 0 && open_raid;
 
     active_loc = 8;
 
-    loc[active_loc].command_active[is_active_location_command("meet")] = ((main_hero->station == 2) && (open_girl == 0))
-                                                                         ? (1) : (0);
-    loc[active_loc].command_active[is_active_location_command("tus")] = (strcmp(main_hero->get_type(), "Нефор") == 0)
-                                                                        ? (0) : (1);
-    loc[active_loc].command_active[is_active_location_command("sl")] = (strcmp(main_hero->get_type(), "Нефор") == 0)
-                                                                       ? (1) : (0);
+    loc[active_loc].command_active[is_active_location_command("meet")] = main_hero->station == 2 && open_girl == 0;
+    loc[active_loc].command_active[is_active_location_command("tus")] = strcmp(main_hero->get_type(), "Нефор") != 0;
+    loc[active_loc].command_active[is_active_location_command("sl")] = strcmp(main_hero->get_type(), "Нефор") == 0;
 
     active_loc = cur_active_loc;
 
