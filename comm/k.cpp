@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cstring>
+#include <cstddef>
 
 #include "comm.h"
 #include "../main.h"
@@ -158,7 +159,7 @@ int k() {
 
     // стрела #1
     // ---------
-    if (cur_game->open_str == 2) {
+    if (cur_game->open_str) {
         // производим поиск нового противника для героя
 
         old_enemy = cur_game->enemy;
@@ -210,7 +211,7 @@ int k() {
 
     // если дана команда выстрела
     if (strcmp(cur_game->active_cmd, "f") == 0) {
-        inv_index = cur_game->search_inv(main_hero, "Пистолет");
+        inv_index = game::search_inv(main_hero, "Пистолет");
 
         if (main_hero->inv[inv_index].have == 0) {
             settextattr(RED);
@@ -218,7 +219,7 @@ int k() {
 
             return 0;
         } else {
-            inv_index = cur_game->search_inv(main_hero, "Глушитель");
+            inv_index = game::search_inv(main_hero, "Глушитель");
 
             if (
                     (main_hero->inv[inv_index].have == 0) &&
@@ -257,15 +258,15 @@ int k() {
 
     if (flag) {
         // удар героя
-        cur_game->kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, 10, 12);
+        game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, 10, 12);
     } else {
         // выстрел героя
-        cur_game->fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, 10, 12);
+        game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, 10, 12);
     }
 
     // стрела #2
     // ---------
-    if (cur_game->open_str == 2) {
+    if (cur_game->open_str) {
         i = 0;
 
         // производим удары "свободных" союзников
@@ -284,10 +285,10 @@ int k() {
                     printf("%s", mess[22]);
                 }
 
-                cur_game->kick_realiz(
+                game::kick_realiz(
                         cur_game->str_hero[j],
                         enemy, empty_k_count, pal_kick_mess, 10, 12);
-                cur_game->kick_realiz(enemy, cur_game->str_hero[j], 10, NULL, 10, 12);
+                game::kick_realiz(enemy, cur_game->str_hero[j], 10, nullptr, 10, 12);
 
                 if (cur_game->str_hero[j]->get_health() == 0) {
                     cur_game->str_hero[j]->str_free = 0;
@@ -310,7 +311,7 @@ int k() {
             lads->empty_kick_count = 0;
 
             // удар "братвы"
-            lads_loss = cur_game->kick_realiz(lads, enemy, 0, lads_kick_mess, 10, 12);
+            lads_loss = game::kick_realiz(lads, enemy, 0, lads_kick_mess, 10, 12);
 
             main_hero->sub_att(lads_loss);
             lads->sub_health(lads_loss);
@@ -330,8 +331,8 @@ int k() {
 
     empty_k_count = 10 - (main_hero->get_level() % 10);
 
-    hero_rel_health = (float) main_hero->get_health() / main_hero->get_max_health();
-    enemy_rel_health = (float) enemy->get_health() / enemy->get_max_health();
+    hero_rel_health = (float) main_hero->get_health() / (float) main_hero->get_max_health();
+    enemy_rel_health = (float) enemy->get_health() / (float) enemy->get_max_health();
 
     // усложнение игры в определённой ситуации...
     // -- может что-то даст...
@@ -343,11 +344,11 @@ int k() {
     }
 
     // удар врага
-    cur_game->kick_realiz(enemy, main_hero, empty_k_count, enemy_kick_mess, 12, 10);
+    game::kick_realiz(enemy, main_hero, empty_k_count, enemy_kick_mess, 12, 10);
 
     // стрела #3
     // ---------
-    if (cur_game->open_str == 2) {
+    if (cur_game->open_str) {
         j = 0;
 
         // производим взаимные удары героев басот
@@ -387,8 +388,8 @@ int k() {
             }
 
             // реализуем удары
-            cur_game->kick_realiz(hero1, hero2, 10, NULL, 10, 12);
-            cur_game->kick_realiz(hero2, hero1, 10, NULL, 12, 10);
+            game::kick_realiz(hero1, hero2, 10, nullptr, 10, 12);
+            game::kick_realiz(hero2, hero1, 10, nullptr, 12, 10);
 
             // выводим сообщение, что запинали союзника
             if (hero1->get_health() == 0) {
@@ -404,7 +405,7 @@ int k() {
                 printf("%s", mess[19]);
 
                 // делаем свободным текущего союзника
-                hero1->str_free = 1;
+                hero1->str_free = true;
                 hero1->empty_kick_count = 0;
             }
         }
@@ -424,7 +425,7 @@ int k() {
         if (enemy->get_health() == 0) {
             for (i = 0; i < STR_AMOUNT; i++) {
                 if (cur_game->str_enemy[i]->get_health() > 0) {
-                    enemy = NULL;
+                    enemy = nullptr;
 
                     break;
                 }
@@ -438,7 +439,7 @@ int k() {
 
     // враг сдох
     if (
-            (enemy != NULL) &&
+            (enemy != nullptr) &&
             (enemy->get_health() == 0)) {
         cur_game->num_k = 0;
         main_hero->empty_kick_count = 0;
@@ -458,7 +459,7 @@ int k() {
         settextattr(BLUE);
 
         for (i = 0; i < enemy->inv_amount; i++) {
-            inv_index = cur_game->search_inv(main_hero, enemy->inv[i].name);
+            inv_index = game::search_inv(main_hero, enemy->inv[i].name);
 
             main_hero->inv[inv_index].have++;
             printf(mess[3], main_hero->inv[inv_index].name);
@@ -545,7 +546,7 @@ int k() {
         }
 
         // отпин мудака в притоне
-        if (cur_game->get_open_hp() == 2) {
+        if (cur_game->get_open_hp()) {
             main_hero->add_att(enemy->get_max_health());
             cur_game->set_open_hp(0);
             new_loc = 4;
@@ -558,7 +559,7 @@ int k() {
         }
 
         // отпин мента в притоне
-        if (cur_game->get_open_d() == 2) {
+        if (cur_game->get_open_d()) {
             att = enemy->get_max_health() - (main_hero->old_att - main_hero->get_att());
 
             if (att > 0) {
@@ -577,7 +578,7 @@ int k() {
         }
 
         // стрела
-        if (cur_game->open_str == 2) {
+        if (cur_game->open_str) {
             att = 0;
 
             for (i = 0; i < STR_AMOUNT; i++) {
@@ -586,16 +587,16 @@ int k() {
 
             att = (int) att / STR_AMOUNT;
 
-            cur_game->open_str = 0;
+            cur_game->open_str = false;
             cur_game->stay_str = 0;
 
             // делаем героя обдолбанным
             cur_game->stay_kos = 20;
-            main_hero->stoned = 1;
+            main_hero->stoned = true;
 
             // делаем героя бухим
             cur_game->stay_mh = 10;
-            main_hero->drunk = 1;
+            main_hero->drunk = true;
 
             // переносим героя на Петроградскую
             main_hero->station = 4;
@@ -606,8 +607,8 @@ int k() {
 
             // восстанавливаем здоровье героя
             main_hero->add_health(main_hero->get_max_health());
-            main_hero->broken_foot = 0;
-            main_hero->broken_jaw = 0;
+            main_hero->broken_foot = false;
+            main_hero->broken_jaw = false;
 
             settextattr(YELLOW);
 
@@ -678,9 +679,9 @@ int k() {
                                 (cur_game->lads_init) &&
                                 (lads->get_health() > 0)) ||
                         // 2ое условие
-                        (cur_game->get_open_hp() == 2) ||
+                        (cur_game->get_open_hp()) ||
                         // 3е условие
-                        (cur_game->get_open_d() == 2))) {
+                        (cur_game->get_open_d()))) {
             if (cur_game->get_stay_mar() == -1) {
                 cur_game->set_stay_mar(20);
             }
@@ -693,20 +694,20 @@ int k() {
                 cur_game->stay_met = 10;
             }
 
-            if (cur_game->get_open_hp() == 2) {
-                cur_game->set_open_hp(0);
-            }
+//            if (cur_game->get_open_hp() == 2) {
+//                cur_game->set_open_hp(0);
+//            }
 
-            if (cur_game->get_open_d() == 2) {
-                cur_game->set_open_d(0);
-            }
+//            if (cur_game->get_open_d() == 2) {
+//                cur_game->set_open_d(0);
+//            }
 
             main_hero->sub_att(20);
 
             // восстанавливаем здоровье героя
             main_hero->add_health(main_hero->get_max_health());
-            main_hero->broken_foot = 0;
-            main_hero->broken_jaw = 0;
+            main_hero->broken_foot = false;
+            main_hero->broken_jaw = false;
 
             main_hero->sub_money(main_hero->get_money());
             main_hero->sub_beer(main_hero->get_beer());

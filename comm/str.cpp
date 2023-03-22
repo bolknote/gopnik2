@@ -11,13 +11,8 @@
 extern game *cur_game;
 
 int str() {
-    // объект героя
-    // hero *main_hero;
-
     hero **str_hero;
     hero **str_enemy;
-
-    // hero *tmp;
 
     // сообщения функции
     const char *mess[6] = {
@@ -35,7 +30,7 @@ int str() {
     int i, flag;
 
     if (
-            (cur_game->open_str == 0) ||
+            (!cur_game->open_str) ||
             (cur_game->main_hero->station != 0)) {
         return 0;
     }

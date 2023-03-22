@@ -248,10 +248,10 @@ int sstay() {
 
             if (
                     (main_hero->station) &&
-                    (cur_game->open_raid == 0) &&
-                    (cur_game->open_str == 0) &&
+                    (!cur_game->open_raid) &&
+                    (!cur_game->open_str) &&
                     (chance(1, 200))) {
-                cur_game->open_raid = 1;
+                cur_game->open_raid = true;
 
                 if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
                     settextattr(WHITE);

@@ -108,7 +108,7 @@ int w() {
             (cur_game->num_w > 20) &&
             ((cur_game->num_w % 20) == 0) &&
             (main_hero->station == 0) &&
-            (cur_game->open_str == 0)) {
+            (!cur_game->open_str)) {
         for (i = 0; i < cur_game->we_amount; i++) {
             if (cur_game->we[i].active) {
                 flag = 1;
