@@ -2,7 +2,7 @@ OBJS=utils.o game.o hero.o list.o main.o comm/a.o comm/_ae.o comm/bar.o comm/bb.
 CXXFLAGS=-Wall -ggdb
 
 all: comm pltl $(OBJS)
-	g++ -o gop $(OBJS)
+	g++ -o gop2 $(OBJS)
 
 comm:
 	make -C comm
@@ -11,11 +11,11 @@ pltl:
 	make -C pltl
 
 clean:
-	rm -f *.o gop &>/dev/null &
+	rm -f *.o gop2 &>/dev/null &
 	make -C comm clean
 	make -C pltl clean
 
 lclean:
-	rm -f *.o gop &>/dev/null &
+	rm -f *.o gop2 &>/dev/null &
 
 .PHONY: all clean comm pltl lclean
