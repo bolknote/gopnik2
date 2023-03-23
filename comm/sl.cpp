@@ -110,9 +110,7 @@ int sl() {
             return 0;
         }
 
-        if (
-                (main_hero->broken_jaw) &&
-                (main_hero->broken_foot)) {
+        if (main_hero->broken_jaw && main_hero->broken_foot) {
             settextattr(RED);
             printf("%s", mess[5]);
 

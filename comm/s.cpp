@@ -291,7 +291,7 @@ int s() {
 
     // здоровье
 
-    fi = (float) main_hero->get_health() / main_hero->get_max_health();
+    fi = (float) main_hero->get_health() / (float) main_hero->get_max_health();
 
     if (fi > 0.5) {
         settextattr(GREEN);
