@@ -9,21 +9,6 @@
 
 extern game *cur_game;
 
-template<class ap>
-ap add_new_element(
-        ap cur_ap,  // указатель на текущий массив
-        int amount, // количество элементов в массиве
-        size_t size // размер каждого элемента в массиве
-) {
-    if (amount == 0) {
-        cur_ap = (ap) malloc(size);
-    } else {
-        cur_ap = (ap) realloc(cur_ap, (amount + 1) * size);
-    }
-
-    return cur_ap;
-}
-
 int wes() {
     // объект героя
     hero *main_hero;

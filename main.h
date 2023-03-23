@@ -2,6 +2,9 @@
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
+#include <cstddef>
+#include <cstdlib>
+
 typedef int (*FP)();
 
 typedef int (*FP2)(int, int, int *);
@@ -99,37 +102,21 @@ typedef struct plot_line {
 
 /* названия каждого из уровней */
 
-// информация о текстовом режиме
-// struct text_info ti;
 // информация о найденном файле
 // struct ffblk ffblk;
 // увеличение динамического массива на один элемент
 
-/*
-template <class ap>
-ap add_new_element (
-                     ap cur_ap, // указатель на текущий массив
-                     int amount, // количество элементов в массиве
-                     size_t size // размер каждого элемента в массиве
-                   )
-{
-  if (amount == 0)
-  {
-    cur_ap = (ap) malloc (size);
-  }
-  else
-  {
-    cur_ap = (ap) realloc (cur_ap, (amount + 1) * size);
-  }
+template<class ap>
+ap add_new_element(
+        ap cur_ap, // указатель на текущий массив
+        int amount, // количество элементов в массиве
+        size_t size // размер каждого элемента в массиве
+) {
+    if (amount == 0) {
+        cur_ap = (ap) malloc(size);
+    } else {
+        cur_ap = (ap) realloc(cur_ap, (amount + 1) * size);
+    }
 
-  if (cur_ap == NULL)
-  {
-    delete cur_game;
-
-    printf ("add_new_element: %s\n", error);
-    exit (1);
-  }
-
-  return cur_ap;
+    return cur_ap;
 }
-*/

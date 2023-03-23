@@ -12,27 +12,11 @@
 
 extern game *cur_game;
 
-template<class ap>
-ap add_new_element(
-        ap cur_ap,  // указатель на текущий массив
-        int amount, // количество элементов в массиве
-        size_t size // размер каждого элемента в массиве
-) {
-    if (amount == 0) {
-        cur_ap = (ap) malloc(size);
-    } else {
-        cur_ap = (ap) realloc(cur_ap, (amount + 1) * size);
-    }
-
-    return cur_ap;
-}
-
 game::game()
-        : file_name(), st_file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
+        : file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
           we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
     strcpy(file_name, "gop2_1.sav");
-    strcpy(st_file_name, "gop2.st");
-    load_game = 0;
+    load_game = false;
 
     hero_init = 0;
     enemy_init = 0;

@@ -1,7 +1,6 @@
 class game {
 public:
     char file_name[100];    // имя файла сохранения; не жлобимся, памяти всем хватит
-    char st_file_name[100]; // -- тест
     bool load_game;         // определяет, должна ли следовать загрузка игры
     int hero_init;
     int enemy_init;
