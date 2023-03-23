@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <random>
 
 #define RESET   0x0
 #define BLUE    0x1

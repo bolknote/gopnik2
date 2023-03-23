@@ -15,7 +15,7 @@ int k() {
     // объект героя
     hero *main_hero;
     // объект врага
-    hero *enemy;
+    hero *enemy = nullptr;
     // объект "братвы"
     hero *lads;
 
@@ -190,7 +190,7 @@ int k() {
 
         // данная ситуация, по сути, невозможна,
         // но на всякий случай...
-        if (cur_game->enemy == NULL) {
+        if (cur_game->enemy == nullptr) {
             cur_game->enemy = cur_game->str_enemy[0];
             // printf ("%s","gotofight\n"); // !!!
 
@@ -291,7 +291,7 @@ int k() {
                 game::kick_realiz(enemy, cur_game->str_hero[j], 10, nullptr, 10, 12);
 
                 if (cur_game->str_hero[j]->get_health() == 0) {
-                    cur_game->str_hero[j]->str_free = 0;
+                    cur_game->str_hero[j]->str_free = false;
 
                     settextattr(RED);
                     printf("%s", mess[20]);
@@ -381,7 +381,7 @@ int k() {
             // пропускаем индекс мёртвого противника
             // и делаем "свободным" текущего союзника
             if (hero2->get_health() == 0) {
-                hero1->str_free = 1;
+                hero1->str_free = true;
                 hero1->empty_kick_count = 0;
 
                 continue;

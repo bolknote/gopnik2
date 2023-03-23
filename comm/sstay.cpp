@@ -204,7 +204,7 @@ int sstay() {
 
                     ht_index = cur_game->search_ht((main_hero->station) ? ("Братва с общаги") : ("Братва"));
 
-                    cur_game->lads = new hero(cur_game->ht[ht_index], ht_index);
+                    cur_game->lads = new hero(cur_game->ht[ht_index]);
 
                     cur_game->lads_init = 1;
 

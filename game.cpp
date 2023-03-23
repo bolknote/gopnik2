@@ -895,7 +895,7 @@ int game::create_hero(
         const char *name,
         // уровень сложности
         int level_of_complexity = 0) {
-    main_hero = new hero(ht[ht_index], ht_index);
+    main_hero = new hero(ht[ht_index]);
     hero_init = 1;
 
     main_hero->set_name(name);
@@ -1313,7 +1313,7 @@ int game::gen_enemy_obj(
         enemy_init = 0;
     }
 
-    if (!(enemy = new hero(ht[ht_index], ht_index))) {
+    if (!(enemy = new hero(ht[ht_index]))) {
         clean_mem();
 
         fprintf(stderr, "debug: game.cpp:1921: epic fail\n");

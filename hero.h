@@ -1,5 +1,4 @@
 class hero {
-    int ht_index; // индекс типа героя
     int desc[4];  // начальные навыки
     int level_of_complexity;
     char *name;
@@ -37,7 +36,7 @@ public:
     int inv_have_amount; // кол-во инвентаря, которым владеет герой
     bool str_free;       // используется для режима стрелы; указывает, "свободен" ли в данный момент герой
 
-    hero(hero_type, int);
+    hero(hero_type);
 
     ~hero();
 
@@ -123,15 +122,15 @@ public:
 
     int add_att(int);
 
-    int sub_health(int);
+    void sub_health(int);
 
-    int sub_money(int);
+    void sub_money(int);
 
-    int sub_beer(int);
+    void sub_beer(int);
 
-    int sub_stuff(int);
+    void sub_stuff(int);
 
-    int sub_ciga(int);
+    void sub_ciga(int);
 
     int sub_att(int);
 

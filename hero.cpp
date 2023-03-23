@@ -5,11 +5,7 @@
 #include "hero.h"
 #include "utils.h"
 
-hero::hero(
-        // структура типа героя
-        hero_type ht,
-        // индекс типа героя
-        int _ht_index) : ht_index(), desc(), name(), inv(), inv_have() {
+hero::hero(hero_type ht) : desc(), name(), inv(), inv_have() {
     int i;
 
     level_of_complexity = 0;
@@ -285,12 +281,10 @@ int hero::get_att() {
 int hero::add_exp(
         // инкремент
         int d) {
-    // старый видеоатрибут
-    int old_attr;
     // старое значение района
     int old_district;
 
-    old_attr = settextattr(YELLOW);
+    settextattr(YELLOW);
     old_district = district;
 
     if (print_mode) {
@@ -521,44 +515,34 @@ int hero::add_att(
 
 // функции понижения характеристик героя
 
-int hero::sub_health(
+void hero::sub_health(
         // декремент
         int d) {
     health = sub(health, d);
-
-    return 0;
 }
 
-int hero::sub_money(
+void hero::sub_money(
         // декремент
         int d) {
     money = sub(money, d);
-
-    return 0;
 }
 
-int hero::sub_beer(
+void hero::sub_beer(
         // декремент
         int d) {
     beer = sub(beer, d);
-
-    return 0;
 }
 
-int hero::sub_stuff(
+void hero::sub_stuff(
         // декремент
         int d) {
     stuff = sub(stuff, d);
-
-    return 0;
 }
 
-int hero::sub_ciga(
+void hero::sub_ciga(
         // декремент
         int d) {
     ciga = sub(ciga, d);
-
-    return 0;
 }
 
 int hero::sub_att(
