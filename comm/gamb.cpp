@@ -31,7 +31,7 @@ int gamb() {
         settextattr(GREEN);
         printf(mess[0], money);
     } else {
-        int money = getrandom(0, 20);
+        int money = getrandom(0, 25);
         main_hero->add_money(-money);
 
         settextattr(RED);
