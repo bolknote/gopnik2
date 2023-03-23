@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstddef>
+#include <cstring>
 
 #include "main.h"
 #include "list.h"
@@ -540,9 +541,19 @@ int main() {
     // инициализируем новую игру
     cur_game->start();
 
-    // добавляем инвентарь героя
+    if (cur_game->load_game) {
+        if (loa() == -1) {
+            cur_game->clean_mem();
+            delete cur_game->main_hero;
+            exit(1);
+        }
+
+        cur_game->load_game = false;
+    }
 
     main_hero = cur_game->main_hero;
+
+    // добавляем инвентарь героя
 
     // cprintf ("%s\n", main_hero->get_name () + strlen (main_hero->get_name ()) - 1);
 

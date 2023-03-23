@@ -1,3 +1,5 @@
 /gop2
 *.o
 /.idea
+.DS_Store
+/gop2_*.sav

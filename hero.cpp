@@ -78,6 +78,112 @@ int hero::set_level_of_complexity(
     return 0;
 }
 
+void hero::save(FILE *sav_file) {
+    fwrite(&level, sizeof(level), 1, sav_file);
+    fwrite(&level_of_complexity, sizeof(level_of_complexity), 1, sav_file);
+    fwrite(&district, sizeof(district), 1, sav_file);
+    fwrite(&broken_jaw, sizeof(broken_jaw), 1, sav_file);
+    fwrite(&broken_foot, sizeof(broken_foot), 1, sav_file);
+    fwrite(&trn_foot, sizeof(trn_foot), 1, sav_file);
+    fwrite(&kick_count, sizeof(kick_count), 1, sav_file);
+    fwrite(&empty_kick_count, sizeof(empty_kick_count), 1, sav_file);
+    fwrite(&stoned, sizeof(stoned), 1, sav_file);
+    fwrite(&drunk, sizeof(drunk), 1, sav_file);
+    fwrite(&old_att, sizeof(old_att), 1, sav_file);
+    fwrite(&station, sizeof(station), 1, sav_file);
+    fwrite(&str_free, sizeof(str_free), 1, sav_file);
+    fwrite(&print_mode, sizeof(print_mode), 1, sav_file);
+    fwrite(&force, sizeof(force), 1, sav_file);
+    fwrite(&smart, sizeof(smart), 1, sav_file);
+    fwrite(&vita, sizeof(vita), 1, sav_file);
+    fwrite(&luck, sizeof(luck), 1, sav_file);
+    fwrite(&health, sizeof(health), 1, sav_file);
+    fwrite(&exp, sizeof(exp), 1, sav_file);
+    fwrite(&armo, sizeof(armo), 1, sav_file);
+    fwrite(&money, sizeof(money), 1, sav_file);
+    fwrite(&beer, sizeof(beer), 1, sav_file);
+    fwrite(&stuff, sizeof(stuff), 1, sav_file);
+    fwrite(&ciga, sizeof(ciga), 1, sav_file);
+    fwrite(&att1, sizeof(att1), 1, sav_file);
+    fwrite(&att2, sizeof(att2), 1, sav_file);
+    fwrite(&desc, sizeof(desc), 1, sav_file);
+
+    fwrite(&inv_have_amount, sizeof(inv_have_amount), 1, sav_file);
+    fwrite(inv_have, sizeof(int), inv_have_amount, sav_file);
+
+    size_t len;
+
+    len = strlen(name) + 1;
+    fwrite(&len, sizeof(len), 1, sav_file);
+    fwrite(name, sizeof(char), len, sav_file);
+
+    len = strlen(type) + 1;
+    fwrite(&len, sizeof(len), 1, sav_file);
+    fwrite(type, sizeof(char), len, sav_file);
+}
+
+void hero::load(FILE *load_file, hero_type *ht, int ht_amount) {
+    fread(&level, sizeof(level), 1, load_file);
+    fread(&level_of_complexity, sizeof(level_of_complexity), 1, load_file);
+    fread(&district, sizeof(district), 1, load_file);
+    fread(&broken_jaw, sizeof(broken_jaw), 1, load_file);
+    fread(&broken_foot, sizeof(broken_foot), 1, load_file);
+    fread(&trn_foot, sizeof(trn_foot), 1, load_file);
+    fread(&kick_count, sizeof(kick_count), 1, load_file);
+    fread(&empty_kick_count, sizeof(empty_kick_count), 1, load_file);
+    fread(&stoned, sizeof(stoned), 1, load_file);
+    fread(&drunk, sizeof(drunk), 1, load_file);
+    fread(&old_att, sizeof(old_att), 1, load_file);
+    fread(&station, sizeof(station), 1, load_file);
+    fread(&str_free, sizeof(str_free), 1, load_file);
+    fread(&print_mode, sizeof(print_mode), 1, load_file);
+    fread(&force, sizeof(force), 1, load_file);
+    fread(&smart, sizeof(smart), 1, load_file);
+    fread(&vita, sizeof(vita), 1, load_file);
+    fread(&luck, sizeof(luck), 1, load_file);
+    fread(&health, sizeof(health), 1, load_file);
+    fread(&exp, sizeof(exp), 1, load_file);
+    fread(&armo, sizeof(armo), 1, load_file);
+    fread(&money, sizeof(money), 1, load_file);
+    fread(&beer, sizeof(beer), 1, load_file);
+    fread(&stuff, sizeof(stuff), 1, load_file);
+    fread(&ciga, sizeof(ciga), 1, load_file);
+    fread(&att1, sizeof(att1), 1, load_file);
+    fread(&att2, sizeof(att2), 1, load_file);
+    fread(&desc, sizeof(desc), 1, load_file);
+
+    if (inv_have != nullptr) {
+        free(inv_have);
+    }
+
+    fread(&inv_have_amount, sizeof(inv_have_amount), 1, load_file);
+    fread(inv_have, sizeof(int), inv_have_amount, load_file);
+
+    size_t len;
+    fread(&len, sizeof(len), 1, load_file);
+
+    if (name != nullptr) {
+        free(name);
+    }
+
+    name = (char *) malloc(sizeof(char) * len);
+    fread(name, sizeof(char), len, load_file);
+
+    fread(&len, sizeof(len), 1, load_file);
+
+    char *type_name = (char *) malloc(sizeof(char) * len);
+    fread(type_name, sizeof(char), len, load_file);
+
+    for (int i = 0; i < ht_amount; i++) {
+        if (ht[i].gamer && strcmp(ht[i].type, type_name) == 0) {
+            type = ht[i].type;
+            break;
+        }
+    }
+
+    free(type_name);
+}
+
 int hero::set_name(
         // имя
         const char *_name) {
@@ -229,7 +335,7 @@ int hero::get_min_loss() const {
 }
 
 int hero::get_max_loss() const {
-    int  d = 0;
+    int d = 0;
 
     for (int i = 0; i < inv_amount; i++) {
         if ((inv[i].have) && (inv[i].active)) {

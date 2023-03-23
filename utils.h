@@ -13,6 +13,7 @@
 #define getrandom(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
 #define chance(m, n) (getrandom(0, (int)(n)) <= (m)) ? (1) : (0)
 #define sub(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
+
 extern int textattr;
 
 int settextattr(int);                // сменить цвет

@@ -231,11 +231,7 @@ int game::clean_mem() const {
     return 0;
 } // end int game::clean_mem ()
 
-int game::save() {
-    printf("Сохранение в файл не реализовано\n");
-    return 1;
-    int i;
-    FILE *sav_file;
+int game::save(FILE *sav_file) {
     fwrite(&num_w, sizeof(num_w), 1, sav_file);
     fwrite(&num_empty_w, sizeof(num_empty_w), 1, sav_file);
     fwrite(&num_t, sizeof(num_t), 1, sav_file);
@@ -271,18 +267,14 @@ int game::save() {
 
     fwrite(&pltl_amount, sizeof(pltl_amount), 1, sav_file);
 
-    for (i = 0; i < pltl_amount; i++) {
+    for (int i = 0; i < pltl_amount; i++) {
         fwrite(&pltl[i].active, sizeof(pltl[i].active), 1, sav_file);
     }
 
     return 0;
 } // end int game::save (FILE *)
 
-int game::load() {
-    printf("Загрузка из файла не реализована\n");
-    return 1;
-    int i;
-    FILE *load_file;
+int game::load(FILE *load_file) {
     fread(&num_w, sizeof(num_w), 1, load_file);
     fread(&num_empty_w, sizeof(num_empty_w), 1, load_file);
     fread(&num_t, sizeof(num_t), 1, load_file);
@@ -318,7 +310,7 @@ int game::load() {
 
     fread(&pltl_amount, sizeof(pltl_amount), 1, load_file);
 
-    for (i = 0; i < pltl_amount; i++) {
+    for (int i = 0; i < pltl_amount; i++) {
         fread(&pltl[i].active, sizeof(pltl[i].active), 1, load_file);
     }
 
@@ -326,7 +318,6 @@ int game::load() {
 } // end int game::load (FILE *, float)
 
 int game::wait_command() {
-    //  printf(" ... in game::wait_command() ... ");
     // функция, обрабатывающая вызываемую команду
     FP comm_func;
 
@@ -341,20 +332,6 @@ int game::wait_command() {
     char
     // буфер для команды пользователя
     cmd[20];
-    // код нажатой клавиши
-
-    /*  if (load_game)
-      {
-        if (loa () == -1)
-        {
-    //      clean_mem ();
-    //      delete main_hero;
-          exit (1);
-        }
-
-        load_game = 0;
-        strcpy (file_name, "gop2_1.sav");
-      } */
 
     cmd_list = new list();
     cmd_list_init = 1;
@@ -380,7 +357,7 @@ int game::wait_command() {
             if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
             {
                 printf("%c", q);
-                cmd[i] = q;
+                cmd[i] = (char) q;
                 i++;
             }
             if (q == 10) // UNIX же!
@@ -407,7 +384,7 @@ int game::wait_command() {
                     } else {
                         strcpy(cmd, cmd_list->down());
                     }
-                    i = strlen(cmd);
+                    i = (int) strlen(cmd);
                     printf("%s", cmd);
                 }
             }
@@ -427,7 +404,7 @@ int game::wait_command() {
             ret = 0;
             // вызываем функцию необходимую для выполнения команды
             if (
-                    (comm_func != NULL) &&
+                    (comm_func != nullptr) &&
                     (pltl[0].active != -1) &&
                     (pltl_ret != 2)) {
                 ret = comm_func();
@@ -1087,7 +1064,7 @@ int game::search_plm_price(
 
 int game::supple_inv_run_over(
         // индекс инвентаря
-        int inv_index) {
+        int inv_index) const {
     int j;
 
     for (j = 0; j < main_hero->inv_amount; j++) {
@@ -1221,7 +1198,7 @@ int game::supple_pl_run_over() const {
     return 0;
 } // end int game::supple_pl_run_over ()
 
-int game::supple_pltl_run_over() {
+int game::supple_pltl_run_over() const {
     int i, ret;
 
     if (active_pltl > -1) {
@@ -1354,10 +1331,10 @@ int game::gen_enemy_obj(
         if ((main_hero->get_max_health() - enemy->get_max_health()) >= 20) {
             fi = 1 - (float) enemy->get_max_health() / main_hero->get_max_health();
 
-            enemy->add_armo((int) main_hero->get_max_loss() * fi);
+            enemy->add_armo(main_hero->get_max_loss() * fi);
         } else {
             if (
-                    (((float) enemy->get_force() / main_hero->get_force()) < 2) &&
+                    (((float) enemy->get_force() / (float) main_hero->get_force()) < 2) &&
                     (main_hero->get_armo() > 5)) {
                 enemy->add_armo(getrandom((int) main_hero->get_armo() / 2, main_hero->get_armo()));
             }
@@ -1538,10 +1515,10 @@ int game::kick(
                         (search_inv(hero2, "Зубная защита боксёров") != -1) &&
                         (hero2->inv[search_inv(hero2, "Зубная защита боксёров")].have)) {
                     if (chance(1, 2)) {
-                        hero2->broken_jaw = 1;
+                        hero2->broken_jaw = true;
                     }
                 } else {
-                    hero2->broken_jaw = 1;
+                    hero2->broken_jaw = true;
                 }
             } else {
                 if (
@@ -1550,7 +1527,7 @@ int game::kick(
                         (!(chance(1, hero1->get_luck() + 1))) &&
                         (chance(1, hero2->get_luck() + 1 + hero2->trn_foot)) &&
                         (chance(exact, 100))) {
-                    hero2->broken_foot = 1;
+                    hero2->broken_foot = true;
                 }
             }
         }
@@ -1629,7 +1606,7 @@ int game::kick_realiz(
             hero1->empty_kick_count++;
         }
 
-        if (mess != NULL) {
+        if (mess != nullptr) {
             settextattr(attr1);
 
             if (i > 1) {
@@ -1668,8 +1645,8 @@ int game::kick_realiz(
 } // end int game::kick_realiz (hero *, hero *, int, char **, int, int)
 
 int game::new_district() {
-    if (main_hero->district == DISTRICT_AMOUNT) {
-        main_hero->district--;
+    if (main_hero->district >= DISTRICT_AMOUNT) {
+        main_hero->district = DISTRICT_AMOUNT - 1;
 
         if (!end_of_game) {
             settextattr(BLUE);
@@ -2073,7 +2050,7 @@ int game::start() {
     const char *mess[21] = {
             "Выбери, чё те надо:\n",
             "1-Начать новую игру\n",
-            "2-Загрузить игру (не реализовано)\n",
+            "2-Загрузить игру\n",
             "3-Выйти\n",
             "Ты можешь начать...\n",
             "%i-...с места быстрого сохранения\n",
@@ -2108,7 +2085,6 @@ int game::start() {
             buf[100],
             *user_name,
             *tmp;
-    //    ,*cmd;
 
     old_attr = settextattr(WHITE);
     printf("%s", mess[0]);
@@ -2120,14 +2096,14 @@ int game::start() {
     do {
         i = 0;
         user_choice = get_key(false);
-        //      printf("\n");
+
         switch (user_choice) {
             case '1':
                 break;
 
-                /*        case '2' :
-                        load_game=load();
-                        break;*/
+            case '2' :
+                load_game = true;
+                break;
 
             case '3':
                 clean_mem();
@@ -2167,7 +2143,6 @@ int game::start() {
     // определение типа героя пользователя
     for (;;) {
         user_ht_index = get_key(false);
-        //    printf("\n");
 
         if ((user_ht_index - '1') == j) {
             settextattr(BLUE);
@@ -2201,6 +2176,9 @@ int game::start() {
         case 2:
             open_ob = true;
             break;
+
+        default:
+            break;
     }
 
     settextattr(WHITE);
@@ -2213,7 +2191,6 @@ int game::start() {
 
     for (;;) {
         user_level_of_complexity = get_key(false);
-        //    printf("\n");
 
         if (
                 (user_level_of_complexity >= '1') &&
@@ -2229,8 +2206,6 @@ int game::start() {
     // определение имени героя пользователя
     showcursor();
     for (;;) {
-        //    buf [0] = 19;
-
         settextattr(GREEN);
         printf("%s", mess[13]);
 
@@ -2242,8 +2217,6 @@ int game::start() {
             tmp--;
         }
         if (strlen(user_name) != 0) {
-            //      printf ( "\n");
-
             if (isdigitstr(user_name)) {
                 settextattr(RED);
                 printf("%s", mess[14]);

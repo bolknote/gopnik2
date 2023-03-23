@@ -1,3 +1,5 @@
+#include <cstdio>
+
 class hero {
     int desc[4];  // начальные навыки
     int level_of_complexity;
@@ -36,7 +38,7 @@ public:
     int inv_have_amount; // кол-во инвентаря, которым владеет герой
     bool str_free;       // используется для режима стрелы; указывает, "свободен" ли в данный момент герой
 
-    hero(hero_type);
+    explicit hero(hero_type);
 
     ~hero();
 
@@ -139,4 +141,8 @@ public:
     int get_accuracy_of_last_kick() const;
 
     int get_min_empty_kick_count() const;
+
+    void save(FILE *);
+
+    void load(FILE *, hero_type*, int);
 };

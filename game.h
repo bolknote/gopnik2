@@ -1,3 +1,5 @@
+#include <cstdio>
+
 class game {
 public:
     char file_name[100];    // имя файла сохранения; не жлобимся, памяти всем хватит
@@ -76,10 +78,10 @@ public:
     ~game();
 
     int clean_mem() const;    // очитска динамических массивов
-    int save();         // сохранение игры в файл
-    int load();         // загрузка игры из файла
+    int save(FILE *);         // сохранение игры в файл
+    int load(FILE *);         // загрузка игры из файла
     int wait_command(); // ожидание команды пользователя
-    int wait_answ();    // ожидание ответа пользователя
+    static int wait_answ();    // ожидание ответа пользователя
     int add_hero_type(const char *, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
 
     int add_hero_phrase(int, const char *, const char *) const;
@@ -119,11 +121,12 @@ public:
     static int search_inv(hero *, const char *);                          // поиск инвентаря по имени
     int search_pl(int) const;                                            // поиск прайс-листа по индексу локации
     int search_ht(const char *) const;                                   // поиск индекса типа героя по названию типа
-    int search_plm_price(int *, int *, const char *) const;              // поиск цены на элемент прайс-листа по его названию
-    int supple_inv_run_over(int);                                  // перебор инвентаря
+    int search_plm_price(int *, int *,
+                         const char *) const;              // поиск цены на элемент прайс-листа по его названию
+    int supple_inv_run_over(int) const;                                  // перебор инвентаря
     int supple_loc_run_over();                                     // перебор списка локаций
     int supple_pl_run_over() const;                                      // перебор прайс-листов
-    int supple_pltl_run_over();                                    // перебор функций обработки сюжетных линий
+    int supple_pltl_run_over() const;                                    // перебор функций обработки сюжетных линий
     int gen_enemy(int *) const;                                          // сгенерировать тип и уровень врага
     int gen_enemy_obj(int, int, int = 1, int = 1);                 // сгенерировать объект героя
     int gen_kick_count() const;                                          // расчёт количества ударов героя и противника
