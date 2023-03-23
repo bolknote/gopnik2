@@ -79,7 +79,7 @@ int sv() {
 
     // здоровье
 
-    fi = (float) enemy->get_health() / enemy->get_max_health();
+    fi = (float) enemy->get_health() / (float) enemy->get_max_health();
 
     if (fi > 0.5) {
         settextattr(GREEN);
