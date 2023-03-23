@@ -74,7 +74,7 @@ int main() {
     // индекс инвентаря
     inv_index;
 
-    srand((unsigned) time(nullptr));
+    srand((unsigned) time(nullptr)); // NOLINT(cert-msc51-cpp)
 
     cur_game = new game();
 
