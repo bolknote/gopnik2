@@ -174,6 +174,7 @@ int main() {
     cur_game->add_location_command(loc_index, &trn, 0, "trn", "идти в качалку");
     cur_game->add_location_command(loc_index, &bmar, 0, "bmar", "идти к барыгам");
     cur_game->add_location_command(loc_index, &kl, 0, "kl", "идти в клуб");
+    cur_game->add_location_command(loc_index, &gamb, 0, "gamb", "кинуть денег в игровой автомат");
     cur_game->add_location_command(loc_index, &girl, 0, "girl", "завалиться к своей девчонке");
     cur_game->add_location_command(loc_index, &met, 1, "met", "идти в метро");
     cur_game->add_location_command(loc_index, &sav, 1, "sav", "сохранить игру в файл быстрого сохранения");
@@ -513,13 +514,13 @@ int main() {
     cur_game->add_location_command(loc_index, &i, 1, "i", "посмотреть описания команд");
 
     cur_game->loc[loc_index].num_func = &rsl;
-
     // добавляем станции метро
     cur_game->add_station("Купчино", 1, "");
     cur_game->add_station("Парк Победы", 0, "Ты чё, сдурел? Пока не прокачаешься - туда не суйся!");
     cur_game->add_station("Сенная площадь", 1, "");
     cur_game->add_station("Невский проспект", 1, "");
     cur_game->add_station("Петроградская", 1, "");
+    cur_game->add_station("Чёрная речка", 0, "Куда прёшь, не видишь, ремонт?");
 
     // добавляем функции обработки сюжетных линий
     cur_game->add_plot_line(&pltl0);

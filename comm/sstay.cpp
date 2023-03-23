@@ -12,12 +12,12 @@ extern game *cur_game;
 
 int sstay() {
     // объект главного героя
-    hero *main_hero;
+    hero *main_hero = cur_game->main_hero;
     // объект "братвы"
     hero *lads;
 
     // сообщения функции
-    const char *mess[18] = {
+    const char *mess[] = {
             "Действие косяка закончилось. Все навыки -1\n",
             "Ветер протрезвил твою пьяную голову. Лв +1\n",
             "До тебя допёрло, что ты дерёшься с ветром и ты решил бросить это занятие\n",
@@ -35,13 +35,30 @@ int sstay() {
             "-Ну где ты шляешься? Давай подходи на место - скоро начнётся\n",
             "-Ты чё не пришёл на стрелу, падла?! Ты, блядь, понимаешь, что ты нас подвёл!\n Теперь, гнида, не жди от нас впряги!\n",
             "-Здарова, чувак. Тут слух прошёл, что коменда на днях валит из города.\n Так что поторопись с её отпином\n",
-            "-Здарова, чувак. Короче коменда свалила из города\n"};
+            "-Здарова, чувак. Короче коменда свалила из города\n",
+            "-Здарова, братан! Как ты? Прикинь, \"Чёрную речку\" открыли, хочу глянуть как на чо.\n",
+            "Шляясь по району, ты встретил знакомого пацана:\n",
+    };
 
     int
     // индекс типа героя
     ht_index;
 
     int flag;
+
+    if (!cur_game->stn[5].avail && chance(1, 200)) {
+
+        int idx = main_hero->inv[game::search_inv(main_hero, "Мобильник")].have ? 8 : 19;
+
+        cur_game->stn[5].avail = true;
+        settextattr(WHITE);
+        printf("%s", mess[idx]);
+
+        settextattr(YELLOW);
+        printf("%s", mess[18]);
+
+        get_key();
+    }
 
     if (
             (
@@ -50,9 +67,8 @@ int sstay() {
             ((cur_game->active_loc == 1) &&
              ((strcmp(cur_game->active_cmd, "k") == 0) ||
               (strcmp(cur_game->active_cmd, "f") == 0)))) {
-        main_hero = cur_game->main_hero;
 
-        if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
+        if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
             if (cur_game->get_stay_mar() == 1) {
                 settextattr(WHITE);
                 printf("%s", mess[8]);
@@ -172,7 +188,7 @@ int sstay() {
                 cur_game->set_loc(0);
             }
 
-            main_hero->drunk = 0;
+            main_hero->drunk = false;
             printf("%s", mess[1]);
         }
 
@@ -197,10 +213,10 @@ int sstay() {
                     lads->print_mode = 0;
 
                     lads->set_name("Братва");
-                    lads->add_exp(cur_game->get_min_exp_for_level(main_hero->get_level() + main_hero->district * 3));
+                    lads->add_exp(game::get_min_exp_for_level(main_hero->get_level() + main_hero->district * 3));
                     lads->kick_count = lads->get_kick_count();
 
-                    if (cur_game->get_open_d() != 2) {
+                    if (!cur_game->get_open_d()) {
                         settextattr(YELLOW);
                         printf("%s", mess[4]);
                     }
@@ -219,7 +235,7 @@ int sstay() {
                     (chance(1, 50))) {
                 cur_game->set_open_hp();
 
-                if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
+                if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     settextattr(WHITE);
                     printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
@@ -235,7 +251,7 @@ int sstay() {
                     (chance(1, 50))) {
                 cur_game->set_open_d();
 
-                if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
+                if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     settextattr(WHITE);
                     printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 
@@ -253,7 +269,7 @@ int sstay() {
                     (chance(1, 200))) {
                 cur_game->open_raid = true;
 
-                if (main_hero->inv[cur_game->search_inv(main_hero, "Мобильник")].have) {
+                if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     settextattr(WHITE);
                     printf("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
 

@@ -1167,6 +1167,9 @@ int game::supple_loc_run_over() {
     loc[active_loc].command_active[is_active_location_command("ob")] = open_ob;
     loc[active_loc].command_active[is_active_location_command("eog")] = main_hero->station == 1 && stay_eog;
 
+    // Игровые автоматы на Чёрной речке
+    loc[active_loc].command_active[is_active_location_command("gamb")] = main_hero->station == 5;
+
     active_loc = 1;
 
     loc[active_loc].command_active[is_active_location_command("v")] = get_open_pr();
@@ -1738,9 +1741,9 @@ int game::new_station() const {
             j;
 
     if (main_hero->station != 0) {
-        ht[search_ht("Студент")].active = 1;
-        ht[search_ht("Эмокид")].active = 1;
-        ht[search_ht("Интеллигент")].active = 1;
+        ht[search_ht("Студент")].active = true;
+        ht[search_ht("Эмокид")].active = true;
+        ht[search_ht("Интеллигент")].active = true;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 0;
@@ -1773,9 +1776,9 @@ int game::new_station() const {
             }
         }
     } else {
-        ht[search_ht("Студент")].active = 0;
-        ht[search_ht("Эмокид")].active = 0;
-        ht[search_ht("Интеллигент")].active = 0;
+        ht[search_ht("Студент")].active = false;
+        ht[search_ht("Эмокид")].active = false;
+        ht[search_ht("Интеллигент")].active = false;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 1;

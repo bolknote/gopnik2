@@ -60,3 +60,4 @@ int bb(int, int, int *);  // барыги
 int bsale(int); // продажа вещей
 int cstat(int); // выбор станции
 int rsl(int);   // слэм
+int gamb(); // игровые автоматы
