@@ -6,6 +6,7 @@
 #include "../hero.h"
 #include "../game.h"
 #include "../utils.h"
+#include <algorithm>
 
 extern game *cur_game;
 
@@ -21,7 +22,9 @@ int gamb() {
 
     main_hero = cur_game->main_hero;
 
-    if (chance(1, 5)) {
+    int luck = std::max(main_hero->get_luck() / 10, 2);
+
+    if (chance(1, 5 - luck)) {
         int money = getrandom(0, 100);
         main_hero->add_money(money);
 
