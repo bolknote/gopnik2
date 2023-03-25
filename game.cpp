@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstddef>
+#include <unistd.h>
 
 #include "main.h"
 #include "hero.h"
@@ -809,9 +810,7 @@ int game::is_active_location_command(
 } // end int game::is_active_location_command (TEXT)
 
 int game::headband() {
-    int ch;
     _clsc();
-    hidecursor();
     settextattr(WHITE);
     printf("\n\n\n\n\n");
     printf("                                               ██\n");
@@ -849,8 +848,8 @@ int game::headband() {
     settextattr(YELLOW);
     printf("bolknote\n");
 
-    ch = get_key();
-
+    hidecursor();
+    int ch = get_key();
     showcursor();
 
     if (ch == 27) {
@@ -2046,7 +2045,6 @@ int game::set_stay_kl(
 } // end int game::set_stay_mar (int)
 
 int game::start() {
-    hidecursor();
     const char *mess[21] = {
             "Выбери, чё те надо:\n",
             "1-Начать новую игру\n",
@@ -2087,38 +2085,42 @@ int game::start() {
             *tmp;
 
     old_attr = settextattr(WHITE);
-    printf("%s", mess[0]);
-    settextattr(YELLOW);
-    printf("%s", mess[1]);
-    printf("%s", mess[2]);
-    printf("%s", mess[3]);
+    if (access(cur_game->file_name, F_OK) != -1) {
+        printf("%s", mess[0]);
+        settextattr(YELLOW);
+        printf("%s", mess[1]);
+        printf("%s", mess[2]);
+        printf("%s", mess[3]);
 
-    do {
-        i = 0;
-        user_choice = get_key(false);
+        do {
+            i = 0;
+            user_choice = get_key(false);
 
-        switch (user_choice) {
-            case '1':
-                break;
+            switch (user_choice) {
+                case '1':
+                    break;
 
-            case '2' :
-                load_game = true;
-                break;
+                case '2' :
+                    load_game = true;
+                    break;
 
-            case '3':
-                clean_mem();
-                exit(1);
-                break;
+                case '3':
+                    clean_mem();
+                    exit(1);
+                    break;
 
-            default:
-                i = 1;
-                settextattr(RED);
-                printf("%s", mess[7]);
+                default:
+                    i = 1;
+                    settextattr(RED);
+                    printf("%s", mess[7]);
+            }
+        } while (i);
+
+        if (load_game) {
+            showcursor();
+            settextattr(old_attr);
+            goto exit;
         }
-    } while (i);
-
-    if (load_game) {
-        goto exit;
     }
 
     // завязка сюжета #1
