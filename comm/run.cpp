@@ -36,6 +36,24 @@ int run() {
         // шансы убежать
         bool run = chance(50 + std::max(main_hero->get_luck(), 25), 100);
 
+        // если уже дрались, надо запретить соваться на локацию
+        if (run && main_hero->kick_count > 0) {
+            // борьба на рынке
+            if (cur_game->get_stay_mar() == -1) {
+                cur_game->set_stay_mar(20);
+            }
+
+            // борьба в клубе
+            if (cur_game->get_stay_kl() == -1) {
+                cur_game->set_stay_kl(40);
+            }
+
+            // борьба в метро
+            if (cur_game->stay_met == -1) {
+                cur_game->stay_met = 10;
+            }
+        }
+
         // это у нас стрелка?
         if (cur_game->open_str) {
             int att = std::min(main_hero->get_att() - 20, 0);
