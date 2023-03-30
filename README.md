@@ -43,7 +43,7 @@
                                           █
                                           ██
 
-                             version 1.13 Release
+                             version 1.14 Release
 
 
 ОБ ИГРЕ
