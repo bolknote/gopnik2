@@ -18,24 +18,30 @@ int gamb() {
     const char *mess[] = {
             "Ты поднял бабла - %i руб\n",
             "Не фартануло - потерял %i руб\n",
+            "Чтобы играть надо лавэ, натряси где-нибудь пять рэ.\n",
     };
 
     main_hero = cur_game->main_hero;
 
-    int luck = std::max(main_hero->get_luck() / 10, 2);
+    if (main_hero->get_money() >= 5) {
+        int luck = std::max(main_hero->get_luck() / 10, 2);
 
-    if (chance(1, 5 - luck)) {
-        int money = getrandom(0, 100);
-        main_hero->add_money(money);
+        if (chance(1, 5 - luck)) {
+            int money = getrandom(0, 100);
+            main_hero->add_money(money);
 
-        settextattr(GREEN);
-        printf(mess[0], money);
+            settextattr(GREEN);
+            printf(mess[0], money);
+        } else {
+            int money = getrandom(0, 25);
+            main_hero->add_money(-money);
+
+            settextattr(RED);
+            printf(mess[1], money);
+        }
     } else {
-        int money = getrandom(0, 25);
-        main_hero->add_money(-money);
-
-        settextattr(RED);
-        printf(mess[1], money);
+        settextattr(YELLOW);
+        printf("%s", mess[2]);
     }
 
     return 0;
