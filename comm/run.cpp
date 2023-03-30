@@ -37,7 +37,7 @@ int run() {
         bool run = chance(50 + std::max(main_hero->get_luck(), 25), 100);
 
         // если уже дрались, надо запретить соваться на локацию
-        if (run && main_hero->kick_count > 0) {
+        if (run) {
             // борьба на рынке
             if (cur_game->get_stay_mar() == -1) {
                 cur_game->set_stay_mar(20);
