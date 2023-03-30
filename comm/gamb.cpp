@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <algorithm>
 
 #include "comm.h"
 #include "../main.h"
@@ -6,7 +7,6 @@
 #include "../hero.h"
 #include "../game.h"
 #include "../utils.h"
-#include <algorithm>
 
 extern game *cur_game;
 

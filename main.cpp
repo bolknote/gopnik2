@@ -183,6 +183,7 @@ int main() {
     loc_index = cur_game->add_location("Битва");
 
     cur_game->add_location_command(loc_index, &k, 1, "k", "гасить мудака, который тебе встретился на дороге");
+    cur_game->add_location_command(loc_index, &run, 0, "run", "попытаться съебаться");
     cur_game->add_location_command(loc_index, &k, 0, "f", "выстрелить в пинаемого мудака");
     cur_game->add_location_command(loc_index, &v, 0, "v", "позвать подмогу");
     cur_game->add_location_command(loc_index, &s, 1, "s", "посмотреть в лужу на свою уродскую рожу");
@@ -484,6 +485,7 @@ int main() {
 
     cur_game->add_location_command(loc_index, &k, 1, "k", "гасить мудака, который тебе встретился на дороге");
     cur_game->add_location_command(loc_index, &k, 0, "f", "выстрелить в пинаемого мудака");
+    cur_game->add_location_command(loc_index, &run, 0, "run", "попытаться съебаться");
     cur_game->add_location_command(loc_index, &s, 1, "s", "посмотреть в лужу на свою уродскую рожу");
     cur_game->add_location_command(loc_index, &so, 1, "so", "посмотреть, как дела у твоей братвы");
     cur_game->add_location_command(loc_index, &sv, 1, "sv", "приглядеться к мудаку, которого пинаешь");

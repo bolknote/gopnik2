@@ -678,3 +678,7 @@ int hero::get_accuracy_of_last_kick() const {
 int hero::get_min_empty_kick_count() const {
     return level_of_complexity * 5;
 }
+
+int hero::get_level_of_complexity() const {
+    return level_of_complexity;
+}

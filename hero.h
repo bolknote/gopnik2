@@ -142,6 +142,8 @@ public:
 
     int get_min_empty_kick_count() const;
 
+    int get_level_of_complexity() const;
+
     void save(FILE *);
 
     void load(FILE *, hero_type*, int);

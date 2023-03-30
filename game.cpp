@@ -1151,6 +1151,7 @@ int game::supple_loc_run_over() {
     loc[active_loc].command_active[is_active_location_command("v")] = get_open_pr();
     loc[active_loc].command_active[is_active_location_command("f")] =
             main_hero->inv[search_inv(main_hero, "Пистолет")].have;
+    loc[active_loc].command_active[is_active_location_command("run")] = main_hero->get_level_of_complexity() == 0;
 
     active_loc = 4;
 
@@ -1164,6 +1165,12 @@ int game::supple_loc_run_over() {
     loc[active_loc].command_active[is_active_location_command("meet")] = main_hero->station == 2 && open_girl == 0;
     loc[active_loc].command_active[is_active_location_command("tus")] = strcmp(main_hero->get_type(), "Нефор") != 0;
     loc[active_loc].command_active[is_active_location_command("sl")] = strcmp(main_hero->get_type(), "Нефор") == 0;
+
+    // стрела
+    active_loc = 12;
+    loc[active_loc].command_active[is_active_location_command("f")] =
+            main_hero->inv[search_inv(main_hero, "Пистолет")].have;
+    loc[active_loc].command_active[is_active_location_command("run")] = main_hero->get_level_of_complexity() == 0;
 
     active_loc = cur_active_loc;
 
