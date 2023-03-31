@@ -596,5 +596,5 @@ int main() {
     exit:
     delete cur_game;
     //  endwin();
-    return 0;
+    gracefulexit();
 }
