@@ -59,7 +59,6 @@ const char *level_type[43] = {
 int main() {
     // объект героя
     textattr = 0;
-    hero *main_hero;
 
     int
     // индекс типа героя
@@ -69,9 +68,7 @@ int main() {
     // индекс прайс-листа
     pl_index,
     // индекс элемента прайс-листа
-    plm_index,
-    // индекс инвентаря
-    inv_index;
+    plm_index;
 
     srand((unsigned) time(nullptr)); // NOLINT(cert-msc51-cpp)
 
@@ -540,56 +537,9 @@ int main() {
         }
 
         cur_game->load_game = false;
+    } else {
+        cur_game->main_hero->create_hero_inventory();
     }
-
-    main_hero = cur_game->main_hero;
-
-    // добавляем инвентарь героя
-
-    // cprintf ("%s\n", main_hero->get_name () + strlen (main_hero->get_name ()) - 1);
-
-//    main_hero->add_exp(280);
-//    main_hero->add_money(500000);
-//    main_hero->add_beer(5000000);
-//    main_hero->add_force(10000);
-
-    // инвентарь, повышающий характеристики героя
-    game::add_inventory(main_hero, "Кольцо \"Помоги Господи\"", 0, 10, 0, 0, 0, 1, 1, 0, 0);
-    game::add_inventory(main_hero, "Кольцо \"Господи спаси\"", 1, 10, 0, 1, 1, 1, 1, 0, 0);
-    game::add_inventory(main_hero, "Мега-кольцо", 2, 10, 0, 4, 4, 4, 4, 0, 0);
-    game::add_inventory(main_hero, "Кольцо удачи", 3, 0, 0, 0, 0, 0, 7, 0, 0);
-
-    // инвентарь, повышающий броню
-    game::add_inventory(main_hero, "Шапка-пидорка", 0, 0, 0, 0, 0, 0, 0, 1, 0);
-    game::add_inventory(main_hero, "Кепка", 0, 0, 0, 0, 0, 0, 0, 2, 0);
-    game::add_inventory(main_hero, "Спортивный костюм abibas", 1, 0, 0, 0, 0, 0, 0, 3, 0);
-    game::add_inventory(main_hero, "Спортивный костюм adidas", 2, 0, 0, 0, 0, 0, 0, 4, 0);
-    game::add_inventory(main_hero, "Кожанка", 3, 0, 0, 0, 0, 0, 0, 5, 0);
-    game::add_inventory(main_hero, "Вельветовая куртка", 0, 0, 0, 0, 0, 0, 0, 8, 0);
-
-    // инвентарь, повышающий урон
-    game::add_inventory(main_hero, "Бутсы", 1, 0, 0, 0, 0, 0, 0, 0, 1);
-    game::add_inventory(main_hero, "Понтовые бутсы", 2, 0, 0, 0, 0, 0, 0, 0, 2);
-    game::add_inventory(main_hero, "Кастет", 1, 10, 0, 0, 0, 0, 0, 0, 4);
-    game::add_inventory(main_hero, "Дубинка", 2, 10, 0, 0, 0, 0, 0, 0, 6);
-    game::add_inventory(main_hero, "Тесак", 3, 10, 0, 0, 0, 0, 0, 0, 8);
-
-    // остальной инвентарь
-    game::add_inventory(main_hero, "Мобильник", 0, 10, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Зубная защита боксёров", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Чотки", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Цветы и конфеты", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Затемнённые очки", 0, 10, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Проездной", 0, 10, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Жетон", 0, 2, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Пропуск в общагу", 0, 2, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Пистолет", 3, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Патроны", 3, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(main_hero, "Глушитель", 3, 0, 0, 0, 0, 0, 0, 0, 0);
-
-    inv_index = game::add_inventory(main_hero, "Барсетка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-    main_hero->inv[inv_index].att = 2;
 
     // переходим в состояние ожидания команды пользователя
     cur_game->wait_command();

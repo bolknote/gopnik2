@@ -2,8 +2,10 @@
 #include <cstring>
 
 #include "main.h"
+#include "list.h"
 #include "hero.h"
 #include "utils.h"
+#include "game.h"
 
 hero::hero(hero_type ht) : desc(), name(), inv(), inv_have() {
     int i;
@@ -681,4 +683,45 @@ int hero::get_min_empty_kick_count() const {
 
 int hero::get_level_of_complexity() const {
     return level_of_complexity;
+}
+
+// добавляем инвентарь героя
+void hero::create_hero_inventory() {
+    // инвентарь, повышающий характеристики героя
+    game::add_inventory(this, "Кольцо \"Помоги Господи\"", 0, 10, 0, 0, 0, 1, 1, 0, 0);
+    game::add_inventory(this, "Кольцо \"Господи спаси\"", 1, 10, 0, 1, 1, 1, 1, 0, 0);
+    game::add_inventory(this, "Мега-кольцо", 2, 10, 0, 4, 4, 4, 4, 0, 0);
+    game::add_inventory(this, "Кольцо удачи", 3, 0, 0, 0, 0, 0, 7, 0, 0);
+
+    // инвентарь, повышающий броню
+    game::add_inventory(this, "Шапка-пидорка", 0, 0, 0, 0, 0, 0, 0, 1, 0);
+    game::add_inventory(this, "Кепка", 0, 0, 0, 0, 0, 0, 0, 2, 0);
+    game::add_inventory(this, "Спортивный костюм abibas", 1, 0, 0, 0, 0, 0, 0, 3, 0);
+    game::add_inventory(this, "Спортивный костюм adidas", 2, 0, 0, 0, 0, 0, 0, 4, 0);
+    game::add_inventory(this, "Кожанка", 3, 0, 0, 0, 0, 0, 0, 5, 0);
+    game::add_inventory(this, "Вельветовая куртка", 0, 0, 0, 0, 0, 0, 0, 8, 0);
+
+    // инвентарь, повышающий урон
+    game::add_inventory(this, "Бутсы", 1, 0, 0, 0, 0, 0, 0, 0, 1);
+    game::add_inventory(this, "Понтовые бутсы", 2, 0, 0, 0, 0, 0, 0, 0, 2);
+    game::add_inventory(this, "Кастет", 1, 10, 0, 0, 0, 0, 0, 0, 4);
+    game::add_inventory(this, "Дубинка", 2, 10, 0, 0, 0, 0, 0, 0, 6);
+    game::add_inventory(this, "Тесак", 3, 10, 0, 0, 0, 0, 0, 0, 8);
+
+    // остальной инвентарь
+    game::add_inventory(this, "Мобильник", 0, 10, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Зубная защита боксёров", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Чотки", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Цветы и конфеты", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Затемнённые очки", 0, 10, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Проездной", 0, 10, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Жетон", 0, 2, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Пропуск в общагу", 0, 2, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Пистолет", 3, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Патроны", 3, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Глушитель", 3, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    int inv_index = game::add_inventory(this, "Барсетка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    this->inv[inv_index].att = 2;
 }

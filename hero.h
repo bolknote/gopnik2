@@ -147,4 +147,6 @@ public:
     void save(FILE *);
 
     void load(FILE *, hero_type*, int);
+
+    void create_hero_inventory();
 };
