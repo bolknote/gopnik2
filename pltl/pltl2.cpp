@@ -84,9 +84,9 @@ int pltl2(
 
                     cur_game->gen_enemy_obj(ht_index, level);
 
-                    inv_index = cur_game->search_inv(main_hero, "Тесак");
+                    inv_index = game::search_inv(main_hero, "Тесак");
 
-                    cur_game->add_inventory(
+                    game::add_inventory(
                             cur_game->enemy,
                             main_hero->inv[inv_index].name,
                             main_hero->inv[inv_index].district,

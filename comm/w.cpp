@@ -259,15 +259,15 @@ int w() {
             inv_index = -1;
 
             if (ht_index == cur_game->search_ht("Скинхед")) {
-                inv_index = cur_game->search_inv(main_hero, "Кастет");
+                inv_index = game::search_inv(main_hero, "Кастет");
             }
 
             if (ht_index == cur_game->search_ht("Мент")) {
-                inv_index = cur_game->search_inv(main_hero, "Дубинка");
+                inv_index = game::search_inv(main_hero, "Дубинка");
             }
 
             if (inv_index != -1) {
-                cur_game->add_inventory(
+                game::add_inventory(
                         cur_game->enemy,
                         main_hero->inv[inv_index].name,
                         main_hero->inv[inv_index].district,

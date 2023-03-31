@@ -47,11 +47,11 @@ int hp() {
 
         if (
                 (ht_index == cur_game->search_ht("Студент")) &&
-                (cur_game->search_inv(cur_game->enemy, "Пропуск в общагу") == -1)) {
-            inv_index = cur_game->search_inv(main_hero, "Пропуск в общагу");
+                (game::search_inv(cur_game->enemy, "Пропуск в общагу") == -1)) {
+            inv_index = game::search_inv(main_hero, "Пропуск в общагу");
 
             if (inv_index != -1) {
-                cur_game->add_inventory(
+                game::add_inventory(
                         cur_game->enemy,
                         main_hero->inv[inv_index].name,
                         main_hero->inv[inv_index].district,

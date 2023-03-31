@@ -1400,7 +1400,7 @@ int game::gen_enemy_obj(
     // i = 0;
 
     if (i < main_hero->inv_amount) {
-        cur_game->add_inventory(
+        game::add_inventory(
                 enemy,
                 inv[i].name,
                 inv[i].district,

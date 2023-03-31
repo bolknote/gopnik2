@@ -328,9 +328,9 @@ int pltl1(
 
                     enemy->add_health(enemy->get_max_health() - enemy->get_health());
 
-                    inv_index = cur_game->search_inv(main_hero, "Кольцо удачи");
+                    inv_index = game::search_inv(main_hero, "Кольцо удачи");
 
-                    cur_game->add_inventory(
+                    game::add_inventory(
                             enemy,
                             main_hero->inv[inv_index].name,
                             main_hero->inv[inv_index].district,
