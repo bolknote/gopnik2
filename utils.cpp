@@ -4,16 +4,21 @@
 #include <unistd.h>
 #include <termios.h>
 #include <sys/select.h>
-#include <cstddef>
 
 #include "utils.h"
 
 int textattr;
 
+_Noreturn void gracefulexit(int exitcode) {
+    showcursor();
+    settextattr(RESET);
+    exit(exitcode);
+}
+
 int settextattr(int new_attr) {
     switch (new_attr) {
         case RESET:
-            printf("\033[00m");
+            printf("\033[39;49m");
             break;
         case BLUE:
             printf("\033[01;34m");
@@ -38,6 +43,8 @@ int settextattr(int new_attr) {
             break;
         case BLACK:
             printf("\033[01;30m");
+            break;
+        default:
             break;
     }
 
@@ -124,18 +131,11 @@ int get_key(bool echo) {
     tcsetattr(0, TCSANOW, &savetty);
     if (c[0] == 0x03) // Ctrl+C
     {
-        settextattr(RESET);
-        showcursor();
         printf("Ctrl+C hit, exiting...\n");
-        exit(0);
+        gracefulexit();
     }
-    /*  printf(" %d ",t);
-      t=c[t-1]+(t>1)?0xFF:0;
-      printf("%d ",t);
-      return t; */
-    if (t == 1)
-        return c[0];
-    return c[t - 1] + 0xFF;
+
+    return t == 1 ? c[0] : c[t - 1] + 0xFF;
 }
 
 bool kbhit() {

@@ -1,7 +1,5 @@
 #include <cstdlib>
 #include <ctime>
-#include <cstddef>
-#include <cstring>
 
 #include "main.h"
 #include "list.h"
@@ -538,7 +536,7 @@ int main() {
         if (loa() == -1) {
             cur_game->clean_mem();
             delete cur_game->main_hero;
-            exit(1);
+            gracefulexit(1);
         }
 
         cur_game->load_game = false;

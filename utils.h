@@ -22,10 +22,8 @@ int superrandom(int, int, int, int); // возвращает номер прир
 void backspace(int = 1);             // удаление с экрана символов, стоящих слева от курсора
 void forward(int = 1);               // передвинуть курсор на указанное количество символов вправо
 int getdigitamount(int);             // получить количество цифр в числе
-void hidecursor();
-
-void showcursor();
-
-bool kbhit();
-
-int get_key(bool = true);
+void hidecursor();                   // скрыть курсор
+void showcursor();                   // показать курсор
+void gracefulexit(int = 0);          // выйти, восстановив консоль
+bool kbhit();                        // есть ли что-то нажатое на клавиатуре
+int get_key(bool = true);            // сосчитать код нажатой клавиши

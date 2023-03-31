@@ -1300,7 +1300,7 @@ int game::gen_enemy_obj(
         clean_mem();
 
         fprintf(stderr, "debug: game.cpp:1921: epic fail\n");
-        exit(1);
+        gracefulexit(1);
     }
 
     enemy_init = 1;
@@ -2113,7 +2113,7 @@ int game::start() {
 
                 case '3':
                     clean_mem();
-                    exit(1);
+                    gracefulexit(1);
                     break;
 
                 default:
