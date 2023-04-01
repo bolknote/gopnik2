@@ -9,7 +9,7 @@
 
 int textattr;
 
-_Noreturn void gracefulexit(int exitcode) {
+void gracefulexit(int exitcode) {
     showcursor();
     settextattr(RESET);
     exit(exitcode);
