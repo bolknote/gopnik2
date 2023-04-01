@@ -93,7 +93,7 @@ int pltl1(
                 settextattr(YELLOW);
                 printf("%s", mess[4]);
 
-                if (cur_game->wait_answ()) {
+                if (game::wait_answ()) {
                     settextattr(GREEN);
                     printf("%s: %s", mess[0], mess[5]);
                 } else {

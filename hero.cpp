@@ -110,6 +110,15 @@ void hero::save(FILE *sav_file) {
     fwrite(&att2, sizeof(att2), 1, sav_file);
     fwrite(&desc, sizeof(desc), 1, sav_file);
 
+    fwrite(&inv_amount, sizeof(inv_amount), 1, sav_file);
+    fwrite(inv, sizeof (inventory), inv_amount, sav_file);
+
+    for (int i = 0; i < inv_amount; i++) {
+        size_t len = strlen(inv[i].name) + 1;
+        fwrite(&len, sizeof(len), 1, sav_file);
+        fwrite(inv[i].name, sizeof(char), len, sav_file);
+    }
+
     fwrite(&inv_have_amount, sizeof(inv_have_amount), 1, sav_file);
     fwrite(inv_have, sizeof(int), inv_have_amount, sav_file);
 
@@ -124,7 +133,7 @@ void hero::save(FILE *sav_file) {
     fwrite(type, sizeof(char), len, sav_file);
 }
 
-void hero::load(FILE *load_file, hero_type *ht, int ht_amount) {
+void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
     fread(&level, sizeof(level), 1, load_file);
     fread(&level_of_complexity, sizeof(level_of_complexity), 1, load_file);
     fread(&district, sizeof(district), 1, load_file);
@@ -153,6 +162,29 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount) {
     fread(&att1, sizeof(att1), 1, load_file);
     fread(&att2, sizeof(att2), 1, load_file);
     fread(&desc, sizeof(desc), 1, load_file);
+
+    if (ver > 1.16) {
+        if (inv != nullptr) {
+            for (int i = 0; i < inv_amount; i++) {
+                free(inv[i].name);
+            }
+
+            free(inv);
+        }
+
+        fread(&inv_amount, sizeof(inv_amount), 1, load_file);
+
+        inv = (inventory *) malloc(sizeof(inventory) * inv_amount);
+        fread(inv, sizeof(inventory), inv_amount, load_file);
+
+        for (int i = 0; i < inv_amount; i++) {
+            size_t len;
+            fread(&len, sizeof(len), 1, load_file);
+
+            inv[i].name = (char *) malloc(sizeof(char) * len);
+            fread(inv[i].name, sizeof(char), len, load_file);
+        }
+    }
 
     if (inv_have != nullptr) {
         free(inv_have);

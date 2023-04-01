@@ -74,13 +74,11 @@ int loa() {
         main_hero = cur_game->main_hero;
     }
 
-    main_hero->create_hero_inventory();
-
     // считываем объект игры
     cur_game->load(load_file);
 
     // считываем объект героя
-    main_hero->load(load_file, cur_game->ht, cur_game->ht_amount);
+    main_hero->load(load_file, cur_game->ht, cur_game->ht_amount, vers);
 
     if (
             (main_hero->station)
