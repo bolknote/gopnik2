@@ -78,9 +78,6 @@ int run() {
                 }
 
                 cur_game->set_loc(0);
-            } else {
-                // не удалось сбежать, надо биться
-                k();
             }
         }
 
@@ -95,7 +92,7 @@ int run() {
             settextattr(YELLOW);
             printf("%s", mess[3]);
             // не удалось сбежать, надо биться
-            k();
+            return k();
         }
     }
 
