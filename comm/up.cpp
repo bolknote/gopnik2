@@ -8,8 +8,7 @@
 extern game *cur_game;
 
 int up(
-        // индекс прайс-листа
-        int pl_index,
+        int,
         // индекс элемента прайс-листа
         int plm_index,
         // флаг на покупку товара
@@ -123,6 +122,9 @@ int up(
 
                 *flag = 1;
             }
+            break;
+
+        default:
             break;
     }
 
