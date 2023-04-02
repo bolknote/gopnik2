@@ -1,5 +1,4 @@
-CC=g++
-CFLAGS=-Wall -Wpedantic -Wextra -ggdb
+CXXFLAGS=-Wall -Wpedantic -Wextra -ggdb
 LDFLAGS=
 
 SOURCES=$(wildcard *.cpp comm/*.cpp pltl/*.cpp)
@@ -9,10 +8,10 @@ EXECUTABLE=gop2
 all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(EXECUTABLE) $(OBJECTS)
