@@ -19,13 +19,13 @@ int i() {
     size_t max_len,
     // длина текущей команды
     len,
-            i, j;
+    j;
 
     cur_game->supple_loc_run_over();
 
     max_len = strlen(cur_game->loc[cur_game->active_loc].command[0]);
 
-    for (i = 1; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
+    for (int i = 1; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
         if (cur_game->loc[cur_game->active_loc].command_active[i]) {
             len = strlen(cur_game->loc[cur_game->active_loc].command[i]);
 
@@ -40,7 +40,7 @@ int i() {
     //  old_attr = gettextattr ();
     old_attr = 0;
 
-    for (i = 0; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
+    for (int i = 0; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
         if (cur_game->loc[cur_game->active_loc].command_active[i]) {
             settextattr(YELLOW);
             printf("%s", cur_game->loc[cur_game->active_loc].command[i]);
