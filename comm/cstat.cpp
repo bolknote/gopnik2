@@ -35,7 +35,7 @@ void show_timer(time_t sec_amount) {
             usleep(1e5);
         }
 
-        if (kbhit() && get_key(false) == 2) {
+        if (check_pressed() && get_key(false) == 2) {
             break;
         }
     }

@@ -1,4 +1,5 @@
 /gop2
+/gop2.exe
 *.o
 /.idea
 .DS_Store

@@ -9,6 +9,10 @@
 #include "comm/comm.h"
 #include "pltl/pltl.h"
 
+#ifdef __MINGW32__
+#include <windows.h>
+#endif
+
 game *cur_game;
 
 const char *level_type[43] = {
@@ -59,6 +63,17 @@ const char *level_type[43] = {
 int main() {
     // объект героя
     textattr = 0;
+
+#ifdef __MINGW32__
+    SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
+    setvbuf(stdout, nullptr, _IONBF, 0);
+
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD mode = 0;
+    GetConsoleMode(handle, &mode);
+    SetConsoleMode(handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+#endif
 
     int
     // индекс типа героя

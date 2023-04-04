@@ -360,7 +360,7 @@ int game::wait_command() {
                 cmd[i] = (char) q;
                 i++;
             }
-            if (q == 10) // UNIX же!
+            if (q == 10 || q == 13)
             {
                 printf("\n");
                 break;

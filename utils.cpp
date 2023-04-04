@@ -2,8 +2,14 @@
 #include <cctype>
 #include <cstdlib>
 #include <unistd.h>
+#ifdef __MINGW32__
+#include <conio.h>
+#include <stdio.h>
+#include <windows.h>
+#else
 #include <termios.h>
 #include <sys/select.h>
+#endif
 
 #include "utils.h"
 
@@ -117,6 +123,27 @@ void showcursor() {
 }
 
 int get_key(bool echo) {
+#ifdef __MINGW32__
+    HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+    DWORD mode = 0;
+    GetConsoleMode(hStdin, &mode);
+    if (echo) {
+        mode &= ~ENABLE_ECHO_INPUT;
+    } else {
+        mode |= ENABLE_ECHO_INPUT;
+    }
+
+    SetConsoleMode(hStdin, mode);
+
+    int ch = _getch();
+    if (ch == 0x03) // Ctrl+C
+    {
+        printf("Ctrl+C hit, exiting...\n");
+        gracefulexit();
+    }
+
+    return ch;
+#else
     char c[4];
     struct termios tty = {}, savetty = {};
     fflush(stdout);     // вывели буфер
@@ -136,9 +163,13 @@ int get_key(bool echo) {
     }
 
     return t == 1 ? c[0] : c[t - 1] + 0xFF;
+#endif
 }
 
-bool kbhit() {
+bool check_pressed() {
+#ifdef __MINGW32__
+    return kbhit() != 0;
+#else
     struct timeval tv = {.tv_sec = 0, .tv_usec = 0};
     fd_set read_fd;
     FD_ZERO(&read_fd);
@@ -148,4 +179,5 @@ bool kbhit() {
     if (FD_ISSET(0, &read_fd))
         return true;
     return false;
+#endif
 }

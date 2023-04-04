@@ -25,5 +25,5 @@ int getdigitamount(int);             // получить количество ц
 void hidecursor();                   // скрыть курсор
 void showcursor();                   // показать курсор
 void gracefulexit(int = 0);          // выйти, восстановив консоль
-bool kbhit();                        // есть ли что-то нажатое на клавиатуре
+bool check_pressed();                        // есть ли что-то нажатое на клавиатуре
 int get_key(bool = true);            // сосчитать код нажатой клавиши

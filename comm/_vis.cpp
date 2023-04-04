@@ -60,7 +60,7 @@ int _vis() {
             printf("                                            ██\n");
         }
 
-        if (kbhit()) {
+        if (check_pressed()) {
             ch = get_key();
 
             switch (ch) {
