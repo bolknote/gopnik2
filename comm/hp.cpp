@@ -36,7 +36,7 @@ int hp() {
 
         if (
                 (main_hero->district > 1) &&
-                (!main_hero->inv[cur_game->search_inv(main_hero, "Пропуск в общагу")].have)) {
+                (!main_hero->inv[game::search_inv(main_hero, "Пропуск в общагу")].have)) {
             ht_index = cur_game->search_ht("Студент");
         }
 

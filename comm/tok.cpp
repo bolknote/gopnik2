@@ -39,13 +39,13 @@ int tok() {
         }
     } else {
         if (
-                (main_hero->inv[cur_game->search_inv(main_hero, "Проездной")].have) ||
-                (main_hero->inv[cur_game->search_inv(main_hero, "Жетон")].have)) {
-            if (!main_hero->inv[cur_game->search_inv(main_hero, "Проездной")].have) {
+                (main_hero->inv[game::search_inv(main_hero, "Проездной")].have) ||
+                (main_hero->inv[game::search_inv(main_hero, "Жетон")].have)) {
+            if (!main_hero->inv[game::search_inv(main_hero, "Проездной")].have) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[2]);
 
-                main_hero->inv[cur_game->search_inv(main_hero, "Жетон")].have--;
+                main_hero->inv[game::search_inv(main_hero, "Жетон")].have--;
             } else {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[3]);

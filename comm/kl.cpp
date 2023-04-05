@@ -58,7 +58,7 @@ int kl() {
             settextattr(YELLOW);
             PRINTF("%s", mess[3]);
 
-            if (!cur_game->wait_answ()) {
+            if (!game::wait_answ()) {
                 return 0;
             } else {
                 main_hero->sub_money(20);

@@ -71,7 +71,7 @@ int mh() {
                     // больше лимита опьянения
                     if (d >= ((main_hero->district + 1))) {
                         cur_game->stay_mh = 10;
-                        main_hero->drunk = 1;
+                        main_hero->drunk = true;
 
                         settextattr(YELLOW);
                         PRINTF("%s", mess[4]);

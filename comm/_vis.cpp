@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "comm.h"
 #include "../main.h"
@@ -11,9 +11,6 @@
 extern game *cur_game;
 
 int _vis() {
-    char
-            ch;
-
     int
             i,
             del,
@@ -61,7 +58,7 @@ int _vis() {
         }
 
         if (check_pressed()) {
-            ch = get_key();
+            int ch = get_key();
 
             switch (ch) {
                 case 115:
@@ -74,6 +71,9 @@ int _vis() {
 
                 case 104:
                     hex = 1;
+                    break;
+
+                default:
                     break;
             }
         }

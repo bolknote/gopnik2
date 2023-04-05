@@ -48,8 +48,8 @@ int h(
             if (
                     (main_hero->broken_jaw) ||
                     (main_hero->broken_foot)) {
-                main_hero->broken_jaw = 0;
-                main_hero->broken_foot = 0;
+                main_hero->broken_jaw = false;
+                main_hero->broken_foot = false;
 
                 PRINTF("%s", mess[1]);
 

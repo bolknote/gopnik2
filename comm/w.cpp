@@ -115,7 +115,7 @@ int w() {
 
                 if (chance(1, cur_game->we[i].events)) {
                     // делаем неактивным произосшедшее событие
-                    cur_game->we[i].active = 0;
+                    cur_game->we[i].active = false;
 
                     if (cur_game->we[i].type == 1) {
                         settextattr(BLUE);
@@ -137,7 +137,7 @@ int w() {
     // активным заново обновляем настройки
     if (flag == 0) {
         for (i = 0; i < cur_game->we_amount; i++) {
-            cur_game->we[i].active = 1;
+            cur_game->we[i].active = true;
         }
     }
 
@@ -179,7 +179,7 @@ int w() {
         flag = 0;
 
         // если герой наезжает на противника
-        if (cur_game->wait_answ()) {
+        if (game::wait_answ()) {
             flag = 1;
 
             if (cur_game->ht[ht_index].hero_phrase_amount > 0) {
@@ -206,7 +206,7 @@ int w() {
                         (!chance(1, level - main_hero->get_level() + 1))) {
                     // если есть чотки
                     if (
-                            (main_hero->inv[cur_game->search_inv(main_hero, "Чотки")].have) &&
+                            (main_hero->inv[game::search_inv(main_hero, "Чотки")].have) &&
                             (chance(1, 2)) &&
                             (ht_index != cur_game->search_ht("Мент"))) {
                         PRINTF(mess[11], cur_game->ht[ht_index].type);
@@ -216,7 +216,7 @@ int w() {
 
                     // если есть затемнённые очки
                     if (
-                            (main_hero->inv[cur_game->search_inv(main_hero, "Затемнённые очки")].have) &&
+                            (main_hero->inv[game::search_inv(main_hero, "Затемнённые очки")].have) &&
                             (ht_index == cur_game->search_ht("Мент"))) {
                         PRINTF("%s", mess[13]);
 

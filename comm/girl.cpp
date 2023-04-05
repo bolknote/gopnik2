@@ -34,12 +34,12 @@ int girl() {
         return 0;
     }
 
-    if (main_hero->inv[cur_game->search_inv(main_hero, "Цветы и конфеты")].have) {
+    if (main_hero->inv[game::search_inv(main_hero, "Цветы и конфеты")].have) {
         main_hero->add_health(main_hero->get_max_health() - main_hero->get_health());
-        main_hero->broken_foot = 0;
-        main_hero->broken_jaw = 0;
+        main_hero->broken_foot = false;
+        main_hero->broken_jaw = false;
 
-        main_hero->inv[cur_game->search_inv(main_hero, "Цветы и конфеты")].have--;
+        main_hero->inv[game::search_inv(main_hero, "Цветы и конфеты")].have--;
 
         settextattr(GREEN);
         PRINTF("%s", mess[3]);

@@ -58,8 +58,8 @@ int stdi() {
             settextattr(RED);
             PRINTF("%s", mess[3]);
 
-            main_hero->broken_foot = 1;
-            main_hero->broken_jaw = 1;
+            main_hero->broken_foot = true;
+            main_hero->broken_jaw = true;
 
             sl();
         } else {

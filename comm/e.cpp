@@ -12,7 +12,7 @@ int e() {
             "Уже уходишь? Очканул, сука?! (y/n)\n"};
     settextattr(YELLOW);
     PRINTF("%s", mess[0]);
-    if (cur_game->wait_answ()) {
+    if (game::wait_answ()) {
         return 1;
     }
 

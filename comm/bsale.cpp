@@ -71,11 +71,11 @@ int bsale(
         }
 
         // доп. условие
-        if (i == cur_game->search_inv(main_hero, "Патроны")) {
+        if (i == game::search_inv(main_hero, "Патроны")) {
             price = (int) price / 5;
         }
 
-        price = (int) price * 0.5;
+        price = (int) (price * 0.5);
 
         settextattr(WHITE);
         PRINTF("%s", mess[0]);
@@ -86,7 +86,7 @@ int bsale(
         settextattr(YELLOW);
         PRINTF(mess[1], price);
 
-        if (cur_game->wait_answ()) {
+        if (game::wait_answ()) {
             main_hero->inv[i].have--;
             main_hero->add_money(price);
 

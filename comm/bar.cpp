@@ -49,7 +49,7 @@ int bar(
 
             // делаем героя бухим
             cur_game->stay_mh = 10;
-            main_hero->drunk = 1;
+            main_hero->drunk = true;
             break;
     }
 

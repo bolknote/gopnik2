@@ -28,7 +28,7 @@ int bb(
             break;
 
         case 7:
-            main_hero->inv[cur_game->search_inv(main_hero, cur_game->pl[pl_index].members[7].name)].have += 4;
+            main_hero->inv[game::search_inv(main_hero, cur_game->pl[pl_index].members[7].name)].have += 4;
 
             *flag = 1;
             break;

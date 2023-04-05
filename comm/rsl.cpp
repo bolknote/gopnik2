@@ -52,7 +52,7 @@ int rsl(
                 settextattr(RED);
                 PRINTF("%s", mess[2]);
 
-                main_hero->broken_jaw = 1;
+                main_hero->broken_jaw = true;
             }
             break;
 
@@ -67,7 +67,7 @@ int rsl(
                 settextattr(RED);
                 PRINTF("%s", mess[2]);
 
-                main_hero->broken_jaw = 1;
+                main_hero->broken_jaw = true;
             }
             break;
 
@@ -82,7 +82,7 @@ int rsl(
                 settextattr(RED);
                 PRINTF("%s", mess[5]);
 
-                main_hero->broken_foot = 1;
+                main_hero->broken_foot = true;
             }
             break;
 
@@ -97,8 +97,8 @@ int rsl(
                 settextattr(RED);
                 PRINTF("%s", mess[7]);
 
-                main_hero->broken_foot = 1;
-                main_hero->broken_jaw = 1;
+                main_hero->broken_foot = true;
+                main_hero->broken_jaw = true;
             }
             break;
     }

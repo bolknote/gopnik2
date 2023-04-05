@@ -40,7 +40,7 @@ int vpl() {
         for (i = 1; i < cur_game->pl[pl_index].member_amount; i++) {
             if (
                     (
-                            ((inv_index = cur_game->search_inv(main_hero, plm[i].name)) != -1) &&
+                            ((inv_index = game::search_inv(main_hero, plm[i].name)) != -1) &&
                             (main_hero->inv[inv_index].district > main_hero->district)) ||
                     (plm[i].price == 0)) {
                 continue;
@@ -54,7 +54,7 @@ int vpl() {
         for (i = 0; i < cur_game->pl[pl_index].member_amount; i++) {
             if (
                     (
-                            ((inv_index = cur_game->search_inv(main_hero, plm[i].name)) != -1) &&
+                            ((inv_index = game::search_inv(main_hero, plm[i].name)) != -1) &&
                             (main_hero->inv[inv_index].district > main_hero->district)) ||
                     (plm[i].price == 0)) {
                 continue;

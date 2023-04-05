@@ -68,7 +68,7 @@ int pltl2(
                 settextattr(YELLOW);
                 PRINTF("%s", mess[2]);
 
-                if (cur_game->wait_answ()) {
+                if (game::wait_answ()) {
                     settextattr(GREEN);
                     PRINTF("%s", mess[4]);
 

@@ -42,7 +42,7 @@ int pr() {
     }
 
     if (main_hero->station) {
-        if (main_hero->inv[cur_game->search_inv(main_hero, "Пропуск в общагу")].have == 0) {
+        if (main_hero->inv[game::search_inv(main_hero, "Пропуск в общагу")].have == 0) {
             settextattr(YELLOW);
             PRINTF("%s", mess[5]);
 

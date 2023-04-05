@@ -223,7 +223,7 @@ int pltl1(
             if (
                     (main_hero->district > 1) &&
                     (chance(1, 10)) &&
-                    (main_hero->inv[cur_game->search_inv(main_hero, "Вельветовая куртка")].have) &&
+                    (main_hero->inv[game::search_inv(main_hero, "Вельветовая куртка")].have) &&
                     (main_hero->get_money() > 50)) {
                 settextattr(WHITE);
                 PRINTF("%s", mess[2]);
@@ -278,9 +278,9 @@ int pltl1(
                 PRINTF("%s", mess[16]);
 
                 main_hero->sub_money(main_hero->get_money());
-                main_hero->inv[cur_game->search_inv(main_hero, "Вельветовая куртка")].have--;
+                main_hero->inv[game::search_inv(main_hero, "Вельветовая куртка")].have--;
 
-                cur_game->supple_inv_run_over(cur_game->search_inv(main_hero, "Вельветовая куртка"));
+                cur_game->supple_inv_run_over(game::search_inv(main_hero, "Вельветовая куртка"));
 
                 cur_game->pltl[pltl_index].active++;
 

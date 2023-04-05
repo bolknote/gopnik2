@@ -1334,9 +1334,9 @@ int game::gen_enemy_obj(
 
         // броня
         if ((main_hero->get_max_health() - enemy->get_max_health()) >= 20) {
-            fi = 1 - (float) enemy->get_max_health() / main_hero->get_max_health();
+            fi = 1 - (float) enemy->get_max_health() / (float) main_hero->get_max_health();
 
-            enemy->add_armo(main_hero->get_max_loss() * fi);
+            enemy->add_armo((int) ((float) main_hero->get_max_loss() * fi));
         } else {
             if (
                     (((float) enemy->get_force() / (float) main_hero->get_force()) < 2) &&
