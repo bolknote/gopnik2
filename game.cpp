@@ -23,7 +23,13 @@ extern game *cur_game;
 game::game()
         : file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
           we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
+
+#ifdef __MINGW32__
+    strcpy(file_name, "gop2w_1.sav");
+#else
     strcpy(file_name, "gop2_1.sav");
+#endif
+
     load_game = false;
 
     hero_init = 0;
