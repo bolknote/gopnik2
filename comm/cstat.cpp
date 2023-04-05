@@ -26,7 +26,7 @@ void show_timer(time_t sec_amount) {
             for (int da = getdigitamount((int) sec_amount); da < max_da; da++) {
                 PRINTF("0");
             }
-            PRINTF("%ld", sec_amount);
+            PRINTF("%lld", sec_amount);
 
             backspace(max_da);
         } else {

@@ -4,8 +4,8 @@ SOURCES = $(wildcard *.cpp comm/*.cpp pltl/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = gop2
 
-mingw: CXX = i686-w64-mingw32-g++
-mingw: CXXFLAGS += -static
+mingw: CXX = x86_64-w64-mingw32-g++
+mingw: CXXFLAGS += -static -mno-ms-bitfields
 
 all: $(EXECUTABLE)
 

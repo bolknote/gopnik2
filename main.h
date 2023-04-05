@@ -1,4 +1,4 @@
-#define VERSION (float)1.17
+#define VERSION (float)1.19
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
@@ -63,7 +63,7 @@ typedef struct inventory {
     int armo;
     int loss;
     int att;
-} inventory;
+} __attribute__((__packed__, aligned(8))) inventory;
 
 typedef struct w_event {
     int type;
