@@ -1,15 +1,14 @@
-CXXFLAGS=-Wall -Wpedantic -Wextra -ggdb
+CXXFLAGS+=-Wall -Wpedantic -Wextra -ggdb
 LDFLAGS=
 
 SOURCES=$(wildcard *.cpp comm/*.cpp pltl/*.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=gop2
 
-#mingw: CXX=i686-w64-mingw32-g++
-#mingw: CXXFLAGS+=-static
-#mingw: all
-
 all: $(SOURCES) $(EXECUTABLE)
+
+mingw:
+	CXX=i686-w64-mingw32-g++ CXXFLAGS=-static make
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@
