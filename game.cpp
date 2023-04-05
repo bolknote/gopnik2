@@ -2235,6 +2235,8 @@ int game::start() {
         user_name = (char *) malloc(len);
         WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
         _setmode(_fileno(stdin), save);
+
+        free(wstr);
 #else
         char buf[100];
         user_name = fgets(buf, 99, stdin);
