@@ -10,6 +10,14 @@
 #include "game.h"
 #include "utils.h"
 
+#ifdef __MINGW32__
+#include <stdio.h>
+#include <io.h>
+#include <fcntl.h>
+
+#include <windows.h>
+#endif
+
 extern game *cur_game;
 
 game::game()
@@ -2086,7 +2094,6 @@ int game::start() {
             j, i;
 
     char
-            buf[100],
             *user_name,
             *tmp;
 
@@ -2218,7 +2225,21 @@ int game::start() {
         PRINTF("%s", mess[13]);
 
         settextattr(WHITE);
+#ifdef __MINGW32__
+        int wlen = 100;
+        int save = _setmode(_fileno(stdin), _O_U16TEXT);
+        wchar_t *wstr = (wchar_t *) malloc(wlen * sizeof(wchar_t));
+        fgetws(wstr, wlen, stdin);
+
+        int len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, 0, 0, 0, 0);
+        user_name = (char *) malloc(len);
+        WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
+        _setmode(_fileno(stdin), save);
+#else
+        char buf[100];
         user_name = fgets(buf, 99, stdin);
+#endif
+
         tmp = user_name + strlen(user_name);
         while ((tmp >= user_name) && ((*tmp == 10) || (*tmp == 0))) {
             *tmp = 0;
