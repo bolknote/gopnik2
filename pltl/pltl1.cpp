@@ -82,69 +82,69 @@ int pltl1(
                     (chance(1, 10)) &&
                     (main_hero->get_beer() > 2)) {
                 settextattr(WHITE);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 get_key();
 
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
 
                 get_key();
 
                 settextattr(YELLOW);
-                printf("%s", mess[4]);
+                PRINTF("%s", mess[4]);
 
                 if (game::wait_answ()) {
                     settextattr(GREEN);
-                    printf("%s: %s", mess[0], mess[5]);
+                    PRINTF("%s: %s", mess[0], mess[5]);
                 } else {
                     settextattr(WHITE);
-                    printf("%s", mess[6]);
+                    PRINTF("%s", mess[6]);
                 }
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s %s", mess[1], mess[7], mess[8]);
+                PRINTF("%s: %s %s", mess[1], mess[7], mess[8]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[9]);
+                PRINTF("%s: %s", mess[0], mess[9]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[10]);
+                PRINTF("%s: %s", mess[1], mess[10]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[11]);
+                PRINTF("%s: %s", mess[0], mess[11]);
 
                 get_key();
 
                 settextattr(YELLOW);
-                printf("%s", mess[12]);
+                PRINTF("%s", mess[12]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[13]);
+                PRINTF("%s: %s", mess[0], mess[13]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[14]);
+                PRINTF("%s: %s", mess[1], mess[14]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[15]);
+                PRINTF("%s: %s", mess[0], mess[15]);
 
                 get_key();
 
                 settextattr(WHITE);
-                printf("%s", mess[16]);
+                PRINTF("%s", mess[16]);
 
                 main_hero->sub_beer(main_hero->get_beer());
 
@@ -163,51 +163,51 @@ int pltl1(
                     (!main_hero->broken_jaw) &&
                     (!main_hero->broken_foot)) {
                 settextattr(WHITE);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 get_key();
 
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s\r\n", mess[1], mess[7]);
+                PRINTF("%s: %s\r\n", mess[1], mess[7]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[17]);
+                PRINTF("%s: %s", mess[0], mess[17]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[18]);
+                PRINTF("%s: %s", mess[1], mess[18]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[19]);
+                PRINTF("%s: %s", mess[0], mess[19]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[20]);
+                PRINTF("%s: %s", mess[1], mess[20]);
 
                 get_key();
 
                 settextattr(WHITE);
-                printf("%s", mess[21]);
+                PRINTF("%s", mess[21]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[22]);
+                PRINTF("%s: %s", mess[0], mess[22]);
 
                 get_key();
 
                 settextattr(WHITE);
-                printf("%s", mess[16]);
+                PRINTF("%s", mess[16]);
 
                 main_hero->sub_beer(main_hero->get_beer());
                 main_hero->broken_jaw = true;
@@ -226,56 +226,56 @@ int pltl1(
                     (main_hero->inv[cur_game->search_inv(main_hero, "Вельветовая куртка")].have) &&
                     (main_hero->get_money() > 50)) {
                 settextattr(WHITE);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 get_key();
 
-                printf("%s", mess[3]);
-
-                get_key();
-
-                settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[23]);
-
-                get_key();
-
-                settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[24]);
+                PRINTF("%s", mess[3]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[25]);
+                PRINTF("%s: %s", mess[0], mess[23]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[26]);
+                PRINTF("%s: %s", mess[1], mess[24]);
+
+                get_key();
+
+                settextattr(GREEN);
+                PRINTF("%s: %s", mess[0], mess[25]);
+
+                get_key();
+
+                settextattr(BLUE);
+                PRINTF("%s: %s", mess[1], mess[26]);
 
                 get_key();
 
                 settextattr(WHITE);
-                printf("%s", mess[27]);
+                PRINTF("%s", mess[27]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[28]);
+                PRINTF("%s: %s", mess[0], mess[28]);
 
                 get_key();
 
                 settextattr(BLUE);
-                printf("%s: %s", mess[1], mess[14]);
+                PRINTF("%s: %s", mess[1], mess[14]);
 
                 get_key();
 
                 settextattr(GREEN);
-                printf("%s: %s", mess[0], mess[29]);
+                PRINTF("%s: %s", mess[0], mess[29]);
 
                 get_key();
 
                 settextattr(WHITE);
-                printf("%s", mess[16]);
+                PRINTF("%s", mess[16]);
 
                 main_hero->sub_money(main_hero->get_money());
                 main_hero->inv[cur_game->search_inv(main_hero, "Вельветовая куртка")].have--;
@@ -295,21 +295,21 @@ int pltl1(
                         (main_hero->district > 2) &&
                         (main_hero->get_level() >= 35)) {
                     settextattr(WHITE);
-                    printf("%s", mess[2]);
+                    PRINTF("%s", mess[2]);
 
                     get_key();
 
-                    printf("%s", mess[3]);
+                    PRINTF("%s", mess[3]);
 
                     get_key();
 
                     settextattr(BLUE);
-                    printf("%s: %s", mess[1], mess[30]);
+                    PRINTF("%s: %s", mess[1], mess[30]);
 
                     get_key();
 
                     settextattr(GREEN);
-                    printf("%s: %s", mess[0], mess[31]);
+                    PRINTF("%s: %s", mess[0], mess[31]);
 
                     get_key();
 

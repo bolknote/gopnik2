@@ -23,10 +23,10 @@ int p() {
         main_hero->add_att(5);
 
         settextattr(GREEN);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     } else {
         settextattr(RED);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
     }
 
     return 0;

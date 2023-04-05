@@ -23,10 +23,10 @@ int r() {
         main_hero->add_money(4);
 
         settextattr(YELLOW);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     } else {
         settextattr(RED);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
     }
 
     return 0;

@@ -29,7 +29,7 @@ int v() {
 
     if (cur_game->get_open_hp()) {
         settextattr(GREEN);
-        printf("%s", mess[8]);
+        PRINTF("%s", mess[8]);
 
         return 0;
     }
@@ -39,14 +39,14 @@ int v() {
 
         if (lads->get_health() == 0) {
             settextattr(YELLOW);
-            printf("%s", mess[7]);
+            PRINTF("%s", mess[7]);
         } else {
             if (main_hero->get_att() > 0) {
                 settextattr(GREEN);
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
             } else {
                 settextattr(RED);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
             }
         }
 
@@ -55,7 +55,7 @@ int v() {
 
     if (cur_game->stay_v > 0) {
         settextattr(GREEN);
-        printf("%s", mess[4]);
+        PRINTF("%s", mess[4]);
 
         return 0;
     }
@@ -66,21 +66,21 @@ int v() {
                 cur_game->stay_v = 5;
 
                 settextattr(GREEN);
-                printf("%s", mess[5]);
+                PRINTF("%s", mess[5]);
 
                 settextattr(YELLOW);
-                printf("%s", mess[6]);
+                PRINTF("%s", mess[6]);
             } else {
                 settextattr(RED);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
             }
         } else {
             settextattr(YELLOW);
-            printf("%s", mess[1]);
+            PRINTF("%s", mess[1]);
         }
     } else {
         settextattr(YELLOW);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     }
 
     return 0;

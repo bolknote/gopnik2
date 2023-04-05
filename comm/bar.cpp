@@ -62,10 +62,10 @@ int bar(
     } else {
         if (main_hero->broken_jaw) {
             settextattr(RED);
-            printf("%s", (plm_index) ? (mess[3]) : (mess[2]));
+            PRINTF("%s", (plm_index) ? (mess[3]) : (mess[2]));
         } else {
             settextattr(GREEN);
-            printf("%s", (plm_index) ? (mess[1]) : (mess[0]));
+            PRINTF("%s", (plm_index) ? (mess[1]) : (mess[0]));
         }
     }
 

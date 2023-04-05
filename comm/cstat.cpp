@@ -25,9 +25,9 @@ void show_timer(time_t sec_amount) {
             last_time = time(nullptr);
             sec_amount--;
             for (int da = getdigitamount((int) sec_amount); da < max_da; da++) {
-                printf("0");
+                PRINTF("0");
             }
-            printf("%ld", sec_amount);
+            PRINTF("%ld", sec_amount);
             fflush(stdout);
 
             backspace(max_da);
@@ -83,22 +83,22 @@ int cstat(
             }
 
             settextattr(YELLOW);
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
 
             settextattr(BLUE);
-            printf("%s", mess[3]);
+            PRINTF("%s", mess[3]);
 
             show_timer(time);
 
             settextattr(WHITE);
-            printf(mess[1], cur_game->stn[index].name);
+            PRINTF(mess[1], cur_game->stn[index].name);
         } else {
             settextattr(RED);
-            printf("%s\n", cur_game->stn[index].unavail_reason);
+            PRINTF("%s\n", cur_game->stn[index].unavail_reason);
         }
     } else {
         settextattr(RED);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     }
 
     return 0;

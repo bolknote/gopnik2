@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "../utils.h"
 
 int _clsc() {
-    printf("\033[0;40m\033[H\033[J");
+    PRINTF("\033[0;40m\033[H\033[J");
     return 0;
 }

@@ -30,10 +30,10 @@ int x() {
         main_hero->sub_stuff(main_hero->get_stuff());
 
         settextattr(GREEN);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     } else {
         settextattr(RED);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
     }
 
     return 0;

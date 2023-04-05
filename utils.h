@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <stdio.h>
 
 #define RESET   0x0
 #define BLUE    0x1
@@ -13,6 +14,8 @@
 #define getrandom(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
 #define chance(m, n) (getrandom(0, (int)(n)) <= (m)) ? (1) : (0)
 #define sub(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
+
+#define PRINTF(...) { printf (__VA_ARGS__); fflush(stdout); }
 
 extern int textattr;
 

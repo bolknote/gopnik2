@@ -61,10 +61,10 @@ int vpl() {
             }
 
             settextattr(YELLOW);
-            printf("%2i", i + 1);
+            PRINTF("%2i", i + 1);
 
             settextattr(WHITE);
-            printf(" - ");
+            PRINTF(" - ");
 
             if (main_hero->get_money() >= plm[i].price) {
                 settextattr(BLACK);
@@ -75,20 +75,20 @@ int vpl() {
             j = getdigitamount(plm[i].price);
 
             while (j < max_price) {
-                printf(" ");
+                PRINTF(" ");
                 j++;
             }
 
-            printf("%i", plm[i].price);
+            PRINTF("%i", plm[i].price);
 
             settextattr(WHITE);
-            printf(" руб. %s ", plm[i].name);
+            PRINTF(" руб. %s ", plm[i].name);
 
             if (strlen(plm[i].comment) > 0) {
-                printf("(%s)", plm[i].comment);
+                PRINTF("(%s)", plm[i].comment);
             }
 
-            printf("\n");
+            PRINTF("\n");
         }
     }
 

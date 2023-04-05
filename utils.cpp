@@ -24,31 +24,31 @@ void gracefulexit(int exitcode) {
 int settextattr(int new_attr) {
     switch (new_attr) {
         case RESET:
-            printf("\033[39;49m");
+            PRINTF("\033[39;49m");
             break;
         case BLUE:
-            printf("\033[01;34m");
+            PRINTF("\033[01;34m");
             break;
         case GREEN:
-            printf("\033[01;32m");
+            PRINTF("\033[01;32m");
             break;
         case CYAN:
-            printf("\033[01;36m");
+            PRINTF("\033[01;36m");
             break;
         case RED:
-            printf("\033[01;31m");
+            PRINTF("\033[01;31m");
             break;
         case MAGENTA:
-            printf("\033[01;35m");
+            PRINTF("\033[01;35m");
             break;
         case YELLOW:
-            printf("\033[01;33m");
+            PRINTF("\033[01;33m");
             break;
         case WHITE:
-            printf("\033[01;37m");
+            PRINTF("\033[01;37m");
             break;
         case BLACK:
-            printf("\033[01;30m");
+            PRINTF("\033[01;30m");
             break;
         default:
             break;
@@ -97,12 +97,12 @@ int superrandom(
 
 void backspace(int cnt) {
     for (int i = 0; i<cnt;i++) {
-        printf("\033[D \033[D");
+        PRINTF("\033[D \033[D");
     }
 }
 
 void forward(int cnt) {
-    printf("\033[%dC", cnt);
+    PRINTF("\033[%dC", cnt);
 }
 
 // Количество разрядов в числе
@@ -115,11 +115,11 @@ int getdigitamount(int number) {
 }
 
 void hidecursor() {
-    printf("\033[?25l");
+    PRINTF("\033[?25l");
 }
 
 void showcursor() {
-    printf("\033[?25h");
+    PRINTF("\033[?25h");
 }
 
 int get_key(bool echo) {
@@ -138,7 +138,7 @@ int get_key(bool echo) {
     int ch = _getch();
     if (ch == 0x03) // Ctrl+C
     {
-        printf("Ctrl+C hit, exiting...\n");
+        PRINTF("Ctrl+C hit, exiting...\n");
         gracefulexit();
     }
 
@@ -158,7 +158,7 @@ int get_key(bool echo) {
     tcsetattr(0, TCSANOW, &savetty);
     if (c[0] == 0x03) // Ctrl+C
     {
-        printf("Ctrl+C hit, exiting...\n");
+        PRINTF("Ctrl+C hit, exiting...\n");
         gracefulexit();
     }
 

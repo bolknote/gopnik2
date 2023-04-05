@@ -57,25 +57,25 @@ int pltl2(
 
             if (chance(1, 50)) {
                 settextattr(WHITE);
-                printf("%s", mess[0]);
+                PRINTF("%s", mess[0]);
 
                 get_key();
 
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
 
                 get_key();
 
                 settextattr(YELLOW);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 if (cur_game->wait_answ()) {
                     settextattr(GREEN);
-                    printf("%s", mess[4]);
+                    PRINTF("%s", mess[4]);
 
                     get_key();
 
                     settextattr(RED);
-                    printf("%s", mess[5]);
+                    PRINTF("%s", mess[5]);
 
                     get_key();
 
@@ -108,7 +108,7 @@ int pltl2(
                     ret = 2;
                 } else {
                     settextattr(WHITE);
-                    printf("%s", mess[3]);
+                    PRINTF("%s", mess[3]);
                 }
             }
             break;
@@ -121,7 +121,7 @@ int pltl2(
                 cur_game->pltl[pltl_index].active = -1;
 
                 settextattr(YELLOW);
-                printf("%s", mess[6]);
+                PRINTF("%s", mess[6]);
             }
             break;
     }

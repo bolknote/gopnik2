@@ -47,23 +47,23 @@ int ob() {
             main_hero->add_money(money);
 
             settextattr(YELLOW);
-            printf("%s", mess[getrandom(1, 4)]);
+            PRINTF("%s", mess[getrandom(1, 4)]);
 
             settextattr(GREEN);
-            printf(mess[1], money);
+            PRINTF(mess[1], money);
         } else {
             do {
                 level = cur_game->gen_enemy(&ht_index);
             } while (level == -1);
 
             settextattr(YELLOW);
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
 
             settextattr(RED);
-            printf("%s", mess[5]);
+            PRINTF("%s", mess[5]);
 
             settextattr(YELLOW);
-            printf(mess[6], cur_game->ht[ht_index].type, level);
+            PRINTF(mess[6], cur_game->ht[ht_index].type, level);
 
             cur_game->gen_enemy_obj(ht_index, level);
 
@@ -72,7 +72,7 @@ int ob() {
         }
     } else {
         settextattr(RED);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
     }
 
     return 0;

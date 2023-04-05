@@ -27,11 +27,11 @@ int tok() {
         cur_game->set_loc(0);
 
         settextattr(WHITE);
-        printf(mess[0], cur_game->stn[main_hero->station].name);
+        PRINTF(mess[0], cur_game->stn[main_hero->station].name);
 
         if (main_hero->station == 0) {
             settextattr(BLUE);
-            printf("%s", mess[4]);
+            PRINTF("%s", mess[4]);
         }
 
         if (cur_game->new_district_norealiz) {
@@ -43,21 +43,21 @@ int tok() {
                 (main_hero->inv[cur_game->search_inv(main_hero, "Жетон")].have)) {
             if (!main_hero->inv[cur_game->search_inv(main_hero, "Проездной")].have) {
                 settextattr(YELLOW);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 main_hero->inv[cur_game->search_inv(main_hero, "Жетон")].have--;
             } else {
                 settextattr(YELLOW);
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
             }
 
-            printf("%s", mess[5]);
+            PRINTF("%s", mess[5]);
 
             // переход к новой локации
             cur_game->set_loc(10);
         } else {
             settextattr(RED);
-            printf("%s", mess[1]);
+            PRINTF("%s", mess[1]);
         }
     }
 

@@ -26,11 +26,11 @@ int kos() {
     if (main_hero->get_ciga() > 0) {
         if (cur_game->stay_kos > 0) {
             settextattr(YELLOW);
-            printf("%s", mess[0]);
+            PRINTF("%s", mess[0]);
         } else {
             if (main_hero->broken_jaw) {
                 settextattr(RED);
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
             } else {
                 main_hero->sub_ciga(1);
 
@@ -44,12 +44,12 @@ int kos() {
                 }
 
                 settextattr(BLUE);
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
             }
         }
     } else {
         settextattr(RED);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
     }
 
     return 0;

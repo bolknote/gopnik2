@@ -41,7 +41,7 @@ int hp() {
         }
 
         settextattr(YELLOW);
-        printf(mess[0], cur_game->ht[ht_index].type, level);
+        PRINTF(mess[0], cur_game->ht[ht_index].type, level);
 
         cur_game->gen_enemy_obj(ht_index, level);
 

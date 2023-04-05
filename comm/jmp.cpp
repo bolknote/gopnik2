@@ -33,7 +33,7 @@ int jmp() {
 
     if (chance(1, 3)) {
         settextattr(YELLOW);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
 
         // переход к новой локации
         cur_game->set_loc(10);
@@ -41,19 +41,19 @@ int jmp() {
         cur_game->stay_met = -1;
 
         settextattr(YELLOW);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
 
         settextattr(RED);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
 
         settextattr(YELLOW);
-        printf("%s", mess[3]);
+        PRINTF("%s", mess[3]);
 
         ht_index = cur_game->search_ht("Мент");
         level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
         settextattr(YELLOW);
-        printf(mess[4], level);
+        PRINTF(mess[4], level);
 
         cur_game->gen_enemy_obj(ht_index, level);
 

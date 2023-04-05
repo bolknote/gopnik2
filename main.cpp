@@ -67,7 +67,7 @@ int main() {
 #ifdef __MINGW32__
     SetConsoleCP(CP_UTF8);
 	SetConsoleOutputCP(CP_UTF8);
-    setvbuf(stdout, nullptr, _IONBF, 0);
+    setvbuf(stdout, nullptr, _IOFBF, 1000);
 
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD mode = 0;

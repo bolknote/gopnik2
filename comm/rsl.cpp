@@ -45,12 +45,12 @@ int rsl(
         case 0:
             if (chance(2, 3)) {
                 settextattr(YELLOW);
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
 
                 smart = 1;
             } else {
                 settextattr(RED);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 main_hero->broken_jaw = 1;
             }
@@ -60,12 +60,12 @@ int rsl(
         case 1:
             if (chance(1, 3)) {
                 settextattr(YELLOW);
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
 
                 smart = 2;
             } else {
                 settextattr(RED);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 main_hero->broken_jaw = 1;
             }
@@ -75,12 +75,12 @@ int rsl(
         case 2:
             if (chance(2, 5)) {
                 settextattr(YELLOW);
-                printf("%s", mess[4]);
+                PRINTF("%s", mess[4]);
 
                 smart = 3;
             } else {
                 settextattr(RED);
-                printf("%s", mess[5]);
+                PRINTF("%s", mess[5]);
 
                 main_hero->broken_foot = 1;
             }
@@ -90,12 +90,12 @@ int rsl(
         case 3:
             if (chance(1, 5)) {
                 settextattr(YELLOW);
-                printf("%s", mess[6]);
+                PRINTF("%s", mess[6]);
 
                 smart = 4;
             } else {
                 settextattr(RED);
-                printf("%s", mess[7]);
+                PRINTF("%s", mess[7]);
 
                 main_hero->broken_foot = 1;
                 main_hero->broken_jaw = 1;
@@ -106,18 +106,18 @@ int rsl(
     if (smart) {
         if (main_hero->add_smart()) {
             settextattr(WHITE);
-            printf("%s", mess[8]);
+            PRINTF("%s", mess[8]);
 
             // переход к новой локации
             cur_game->set_loc(8);
         } else {
             settextattr(GREEN);
-            printf("%s", mess[0]);
+            PRINTF("%s", mess[0]);
 
             settextattr(BLUE);
             main_hero->add_smart(smart);
 
-            printf("%s", "\n");
+            PRINTF("%s", "\n");
         }
     } else {
         sl();

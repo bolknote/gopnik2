@@ -12,11 +12,11 @@ int so() {
 
     for (i = 1; i < STR_AMOUNT; i++) {
         settextattr(GREEN);
-        printf(
+        PRINTF(
                 "%s %i",
                 cur_game->str_hero[i]->get_type(),
                 cur_game->str_hero[i]->get_level());
-        printf(
+        PRINTF(
                 " (%i/%i)\n",
                 cur_game->str_hero[i]->get_health(),
                 cur_game->str_hero[i]->get_max_health());

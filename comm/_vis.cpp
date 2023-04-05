@@ -36,28 +36,28 @@ int _vis() {
 
         if (hex) {
             for (i = 0; i < 26; i++) {
-                printf(" %X", getrandom(15, 255));
+                PRINTF(" %X", getrandom(15, 255));
             }
 
-            printf("\n");
+            PRINTF("\n");
         } else {
-            printf("\n\n\n\n\n");
-            printf("                                                       ██\n");
-            printf("                                                      █  █\n");
-            printf("                        ███ ████ ████ █  █ █  █ █  █      █\n");
-            printf("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
-            printf("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
-            printf("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
-            printf("                        █   ████ █  █ █  █ █  █ █  █  █\n");
-            printf("                                                      █████\n");
-            printf("\n\n\n");
-            printf("                             ███ ОКОРЕНИЕ\n");
-            printf("                             █ █\n");
-            printf("                             █ █    █ █ УЛЬТУРНОЙ\n");
-            printf("                                    ██\n");
-            printf("                                    █ █     ██ ТОЛИЦЫ\n");
-            printf("                                            █\n");
-            printf("                                            ██\n");
+            PRINTF("\n\n\n\n\n");
+            PRINTF("                                                       ██\n");
+            PRINTF("                                                      █  █\n");
+            PRINTF("                        ███ ████ ████ █  █ █  █ █  █      █\n");
+            PRINTF("                        █   █  █ █  █ █  █ █  █ █ █      █\n");
+            PRINTF("                        █   █  █ █  █ ████ █ ██ ██  ██  █\n");
+            PRINTF("                        █   █  █ █  █ █  █ ██ █ █ █    █\n");
+            PRINTF("                        █   ████ █  █ █  █ █  █ █  █  █\n");
+            PRINTF("                                                      █████\n");
+            PRINTF("\n\n\n");
+            PRINTF("                             ███ ОКОРЕНИЕ\n");
+            PRINTF("                             █ █\n");
+            PRINTF("                             █ █    █ █ УЛЬТУРНОЙ\n");
+            PRINTF("                                    ██\n");
+            PRINTF("                                    █ █     ██ ТОЛИЦЫ\n");
+            PRINTF("                                            █\n");
+            PRINTF("                                            ██\n");
         }
 
         if (check_pressed()) {

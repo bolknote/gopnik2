@@ -70,7 +70,7 @@ int w() {
 
         if (cur_game->open_mar) {
             settextattr(BLUE);
-            printf("%s", mess[9]);
+            PRINTF("%s", mess[9]);
         }
     }
 
@@ -83,7 +83,7 @@ int w() {
 
         if (cur_game->open_rep) {
             settextattr(BLUE);
-            printf("%s", mess[10]);
+            PRINTF("%s", mess[10]);
         }
     }
 
@@ -96,7 +96,7 @@ int w() {
 
         if (cur_game->get_open_kl()) {
             settextattr(BLUE);
-            printf("%s", mess[12]);
+            PRINTF("%s", mess[12]);
         }
     }
 
@@ -123,7 +123,7 @@ int w() {
                         settextattr(YELLOW);
                     }
 
-                    printf("%s\n", cur_game->we[i].event);
+                    PRINTF("%s\n", cur_game->we[i].event);
 
                     break;
                 }
@@ -174,7 +174,7 @@ int w() {
     // если противник имеет место быть
     if (level > -1) {
         settextattr(YELLOW);
-        printf(mess[0], cur_game->ht[ht_index].type, level);
+        PRINTF(mess[0], cur_game->ht[ht_index].type, level);
 
         flag = 0;
 
@@ -193,10 +193,10 @@ int w() {
             }
 
             settextattr(GREEN);
-            printf("-%s\n", ph_addr);
+            PRINTF("-%s\n", ph_addr);
 
             settextattr(RED);
-            printf("-%s\n", ph_reply);
+            PRINTF("-%s\n", ph_reply);
         } else {
             if (level > main_hero->get_level()) {
                 // если противник наезжает на героя
@@ -209,7 +209,7 @@ int w() {
                             (main_hero->inv[cur_game->search_inv(main_hero, "Чотки")].have) &&
                             (chance(1, 2)) &&
                             (ht_index != cur_game->search_ht("Мент"))) {
-                        printf(mess[11], cur_game->ht[ht_index].type);
+                        PRINTF(mess[11], cur_game->ht[ht_index].type);
 
                         goto then1;
                     }
@@ -218,14 +218,14 @@ int w() {
                     if (
                             (main_hero->inv[cur_game->search_inv(main_hero, "Затемнённые очки")].have) &&
                             (ht_index == cur_game->search_ht("Мент"))) {
-                        printf("%s", mess[13]);
+                        PRINTF("%s", mess[13]);
 
                         goto then1;
                     }
 
                     flag = 1;
 
-                    printf("%s", mess[5]);
+                    PRINTF("%s", mess[5]);
 
                     if (cur_game->ht[ht_index].enemy_phrase_amount > 0) {
                         ph_index = getrandom(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
@@ -238,12 +238,12 @@ int w() {
                     }
 
                     settextattr(RED);
-                    printf("-%s\n", ph_addr);
+                    PRINTF("-%s\n", ph_addr);
 
                     settextattr(GREEN);
-                    printf("-%s\n", ph_reply);
+                    PRINTF("-%s\n", ph_reply);
                 } else {
-                    printf("%s", mess[8]);
+                    PRINTF("%s", mess[8]);
                 }
             }
         }
@@ -294,9 +294,9 @@ int w() {
         if (
                 (cur_game->num_empty_w > 5) &&
                 (chance(1, 5))) {
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
         } else {
-            printf("%s", mess[1]);
+            PRINTF("%s", mess[1]);
         }
 
         cur_game->num_empty_w++;

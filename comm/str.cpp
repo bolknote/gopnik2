@@ -35,11 +35,11 @@ int str() {
     }
 
     settextattr(YELLOW);
-    printf("%s", mess[4]);
+    PRINTF("%s", mess[4]);
 
     get_key();
 
-    printf("%s", mess[5]);
+    PRINTF("%s", mess[5]);
 
     get_key();
 
@@ -93,26 +93,26 @@ int str() {
     // вывод списка героев
 
     settextattr(WHITE);
-    printf("%s", mess[0]);
+    PRINTF("%s", mess[0]);
 
     settextattr(GREEN);
-    printf(mess[3], str_hero[0]->get_type(), str_hero[0]->get_level());
-    printf("%s", mess[2]);
-    printf("\n");
+    PRINTF(mess[3], str_hero[0]->get_type(), str_hero[0]->get_level());
+    PRINTF("%s", mess[2]);
+    PRINTF("\n");
 
     for (i = 1; i < STR_AMOUNT; i++) {
-        printf(mess[3], str_hero[i]->get_type(), str_hero[i]->get_level());
-        printf("\n");
+        PRINTF(mess[3], str_hero[i]->get_type(), str_hero[i]->get_level());
+        PRINTF("\n");
     }
 
     settextattr(WHITE);
-    printf("%s", mess[1]);
+    PRINTF("%s", mess[1]);
 
     settextattr(RED);
 
     for (i = 0; i < STR_AMOUNT; i++) {
-        printf(mess[3], str_enemy[i]->get_type(), str_enemy[i]->get_level());
-        printf("\n");
+        PRINTF(mess[3], str_enemy[i]->get_type(), str_enemy[i]->get_level());
+        PRINTF("\n");
     }
 
     cur_game->enemy = nullptr; // str_enemy [getrandom (-1, STR_AMOUNT - 1)];

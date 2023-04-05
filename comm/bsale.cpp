@@ -78,13 +78,13 @@ int bsale(
         price = (int) price * 0.5;
 
         settextattr(WHITE);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
 
         settextattr(BLUE);
-        printf("%s", main_hero->inv[i].name);
+        PRINTF("%s", main_hero->inv[i].name);
 
         settextattr(YELLOW);
-        printf(mess[1], price);
+        PRINTF(mess[1], price);
 
         if (cur_game->wait_answ()) {
             main_hero->inv[i].have--;
@@ -93,11 +93,11 @@ int bsale(
             cur_game->supple_inv_run_over(i); // !!!
 
             settextattr(WHITE);
-            printf(mess[2], price);
+            PRINTF(mess[2], price);
         }
     } else {
         settextattr(RED);
-        printf("%s", mess[3]);
+        PRINTF("%s", mess[3]);
     }
 
     return 0;

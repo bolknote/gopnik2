@@ -45,7 +45,7 @@ int t() {
             main_hero->add_money(money);
 
             settextattr(GREEN);
-            printf(mess[0], money);
+            PRINTF(mess[0], money);
         }
 
         cur_game->num_t++;
@@ -64,10 +64,10 @@ int t() {
         level += 2;
 
         settextattr(YELLOW);
-        printf(mess[1], cur_game->ht[ht_index].type, level);
+        PRINTF(mess[1], cur_game->ht[ht_index].type, level);
 
         settextattr(RED);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
 
         cur_game->gen_enemy_obj(ht_index, level);
 

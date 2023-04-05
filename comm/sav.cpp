@@ -25,7 +25,7 @@ int sav() {
 
     if (access(cur_game->file_name, F_OK) != -1) {
         settextattr(YELLOW);
-        printf(mess[0], cur_game->file_name);
+        PRINTF(mess[0], cur_game->file_name);
 
         if (game::wait_answ() == 0) {
             return 0;
@@ -34,13 +34,13 @@ int sav() {
 
     if ((sav_file = fopen(cur_game->file_name, "wb")) == nullptr) {
         settextattr(RED);
-        printf(mess[1], cur_game->file_name);
+        PRINTF(mess[1], cur_game->file_name);
 
         return 0;
     }
 
     settextattr(BLUE);
-    printf(mess[2], cur_game->file_name);
+    PRINTF(mess[2], cur_game->file_name);
 
     // пишем версию
     vers = VERSION;
@@ -55,7 +55,7 @@ int sav() {
     fclose(sav_file);
 
     settextattr(BLUE);
-    printf("%s", mess[3]);
+    PRINTF("%s", mess[3]);
 
     return 0;
 }

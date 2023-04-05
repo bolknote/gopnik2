@@ -30,7 +30,7 @@ int loa() {
 
     if (cur_game->num_comm > 0) {
         settextattr(YELLOW);
-        printf(mess[6], cur_game->file_name);
+        PRINTF(mess[6], cur_game->file_name);
 
         if (game::wait_answ() == 0) {
             return 0;
@@ -38,12 +38,12 @@ int loa() {
     }
 
     settextattr(BLUE);
-    printf(mess[3], cur_game->file_name);
+    PRINTF(mess[3], cur_game->file_name);
 
     if (access(cur_game->file_name, F_OK) != -1) {
         if ((load_file = fopen(cur_game->file_name, "rb")) == nullptr) {
             settextattr(RED);
-            printf(mess[4], cur_game->file_name);
+            PRINTF(mess[4], cur_game->file_name);
 
             return -1;
         }
@@ -52,8 +52,8 @@ int loa() {
 
         if (VERSION < vers) {
             settextattr(RED);
-            printf("%s", mess[0]);
-            printf("%s", mess[1]);
+            PRINTF("%s", mess[0]);
+            PRINTF("%s", mess[1]);
 
             fclose(load_file);
 
@@ -61,8 +61,8 @@ int loa() {
         }
     } else {
         settextattr(RED);
-        printf("%s", mess[0]);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[0]);
+        PRINTF("%s", mess[2]);
 
         return -1;
     }
@@ -93,7 +93,7 @@ int loa() {
     }
 
     settextattr(BLUE);
-    printf("%s", mess[5]);
+    PRINTF("%s", mess[5]);
 
     fclose(load_file);
 

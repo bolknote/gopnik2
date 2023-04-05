@@ -20,10 +20,10 @@ int a() {
         cur_game->set_open_bmar(1);
 
         settextattr(YELLOW);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
 
         settextattr(GREEN);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
     }
 
     return 0;

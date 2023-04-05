@@ -27,26 +27,26 @@ int inv() {
 
     for (i = 0; i < main_hero->inv_have_amount; i++) {
         settextattr(WHITE);
-        printf("%2i - ", i + 1);
+        PRINTF("%2i - ", i + 1);
 
         settextattr(BLUE);
-        printf("%s", main_hero->inv[main_hero->inv_have[i]].name);
+        PRINTF("%s", main_hero->inv[main_hero->inv_have[i]].name);
 
         if (main_hero->inv[main_hero->inv_have[i]].have > 1) {
-            printf(mess[0], main_hero->inv[main_hero->inv_have[i]].have);
+            PRINTF(mess[0], main_hero->inv[main_hero->inv_have[i]].have);
         }
 
         if (!main_hero->inv[main_hero->inv_have[i]].have) {
             settextattr(RED);
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
         } else {
             if (!main_hero->inv[main_hero->inv_have[i]].active) {
                 settextattr(RED);
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
             }
         }
 
-        printf("%s", "\n");
+        PRINTF("%s", "\n");
     }
 
     return 0;

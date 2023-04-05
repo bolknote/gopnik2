@@ -20,14 +20,14 @@ int pon() {
     main_hero = cur_game->main_hero;
 
     settextattr(YELLOW);
-    printf(mess[0], main_hero->get_att());
+    PRINTF(mess[0], main_hero->get_att());
 
     if (main_hero->get_att() > 0) {
         settextattr(GREEN);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
     } else {
         settextattr(RED);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
     }
 
     return 0;

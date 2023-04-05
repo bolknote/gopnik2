@@ -31,7 +31,7 @@ int run() {
 
     if (main_hero->broken_foot) {
         settextattr(YELLOW);
-        printf("%s", mess[4]);
+        PRINTF("%s", mess[4]);
     } else {
         // шансы убежать
         bool run = chance(50 + std::max(main_hero->get_luck(), 25), 100);
@@ -60,7 +60,7 @@ int run() {
             main_hero->set_att(att);
 
             settextattr(YELLOW);
-            printf(mess[(att == 0 ? 8 : 6) - (int) run], att);
+            PRINTF(mess[(att == 0 ? 8 : 6) - (int) run], att);
 
             // убежал со стрелки
             if (run) {
@@ -83,14 +83,14 @@ int run() {
 
         if (run) {
             settextattr(RED);
-            printf("%s", mess[getrandom(-1, 1)]);
+            PRINTF("%s", mess[getrandom(-1, 1)]);
             settextattr(YELLOW);
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
 
             cur_game->set_loc(0);
         } else {
             settextattr(YELLOW);
-            printf("%s", mess[3]);
+            PRINTF("%s", mess[3]);
             // не удалось сбежать, надо биться
             return k();
         }

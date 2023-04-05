@@ -35,12 +35,12 @@ int mh() {
     if (main_hero->get_health() < main_hero->get_max_health()) {
         if (main_hero->broken_jaw) {
             settextattr(RED);
-            printf("%s", mess[3]);
+            PRINTF("%s", mess[3]);
         } else {
             if (main_hero->get_beer() > 0) {
                 if (cur_game->stay_mh > 0) {
                     settextattr(YELLOW);
-                    printf("%s", mess[5]);
+                    PRINTF("%s", mess[5]);
                 } else {
                     if (strcmp(cur_game->active_cmd, "mh") == 0) {
                         d = main_hero->get_beer();
@@ -66,7 +66,7 @@ int mh() {
                     }
 
                     settextattr(GREEN);
-                    printf(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer());
+                    PRINTF(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer());
 
                     // больше лимита опьянения
                     if (d >= ((main_hero->district + 1))) {
@@ -74,17 +74,17 @@ int mh() {
                         main_hero->drunk = 1;
 
                         settextattr(YELLOW);
-                        printf("%s", mess[4]);
+                        PRINTF("%s", mess[4]);
                     }
                 }
             } else {
                 settextattr(RED);
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
             }
         }
     } else {
         settextattr(YELLOW);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
     }
 
     return 0;

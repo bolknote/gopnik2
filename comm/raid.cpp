@@ -24,7 +24,7 @@ int raid() {
         cur_game->stay_str = 10;
 
         settextattr(YELLOW);
-        printf("%s", mess[getrandom(-1, 1)]);
+        PRINTF("%s", mess[getrandom(-1, 1)]);
     }
 
     return 0;

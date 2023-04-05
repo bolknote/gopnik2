@@ -57,52 +57,52 @@ int pltl0(
         case 0:
             if (cur_game->active_pltl == pltl_index) {
                 settextattr(WHITE);
-                printf("%s", mess[8]);
-                printf("%s", mess[9]);
+                PRINTF("%s", mess[8]);
+                PRINTF("%s", mess[9]);
 
                 settextattr(YELLOW);
-                printf("i.\r\n");
+                PRINTF("i.\r\n");
 
                 cur_game->active_pltl = -1;
                 cur_game->pltl[pltl_index].active++;
             } else {
                 settextattr(WHITE);
-                printf("%s", mess[0]);
+                PRINTF("%s", mess[0]);
 
                 get_key(false);
 
                 settextattr(WHITE);
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
 
                 get_key(false);
 
                 settextattr(YELLOW);
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
 
                 get_key(false);
 
                 settextattr(GREEN);
-                printf("%s", mess[3]);
+                PRINTF("%s", mess[3]);
 
                 get_key(false);
 
                 settextattr(YELLOW);
-                printf("%s", mess[4]);
+                PRINTF("%s", mess[4]);
 
                 get_key(false);
 
                 settextattr(WHITE);
-                printf("%s", mess[5]);
+                PRINTF("%s", mess[5]);
 
                 get_key(false);
 
                 settextattr(RED);
-                printf("%s", mess[6]);
+                PRINTF("%s", mess[6]);
 
                 get_key(false);
 
                 settextattr(WHITE);
-                printf("%s", mess[7]);
+                PRINTF("%s", mess[7]);
 
                 ret = 1;
                 cur_game->active_pltl = pltl_index;
@@ -117,7 +117,7 @@ int pltl0(
                     (cur_game->stay_eog == 0) &&
                     (cur_game->active_pltl != pltl_index)) {
                 settextattr(RED);
-                printf("%s", mess[22]);
+                PRINTF("%s", mess[22]);
 
                 get_key();
 
@@ -129,21 +129,21 @@ int pltl0(
                     (strcmp(cur_game->active_cmd, "eog") == 0) &&
                     (main_hero->station == 1)) {
                 settextattr(WHITE);
-                printf("%s", mess[10]);
+                PRINTF("%s", mess[10]);
 
                 get_key();
 
-                printf("%s", mess[11]);
+                PRINTF("%s", mess[11]);
 
                 get_key();
 
-                printf("%s", mess[12]);
+                PRINTF("%s", mess[12]);
 
                 settextattr(RED);
-                printf("%s", mess[13]);
+                PRINTF("%s", mess[13]);
 
                 settextattr(WHITE);
-                printf("%s", mess[14]);
+                PRINTF("%s", mess[14]);
 
                 get_key();
 
@@ -176,27 +176,27 @@ int pltl0(
                     (!cur_game->enemy_init)) {
                 if (main_hero->get_health() == 0) {
                     settextattr(WHITE);
-                    printf("%s", mess[18]);
+                    PRINTF("%s", mess[18]);
 
                     get_key();
                 } else {
                     settextattr(WHITE);
-                    printf("%s", mess[15]);
+                    PRINTF("%s", mess[15]);
 
                     get_key();
 
                     settextattr(YELLOW);
-                    printf("%s", mess[16]);
+                    PRINTF("%s", mess[16]);
 
                     get_key();
 
                     settextattr(GREEN);
-                    printf("%s", mess[17]);
+                    PRINTF("%s", mess[17]);
 
                     get_key();
 
                     settextattr(YELLOW);
-                    printf("%s", mess[20]);
+                    PRINTF("%s", mess[20]);
 
                     get_key();
 
@@ -231,19 +231,19 @@ int pltl0(
 
                 if (main_hero->get_health() == 0) {
                     settextattr(WHITE);
-                    printf("%s", mess[18]);
+                    PRINTF("%s", mess[18]);
 
                     get_key();
                 } else {
                     get_key();
 
                     settextattr(WHITE);
-                    printf("%s", mess[19]);
+                    PRINTF("%s", mess[19]);
 
                     get_key();
 
                     settextattr(RED);
-                    printf("%s", mess[21]);
+                    PRINTF("%s", mess[21]);
 
                     get_key();
 

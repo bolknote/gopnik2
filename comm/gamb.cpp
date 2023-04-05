@@ -31,17 +31,17 @@ int gamb() {
             main_hero->add_money(money);
 
             settextattr(GREEN);
-            printf(mess[0], money);
+            PRINTF(mess[0], money);
         } else {
             int money = getrandom(0, 25);
             main_hero->add_money(-money);
 
             settextattr(RED);
-            printf(mess[1], money);
+            PRINTF(mess[1], money);
         }
     } else {
         settextattr(YELLOW);
-        printf("%s", mess[2]);
+        PRINTF("%s", mess[2]);
     }
 
     return 0;

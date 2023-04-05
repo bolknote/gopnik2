@@ -41,17 +41,17 @@ int up(
         case 0:
             if (main_hero->add_vita()) {
                 settextattr(RED);
-                printf(mess[1], mess[2]);
+                PRINTF(mess[1], mess[2]);
 
                 *flag = 0;
             } else {
                 settextattr(GREEN);
-                printf("%s", mess[0]);
+                PRINTF("%s", mess[0]);
 
                 settextattr(BLUE);
                 main_hero->add_vita(1);
 
-                printf("\n");
+                PRINTF("\n");
 
                 *flag = 1;
             }
@@ -60,12 +60,12 @@ int up(
         case 1:
             if (main_hero->trn_foot >= 10) {
                 settextattr(RED);
-                printf(mess[1], mess[3]);
+                PRINTF(mess[1], mess[3]);
 
                 *flag = 0;
             } else {
                 settextattr(GREEN);
-                printf("%s", mess[4]);
+                PRINTF("%s", mess[4]);
 
                 main_hero->trn_foot += 1;
 
@@ -76,15 +76,15 @@ int up(
         case 2:
             if (main_hero->add_armo()) {
                 settextattr(RED);
-                printf(mess[1], mess[7]);
+                PRINTF(mess[1], mess[7]);
 
                 *flag = 0;
             } else {
                 settextattr(GREEN);
-                printf("%s", mess[5]);
+                PRINTF("%s", mess[5]);
 
                 settextattr(BLUE);
-                printf("%s", mess[6]);
+                PRINTF("%s", mess[6]);
 
                 main_hero->add_armo(1);
 
@@ -95,17 +95,17 @@ int up(
         case 3:
             if (main_hero->add_force()) {
                 settextattr(RED);
-                printf(mess[1], mess[8]);
+                PRINTF(mess[1], mess[8]);
 
                 *flag = 0;
             } else {
                 settextattr(GREEN);
-                printf("%s", mess[9]);
+                PRINTF("%s", mess[9]);
 
                 settextattr(BLUE);
                 main_hero->add_force(1);
 
-                printf("\n");
+                PRINTF("\n");
 
                 *flag = 1;
             }
@@ -114,7 +114,7 @@ int up(
         case 4:
             if ((main_hero->get_max_exp() - main_hero->get_exp()) < 10) {
                 settextattr(RED);
-                printf("%s", mess[10]);
+                PRINTF("%s", mess[10]);
 
                 *flag = 0;
             } else {

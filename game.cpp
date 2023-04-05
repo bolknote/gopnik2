@@ -340,10 +340,10 @@ int game::wait_command() {
 
     for (;;) {
         old_attr = settextattr(BLACK);
-        printf("%s", loc[active_loc].name);
+        PRINTF("%s", loc[active_loc].name);
 
         settextattr(WHITE);
-        printf("\\");
+        PRINTF("\\");
 
         for (i = 0; i < 10; i++) {
             cmd[i] = 0;
@@ -356,13 +356,13 @@ int game::wait_command() {
             q = get_key(false);
             if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
             {
-                printf("%c", q);
+                PRINTF("%c", q);
                 cmd[i] = (char) q;
                 i++;
             }
             if (q == 10 || q == 13)
             {
-                printf("\n");
+                PRINTF("\n");
                 break;
             }
 
@@ -385,7 +385,7 @@ int game::wait_command() {
                         strcpy(cmd, cmd_list->down());
                     }
                     i = (int) strlen(cmd);
-                    printf("%s", cmd);
+                    PRINTF("%s", cmd);
                 }
             }
         }
@@ -435,7 +435,7 @@ int game::wait_command() {
 } // end int game::wait_command ()
 
 int game::wait_answ() {
-    //  printf(" ... in game::wait_answ() ... ");
+    //  PRINTF(" ... in game::wait_answ() ... ");
     int
     //    old_attr,
     // ответ пользователя
@@ -455,7 +455,7 @@ int game::wait_answ() {
             return 0;
         }
 
-        printf("чё-то ты не то жмёшь\n");
+        PRINTF("чё-то ты не то жмёшь\n");
     }
 } // end int game::wait_answ ()
 
@@ -811,41 +811,41 @@ int game::is_active_location_command(
 int game::headband() {
     _clsc();
     settextattr(WHITE);
-    printf("\n\n\n\n\n");
-    printf("                                               ██\n");
-    printf("                                              █  █\n");
-    printf("                ███ ████ ████ █  █ █  █ █  █      █\n");
-    printf("                █   █  █ █  █ █  █ █  █ █ █      █\n");
-    printf("                █   █  █ █  █ ████ █ ██ ██  ██  █\n");
-    printf("                █   █  █ █  █ █  █ ██ █ █ █    █\n");
-    printf("                █   ████ █  █ █  █ █  █ █  █  █\n");
-    printf("                                              █████\n");
-    printf("\n\n\n");
-    printf("                     ███ ОКОРЕНИЕ\n");
-    printf("                     █ █\n");
-    printf("                     █ █    █ █ УЛЬТУРНОЙ\n");
-    printf("                            ██\n");
-    printf("                            █ █     ██ ТОЛИЦЫ\n");
-    printf("                                    █\n");
-    printf("                                    ██\n");
-    printf("\n\n\n\n\n\n\n");
+    PRINTF("\n\n\n\n\n");
+    PRINTF("                                               ██\n");
+    PRINTF("                                              █  █\n");
+    PRINTF("                ███ ████ ████ █  █ █  █ █  █      █\n");
+    PRINTF("                █   █  █ █  █ █  █ █  █ █ █      █\n");
+    PRINTF("                █   █  █ █  █ ████ █ ██ ██  ██  █\n");
+    PRINTF("                █   █  █ █  █ █  █ ██ █ █ █    █\n");
+    PRINTF("                █   ████ █  █ █  █ █  █ █  █  █\n");
+    PRINTF("                                              █████\n");
+    PRINTF("\n\n\n");
+    PRINTF("                     ███ ОКОРЕНИЕ\n");
+    PRINTF("                     █ █\n");
+    PRINTF("                     █ █    █ █ УЛЬТУРНОЙ\n");
+    PRINTF("                            ██\n");
+    PRINTF("                            █ █     ██ ТОЛИЦЫ\n");
+    PRINTF("                                    █\n");
+    PRINTF("                                    ██\n");
+    PRINTF("\n\n\n\n\n\n\n");
     settextattr(WHITE);
-    printf("                     Version %4.2f Release\n\n", VERSION);
-    printf("Концепция. . . . . . . . . . . . . . . . . . . . . . . . . ");
+    PRINTF("                     Version %4.2f Release\n\n", VERSION);
+    PRINTF("Концепция. . . . . . . . . . . . . . . . . . . . . . . . . ");
     settextattr(YELLOW);
-    printf("V.P.\n");
+    PRINTF("V.P.\n");
     settextattr(WHITE);
-    printf("Программирование . . . . . . . . . . . . . . . . . . . . ");
+    PRINTF("Программирование . . . . . . . . . . . . . . . . . . . . ");
     settextattr(YELLOW);
-    printf("d-maxx\n");
+    PRINTF("d-maxx\n");
     settextattr(WHITE);
-    printf("Порт под Linux . . . . . . . . . . . . . . . . . . . . ");
+    PRINTF("Порт под Linux . . . . . . . . . . . . . . . . . . . . ");
     settextattr(YELLOW);
-    printf("tiandrey\n");
+    PRINTF("tiandrey\n");
     settextattr(WHITE);
-    printf("Исправление ошибок и дальнейшее портирование . . . . . ");
+    PRINTF("Исправление ошибок и дальнейшее портирование . . . . . ");
     settextattr(YELLOW);
-    printf("bolknote\n");
+    PRINTF("bolknote\n");
 
     hidecursor();
     int ch = get_key();
@@ -1452,12 +1452,12 @@ int game::gen_kick_count() const {
         }
 
         settextattr(GREEN);
-        printf(
+        PRINTF(
                 "Из-за твоей хорошей ловкости враг сможет пнуть тебя %i раз(а) вместо %i\n",
                 enemy->kick_count, enemy->get_kick_count());
 
         settextattr(RED);
-        printf(
+        PRINTF(
                 "Из-за хорошей ловкости врага ты сможешь пнуть его %i раз(а) вместо %i\n",
                 main_hero->kick_count, main_hero->get_kick_count());
     } else {
@@ -1598,7 +1598,7 @@ int game::kick_realiz(
             /*
                   if (strcmp ("Братва с общаги", hero1->get_type ()) == 0)
                   {
-            printf ( "Урон: %i / %i %i \n", loss, hero1->empty_kick_count, empty_k_count);
+            PRINTF ( "Урон: %i / %i %i \n", loss, hero1->empty_kick_count, empty_k_count);
                   }
             */
         } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
@@ -1615,33 +1615,33 @@ int game::kick_realiz(
             settextattr(attr1);
 
             if (i > 1) {
-                printf("%s", mess[0]);
+                PRINTF("%s", mess[0]);
             }
 
             if (broken_jaw != hero2->broken_jaw) {
-                printf("%s", mess[1]);
+                PRINTF("%s", mess[1]);
 
                 // если есть зубная защита
                 if (
                         (search_inv(hero2, "Зубная защита боксёров") != -1) &&
                         (hero2->inv[search_inv(hero2, "Зубная защита боксёров")].have)) {
-                    printf("%s", mess[6]);
+                    PRINTF("%s", mess[6]);
                 }
             }
 
             if (broken_foot != hero2->broken_foot) {
-                printf("%s", mess[2]);
+                PRINTF("%s", mess[2]);
             }
 
             if (loss > 0) {
                 if (double_loss) {
-                    printf("%s", mess[3]);
+                    PRINTF("%s", mess[3]);
                 }
 
-                printf(mess[4], loss, hero2->get_health());
+                PRINTF(mess[4], loss, hero2->get_health());
             } else {
                 settextattr(attr2);
-                printf("%s", mess[5]);
+                PRINTF("%s", mess[5]);
             }
         }
     }
@@ -1655,8 +1655,8 @@ int game::new_district() {
 
         if (!end_of_game) {
             settextattr(BLUE);
-            printf("Ты запинал кучу мудаков и стал по-жестокому крутым\n");
-            printf("Самое время отправится в общагу и отомстить коменде!\n");
+            PRINTF("Ты запинал кучу мудаков и стал по-жестокому крутым\n");
+            PRINTF("Самое время отправится в общагу и отомстить коменде!\n");
 
             end_of_game = 1;
 
@@ -1702,10 +1702,10 @@ int game::new_district() {
     main_hero->set_att((main_hero->district + 1) * 100);
 
     settextattr(BLUE);
-    printf("Ты стал самым крутым в этом районе. Отправляйся в следующий.\n");
+    PRINTF("Ты стал самым крутым в этом районе. Отправляйся в следующий.\n");
 
     settextattr(YELLOW);
-    printf("Хочешь сохранить свои достижения? (y/n)\n");
+    PRINTF("Хочешь сохранить свои достижения? (y/n)\n");
 
     if (wait_answ()) {
         sav();
@@ -1830,7 +1830,7 @@ int game::buy_realiz() {
                         (plm.no_repeat) &&
                         (main_hero->inv[inv_index].have)) {
                     settextattr(YELLOW);
-                    printf("У тебя уже это есть. Точно хочешь купить ещё раз? (y/n)\n");
+                    PRINTF("У тебя уже это есть. Точно хочешь купить ещё раз? (y/n)\n");
 
                     flag2 = wait_answ();
 
@@ -1853,7 +1853,7 @@ int game::buy_realiz() {
                 i = getrandom(-1, plm.buy_phrase_amount - 1);
 
                 settextattr(YELLOW);
-                printf("%s\n", plm.buy_phrase[i]);
+                PRINTF("%s\n", plm.buy_phrase[i]);
             }
 
             // вызываем функцию по обработке прайс-листа
@@ -1867,7 +1867,7 @@ int game::buy_realiz() {
             }
         } else {
             settextattr(RED);
-            printf("не хватает бабла\n");
+            PRINTF("не хватает бабла\n");
         }
     } else {
         if (loc[active_loc].num_func != nullptr) {
@@ -1940,18 +1940,18 @@ int game::fire_realiz(
         if (hero1->inv[inv_index].have > 0) {
             if (loss == 0) {
                 settextattr(attr2);
-                printf("%s", mess[0]);
+                PRINTF("%s", mess[0]);
             } else {
                 settextattr(attr1);
-                printf(mess[1], loss, hero2->get_health());
+                PRINTF(mess[1], loss, hero2->get_health());
             }
 
             hero1->inv[inv_index].have--;
 
-            printf(mess[2], hero1->inv[inv_index].have);
+            PRINTF(mess[2], hero1->inv[inv_index].have);
         } else {
             settextattr(attr2);
-            printf("%s", mess[3]);
+            PRINTF("%s", mess[3]);
         }
     }
 
@@ -2092,11 +2092,11 @@ int game::start() {
 
     old_attr = settextattr(WHITE);
     if (access(cur_game->file_name, F_OK) != -1) {
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
         settextattr(YELLOW);
-        printf("%s", mess[1]);
-        printf("%s", mess[2]);
-        printf("%s", mess[3]);
+        PRINTF("%s", mess[1]);
+        PRINTF("%s", mess[2]);
+        PRINTF("%s", mess[3]);
 
         do {
             i = 0;
@@ -2118,7 +2118,7 @@ int game::start() {
                 default:
                     i = 1;
                     settextattr(RED);
-                    printf("%s", mess[7]);
+                    PRINTF("%s", mess[7]);
             }
         } while (i);
 
@@ -2134,19 +2134,19 @@ int game::start() {
         pltl[0].plot_line_func(0);
     }
     settextattr(WHITE);
-    printf("%s", mess[8]);
+    PRINTF("%s", mess[8]);
 
     settextattr(YELLOW);
     j = 0;
 
     for (i = 0; i < ht_amount; i++) {
         if (is_gamer_hero_type(i)) {
-            printf("%i-%s\n", i + 1, ht[i].type);
+            PRINTF("%i-%s\n", i + 1, ht[i].type);
             j++;
         }
     }
 
-    printf("%i-%s\n", j + 1, mess[16]);
+    PRINTF("%i-%s\n", j + 1, mess[16]);
 
     // определение типа героя пользователя
     for (;;) {
@@ -2154,10 +2154,10 @@ int game::start() {
 
         if ((user_ht_index - '1') == j) {
             settextattr(BLUE);
-            printf("%s", mess[17]);
-            printf("%s", mess[18]);
-            printf("%s", mess[19]);
-            printf("%s", mess[20]);
+            PRINTF("%s", mess[17]);
+            PRINTF("%s", mess[18]);
+            PRINTF("%s", mess[19]);
+            PRINTF("%s", mess[20]);
             continue;
         }
 
@@ -2168,7 +2168,7 @@ int game::start() {
             break;
         } else {
             settextattr(RED);
-            printf("%s", mess[7]);
+            PRINTF("%s", mess[7]);
         }
     }
 
@@ -2190,12 +2190,12 @@ int game::start() {
     }
 
     settextattr(WHITE);
-    printf("%s", mess[9]);
+    PRINTF("%s", mess[9]);
 
     settextattr(YELLOW);
-    printf("%s", mess[10]);
-    printf("%s", mess[11]);
-    printf("%s", mess[12]);
+    PRINTF("%s", mess[10]);
+    PRINTF("%s", mess[11]);
+    PRINTF("%s", mess[12]);
 
     for (;;) {
         user_level_of_complexity = get_key(false);
@@ -2207,7 +2207,7 @@ int game::start() {
             break;
         } else {
             settextattr(RED);
-            printf("%s", mess[7]);
+            PRINTF("%s", mess[7]);
         }
     }
 
@@ -2215,7 +2215,7 @@ int game::start() {
     showcursor();
     for (;;) {
         settextattr(GREEN);
-        printf("%s", mess[13]);
+        PRINTF("%s", mess[13]);
 
         settextattr(WHITE);
         user_name = fgets(buf, 99, stdin);
@@ -2227,13 +2227,13 @@ int game::start() {
         if (strlen(user_name) != 0) {
             if (isdigitstr(user_name)) {
                 settextattr(RED);
-                printf("%s", mess[14]);
+                PRINTF("%s", mess[14]);
             } else {
                 break;
             }
         } else {
             settextattr(RED);
-            printf("%s", mess[15]);
+            PRINTF("%s", mess[15]);
         }
     }
 

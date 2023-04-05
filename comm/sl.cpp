@@ -33,7 +33,7 @@ int sl() {
 
     if (cur_game->active_loc == 13) {
         settextattr(WHITE);
-        printf("%s", mess[1]);
+        PRINTF("%s", mess[1]);
 
         // переход к новой локации
         cur_game->set_loc(8);
@@ -50,42 +50,42 @@ int sl() {
 
         if (main_hero->add_smart()) {
             settextattr(GREEN);
-            printf("%s", mess[2]);
+            PRINTF("%s", mess[2]);
 
             return 0;
         }
 
         if (main_hero->broken_jaw && main_hero->broken_foot) {
             settextattr(RED);
-            printf("%s", mess[5]);
+            PRINTF("%s", mess[5]);
 
             return 0;
         }
 
         if (main_hero->broken_jaw) {
             settextattr(RED);
-            printf("%s", mess[3]);
+            PRINTF("%s", mess[3]);
 
             return 0;
         }
 
         if (main_hero->broken_foot) {
             settextattr(RED);
-            printf("%s", mess[4]);
+            PRINTF("%s", mess[4]);
 
             return 0;
         }
 
         settextattr(WHITE);
-        printf("%s", mess[0]);
+        PRINTF("%s", mess[0]);
 
         if (cur_game->st_amount > 0) {
             settextattr(YELLOW);
-            printf("%s", mess[6]);
+            PRINTF("%s", mess[6]);
 
             settextattr(BLUE);
-            printf("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
-            printf("%s", "\n");
+            PRINTF("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
+            PRINTF("%s", "\n");
         }
 
         // переход к новой локации

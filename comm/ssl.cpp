@@ -19,10 +19,10 @@ int ssl() {
 
     for (i = 0; i < 4; i++) {
         settextattr(WHITE);
-        printf("%i - ", i + 1);
+        PRINTF("%i - ", i + 1);
 
         settextattr(YELLOW);
-        printf("%s", mess[i]);
+        PRINTF("%s", mess[i]);
     }
 
     return 0;
