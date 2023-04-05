@@ -97,7 +97,7 @@ int superrandom(
 
 void backspace(int cnt) {
     for (int i = 0; i<cnt;i++) {
-        PRINTF("\033[D \033[D");
+        PRINTF("\033[D");
     }
 }
 

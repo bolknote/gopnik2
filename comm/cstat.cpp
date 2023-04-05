@@ -12,13 +12,12 @@ extern game *cur_game;
 
 // вывести таймер, отсчитывающего время от данного количества секунд до нуля
 void show_timer(time_t sec_amount) {
-    fflush(stdout);
-
     time_t last_time = 0;
     hidecursor();
 
     int max_da = getdigitamount((int) sec_amount);
     sec_amount++;
+
 
     while (sec_amount > 0) {
         if (time(nullptr) != last_time) {
@@ -28,7 +27,6 @@ void show_timer(time_t sec_amount) {
                 PRINTF("0");
             }
             PRINTF("%ld", sec_amount);
-            fflush(stdout);
 
             backspace(max_da);
         } else {
