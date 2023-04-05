@@ -21,3 +21,4 @@ clean:
 	rm -f $(EXECUTABLE) $(EXECUTABLE).exe $(OBJECTS)
 
 .PHONY: all clean mingw
+
