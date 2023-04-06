@@ -193,7 +193,6 @@ int main() {
 
     cur_game->add_location_command(loc_index, &_ae, 0, "_ae", "");
     cur_game->add_location_command(loc_index, &_clsc, 0, "_clsc", "");
-    cur_game->add_location_command(loc_index, &_vis, 0, "_vis", "");
 
     loc_index = cur_game->add_location("Битва");
 
