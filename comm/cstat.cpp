@@ -1,5 +1,4 @@
 #include <ctime>
-#include <unistd.h>
 
 #include "comm.h"
 #include "../main.h"
@@ -7,6 +6,14 @@
 #include "../utils.h"
 #include "../hero.h"
 #include "../game.h"
+
+#ifdef __MINGW32__
+#include <windows.h>
+#else
+
+#include <unistd.h>
+
+#endif
 
 extern game *cur_game;
 
@@ -30,7 +37,11 @@ void show_timer(time_t sec_amount) {
 
             backspace(max_da);
         } else {
+#ifdef __MINGW32__
+            Sleep(10);
+#else
             usleep(1e5);
+#endif
         }
 
         if (check_pressed() && get_key(false) == 2) {

@@ -14,8 +14,13 @@
 #include <stdio.h>
 #include <io.h>
 #include <fcntl.h>
-
 #include <windows.h>
+
+// для MinGW под Windows
+#ifndef _O_U16TEXT
+#define _O_U16TEXT 0x20000
+#endif
+
 #endif
 
 extern game *cur_game;

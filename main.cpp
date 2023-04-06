@@ -11,6 +11,11 @@
 
 #ifdef __MINGW32__
 #include <windows.h>
+
+// для MinGW под Windows
+#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+#endif
 #endif
 
 game *cur_game;
