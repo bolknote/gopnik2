@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <cstdlib>
+#include <cstdint>
 
 typedef int (*FP)();
 
@@ -52,6 +53,11 @@ typedef struct location {
 
 typedef struct inventory {
     char *name;
+#if INTPTR_MAX == INT32_MAX
+    // нужно для бинарной совместимости между 32- и 64-битными платформами
+    // так как эта структура целиком выгружается в файл сохранений
+    char _pad4[4];
+#endif
     int district;
     int events; // количество событий, увеличивающих вероятность появления
     int have;

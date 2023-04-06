@@ -5,7 +5,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = gop2
 
 mingw: CXX = x86_64-w64-mingw32-g++
-mingw: CXXFLAGS += -static -mno-ms-bitfields
+mingw: CXXFLAGS += -static
 
 all: $(EXECUTABLE)
 
