@@ -1262,13 +1262,13 @@ int game::gen_enemy(
     i = 0;
 
     for (;;) {
-        i = getrandom(-1, ht_amount - 1);
+        i = GETRANDOM(-1, ht_amount - 1);
 
         if (ht[i].active == 0) {
             continue;
         }
 
-        if (chance(1, ht[i].events)) {
+        if (CHANCE(1, ht[i].events)) {
             *ht_index = i;
 
             if (ht[i].min_level_inc > 0) {
@@ -1332,17 +1332,17 @@ int game::gen_enemy_obj(
                  (main_hero->get_force() >= enemy->get_force()))) {
             enemy->add_force(main_hero->get_armo());
 
-            while (chance(3, 5)) {
-                enemy->add_force(getrandom(3, 5));
+            while (CHANCE(3, 5)) {
+                enemy->add_force(GETRANDOM(3, 5));
             }
         }
 
         // ловкость
         if (
                 (main_hero->get_kick_count() > 1) &&
-                (chance(1, 2))) {
+                (CHANCE(1, 2))) {
             while (enemy->get_kick_count() < main_hero->get_kick_count()) {
-                enemy->add_smart(getrandom(5, 10));
+                enemy->add_smart(GETRANDOM(5, 10));
             }
         }
 
@@ -1355,7 +1355,7 @@ int game::gen_enemy_obj(
             if (
                     (((float) enemy->get_force() / (float) main_hero->get_force()) < 2) &&
                     (main_hero->get_armo() > 5)) {
-                enemy->add_armo(getrandom((int) main_hero->get_armo() / 2, main_hero->get_armo()));
+                enemy->add_armo(GETRANDOM((int) main_hero->get_armo() / 2, main_hero->get_armo()));
             }
         }
 
@@ -1370,7 +1370,7 @@ int game::gen_enemy_obj(
         if (
                 (inv[i].district <= main_hero->district) &&
                 (inv[i].events > 0) &&
-                (chance(1, inv[i].events))) {
+                (CHANCE(1, inv[i].events))) {
             if (
                     (
                             (inv[i].force > 0) ||
@@ -1378,21 +1378,21 @@ int game::gen_enemy_obj(
                             (inv[i].vita > 0) ||
                             (inv[i].luck > 0)) &&
                     (ht[ht_index].inv_desc_events > 0) &&
-                    (chance(1, ht[ht_index].inv_desc_events))) {
+                    (CHANCE(1, ht[ht_index].inv_desc_events))) {
                 break;
             }
 
             if (
                     (inv[i].armo > 0) &&
                     (ht[ht_index].inv_armo_events > 0) &&
-                    (chance(1, ht[ht_index].inv_armo_events))) {
+                    (CHANCE(1, ht[ht_index].inv_armo_events))) {
                 break;
             }
 
             if (
                     (inv[i].loss > 0) &&
                     (ht[ht_index].inv_loss_events > 0) &&
-                    (chance(1, ht[ht_index].inv_loss_events))) {
+                    (CHANCE(1, ht[ht_index].inv_loss_events))) {
                 break;
             }
 
@@ -1404,7 +1404,7 @@ int game::gen_enemy_obj(
                     (inv[i].armo == 0) &&
                     (inv[i].loss == 0) &&
                     (ht[ht_index].inv_other_events > 0) &&
-                    (chance(1, ht[ht_index].inv_other_events))) {
+                    (CHANCE(1, ht[ht_index].inv_other_events))) {
                 break;
             }
         }
@@ -1432,17 +1432,17 @@ int game::gen_enemy_obj(
     }
 
     // генерируем деньги противника
-    if ((ht[ht_index].money_events > 0) && (chance(1, ht[ht_index].money_events))) {
-        enemy->add_money(getrandom(0, 20 + 20 * main_hero->district));
+    if ((ht[ht_index].money_events > 0) && (CHANCE(1, ht[ht_index].money_events))) {
+        enemy->add_money(GETRANDOM(0, 20 + 20 * main_hero->district));
     }
 
     // генерируем хлам противника
-    if ((ht[ht_index].stuff_events > 0) && (chance(1, ht[ht_index].stuff_events))) {
-        enemy->add_stuff(getrandom(0, 10 + 10 * main_hero->district));
+    if ((ht[ht_index].stuff_events > 0) && (CHANCE(1, ht[ht_index].stuff_events))) {
+        enemy->add_stuff(GETRANDOM(0, 10 + 10 * main_hero->district));
     }
 
     // генерируем самокрутки противника
-    if ((ht[ht_index].ciga_events > 0) && (chance(1, ht[ht_index].ciga_events))) {
+    if ((ht[ht_index].ciga_events > 0) && (CHANCE(1, ht[ht_index].ciga_events))) {
         enemy->add_ciga(1);
     }
 
@@ -1498,13 +1498,13 @@ int game::kick(
     loss = 0;
 
     if (
-            (!(chance(1, hero1->get_luck() + 1))) &&
-            (chance(exact, 100))) {
+            (!(CHANCE(1, hero1->get_luck() + 1))) &&
+            (CHANCE(exact, 100))) {
         // что б не было зацикливаний
         if (hero1->get_max_loss() > hero2->get_armo()) {
-            loss = sub(getrandom(hero1->get_min_loss() - 1, hero1->get_max_loss()), hero2->get_armo());
+            loss = SUB(GETRANDOM(hero1->get_min_loss() - 1, hero1->get_max_loss()), hero2->get_armo());
         } else {
-            loss = getrandom(hero1->get_min_loss() - 1, hero1->get_max_loss());
+            loss = GETRANDOM(hero1->get_min_loss() - 1, hero1->get_max_loss());
         }
 
         // -- блин, вообще не втыкаю, как такое может получаться?
@@ -1515,8 +1515,8 @@ int game::kick(
 
         if (
                 (!(hero1->broken_foot)) &&
-                (!(chance(1, hero1->get_luck() + 1))) &&
-                (chance(exact, 100))) {
+                (!(CHANCE(1, hero1->get_luck() + 1))) &&
+                (CHANCE(exact, 100))) {
             loss *= 2;
             *double_loss = 1;
         }
@@ -1525,15 +1525,15 @@ int game::kick(
             if (
                     (!(hero2->broken_jaw)) &&
                     (!(hero1->broken_foot)) &&
-                    (!(chance(1, hero1->get_luck() + 1))) &&
-                    (chance(1, hero2->get_luck() + 1)) &&
-                    (chance(exact, 100)) // !!!
+                    (!(CHANCE(1, hero1->get_luck() + 1))) &&
+                    (CHANCE(1, hero2->get_luck() + 1)) &&
+                    (CHANCE(exact, 100)) // !!!
                     ) {
                 // если есть зубная защита
                 if (
                         (search_inv(hero2, "Зубная защита боксёров") != -1) &&
                         (hero2->inv[search_inv(hero2, "Зубная защита боксёров")].have)) {
-                    if (chance(1, 2)) {
+                    if (CHANCE(1, 2)) {
                         hero2->broken_jaw = true;
                     }
                 } else {
@@ -1543,9 +1543,9 @@ int game::kick(
                 if (
                         (!(hero2->broken_foot)) &&
                         (!(hero1->broken_foot)) &&
-                        (!(chance(1, hero1->get_luck() + 1))) &&
-                        (chance(1, hero2->get_luck() + 1 + hero2->trn_foot)) &&
-                        (chance(exact, 100))) {
+                        (!(CHANCE(1, hero1->get_luck() + 1))) &&
+                        (CHANCE(1, hero2->get_luck() + 1 + hero2->trn_foot)) &&
+                        (CHANCE(exact, 100))) {
                     hero2->broken_foot = true;
                 }
             }
@@ -1864,7 +1864,7 @@ int game::buy_realiz() {
             if (
                     (plm.buy_phrase_amount > 0) &&
                     (plm.buy_phrase_print_mode)) {
-                i = getrandom(-1, plm.buy_phrase_amount - 1);
+                i = GETRANDOM(-1, plm.buy_phrase_amount - 1);
 
                 settextattr(YELLOW);
                 PRINTF("%s\n", plm.buy_phrase[i]);
@@ -1904,9 +1904,9 @@ int game::fire(
     loss = 0;
 
     if (
-            (!chance(1, hero1->get_luck() + 1)) &&
-            (chance(1, (hero2->get_luck() < 10) ? (hero2->get_luck()) : (10)))) {
-        loss = getrandom(20, 80);
+            (!CHANCE(1, hero1->get_luck() + 1)) &&
+            (CHANCE(1, (hero2->get_luck() < 10) ? (hero2->get_luck()) : (10)))) {
+        loss = GETRANDOM(20, 80);
     }
 
     hero2->sub_health(loss);

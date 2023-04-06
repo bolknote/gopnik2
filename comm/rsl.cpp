@@ -43,7 +43,7 @@ int rsl(
     switch (index) {
         // лёгкий слэм
         case 0:
-            if (chance(2, 3)) {
+            if (CHANCE(2, 3)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[1]);
 
@@ -58,7 +58,7 @@ int rsl(
 
             // агрессивный слэм
         case 1:
-            if (chance(1, 3)) {
+            if (CHANCE(1, 3)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[3]);
 
@@ -73,7 +73,7 @@ int rsl(
 
             // прыжок в центр круга
         case 2:
-            if (chance(2, 5)) {
+            if (CHANCE(2, 5)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[4]);
 
@@ -88,7 +88,7 @@ int rsl(
 
             // стенка на стенку
         case 3:
-            if (chance(1, 5)) {
+            if (CHANCE(1, 5)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[6]);
 

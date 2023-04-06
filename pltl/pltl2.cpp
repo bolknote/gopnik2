@@ -55,7 +55,7 @@ int pltl2(
                 return 0;
             }
 
-            if (chance(1, 50)) {
+            if (CHANCE(1, 50)) {
                 settextattr(WHITE);
                 PRINTF("%s", mess[0]);
 
@@ -80,7 +80,7 @@ int pltl2(
                     get_key();
 
                     ht_index = cur_game->search_ht("Маньяк");
-                    level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
+                    level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
                     cur_game->gen_enemy_obj(ht_index, level);
 

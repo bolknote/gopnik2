@@ -43,13 +43,13 @@ int d() {
 
         for (;;) {
             // вероятность, что повезёт
-            if (chance(1, 20)) {
+            if (CHANCE(1, 20)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[1]);
                 PRINTF("%s", mess[2]);
 
                 main_hero->add_att(20);
-                main_hero->add_money(getrandom(19, 20 + 20 * main_hero->district));
+                main_hero->add_money(GETRANDOM(19, 20 + 20 * main_hero->district));
 
                 settextattr(BLUE);
                 PRINTF(mess[3], 20);
@@ -63,7 +63,7 @@ int d() {
             }
 
             // вероятность, что не повезёт
-            if (chance(1, 20)) {
+            if (CHANCE(1, 20)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[4]);
 
@@ -82,7 +82,7 @@ int d() {
             }
 
             // вероятность, что наедут
-            if (chance(1, 10)) {
+            if (CHANCE(1, 10)) {
                 settextattr(YELLOW);
                 PRINTF("%s", mess[4]);
 
@@ -90,7 +90,7 @@ int d() {
                 PRINTF("%s", mess[5]);
 
                 ht_index = cur_game->search_ht("Мент");
-                level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
+                level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
                 settextattr(YELLOW);
                 PRINTF(mess[7], level);

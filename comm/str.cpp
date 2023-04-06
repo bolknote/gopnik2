@@ -54,8 +54,8 @@ int str() {
     i = 1;
 
     while (i < STR_AMOUNT) {
-        ht_index = getrandom(-1, 3);
-        level = getrandom(str_hero[0]->get_level() + 5, str_hero[0]->get_level() + 15);
+        ht_index = GETRANDOM(-1, 3);
+        level = GETRANDOM(str_hero[0]->get_level() + 5, str_hero[0]->get_level() + 15);
 
         // генерируем объект противника
         cur_game->gen_enemy_obj(ht_index, level, 0);
@@ -115,7 +115,7 @@ int str() {
         PRINTF("\n");
     }
 
-    cur_game->enemy = nullptr; // str_enemy [getrandom (-1, STR_AMOUNT - 1)];
+    cur_game->enemy = nullptr; // str_enemy [GETRANDOM (-1, STR_AMOUNT - 1)];
 
     cur_game->open_str = true;
 

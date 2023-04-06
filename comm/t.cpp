@@ -38,10 +38,10 @@ int t() {
     flag = 0;
 
     if (events > 1) {
-        if (chance(1, events)) {
+        if (CHANCE(1, events)) {
             flag = 1;
         } else {
-            money = getrandom(0, 20 + 20 * main_hero->district);
+            money = GETRANDOM(0, 20 + 20 * main_hero->district);
             main_hero->add_money(money);
 
             settextattr(GREEN);

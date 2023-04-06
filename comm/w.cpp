@@ -66,7 +66,7 @@ int w() {
             (cur_game->open_mar == 0) &&
             (cur_game->num_w > 10) &&
             (main_hero->station == 0)) {
-        cur_game->open_mar = chance(1, 5);
+        cur_game->open_mar = CHANCE(1, 5);
 
         if (cur_game->open_mar) {
             settextattr(BLUE);
@@ -79,7 +79,7 @@ int w() {
             (cur_game->open_rep == 0) &&
             (cur_game->num_w > 10) &&
             (main_hero->station == 0)) {
-        cur_game->open_rep = chance(1, 5);
+        cur_game->open_rep = CHANCE(1, 5);
 
         if (cur_game->open_rep) {
             settextattr(BLUE);
@@ -92,7 +92,7 @@ int w() {
             (cur_game->get_open_kl() == 0) &&
             (cur_game->num_w > 50) &&
             (main_hero->station == 0)) {
-        cur_game->set_open_kl(chance(1, 5));
+        cur_game->set_open_kl(CHANCE(1, 5));
 
         if (cur_game->get_open_kl()) {
             settextattr(BLUE);
@@ -113,7 +113,7 @@ int w() {
             if (cur_game->we[i].active) {
                 flag = 1;
 
-                if (chance(1, cur_game->we[i].events)) {
+                if (CHANCE(1, cur_game->we[i].events)) {
                     // делаем неактивным произосшедшее событие
                     cur_game->we[i].active = false;
 
@@ -152,7 +152,7 @@ int w() {
         if (
                 (main_hero->drunk) &&
                 ((ht_index = cur_game->search_ht("Ветер")) > -1) &&
-                (chance(1, cur_game->ht[ht_index].events))) {
+                (CHANCE(1, cur_game->ht[ht_index].events))) {
             level = main_hero->get_level();
 
             goto then;
@@ -161,9 +161,9 @@ int w() {
         // если возможна встреча с ментом
         if (
                 ((ht_index = cur_game->search_ht("Мент")) > -1) &&
-                (chance(1, cur_game->ht[ht_index].events)) &&
+                (CHANCE(1, cur_game->ht[ht_index].events)) &&
                 ((main_hero->get_level() % 10) >= 5)) {
-            level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
+            level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
             goto then;
         }
@@ -183,7 +183,7 @@ int w() {
             flag = 1;
 
             if (cur_game->ht[ht_index].hero_phrase_amount > 0) {
-                ph_index = getrandom(-1, cur_game->ht[ht_index].hero_phrase_amount - 1);
+                ph_index = GETRANDOM(-1, cur_game->ht[ht_index].hero_phrase_amount - 1);
 
                 ph_addr = cur_game->ht[ht_index].hero_addr[ph_index];
                 ph_reply = cur_game->ht[ht_index].hero_reply[ph_index];
@@ -202,12 +202,12 @@ int w() {
                 // если противник наезжает на героя
 
                 if (
-                        (chance(1, main_hero->get_luck() + 1)) ||
-                        (!chance(1, level - main_hero->get_level() + 1))) {
+                        (CHANCE(1, main_hero->get_luck() + 1)) ||
+                        (!CHANCE(1, level - main_hero->get_level() + 1))) {
                     // если есть чотки
                     if (
                             (main_hero->inv[game::search_inv(main_hero, "Чотки")].have) &&
-                            (chance(1, 2)) &&
+                            (CHANCE(1, 2)) &&
                             (ht_index != cur_game->search_ht("Мент"))) {
                         PRINTF(mess[11], cur_game->ht[ht_index].type);
 
@@ -228,7 +228,7 @@ int w() {
                     PRINTF("%s", mess[5]);
 
                     if (cur_game->ht[ht_index].enemy_phrase_amount > 0) {
-                        ph_index = getrandom(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
+                        ph_index = GETRANDOM(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
 
                         ph_addr = cur_game->ht[ht_index].enemy_addr[ph_index];
                         ph_reply = cur_game->ht[ht_index].enemy_reply[ph_index];
@@ -293,7 +293,7 @@ int w() {
 
         if (
                 (cur_game->num_empty_w > 5) &&
-                (chance(1, 5))) {
+                (CHANCE(1, 5))) {
             PRINTF("%s", mess[2]);
         } else {
             PRINTF("%s", mess[1]);

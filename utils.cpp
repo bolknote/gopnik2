@@ -79,7 +79,7 @@ int superrandom(
     int i = start;
     int j = 0;
 
-    while ((j < amount) && (getrandom(-1, N) != 0)) {
+    while ((j < amount) && (GETRANDOM(-1, N) != 0)) {
         j++;
         (flag) ? (i++) : (i--);
         if (i == amount) {

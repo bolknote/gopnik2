@@ -31,7 +31,7 @@ int jmp() {
 
     main_hero = cur_game->main_hero;
 
-    if (chance(1, 3)) {
+    if (CHANCE(1, 3)) {
         settextattr(YELLOW);
         PRINTF("%s", mess[0]);
 
@@ -50,7 +50,7 @@ int jmp() {
         PRINTF("%s", mess[3]);
 
         ht_index = cur_game->search_ht("Мент");
-        level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
+        level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
         settextattr(YELLOW);
         PRINTF(mess[4], level);

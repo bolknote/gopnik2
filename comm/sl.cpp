@@ -84,7 +84,7 @@ int sl() {
             PRINTF("%s", mess[6]);
 
             settextattr(BLUE);
-            PRINTF("%s", cur_game->st[getrandom(-1, cur_game->st_amount - 1)]);
+            PRINTF("%s", cur_game->st[GETRANDOM(-1, cur_game->st_amount - 1)]);
             PRINTF("%s", "\n");
         }
 

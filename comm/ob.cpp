@@ -39,15 +39,15 @@ int ob() {
         return 0;
     }
 
-    if (chance(1, 3)) {
+    if (CHANCE(1, 3)) {
         // вероятность, что повезёт
-        if (chance(1, 2)) {
-            money = getrandom(0, 10 + 10 * main_hero->district);
+        if (CHANCE(1, 2)) {
+            money = GETRANDOM(0, 10 + 10 * main_hero->district);
 
             main_hero->add_money(money);
 
             settextattr(YELLOW);
-            PRINTF("%s", mess[getrandom(1, 4)]);
+            PRINTF("%s", mess[GETRANDOM(1, 4)]);
 
             settextattr(GREEN);
             PRINTF(mess[1], money);

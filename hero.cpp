@@ -477,7 +477,7 @@ int hero::add_level() {
     // организация цикла для того, чтобы было увеличение
     // хотя бы одного навыка
     do {
-        if ((chance_ar[i] = chance(desc[i], 12)) == 1) {
+        if ((chance_ar[i] = CHANCE(desc[i], 12)) == 1) {
             flag = 1;
         }
 
@@ -658,37 +658,37 @@ int hero::add_att(
 void hero::sub_health(
         // декремент
         int d) {
-    health = sub(health, d);
+    health = SUB(health, d);
 }
 
 void hero::sub_money(
         // декремент
         int d) {
-    money = sub(money, d);
+    money = SUB(money, d);
 }
 
 void hero::sub_beer(
         // декремент
         int d) {
-    beer = sub(beer, d);
+    beer = SUB(beer, d);
 }
 
 void hero::sub_stuff(
         // декремент
         int d) {
-    stuff = sub(stuff, d);
+    stuff = SUB(stuff, d);
 }
 
 void hero::sub_ciga(
         // декремент
         int d) {
-    ciga = sub(ciga, d);
+    ciga = SUB(ciga, d);
 }
 
 int hero::sub_att(
         // декремент
         int d) {
-    (station) ? (att2 = sub(att2, d)) : (att1 = sub(att1, d));
+    (station) ? (att2 = SUB(att2, d)) : (att1 = SUB(att1, d));
 
     return 0;
 }

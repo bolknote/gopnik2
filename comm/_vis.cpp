@@ -33,7 +33,7 @@ int _vis() {
 
         if (hex) {
             for (i = 0; i < 26; i++) {
-                PRINTF(" %X", getrandom(15, 255));
+                PRINTF(" %X", GETRANDOM(15, 255));
             }
 
             PRINTF("\n");

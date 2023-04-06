@@ -183,7 +183,7 @@ int k() {
             while (
                     (old_enemy == cur_game->enemy) ||
                     (cur_game->enemy->get_health() == 0)) {
-                cur_game->enemy = cur_game->str_enemy[str_enemy_index = getrandom(-1, STR_AMOUNT - 1)];
+                cur_game->enemy = cur_game->str_enemy[str_enemy_index = GETRANDOM(-1, STR_AMOUNT - 1)];
             }
         }
 
@@ -246,9 +246,9 @@ int k() {
         }
 
         if (cur_game->num_k > 4) {
-            if (chance(1, 5)) {
+            if (CHANCE(1, 5)) {
                 settextattr(YELLOW);
-                PRINTF("Голоса из толпы: %s", audience_mess[getrandom(0, 9)]);
+                PRINTF("Голоса из толпы: %s", audience_mess[GETRANDOM(0, 9)]);
             }
         }
     }
@@ -494,7 +494,7 @@ int k() {
                 (main_hero->get_money() < cur_game->pl[0].members[1].price) &&
                 ((main_hero->broken_jaw) ||
                  (main_hero->broken_foot))) {
-            main_hero->add_money(getrandom(cur_game->pl[0].members[1].price - main_hero->get_money() - 1,
+            main_hero->add_money(GETRANDOM(cur_game->pl[0].members[1].price - main_hero->get_money() - 1,
                                            cur_game->pl[0].members[1].price));
         }
 

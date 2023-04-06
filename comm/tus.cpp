@@ -48,7 +48,7 @@ int tus() {
 
         PRINTF("\n");
 
-        if (chance(1, 2)) {
+        if (CHANCE(1, 2)) {
             settextattr(YELLOW);
             PRINTF("%s", mess[2]);
 

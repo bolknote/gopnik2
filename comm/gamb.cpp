@@ -26,14 +26,14 @@ int gamb() {
     if (main_hero->get_money() >= 5) {
         int luck = std::max(main_hero->get_luck() / 10, 2);
 
-        if (chance(1, 5 - luck)) {
-            int money = getrandom(0, 100);
+        if (CHANCE(1, 5 - luck)) {
+            int money = GETRANDOM(0, 100);
             main_hero->add_money(money);
 
             settextattr(GREEN);
             PRINTF(mess[0], money);
         } else {
-            int money = getrandom(0, 25);
+            int money = GETRANDOM(0, 25);
             main_hero->add_money(-money);
 
             settextattr(RED);

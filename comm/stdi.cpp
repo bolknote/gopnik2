@@ -33,7 +33,7 @@ int stdi() {
     main_hero = cur_game->main_hero;
 
     // вероятность, что повезёт
-    if (chance(2, 11)) {
+    if (CHANCE(2, 11)) {
         settextattr(YELLOW);
         PRINTF("%s", mess[1]);
 
@@ -54,7 +54,7 @@ int stdi() {
         }
     } else {
         // вероятность, что расшибёшься
-        if (chance(1, 2)) {
+        if (CHANCE(1, 2)) {
             settextattr(RED);
             PRINTF("%s", mess[3]);
 
@@ -69,7 +69,7 @@ int stdi() {
             PRINTF("%s", mess[4]);
 
             ht_index = cur_game->search_ht("Охранник");
-            level = getrandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
+            level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
             settextattr(YELLOW);
             PRINTF(mess[5], level);

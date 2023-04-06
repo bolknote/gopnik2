@@ -79,7 +79,7 @@ int pltl1(
     switch (cur_game->pltl[pltl_index].active) {
         case 0:
             if (
-                    (chance(1, 10)) &&
+                    (CHANCE(1, 10)) &&
                     (main_hero->get_beer() > 2)) {
                 settextattr(WHITE);
                 PRINTF("%s", mess[2]);
@@ -158,7 +158,7 @@ int pltl1(
         case 1:
             if (
                     (main_hero->district > 0) &&
-                    (chance(1, 10)) &&
+                    (CHANCE(1, 10)) &&
                     (main_hero->get_beer() > 4) &&
                     (!main_hero->broken_jaw) &&
                     (!main_hero->broken_foot)) {
@@ -222,7 +222,7 @@ int pltl1(
         case 2:
             if (
                     (main_hero->district > 1) &&
-                    (chance(1, 10)) &&
+                    (CHANCE(1, 10)) &&
                     (main_hero->inv[game::search_inv(main_hero, "Вельветовая куртка")].have) &&
                     (main_hero->get_money() > 50)) {
                 settextattr(WHITE);
@@ -291,7 +291,7 @@ int pltl1(
         case 3:
             if (cur_game->active_pltl != pltl_index) {
                 if (
-                        (chance(1, 10)) &&
+                        (CHANCE(1, 10)) &&
                         (main_hero->district > 2) &&
                         (main_hero->get_level() >= 35)) {
                     settextattr(WHITE);
@@ -324,7 +324,7 @@ int pltl1(
                     enemy->add_smart(41 - enemy->get_smart());
                     enemy->add_vita(58 - enemy->get_vita());
 
-                    enemy->add_armo(getrandom((int) main_hero->get_armo() / 2, main_hero->get_armo()));
+                    enemy->add_armo(GETRANDOM((int) main_hero->get_armo() / 2, main_hero->get_armo()));
 
                     enemy->add_health(enemy->get_max_health() - enemy->get_health());
 

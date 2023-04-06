@@ -48,7 +48,7 @@ int meet() {
         return 0;
     }
 
-    if (chance(1, 5)) {
+    if (CHANCE(1, 5)) {
         settextattr(YELLOW);
         PRINTF("%s", mess[2]);
         PRINTF("%s", mess[3]);
@@ -57,7 +57,7 @@ int meet() {
 
         for (;;) {
             // вероятность, что повезёт
-            if (chance(1, 30)) {
+            if (CHANCE(1, 30)) {
                 cur_game->open_girl = main_hero->station + 1;
 
                 settextattr(GREEN);
@@ -67,15 +67,15 @@ int meet() {
             }
 
             // вероятность, что не повезёт
-            if (chance(1, 20)) {
-                PRINTF("%s", (chance(1, 3)) ? (mess[6]) : (mess[5]));
+            if (CHANCE(1, 20)) {
+                PRINTF("%s", (CHANCE(1, 3)) ? (mess[6]) : (mess[5]));
                 PRINTF("%s", mess[4]);
 
                 return 0;
             }
 
             // вероятность, что наедут
-            if (chance(1, 10)) {
+            if (CHANCE(1, 10)) {
                 PRINTF("%s", mess[9]);
 
                 cur_game->set_stay_kl(-1);

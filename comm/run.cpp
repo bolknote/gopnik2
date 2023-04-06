@@ -34,7 +34,7 @@ int run() {
         PRINTF("%s", mess[4]);
     } else {
         // шансы убежать
-        bool run = chance(50 + std::max(main_hero->get_luck(), 25), 100);
+        bool run = CHANCE(50 + std::max(main_hero->get_luck(), 25), 100);
 
         // если уже дрались, надо запретить соваться на локацию
         if (run) {
@@ -83,7 +83,7 @@ int run() {
 
         if (run) {
             settextattr(RED);
-            PRINTF("%s", mess[getrandom(-1, 1)]);
+            PRINTF("%s", mess[GETRANDOM(-1, 1)]);
             settextattr(YELLOW);
             PRINTF("%s", mess[2]);
 

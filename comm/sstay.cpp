@@ -46,7 +46,7 @@ int sstay() {
 
     int flag;
 
-    if (!cur_game->stn[5].avail && cur_game->num_k == 0 && chance(1, 200)) {
+    if (!cur_game->stn[5].avail && cur_game->num_k == 0 && CHANCE(1, 200)) {
         int idx = main_hero->inv[game::search_inv(main_hero, "Мобильник")].have ? 8 : 19;
 
         cur_game->stn[5].avail = true;
@@ -163,7 +163,7 @@ int sstay() {
             if (
                     (cur_game->active_loc == 1) &&
                     (cur_game->num_k < 20) &&
-                    (chance(1, 10)) &&
+                    (CHANCE(1, 10)) &&
                     (cur_game->end_of_game == 0)) {
                 PRINTF("%s", mess[3]);
                 cur_game->set_loc(0);
@@ -221,7 +221,7 @@ int sstay() {
                     }
                 }
 
-                cur_game->stay_v = sub(cur_game->stay_v, 1);
+                cur_game->stay_v = SUB(cur_game->stay_v, 1);
             } else {
                 cur_game->stay_v = 0;
             }
@@ -231,7 +231,7 @@ int sstay() {
         if (cur_game->get_open_pr()) {
             if (
                     (cur_game->get_open_hp() == 0) &&
-                    (chance(1, 50))) {
+                    (CHANCE(1, 50))) {
                 cur_game->set_open_hp();
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
@@ -247,7 +247,7 @@ int sstay() {
 
             if (
                     (cur_game->get_open_d() == 0) &&
-                    (chance(1, 50))) {
+                    (CHANCE(1, 50))) {
                 cur_game->set_open_d();
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
@@ -265,7 +265,7 @@ int sstay() {
                     (main_hero->station) &&
                     (!cur_game->open_raid) &&
                     (!cur_game->open_str) &&
-                    (chance(1, 200))) {
+                    (CHANCE(1, 200))) {
                 cur_game->open_raid = true;
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
@@ -280,14 +280,14 @@ int sstay() {
             }
         }
 
-        cur_game->set_stay_mar(sub(cur_game->get_stay_mar(), 1));
-        cur_game->set_stay_kl(sub(cur_game->get_stay_kl(), 1));
+        cur_game->set_stay_mar(SUB(cur_game->get_stay_mar(), 1));
+        cur_game->set_stay_kl(SUB(cur_game->get_stay_kl(), 1));
 
-        cur_game->stay_kos = sub(cur_game->stay_kos, 1);
-        cur_game->stay_mh = sub(cur_game->stay_mh, 1);
-        cur_game->stay_met = sub(cur_game->stay_met, 1);
-        cur_game->stay_str = sub(cur_game->stay_str, 1);
-        cur_game->stay_eog = sub(cur_game->stay_eog, 1);
+        cur_game->stay_kos = SUB(cur_game->stay_kos, 1);
+        cur_game->stay_mh = SUB(cur_game->stay_mh, 1);
+        cur_game->stay_met = SUB(cur_game->stay_met, 1);
+        cur_game->stay_str = SUB(cur_game->stay_str, 1);
+        cur_game->stay_eog = SUB(cur_game->stay_eog, 1);
     }
 
     return 0;

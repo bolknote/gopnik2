@@ -10,9 +10,9 @@
 #define WHITE   0x7
 #define BLACK   0x8
 
-#define getrandom(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
-#define chance(m, n) (getrandom(0, (int)(n)) <= (m)) ? (1) : (0)
-#define sub(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
+#define GETRANDOM(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
+#define CHANCE(m, n) (GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0)
+#define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
 
 #define PRINTF(...) printf (__VA_ARGS__); fflush(stdout);
 
