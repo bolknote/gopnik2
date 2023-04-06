@@ -383,6 +383,8 @@ int game::wait_command() {
             if ((q == 127 || q == 8) && i > 0) // из-за непонятных мне проблем с совместимостью BS==127
             {
                 backspace();
+                PRINTF(" ");
+                backspace();
                 cmd[i--] = 0;
             }
 
