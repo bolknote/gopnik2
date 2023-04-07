@@ -43,8 +43,7 @@
                                           █
                                           ██
 
-                             version 1.16 Release
-
+                             version 1.20 Release
 
 ОБ ИГРЕ
 =======
