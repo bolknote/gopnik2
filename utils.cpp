@@ -2,13 +2,16 @@
 #include <cctype>
 #include <cstdlib>
 #include <unistd.h>
+
 #ifdef __MINGW32__
 #include <conio.h>
 #include <stdio.h>
 #include <windows.h>
 #else
+
 #include <termios.h>
 #include <sys/select.h>
+
 #endif
 
 #include "utils.h"
@@ -24,31 +27,31 @@ void gracefulexit(int exitcode) {
 int settextattr(int new_attr) {
     switch (new_attr) {
         case RESET:
-            PRINTF("\033[39;49m");
+        PRINTF("\033[39;49m");
             break;
         case BLUE:
-            PRINTF("\033[01;34m");
+        PRINTF("\033[01;34m");
             break;
         case GREEN:
-            PRINTF("\033[01;32m");
+        PRINTF("\033[01;32m");
             break;
         case CYAN:
-            PRINTF("\033[01;36m");
+        PRINTF("\033[01;36m");
             break;
         case RED:
-            PRINTF("\033[01;31m");
+        PRINTF("\033[01;31m");
             break;
         case MAGENTA:
-            PRINTF("\033[01;35m");
+        PRINTF("\033[01;35m");
             break;
         case YELLOW:
-            PRINTF("\033[01;33m");
+        PRINTF("\033[01;33m");
             break;
         case WHITE:
-            PRINTF("\033[01;37m");
+        PRINTF("\033[01;37m");
             break;
         case BLACK:
-            PRINTF("\033[01;30m");
+        PRINTF("\033[01;30m");
             break;
         default:
             break;
@@ -96,7 +99,7 @@ int superrandom(
 }
 
 void backspace(int cnt) {
-    for (int i = 0; i<cnt;i++) {
+    for (int i = 0; i < cnt; i++) {
         PRINTF("\033[D");
     }
 }
@@ -122,62 +125,84 @@ void showcursor() {
     PRINTF("\033[?25h");
 }
 
-int get_key(bool echo) {
 #ifdef __MINGW32__
+void restore_tty_mode(DWORD mode) {
+    HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+    SetConsoleMode(hStdin, mode);
+}
+
+DWORD set_tty_special_mode(bool no_echo) {
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
     DWORD mode = 0;
     GetConsoleMode(hStdin, &mode);
-    if (echo) {
+    DWORD old_mode = mode;
+    if (no_echo) {
         mode &= ~ENABLE_ECHO_INPUT;
-    } else {
-        mode |= ENABLE_ECHO_INPUT;
+        SetConsoleMode(hStdin, mode);
     }
 
-    SetConsoleMode(hStdin, mode);
+    return old_mode;
+}
+#else
 
+void restore_tty_mode(struct termios tty) {
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &tty);
+}
+
+struct termios set_tty_special_mode(bool no_echo) {
+    struct termios old_tty = {};
+    tcgetattr(STDIN_FILENO, &old_tty);
+    struct termios raw = old_tty;
+
+    raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON | OPOST);
+    raw.c_cflag |= CS8;
+    raw.c_lflag &= ~(ICANON | IEXTEN | ISIG);
+
+    if (no_echo) {
+        raw.c_lflag &= ~ECHO;
+    }
+
+    raw.c_cc[VMIN] = 0;
+    raw.c_cc[VTIME] = 1;
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+
+    return old_tty;
+}
+
+#endif
+
+int get_key_async() {
+#ifdef __MINGW32__
+    return kbhit() == 0 ? -1 : _getch();
+#else
+    char ch;
+    auto nread = read(STDIN_FILENO, &ch, 1);
+    return nread == 0 ? -1 : ch;
+#endif
+}
+
+int get_key(bool echo) {
+    auto old_mode = set_tty_special_mode(!echo);
+
+#ifdef __MINGW32__
     int ch = _getch();
+#else
+    char ch;
+    long nread;
+
+    do {
+        nread = read(STDIN_FILENO, &ch, 1);
+    } while (nread == 0);
+#endif
+
+    restore_tty_mode(old_mode);
+
     if (ch == 0x03) // Ctrl+C
     {
         PRINTF("Ctrl+C hit, exiting...\n");
         gracefulexit();
     }
 
-    return ch;
-#else
-    char c[4];
-    struct termios tty = {}, savetty = {};
-    fflush(stdout);     // вывели буфер
-    tcgetattr(0, &tty); // получили структуру termios
-    savetty = tty;      // сохранили
-    tty.c_lflag &= ~(ISIG | ICANON);
-    if (!echo)
-        tty.c_lflag &= ~ECHO;
-    tty.c_cc[VMIN] = 1;
-    tcsetattr(0, TCSAFLUSH, &tty);
-    ssize_t t = read(0, c, 4);
-    tcsetattr(0, TCSANOW, &savetty);
-    if (c[0] == 0x03) // Ctrl+C
-    {
-        PRINTF("Ctrl+C hit, exiting...\n");
-        gracefulexit();
-    }
-
-    return t == 1 ? c[0] : c[t - 1] + 0xFF;
-#endif
+    return (int) ch;
 }
 
-bool check_pressed() {
-#ifdef __MINGW32__
-    return kbhit() != 0;
-#else
-    struct timeval tv = {.tv_sec = 0, .tv_usec = 0};
-    fd_set read_fd;
-    FD_ZERO(&read_fd);
-    FD_SET(0, &read_fd);
-    if (select(1, &read_fd, nullptr, nullptr, &tv) == -1)
-        return false;
-    if (FD_ISSET(0, &read_fd))
-        return true;
-    return false;
-#endif
-}

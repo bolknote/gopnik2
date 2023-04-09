@@ -7,12 +7,9 @@
 #include "../hero.h"
 #include "../game.h"
 
-#ifdef __MINGW32__
-#include <windows.h>
-#else
-
+#ifndef __MINGW32__
 #include <unistd.h>
-
+#include <sys/termios.h>
 #endif
 
 extern game *cur_game;
@@ -25,6 +22,7 @@ void show_timer(time_t sec_amount) {
     int max_da = getdigitamount((int) sec_amount);
     sec_amount++;
 
+    auto old_mode = set_tty_special_mode();
 
     while (sec_amount > 0) {
         if (time(nullptr) != last_time) {
@@ -37,17 +35,24 @@ void show_timer(time_t sec_amount) {
 
             backspace(max_da);
         } else {
-#ifdef __MINGW32__
-            Sleep(10);
-#else
-            usleep(1e5);
-#endif
+            SLEEP(10);
         }
 
-        if (check_pressed() && get_key(false) == 2) {
+        int key = get_key_async();
+
+        if (key == 2) {
             break;
         }
+
+        // Ctrl+C
+        if (key == 3) {
+            restore_tty_mode(old_mode);
+            PRINTF("Ctrl+C hit, exiting...\n");
+            gracefulexit();
+        }
     }
+
+    restore_tty_mode(old_mode);
 
     forward(max_da);
     showcursor();

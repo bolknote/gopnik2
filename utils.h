@@ -14,7 +14,7 @@
 #define CHANCE(m, n) (GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0)
 #define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
 
-#define PRINTF(...) printf (__VA_ARGS__); fflush(stdout);
+#define PRINTF(...) printf (__VA_ARGS__); fflush(stdout)
 
 extern int textattr;
 
@@ -27,5 +27,23 @@ int getdigitamount(int);             // получить количество ц
 void hidecursor();                   // скрыть курсор
 void showcursor();                   // показать курсор
 void gracefulexit(int = 0);          // выйти, восстановив консоль
-bool check_pressed();                        // есть ли что-то нажатое на клавиатуре
 int get_key(bool = true);            // сосчитать код нажатой клавиши
+
+int get_key_async();                 // получить код нажатой клавиши не блокируя (без вывода на экран)
+
+#ifdef __MINGW32__
+
+#include <windows.h>
+#define SLEEP(dur) Sleep(dur)
+
+void restore_tty_mode(DWORD mode);        // восстановить прежний режим консоли
+DWORD set_tty_special_mode(bool = true);  // установить специальный режим консоли для асинхронного ввода
+
+#else
+
+#define SLEEP(dur) usleep(dur * 1000)
+
+void restore_tty_mode(struct termios tty);
+struct termios set_tty_special_mode(bool = true);
+
+#endif
