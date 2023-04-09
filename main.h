@@ -1,4 +1,4 @@
-#define VERSION (float)1.21
+#define VERSION 1.21F
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
