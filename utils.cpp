@@ -145,8 +145,8 @@ DWORD set_tty_special_mode(bool no_echo) {
 }
 #else
 
-void restore_tty_mode(struct termios tty) {
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &tty);
+void restore_tty_mode(struct termios mode) {
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &mode);
 }
 
 struct termios set_tty_special_mode(bool no_echo) {
