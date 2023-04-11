@@ -257,10 +257,10 @@ int k() {
 
     if (flag) {
         // удар героя
-        game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, 10, 12);
+        game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, GREEN, RED);
     } else {
         // выстрел героя
-        game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, 10, 12);
+        game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, GREEN, RED);
     }
 
     // стрела #2
@@ -286,8 +286,8 @@ int k() {
 
                 game::kick_realiz(
                         cur_game->str_hero[j],
-                        enemy, empty_k_count, pal_kick_mess, 10, 12);
-                game::kick_realiz(enemy, cur_game->str_hero[j], 10, nullptr, 10, 12);
+                        enemy, empty_k_count, pal_kick_mess, GREEN, RED);
+                game::kick_realiz(enemy, cur_game->str_hero[j], 10, nullptr, GREEN, RED);
 
                 if (cur_game->str_hero[j]->get_health() == 0) {
                     cur_game->str_hero[j]->str_free = false;
@@ -310,7 +310,7 @@ int k() {
             lads->empty_kick_count = 0;
 
             // удар "братвы"
-            lads_loss = game::kick_realiz(lads, enemy, 0, lads_kick_mess, 10, 12);
+            lads_loss = game::kick_realiz(lads, enemy, 0, lads_kick_mess, GREEN, RED);
 
             main_hero->sub_att(lads_loss);
             lads->sub_health(lads_loss);
@@ -343,7 +343,7 @@ int k() {
     }
 
     // удар врага
-    game::kick_realiz(enemy, main_hero, empty_k_count, enemy_kick_mess, 12, 10);
+    game::kick_realiz(enemy, main_hero, empty_k_count, enemy_kick_mess, RED, GREEN);
 
     // стрела #3
     // ---------
@@ -387,8 +387,8 @@ int k() {
             }
 
             // реализуем удары
-            game::kick_realiz(hero1, hero2, 10, nullptr, 10, 12);
-            game::kick_realiz(hero2, hero1, 10, nullptr, 12, 10);
+            game::kick_realiz(hero1, hero2, 10, nullptr, GREEN, RED);
+            game::kick_realiz(hero2, hero1, 10, nullptr, RED, GREEN);
 
             // выводим сообщение, что запинали союзника
             if (hero1->get_health() == 0) {

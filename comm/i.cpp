@@ -37,8 +37,7 @@ int i() {
 
     max_len++;
 
-    //  old_attr = gettextattr ();
-    old_attr = 0;
+    old_attr = RESET;
 
     for (int i = 0; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
         if (cur_game->loc[cur_game->active_loc].command_active[i]) {

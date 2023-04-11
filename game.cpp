@@ -456,23 +456,15 @@ int game::wait_command() {
 } // end int game::wait_command ()
 
 int game::wait_answ() {
-    //  PRINTF(" ... in game::wait_answ() ... ");
-    int
-    //    old_attr,
-    // ответ пользователя
-    answ;
-
-    //  old_attr = settextattr (12);
+    int answ;
 
     for (;;) {
         answ = get_key(false);
         if (answ == 'y') {
-            //      settextattr(old_attr);
             return 1;
         }
 
         if (answ == 'n') {
-            //      settextattr(old_attr);
             return 0;
         }
 
