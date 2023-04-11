@@ -13,7 +13,7 @@
 
 #include "utils.h"
 
-int textattr;
+Colors textattr;
 
 void gracefulexit(int exitcode) {
     showcursor();
@@ -21,7 +21,7 @@ void gracefulexit(int exitcode) {
     exit(exitcode);
 }
 
-int settextattr(int new_attr) {
+Colors settextattr(Colors new_attr) {
     switch (new_attr) {
         case RESET:
         PRINTF("\033[39;49m");
@@ -54,7 +54,7 @@ int settextattr(int new_attr) {
             break;
     }
 
-    int old_attr = textattr;
+    auto old_attr = textattr;
     textattr = new_attr;
     return old_attr;
 }

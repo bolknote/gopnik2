@@ -4,7 +4,6 @@
 #include "main.h"
 #include "list.h"
 #include "hero.h"
-#include "utils.h"
 #include "game.h"
 
 hero::hero(hero_type ht) : desc(), name(), inv(), inv_have() {
@@ -456,11 +455,10 @@ int hero::add_exp(
 }
 
 int hero::add_level() {
-    int
     // старый видеоатрибут
-    old_attr,
+    Colors old_attr;
     // массив реализованных шансов получения навыков
-    chance_ar[4],
+    int chance_ar[4],
     // флаг на повышение здоровья
     flag_health,
             flag, i;

@@ -4,7 +4,6 @@
 #include "../hero.h"
 #include "../list.h"
 #include "../game.h"
-#include "../utils.h"
 
 extern game *cur_game;
 

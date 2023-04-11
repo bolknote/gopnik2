@@ -5,7 +5,6 @@
 #include "list.h"
 #include "hero.h"
 #include "game.h"
-#include "utils.h"
 #include "comm/comm.h"
 #include "pltl/pltl.h"
 
@@ -67,7 +66,7 @@ const char *level_type[43] = {
 
 int main() {
     // объект героя
-    textattr = 0;
+    textattr = RESET;
 
 #ifdef __MINGW32__
     SetConsoleCP(CP_UTF8);

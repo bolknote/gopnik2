@@ -7,7 +7,6 @@
 #include "../list.h"
 #include "../hero.h"
 #include "../game.h"
-#include "../utils.h"
 
 extern game *cur_game;
 

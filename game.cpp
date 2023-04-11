@@ -8,7 +8,6 @@
 #include "list.h"
 #include "comm/comm.h"
 #include "game.h"
-#include "utils.h"
 
 #ifdef __MINGW32__
 #include <stdio.h>
@@ -347,9 +346,9 @@ int game::wait_command() {
     // функция, обрабатывающая вызываемую команду
     FP comm_func;
 
-    int old_attr,
+    Colors old_attr;
     // индекс команды
-    comm_index,
+    int comm_index,
     // значение, возвращённое функцией обработки команды
     ret,
             pltl_ret,
@@ -1579,8 +1578,8 @@ int game::kick_realiz(
         // сообщения для вывода
         const char **mess,
         // видеоатрибуты
-        int attr1,
-        int attr2) {
+        Colors attr1,
+        Colors attr2) {
     int
     // урон
     loss,
@@ -1936,8 +1935,8 @@ int game::fire_realiz(
         // сообщения для вывода
         const char **mess,
         // видеоатрибуты
-        int attr1,
-        int attr2) {
+        Colors attr1,
+        Colors attr2) {
     int
     // индекс инвентаря
     inv_index,
@@ -2100,11 +2099,10 @@ int game::start() {
             "Гопник    - гоп он и есть гоп, тут вопросов быть не должно.\n            бонус - возможность разводить лохов на деньги\n",
             "Нефор     - грёбанный позер, по сути, такой же урод, как и все остальные.\n            бонус - бесплатная проходка в клуб на Сенной\n"};
 
-    int
     // старый видеоатрибут
-    old_attr,
+    Colors old_attr;
     // выбор пользователя в меню
-    user_choice,
+    int user_choice,
     // тип героя пользователя
     user_ht_index,
     // уровень сложности пользователя

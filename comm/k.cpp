@@ -4,7 +4,6 @@
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
-#include "../utils.h"
 #include "../hero.h"
 #include "../game.h"
 

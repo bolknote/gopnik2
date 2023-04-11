@@ -1,14 +1,16 @@
 #include <cstdio>
 
-#define RESET   0x0
-#define BLUE    0x1
-#define GREEN   0x2
-#define CYAN    0x3
-#define RED     0x4
-#define MAGENTA 0x5
-#define YELLOW  0x6
-#define WHITE   0x7
-#define BLACK   0x8
+typedef enum {
+    RESET,
+    BLUE,
+    GREEN,
+    CYAN,
+    RED,
+    MAGENTA,
+    YELLOW,
+    WHITE,
+    BLACK,
+} Colors;
 
 #define GETRANDOM(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
 #define CHANCE(m, n) (GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0)
@@ -16,9 +18,9 @@
 
 #define PRINTF(...) printf (__VA_ARGS__); fflush(stdout)
 
-extern int textattr;
+extern Colors textattr;
 
-int settextattr(int);                // сменить цвет
+Colors settextattr(Colors);// сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
 int superrandom(int, int, int, int); // возвращает номер приращения событий, на котором выпадает текущая вероятность
 void backspace(int = 1);             // удаление с экрана символов, стоящих слева от курсора

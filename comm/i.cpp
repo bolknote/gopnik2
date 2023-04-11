@@ -6,14 +6,12 @@
 #include "../list.h"
 #include "../hero.h"
 #include "../game.h"
-#include "../utils.h"
 
 extern game *cur_game;
 
 int i() {
-    int
     // старый видеоатрибут
-    old_attr;
+    Colors old_attr;
     // длина команды, состоящей из
     // максимального количества символов
     size_t max_len,

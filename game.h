@@ -1,4 +1,5 @@
 #include <cstdio>
+#include "utils.h"
 
 class game {
 public:
@@ -131,12 +132,12 @@ public:
     int gen_enemy_obj(int, int, int = 1, int = 1);                 // сгенерировать объект героя
     int gen_kick_count() const;                                          // расчёт количества ударов героя и противника
     static int kick(hero *, hero *, int, int *);                          // сгенерировать урон удара
-    static int kick_realiz(hero *, hero *, int, const char **, int, int); // реализация ударов
+    static int kick_realiz(hero *, hero *, int, const char **, Colors, Colors); // реализация ударов
     int new_district();                                            // обновление параметров при смене района
     int new_station() const;                                             // обновление параметров при смене станции
     int buy_realiz();                                              // реализация покупки товара
     static int fire(hero *, hero *);                                      // сгенерировать урон выстрела
-    static int fire_realiz(hero *, hero *, int, const char **, int, int); // реализация выстрела
+    static int fire_realiz(hero *, hero *, int, const char **, Colors, Colors); // реализация выстрела
     bool get_open_pr();
 
     bool get_open_hp();
