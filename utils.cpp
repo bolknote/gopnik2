@@ -8,10 +8,7 @@
 #include <stdio.h>
 #include <windows.h>
 #else
-
 #include <termios.h>
-#include <sys/select.h>
-
 #endif
 
 #include "utils.h"
