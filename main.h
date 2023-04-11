@@ -71,6 +71,8 @@ typedef struct inventory {
     int att;
 } __attribute__((__packed__, aligned(8))) inventory;
 
+static_assert(sizeof(inventory) == 56, "Invalid Inventory structure");
+
 typedef struct w_event {
     int type;
     int events;
