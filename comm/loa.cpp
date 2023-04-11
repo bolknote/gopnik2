@@ -14,14 +14,15 @@ int loa() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[7] = {
+    const char *mess[8] = {
             "не могу загрузить файл!\n",
             "версия сохранённого файла выше версии текущей игры\n",
             "файла не сущестует либо найдено несоответсвие в его параметрах\n",
             "Загружаю из файла \"%s\"...\n",
             "не могу открыть файл \"%s\"\n",
             "Игра загружена\n",
-            "При загрузке старой игры текущая будет потеряна. Ты точно этого хочешь? (y/n)\n"
+            "При загрузке старой игры текущая будет потеряна. Ты точно этого хочешь? (y/n)\n",
+            "Несовместимый формат.\n"
     };
 
     float
@@ -50,19 +51,25 @@ int loa() {
 
         fread(&vers, sizeof(vers), 1, load_file);
 
+        // старый формат игры (DOS)
+        if (vers < 1.13) {
+            settextattr(RED);
+            PRINTF("%s%s", mess[0], mess[7]);
+            fclose(load_file);
+
+            return -1;
+        }
+
         if (VERSION < vers) {
             settextattr(RED);
-            PRINTF("%s", mess[0]);
-            PRINTF("%s", mess[1]);
-
+            PRINTF("%s%s", mess[0], mess[1]);
             fclose(load_file);
 
             return -1;
         }
     } else {
         settextattr(RED);
-        PRINTF("%s", mess[0]);
-        PRINTF("%s", mess[2]);
+        PRINTF("%s%s", mess[0], mess[2]);
 
         return -1;
     }
