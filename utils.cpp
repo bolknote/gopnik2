@@ -183,13 +183,33 @@ int get_key(bool echo) {
 
 #ifdef __MINGW32__
     int ch = _getch();
+    // код, означающий, что надо получить следующий код
+    if (ch == 0 || ch == 0xE0) {
+        switch (_getch()) {
+            case 72:
+                // преобразовываем «вверх» в Линуксовый код
+                ch = 0xFF + 65;
+                break;
+            case 80:
+                // преобразовываем «вниз» в Линуксовый код
+                ch = 0xFF + 66;
+                break;
+
+            default:
+                // остальные клавиши нам не важны
+                ch = 0xFF;
+                break;
+        }
+    }
 #else
-    char ch;
+    char c[4];
     long nread;
 
     do {
-        nread = read(STDIN_FILENO, &ch, 1);
+        nread = read(STDIN_FILENO, &c, 4);
     } while (nread == 0);
+
+    int ch = nread == 1 ? c[0] : c[nread - 1] + 0xFF;
 #endif
 
     restore_tty_mode(old_mode);
@@ -200,6 +220,6 @@ int get_key(bool echo) {
         gracefulexit();
     }
 
-    return (int) ch;
+    return ch;
 }
 

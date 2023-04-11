@@ -182,6 +182,7 @@ int main() {
     cur_game->add_location_command(loc_index, &bmar, 0, "bmar", "идти к барыгам");
     cur_game->add_location_command(loc_index, &kl, 0, "kl", "идти в клуб");
     cur_game->add_location_command(loc_index, &gamb, 0, "gamb", "кинуть денег в игровой автомат");
+//    cur_game->add_location_command(loc_index, &gamb, 0, "lar", "сходить в ларёк");
     cur_game->add_location_command(loc_index, &girl, 0, "girl", "завалиться к своей девчонке");
     cur_game->add_location_command(loc_index, &met, 1, "met", "идти в метро");
     cur_game->add_location_command(loc_index, &sav, 1, "sav", "сохранить игру в файл быстрого сохранения");

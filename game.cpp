@@ -403,8 +403,11 @@ int game::wait_command() {
             if (q >= 0xFF) {
                 q -= 0xFF;
                 if ((n > 0) && ((q == 65) || (q == 66))) {
-                    while (i--)
+                    while (i--) {
                         backspace();
+                        PRINTF(" ");
+                        backspace();
+                    }
                     for (j = 0; j < 10; j++)
                         cmd[j] = 0;
                     if (q == 65) {
@@ -1162,8 +1165,11 @@ int game::supple_loc_run_over() {
     loc[active_loc].command_active[is_active_location_command("ob")] = open_ob;
     loc[active_loc].command_active[is_active_location_command("eog")] = main_hero->station == 1 && stay_eog;
 
-    // Игровые автоматы на Чёрной речке
-    loc[active_loc].command_active[is_active_location_command("gamb")] = main_hero->station == 5;
+    // Игровые автоматы и ларёк на Чёрной речке
+    if (main_hero->station == 5) {
+        loc[active_loc].command_active[is_active_location_command("gamb")] = true;
+        //loc[active_loc].command_active[is_active_location_command("lar")] = true;
+    }
 
     active_loc = 1;
 
