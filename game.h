@@ -79,7 +79,7 @@ public:
 
     int clean_mem() const;    // очитска динамических массивов
     int save(FILE *);         // сохранение игры в файл
-    int load(FILE *);         // загрузка игры из файла
+    int load(FILE *, float);  // загрузка игры из файла
     int wait_command();       // ожидание команды пользователя
     static int wait_answ();   // ожидание ответа пользователя
     int add_hero_type(const char *, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int);

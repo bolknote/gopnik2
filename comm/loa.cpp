@@ -82,7 +82,7 @@ int loa() {
     }
 
     // считываем объект игры
-    cur_game->load(load_file);
+    cur_game->load(load_file, vers);
 
     // считываем объект героя
     main_hero->load(load_file, cur_game->ht, cur_game->ht_amount, vers);

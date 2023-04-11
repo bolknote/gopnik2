@@ -290,10 +290,13 @@ int game::save(FILE *sav_file) {
         fwrite(&pltl[i].active, sizeof(pltl[i].active), 1, sav_file);
     }
 
+    // доступность станции «Чёрная речка»
+    fwrite(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, sav_file);
+
     return 0;
 } // end int game::save (FILE *)
 
-int game::load(FILE *load_file) {
+int game::load(FILE *load_file, float ver) {
     fread(&num_w, sizeof(num_w), 1, load_file);
     fread(&num_empty_w, sizeof(num_empty_w), 1, load_file);
     fread(&num_t, sizeof(num_t), 1, load_file);
@@ -331,6 +334,10 @@ int game::load(FILE *load_file) {
 
     for (int i = 0; i < pltl_amount; i++) {
         fread(&pltl[i].active, sizeof(pltl[i].active), 1, load_file);
+    }
+
+    if (ver > 1.20) {
+        fread(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, load_file);
     }
 
     return 0;
