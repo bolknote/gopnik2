@@ -18,7 +18,7 @@ int raid() {
             "Слушай сюда, кент. У нас возникли кое-какие траблы с пацанами с Приморской.\nНамечаются крупные разборки. Короче, подъезжай на купчинский пустырь -\nнаши уже там.\n"};
 
     if (cur_game->open_raid) {
-        cur_game->open_str = true;
+        cur_game->open_str = 1;
         cur_game->open_raid = false;
         cur_game->stay_str = 10;
 

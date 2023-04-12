@@ -61,10 +61,10 @@ game::game()
     open_rep = true;
     open_pr1 = false;
     open_pr2 = false;
-    open_hp1 = false;
-    open_hp2 = false;
-    open_d1 = false;
-    open_d2 = false;
+    open_hp1 = 0;
+    open_hp2 = 0;
+    open_d1 = 0;
+    open_d2 = 0;
     open_trn1 = false;
     open_trn2 = false;
     open_bmar1 = false;
@@ -74,7 +74,7 @@ game::game()
     open_kl1 = false;
     open_kl2 = true;
     open_girl = false;
-    open_str = false;
+    open_str = 0;
     open_raid = false;
     open_ob = false;
 
@@ -1985,11 +1985,11 @@ bool game::get_open_pr() {
     return (main_hero->station) ? (open_pr2) : (open_pr1);
 } // end int game::get_open_pr ()
 
-bool game::get_open_hp() {
+uint8_t game::get_open_hp() {
     return (main_hero->station) ? (open_hp2) : (open_hp1);
 } // end int game::get_open_hp ()
 
-bool game::get_open_d() {
+uint8_t game::get_open_d() {
     return (main_hero->station) ? (open_d2) : (open_d1);
 } // end int game::get_open_d ()
 

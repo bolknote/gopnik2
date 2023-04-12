@@ -26,7 +26,7 @@ int v() {
 
     main_hero = cur_game->main_hero;
 
-    if (cur_game->get_open_hp()) {
+    if (cur_game->get_open_hp() == 2) {
         settextattr(GREEN);
         PRINTF("%s", mess[8]);
 

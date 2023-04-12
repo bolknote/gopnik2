@@ -39,10 +39,10 @@ public:
     bool open_rep;
     bool open_pr1;
     bool open_pr2;
-    bool open_hp1;
-    bool open_hp2;
-    bool open_d1;
-    bool open_d2;
+    uint8_t open_hp1;
+    uint8_t open_hp2;
+    uint8_t open_d1;
+    uint8_t open_d2;
     bool open_trn1;
     bool open_trn2;
     bool open_bmar1;
@@ -52,7 +52,7 @@ public:
     bool open_kl1;
     bool open_kl2;
     bool open_girl;
-    bool open_str;
+    int open_str;
     bool open_raid;
     bool open_ob;
     int num_w;         // счётчик команд "w"
@@ -140,9 +140,9 @@ public:
     static int fire_realiz(hero *, hero *, int, const char **, Colors, Colors); // реализация выстрела
     bool get_open_pr();
 
-    bool get_open_hp();
+    uint8_t get_open_hp();
 
-    bool get_open_d();
+    uint8_t get_open_d();
 
     bool get_open_trn();
 

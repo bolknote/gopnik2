@@ -28,7 +28,7 @@ int str() {
     int i, flag;
 
     if (
-            (!cur_game->open_str) ||
+            (cur_game->open_str == 0) ||
             (cur_game->main_hero->station != 0)) {
         return 0;
     }
@@ -116,7 +116,7 @@ int str() {
 
     cur_game->enemy = nullptr; // str_enemy [GETRANDOM (-1, STR_AMOUNT - 1)];
 
-    cur_game->open_str = true;
+    cur_game->open_str = 2;
 
     // переход к новой локации
     cur_game->set_loc(12);

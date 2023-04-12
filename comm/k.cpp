@@ -157,7 +157,7 @@ int k() {
 
     // стрела #1
     // ---------
-    if (cur_game->open_str) {
+    if (cur_game->open_str == 2) {
         // производим поиск нового противника для героя
 
         old_enemy = cur_game->enemy;
@@ -264,7 +264,7 @@ int k() {
 
     // стрела #2
     // ---------
-    if (cur_game->open_str) {
+    if (cur_game->open_str == 2) {
         i = 0;
 
         // производим удары "свободных" союзников
@@ -346,7 +346,7 @@ int k() {
 
     // стрела #3
     // ---------
-    if (cur_game->open_str) {
+    if (cur_game->open_str == 2) {
         j = 0;
 
         // производим взаимные удары героев басот
@@ -544,7 +544,7 @@ int k() {
         }
 
         // отпин мудака в притоне
-        if (cur_game->get_open_hp()) {
+        if (cur_game->get_open_hp() == 2) {
             main_hero->add_att(enemy->get_max_health());
             cur_game->set_open_hp(0);
             new_loc = 4;
@@ -556,8 +556,9 @@ int k() {
             PRINTF(mess[11], enemy->get_max_health());
         }
 
+
         // отпин мента в притоне
-        if (cur_game->get_open_d()) {
+        if (cur_game->get_open_d() == 2) {
             att = enemy->get_max_health() - (main_hero->old_att - main_hero->get_att());
 
             if (att > 0) {
@@ -576,7 +577,7 @@ int k() {
         }
 
         // стрела
-        if (cur_game->open_str) {
+        if (cur_game->open_str == 2) {
             att = 0;
 
             for (i = 0; i < STR_AMOUNT; i++) {
@@ -585,7 +586,7 @@ int k() {
 
             att = (int) att / STR_AMOUNT;
 
-            cur_game->open_str = false;
+            cur_game->open_str = 0;
             cur_game->stay_str = 0;
 
             // делаем героя обдолбанным
@@ -677,9 +678,9 @@ int k() {
                                 (cur_game->lads_init) &&
                                 (lads->get_health() > 0)) ||
                         // 2ое условие
-                        (cur_game->get_open_hp()) ||
+                        (cur_game->get_open_hp() == 2) ||
                         // 3е условие
-                        (cur_game->get_open_d()))) {
+                        (cur_game->get_open_d() == 2))) {
             if (cur_game->get_stay_mar() == -1) {
                 cur_game->set_stay_mar(20);
             }
@@ -692,13 +693,13 @@ int k() {
                 cur_game->stay_met = 10;
             }
 
-//            if (cur_game->get_open_hp() == 2) {
-//                cur_game->set_open_hp(0);
-//            }
+            if (cur_game->get_open_hp() == 2) {
+                cur_game->set_open_hp(0);
+            }
 
-//            if (cur_game->get_open_d() == 2) {
-//                cur_game->set_open_d(0);
-//            }
+            if (cur_game->get_open_d() == 2) {
+                cur_game->set_open_d(0);
+            }
 
             main_hero->sub_att(20);
 

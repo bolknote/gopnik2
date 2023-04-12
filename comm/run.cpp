@@ -54,7 +54,7 @@ int run() {
         }
 
         // это у нас стрелка?
-        if (cur_game->open_str) {
+        if (cur_game->open_str != 0) {
             int att = std::min(main_hero->get_att() - 20, 0);
             main_hero->set_att(att);
 
@@ -63,7 +63,7 @@ int run() {
 
             // убежал со стрелки
             if (run) {
-                cur_game->open_str = false;
+                cur_game->open_str = 0;
                 cur_game->stay_str = 0;
 
                 if (cur_game->str_enemy_amount) {

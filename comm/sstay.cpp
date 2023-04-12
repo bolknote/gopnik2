@@ -110,7 +110,7 @@ int sstay() {
 
             // стрела #2
             if (cur_game->stay_str == 1) {
-                cur_game->open_str = false;
+                cur_game->open_str = 0;
                 cur_game->open_raid = false;
 
                 flag = 0;
@@ -214,7 +214,7 @@ int sstay() {
                     lads->add_exp(game::get_min_exp_for_level(main_hero->get_level() + main_hero->district * 3));
                     lads->kick_count = lads->get_kick_count();
 
-                    if (!cur_game->get_open_d()) {
+                    if (cur_game->get_open_d() != 2) {
                         settextattr(YELLOW);
                         PRINTF("%s", mess[4]);
                     }
@@ -263,7 +263,7 @@ int sstay() {
             if (
                     (main_hero->station) &&
                     (!cur_game->open_raid) &&
-                    (!cur_game->open_str) &&
+                    (cur_game->open_str == 0) &&
                     (CHANCE(1, 200))) {
                 cur_game->open_raid = true;
 
