@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #ifdef __MINGW32__
+#include <map>
 #include <conio.h>
 #include <stdio.h>
 #include <windows.h>
@@ -185,21 +186,11 @@ int get_key(bool echo) {
     int ch = _getch();
     // код, означающий, что надо получить следующий код
     if (ch == 0 || ch == 0xE0) {
-        switch (_getch()) {
-            case 72:
-                // преобразовываем «вверх» в Линуксовый код
-                ch = 0xFF + 65;
-                break;
-            case 80:
-                // преобразовываем «вниз» в Линуксовый код
-                ch = 0xFF + 66;
-                break;
+        int ch_next = _getch();
 
-            default:
-                // остальные клавиши нам не важны
-                ch = 0xFF;
-                break;
-        }
+        // преобразовываем стрелки вверх и вниз, остальное нам не надо
+        std::map<int, int> win2lin = {{72, 65}, {80, 66}};
+        ch = 0xFF + (win2lin.count(ch_next) ? win2lin[ch_next] : 0);
     }
 #else
     char c[4];
