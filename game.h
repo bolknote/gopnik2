@@ -52,7 +52,7 @@ public:
     bool open_kl1;
     bool open_kl2;
     bool open_girl;
-    int open_str;
+    uint8_t open_str;
     bool open_raid;
     bool open_ob;
     int num_w;         // счётчик команд "w"
