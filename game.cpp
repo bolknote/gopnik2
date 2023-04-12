@@ -1165,10 +1165,8 @@ int game::supple_loc_run_over() {
     loc[active_loc].command_active[is_active_location_command("eog")] = main_hero->station == 1 && stay_eog;
 
     // Игровые автоматы и ларёк на Чёрной речке
-    if (main_hero->station == 5) {
-        loc[active_loc].command_active[is_active_location_command("gamb")] = true;
-        //loc[active_loc].command_active[is_active_location_command("lar")] = true;
-    }
+    loc[active_loc].command_active[is_active_location_command("gamb")] = main_hero->station == 5;
+    //loc[active_loc].command_active[is_active_location_command("lar")] = main_hero->station == 5;
 
     active_loc = 1;
 
