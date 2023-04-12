@@ -187,7 +187,7 @@ int get_key(bool echo) {
     // код, означающий, что надо получить следующий код
     if (ch == 0 || ch == 0xE0) {
         // преобразовываем стрелки вверх и вниз, остальное нам не надо
-        const static std::unordered_map<int, int> win2lin = {{72, 65}, {80, 66}};
+        const static std::unordered_map<char, char> win2lin = {{72, 65}, {80, 66}};
 
         auto it = win2lin.find(_getch());
         ch = 0xFF + (it == win2lin.end() ? 0 : it->second);
