@@ -186,11 +186,11 @@ int get_key(bool echo) {
     int ch = _getch();
     // код, означающий, что надо получить следующий код
     if (ch == 0 || ch == 0xE0) {
-        int ch_next = _getch();
-
         // преобразовываем стрелки вверх и вниз, остальное нам не надо
-        std::map<int, int> win2lin = {{72, 65}, {80, 66}};
-        ch = 0xFF + (win2lin.count(ch_next) ? win2lin[ch_next] : 0);
+        static std::map<int, int> win2lin = {{72, 65}, {80, 66}};
+
+        auto it = win2lin.find(_getch());
+        ch = 0xFF + (it == win2lin.end() ? 0 : it->second);
     }
 #else
     char c[4];
