@@ -14,7 +14,7 @@ int mh() {
 
     // сообщения функции
     const char *mess[6] = {
-            "Пиво прибавляет %iз. Здоровье: %i/%i. Осталось %d бутылок пива\n",
+            "Пиво прибавляет %iз. Здоровье: %i/%i. Осталось %1.f бутылок пива\n",
             "Пива нету\n",
             "Чувак, у тебя и так дохрена здоровья\n",
             "Ты не можешь пить из-за сломанной челюсти\n",
@@ -65,7 +65,7 @@ int mh() {
                     }
 
                     settextattr(GREEN);
-                    PRINTF(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer());
+                    PRINTF(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer() * .5);
 
                     // больше лимита опьянения
                     if (d >= ((main_hero->district + 1))) {
