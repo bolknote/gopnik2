@@ -33,7 +33,7 @@ int s() {
             "Точность %i%%\n",
             "Точность 90%% - %i ударов, Точность %i удара %i%%\n",
             "Броня ",
-            "Пиво %d бутылок\n",
+            "Пиво %.1f л.\n",
             "Пива нету\n",
             "Бабки %i руб.\n",
             "Бабла нету\n",
@@ -367,7 +367,7 @@ int s() {
 
     if (main_hero->get_beer() > 0) {
         settextattr(WHITE);
-        PRINTF(mess[19], main_hero->get_beer());
+        PRINTF(mess[19], main_hero->get_beer() * .5);
     } else {
         settextattr(RED);
         PRINTF("%s", mess[20]);
