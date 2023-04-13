@@ -67,8 +67,19 @@ int mh() {
                     settextattr(GREEN);
                     PRINTF(mess[0], i, main_hero->get_health(), main_hero->get_max_health(), main_hero->get_beer() * .5);
 
+                    int luck;
+                    if (cur_game->stay_mh > 0) {
+                        luck = CHANCE(75, 100);
+                    } else {
+                        // stay_mh отрицательная, поэтому сложение
+                        auto bad_luck = 75 + 10 * cur_game->stay_mh--;
+                        luck = bad_luck > 0 ? CHANCE(bad_luck, 100) : 1;
+                    }
+
+                    printf("Luck: %d - %d\n", luck, cur_game->stay_mh);
+
                     // больше лимита опьянения
-                    if (d >= ((main_hero->district + 1))) {
+                    if (d > main_hero->district + luck) {
                         cur_game->stay_mh = 10;
                         main_hero->drunk = true;
 

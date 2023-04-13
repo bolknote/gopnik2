@@ -65,6 +65,7 @@ public:
     int stay_mar1;
     int stay_mar2;
     int stay_kos;
+    // количество ходов, которые действует опьянение, отрицательное значение используется как счётчик выпитых бытылок
     int stay_mh;
     int stay_v;
     int stay_kl1;
@@ -73,7 +74,7 @@ public:
     int stay_str;
     int stay_eog;
     int st_amount;
-    char **st; // -- тест
+    char **st; // матерные стихи для слэма
     game();
 
     ~game();
