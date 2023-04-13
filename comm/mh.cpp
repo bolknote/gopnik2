@@ -76,8 +76,6 @@ int mh() {
                         luck = bad_luck > 0 ? CHANCE(bad_luck, 100) : 0;
                     }
 
-                    printf("Luck: %d - %d\n", luck, cur_game->stay_mh);
-
                     // больше лимита опьянения
                     if (d > main_hero->district + luck) {
                         cur_game->stay_mh = 10;
