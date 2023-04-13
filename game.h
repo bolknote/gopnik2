@@ -93,6 +93,19 @@ public:
 
     int add_location_command(int, FP, int, const char *, const char *) const;
 
+    ///
+    /// \param cur_hero Объект героя
+    /// \param name Название инвенторя
+    /// \param district Район, в котором появляется инвентарь
+    /// \param events Кол-во событий для вероятности появления
+    /// \param have Герой владеет данным инвентарём
+    /// \param force Добавляет силу
+    /// \param smart Добавляет ловкость
+    /// \param vita Добавляет живучесть
+    /// \param luck Добавляет удача
+    /// \param armo Добавляет броня
+    /// \param loss Добавляет урон
+    /// \return Номер добавленной позиции в инвентаре
     static int add_inventory(hero *, const char *, int, int, int, int, int, int, int, int, int);
 
     int add_w_event(int, int, const char *);
