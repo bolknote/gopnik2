@@ -72,7 +72,7 @@ int mh() {
                         luck = CHANCE(75, 100);
                     } else {
                         // stay_mh отрицательная, поэтому сложение
-                        auto bad_luck = 75 + 10 * cur_game->stay_mh--;
+                        auto bad_luck = 90 + 15 * cur_game->stay_mh--;
                         luck = bad_luck > 0 ? CHANCE(bad_luck, 100) : 0;
                     }
 
