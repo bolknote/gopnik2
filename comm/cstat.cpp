@@ -8,7 +8,7 @@
 
 #ifndef __MINGW32__
 #include <unistd.h>
-#include <sys/termios.h>
+#include <termios.h>
 #endif
 
 extern game *cur_game;
