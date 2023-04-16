@@ -9,7 +9,7 @@
 
 extern game *cur_game;
 
-int k() {
+int k(bool skip_turn) {
     // объект героя
     hero *main_hero;
     // объект врага
@@ -255,8 +255,10 @@ int k() {
     empty_k_count = main_hero->get_level() % 10 + main_hero->get_min_empty_kick_count() + main_hero->district;
 
     if (flag) {
-        // удар героя
-        game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, GREEN, RED);
+        if (!skip_turn) {
+            // удар героя
+            game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, GREEN, RED);
+        }
     } else {
         // выстрел героя
         game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, GREEN, RED);
@@ -744,3 +746,8 @@ int k() {
 
     return 0;
 }
+
+int k() {
+    return k(false);
+}
+
