@@ -45,7 +45,8 @@ int sstay() {
 
     int flag;
 
-    if (!cur_game->stn[5].avail && cur_game->num_k == 0 && CHANCE(1, 200)) {
+    // Станция «Чёрная речка» ещё не открыта и мы «на районе»
+    if (!cur_game->stn[5].avail && cur_game->active_loc == 0 && CHANCE(1, 200)) {
         int idx = main_hero->inv[game::search_inv(main_hero, "Мобильник")].have ? 8 : 19;
 
         cur_game->stn[5].avail = true;
