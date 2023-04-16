@@ -91,7 +91,7 @@ int run() {
             settextattr(YELLOW);
             PRINTF("%s", mess[3]);
             // не удалось сбежать, надо биться
-            return k();
+            return k(true);
         }
     }
 
