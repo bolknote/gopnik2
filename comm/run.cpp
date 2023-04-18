@@ -28,6 +28,10 @@ int run() {
 
     main_hero = cur_game->main_hero;
 
+    if (main_hero->get_level_of_complexity() != 0) {
+        return 0;
+    }
+
     if (main_hero->broken_foot) {
         settextattr(YELLOW);
         PRINTF("%s", mess[4]);
