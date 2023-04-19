@@ -588,13 +588,6 @@ int main() {
         cur_game->main_hero->create_hero_inventory();
     }
 
-    // TODO
-    cur_game->main_hero->add_money(10000);
-    cur_game->main_hero->add_force(1000);
-    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Пистолет")].have = true;
-    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Патроны")].have = 500;
-//    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Шокер")].have = true;
-
     // переходим в состояние ожидания команды пользователя
     cur_game->wait_command();
     exit:
