@@ -65,6 +65,7 @@ int sstay() {
                     (strcmp(cur_game->active_cmd, "w") == 0)) ||
             ((cur_game->active_loc == 1) &&
              ((strcmp(cur_game->active_cmd, "k") == 0) ||
+             (strcmp(cur_game->active_cmd, "sh") == 0) ||
               (strcmp(cur_game->active_cmd, "f") == 0)))) {
 
         if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {

@@ -1,6 +1,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include <algorithm>
 #include <unistd.h>
 
 #ifdef __MINGW32__
@@ -218,5 +219,12 @@ int get_key(bool echo) {
     }
 
     return ch;
+}
+
+const char* plural(int n, const char* q1, const char* q2, const char* q5) {
+    static uint_fast8_t keys[] = {2, 0, 1, 1, 1, 2};
+    const char* args[] = {q1, q2, q5};
+
+    return args[n % 100 > 4 && n % 100 < 20 ? 2 : keys[std::min(n % 10, 5)]];
 }
 

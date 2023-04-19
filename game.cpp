@@ -385,8 +385,7 @@ int game::wait_command() {
                 cmd[i] = (char) q;
                 i++;
             }
-            if (q == 10 || q == 13)
-            {
+            if (q == 10 || q == 13) {
                 PRINTF("\n");
                 break;
             }
@@ -1166,13 +1165,16 @@ int game::supple_loc_run_over() {
 
     // Игровые автоматы и ларёк на Чёрной речке
     loc[active_loc].command_active[is_active_location_command("gamb")] = main_hero->station == 5;
-    //loc[active_loc].command_active[is_active_location_command("lar")] = main_hero->station == 5;
+    loc[active_loc].command_active[is_active_location_command("lar")] = main_hero->station == 5;
 
     active_loc = 1;
 
     loc[active_loc].command_active[is_active_location_command("v")] = get_open_pr();
     loc[active_loc].command_active[is_active_location_command("f")] =
             main_hero->inv[search_inv(main_hero, "Пистолет")].have;
+    loc[active_loc].command_active[is_active_location_command("sh")] =
+            main_hero->inv[search_inv(main_hero, "Шокер")].have;
+
     loc[active_loc].command_active[is_active_location_command("run")] = main_hero->get_level_of_complexity() == 0;
 
     active_loc = 4;
@@ -1453,6 +1455,27 @@ int game::gen_enemy_obj(
     // генерируем самокрутки противника
     if ((ht[ht_index].ciga_events > 0) && (CHANCE(1, ht[ht_index].ciga_events))) {
         enemy->add_ciga(1);
+    }
+
+    // генерируем шокер, он будет вываливаться из Мента
+    if (CHANCE(1, 5)) {
+        int i_sh = game::search_inv(main_hero, "Шокер");
+
+        if (!main_hero->inv[i_sh].have && strcmp(enemy->get_type(), "Мент") == 0) {
+            game::add_inventory(
+                    enemy,
+                    inv[i_sh].name,
+                    inv[i_sh].district,
+                    inv[i_sh].events,
+                    1,
+                    inv[i_sh].force,
+                    inv[i_sh].smart,
+                    inv[i_sh].vita,
+                    inv[i_sh].luck,
+                    inv[i_sh].armo,
+                    inv[i_sh].loss
+            );
+        }
     }
 
     if (gkc) {
@@ -1915,13 +1938,74 @@ int game::fire(
     if (
             (!CHANCE(1, hero1->get_luck() + 1)) &&
             (CHANCE(1, (hero2->get_luck() < 10) ? (hero2->get_luck()) : (10)))) {
-        loss = GETRANDOM(20, 80);
+        loss = GETRANDOM(40, 160);
     }
 
     hero2->sub_health(loss);
 
     return loss;
 } // end int game::fire (hero *, hero *)
+
+int game::shock_realiz(
+        // герой, ударяющий шокером
+        hero *hero1,
+        // герой, ударяемый шокером
+        hero *hero2,
+        // максимальное кол-во ударов впустую
+        int empty_k_count,
+        // сообщения для вывода
+        const char **mess,
+        // видеоатрибуты
+        Colors attr1,
+        Colors attr2) {
+    int
+    // индекс инвентаря
+    inv_index,
+    // урон
+    loss;
+
+    if (hero1->get_health() == 0) {
+        return 0;
+    }
+
+    inv_index = search_inv(hero1, "Батарейка");
+
+    if (hero1->inv[inv_index].have > 0) {
+        do {
+            loss = (fire(hero1, hero2) + 1) / 2;
+        } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
+
+        if (loss > 0) {
+            hero1->empty_kick_count = 0;
+        } else {
+            hero1->empty_kick_count++;
+        }
+    }
+
+    if (mess != nullptr) {
+        if (hero1->inv[inv_index].have > 0) {
+            if (loss == 0) {
+                settextattr(attr2);
+                PRINTF("%s", mess[0]);
+            } else {
+                settextattr(attr1);
+                PRINTF(mess[1], loss, hero2->get_health());
+            }
+
+            hero1->inv[inv_index].have--;
+
+            if (CHANCE(1, 200)) {
+                PRINTF("%s", mess[3]);
+                hero1->inv[search_inv(hero1, "Шокер")].have = false;
+            }
+        } else {
+            settextattr(attr2);
+            PRINTF("%s", mess[2]);
+        }
+    }
+
+    return 0;
+} // int game::shock_realiz (hero *, hero *, int, char **, int, int)
 
 int game::fire_realiz(
         // герой, производящий выстрел

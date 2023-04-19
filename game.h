@@ -187,4 +187,6 @@ public:
     int set_stay_mar(int);
 
     int set_stay_kl(int);
+
+    static int shock_realiz(hero *hero1, hero *hero2, int empty_k_count, const char **mess, Colors attr1, Colors attr2);
 };

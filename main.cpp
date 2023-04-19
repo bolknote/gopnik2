@@ -181,7 +181,7 @@ int main() {
     cur_game->add_location_command(loc_index, &bmar, 0, "bmar", "идти к барыгам");
     cur_game->add_location_command(loc_index, &kl, 0, "kl", "идти в клуб");
     cur_game->add_location_command(loc_index, &gamb, 0, "gamb", "кинуть денег в игровой автомат");
-//    cur_game->add_location_command(loc_index, &gamb, 0, "lar", "сходить в ларёк");
+    cur_game->add_location_command(loc_index, &lar, 0, "lar", "затариться в ларьке");
     cur_game->add_location_command(loc_index, &girl, 0, "girl", "завалиться к своей девчонке");
     cur_game->add_location_command(loc_index, &met, 1, "met", "идти в метро");
     cur_game->add_location_command(loc_index, &sav, 1, "sav", "сохранить игру в файл быстрого сохранения");
@@ -199,6 +199,7 @@ int main() {
     cur_game->add_location_command(loc_index, &k, 1, "k", "гасить мудака, который тебе встретился на дороге");
     cur_game->add_location_command(loc_index, &run, 0, "run", "попытаться съебаться");
     cur_game->add_location_command(loc_index, &k, 0, "f", "выстрелить в пинаемого мудака");
+    cur_game->add_location_command(loc_index, &k, 0, "sh", "гасануть мудака шокером");
     cur_game->add_location_command(loc_index, &v, 0, "v", "позвать подмогу");
     cur_game->add_location_command(loc_index, &s, 1, "s", "посмотреть в лужу на свою уродскую рожу");
     cur_game->add_location_command(loc_index, &sv, 1, "sv", "приглядеться к мудаку, которого пинаешь");
@@ -499,6 +500,7 @@ int main() {
 
     cur_game->add_location_command(loc_index, &k, 1, "k", "гасить мудака, который тебе встретился на дороге");
     cur_game->add_location_command(loc_index, &k, 0, "f", "выстрелить в пинаемого мудака");
+    cur_game->add_location_command(loc_index, &k, 0, "sh", "гасануть мудака шокером");
     cur_game->add_location_command(loc_index, &run, 0, "run", "попытаться съебаться");
     cur_game->add_location_command(loc_index, &s, 1, "s", "посмотреть в лужу на свою уродскую рожу");
     cur_game->add_location_command(loc_index, &so, 1, "so", "посмотреть, как дела у твоей братвы");
@@ -528,7 +530,8 @@ int main() {
     cur_game->add_station("Сенная площадь", 1, "");
     cur_game->add_station("Невский проспект", 1, "");
     cur_game->add_station("Петроградская", 1, "");
-    cur_game->add_station("Чёрная речка", 0, "Куда прёшь, не видишь, ремонт?");
+//    cur_game->add_station("Чёрная речка", 0, "Куда прёшь, не видишь, ремонт?");
+    cur_game->add_station("Чёрная речка", 1, "Куда прёшь, не видишь, ремонт?");
 
     // добавляем функции обработки сюжетных линий
     cur_game->add_plot_line(&pltl0);
@@ -545,6 +548,31 @@ int main() {
     cur_game->add_w_event(0, 5, "ты вышел к гаражам");
     cur_game->add_w_event(0, 5, "ты вышел на пустырь");
 
+    loc_index = cur_game->add_location("Ларёк");
+    cur_game->add_location_command(loc_index, &vpl, 1, "b", "что-нибудь купить");
+    cur_game->add_location_command(loc_index, &w, 1, "w", "закончить покупки");
+    cur_game->add_location_command(loc_index, &s, 1, "s", "посмотреть в лужу на свою уродскую рожу");
+    cur_game->add_location_command(loc_index, &help, 1, "help", "чё за батва?");
+    cur_game->add_location_command(loc_index, &e, 1, "e", "выйти");
+    cur_game->add_location_command(loc_index, &i, 1, "i", "посмотреть описания команд");
+
+    pl_index = cur_game->add_price_list(loc_index, &lar_b);
+
+    plm_index = cur_game->add_price_list_memb(pl_index, "Стакан семок", "прибавляет 3з", 2);
+
+    cur_game->add_buy_phrase(pl_index, plm_index, "Семки - лучшая еда гопника!");
+    cur_game->add_buy_phrase(pl_index, plm_index, "Ну чё, полузгаем?");
+
+    plm_index = cur_game->add_price_list_memb(pl_index, "Шаверма", "прибавляет 13з", 7);
+    cur_game->add_buy_phrase(pl_index, plm_index, "Щас похаваем!");
+    cur_game->add_buy_phrase(pl_index, plm_index, "Ух, сука, горячая!");
+
+    plm_index = cur_game->add_price_list_memb(pl_index, "Батарейка", "для шокера", 25);
+    cur_game->add_buy_phrase(pl_index, plm_index, "Давай-ка её сюда!");
+
+    cur_game->pl[pl_index].members[plm_index].no_repeat = false;
+
+
     // инициализируем новую игру
     cur_game->start();
 
@@ -559,6 +587,13 @@ int main() {
     } else {
         cur_game->main_hero->create_hero_inventory();
     }
+
+    // TODO
+    cur_game->main_hero->add_money(10000);
+    cur_game->main_hero->add_force(1000);
+    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Пистолет")].have = true;
+    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Патроны")].have = 500;
+//    cur_game->main_hero->inv[game::search_inv(cur_game->main_hero, "Шокер")].have = true;
 
     // переходим в состояние ожидания команды пользователя
     cur_game->wait_command();

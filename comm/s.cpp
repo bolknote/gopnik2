@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -13,7 +15,7 @@ int s() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[30] = {
+    const char *mess[] = {
             "Ты %s %i уровня - %s ",
             "Твоё погоняло: ",
             "Сейчас у тебя %i опыта, а для прокачки надо %i\n",
@@ -43,7 +45,19 @@ int s() {
             " Сломана нога",
             "Обдолбанный ",
             "Бухой",
-            " (%i шт.)"};
+            " (%i шт.)",
+            " (%i %s)"
+    };
+
+    const auto printf_quant = [&mess](const inventory inv) {
+        if (inv.have > 1) {
+            if (strcmp(inv.name, "Батарейка") == 0) {
+                PRINTF(mess[30], inv.have, plural(inv.have, "заряд", "заряда", "зарядов"));
+            } else {
+                PRINTF(mess[29], inv.have);
+            }
+        }
+    };
 
     const char *
             // тип обозначения героя
@@ -208,11 +222,8 @@ int s() {
                     PRINTF("%c%c)", 8, 8);
                 }
 
-                if (main_hero->inv[i].have > 1) {
-                    PRINTF(mess[29], main_hero->inv[i].have);
-                }
-
-                PRINTF("%s", "\n");
+                printf_quant(main_hero->inv[i]);
+                PRINTF("\n");
             }
         }
     }
@@ -245,11 +256,8 @@ int s() {
 
             PRINTF("%s", main_hero->inv[i].name);
 
-            if (main_hero->inv[i].have > 1) {
-                PRINTF(mess[29], main_hero->inv[i].have);
-            }
-
-            PRINTF("%s", "\n");
+            printf_quant(main_hero->inv[i]);
+            PRINTF("\n");
         }
     }
 
@@ -276,9 +284,7 @@ int s() {
                 PRINTF(" %s", main_hero->inv[i].name);
             }
 
-            if (main_hero->inv[i].have > 1) {
-                PRINTF(mess[29], main_hero->inv[i].have);
-            }
+            printf_quant(main_hero->inv[i]);
         }
     }
 
@@ -350,9 +356,7 @@ int s() {
                     PRINTF(" %s", main_hero->inv[i].name);
                 }
 
-                if (main_hero->inv[i].have > 1) {
-                    PRINTF(mess[29], main_hero->inv[i].have);
-                }
+                printf_quant(main_hero->inv[i]);
             }
         }
 

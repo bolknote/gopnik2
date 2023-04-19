@@ -24,7 +24,7 @@ int k(bool skip_turn) {
     hero *hero2;
 
     // сообщения функции
-    const char *mess[30] = {
+    const char *mess[] = {
             "Чё машешь копытами? Ищи мудака, которого будешь пинать!\n",
             "Враг сдох\n",
             "Ты сдох\n",
@@ -54,7 +54,11 @@ int k(bool skip_turn) {
             "На некоторое время ты схоронился в общаге, где бурно отпраздновал с пацанами\nпобеду неимоверным количеством выпитого пива и выкуренных косяков.\n",
             "Вы запинали этих ублюдков, в который раз доказав свою правоту!\nНакупив бухла, вы отправились в общагу праздновать победу\n",
             "Ты по-чоткому выручил своих корешей! Они этого не забудут!\n",
-            "Прошло энное количество дней. Сейчас ты бухой и обдолбанный\nстоишь у стен общаги и вновь готов творить свои гоповские дела!\n"};
+            "Прошло энное количество дней. Сейчас ты бухой и обдолбанный\nстоишь у стен общаги и вновь готов творить свои гоповские дела!\n",
+            "У тебя нет шокера\n",
+            "Враг валяется в отключке\n",
+            "Ты случайно пнул камень, под которым нашёл %i рубл%s.\n",
+    };
 
     // сообщения при ударе героя
     const char *hero_kick_mess[7] = {
@@ -111,10 +115,18 @@ int k(bool skip_turn) {
 
     // сообщения при выстреле героя
     const char *hero_fire_mess[4] = {
-            "Это был хреновый выстрел.",
-            "Ты выстрелил и ранил врага на %iз. У него осталось %i.",
+            "Это был хреновый выстрел.\n",
+            "Ты выстрелил и ранил врага на %iз. У него осталось %i.\n",
             " Осталось %i патронов\n",
             "Чем стрелять собрался? Патронов-то нету\n"};
+
+    // сообщения при ударе шокером
+    const char *hero_shok_mess[] = {
+            "Ты промахнулся, не достал противника.\n",
+            "Ты ударил врага шокером на %iз. У него осталось %i.\n",
+            "Шокер разряжен, батарейка сдохла.\n",
+            "В шокере что-то хлопнуло и запахло палёной изоляцией — сломался.\n",
+    };
 
     int
     // индекс инвентаря
@@ -149,8 +161,15 @@ int k(bool skip_turn) {
     hero_rel_health;
 
     if (cur_game->active_loc == 0) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[0]);
+        if (CHANCE(1, 1000)) {
+            settextattr(YELLOW);
+            int money = GETRANDOM(1, 5);
+            PRINTF(mess[32], money, plural(money, "рубль", "рубля", "рублей"));
+            cur_game->main_hero->add_money(money);
+        } else {
+            settextattr(YELLOW);
+            PRINTF("%s", mess[0]);
+        }
 
         return 0;
     }
@@ -219,9 +238,8 @@ int k(bool skip_turn) {
         } else {
             inv_index = game::search_inv(main_hero, "Глушитель");
 
-            if (
-                    (main_hero->inv[inv_index].have == 0) &&
-                    (main_hero->station)) {
+
+            if (main_hero->inv[inv_index].have == 0) {
                 settextattr(RED);
                 PRINTF("%s", mess[17]);
 
@@ -229,6 +247,17 @@ int k(bool skip_turn) {
             } else {
                 flag = 0;
             }
+        }
+    } else if (strcmp(cur_game->active_cmd, "sh") == 0) {
+        inv_index = game::search_inv(main_hero, "Шокер");
+
+        if (main_hero->inv[inv_index].have == 0) {
+            settextattr(RED);
+            PRINTF("%s", mess[30]);
+
+            return 0;
+        } else {
+            flag = 2;
         }
     }
 
@@ -254,14 +283,26 @@ int k(bool skip_turn) {
 
     empty_k_count = main_hero->get_level() % 10 + main_hero->get_min_empty_kick_count() + main_hero->district;
 
-    if (flag) {
-        if (!skip_turn) {
-            // удар героя
-            game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, GREEN, RED);
-        }
-    } else {
-        // выстрел героя
-        game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, GREEN, RED);
+    switch (flag) {
+        case 0:
+            // выстрел героя
+            game::fire_realiz(main_hero, enemy, empty_k_count, hero_fire_mess, GREEN, RED);
+            break;
+
+        case 1:
+            if (!skip_turn) {
+                // удар героя
+                game::kick_realiz(main_hero, enemy, empty_k_count, hero_kick_mess, GREEN, RED);
+            }
+            break;
+
+        case 2:
+            // удар шокером
+            game::shock_realiz(main_hero, enemy, empty_k_count, hero_shok_mess, GREEN, RED);
+            break;
+
+        default:
+            break;
     }
 
     // стрела #2
@@ -445,7 +486,7 @@ int k(bool skip_turn) {
         main_hero->empty_kick_count = 0;
 
         settextattr(GREEN);
-        PRINTF("%s", mess[1]);
+        PRINTF("%s", strcmp(cur_game->active_cmd, "sh") == 0 ? mess[31] : mess[1]);
 
         old_level = main_hero->get_level();
         old_district = main_hero->add_exp(

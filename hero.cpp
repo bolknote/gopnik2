@@ -754,4 +754,7 @@ void hero::create_hero_inventory() {
     int inv_index = game::add_inventory(this, "Барсетка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     this->inv[inv_index].att = 2;
+
+    game::add_inventory(this, "Шокер", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Батарейка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 }
