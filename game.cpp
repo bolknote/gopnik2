@@ -517,7 +517,7 @@ int game::add_hero_type(
         int ciga_events) {
     ht = add_new_element(ht, ht_amount, sizeof(hero_type));
 
-    ht[ht_amount].type = strdup(type);
+    ht[ht_amount].type = g_strdup(type);
     ht[ht_amount].gamer = gamer;
 
     ht[ht_amount].desc[0] = force;
@@ -559,8 +559,8 @@ int game::add_hero_phrase(
             ht[ht_index].hero_phrase_amount,
             sizeof(char *));
 
-    ht[ht_index].hero_addr[ht[ht_index].hero_phrase_amount] = strdup(hero_addr);
-    ht[ht_index].hero_reply[ht[ht_index].hero_phrase_amount] = strdup(hero_reply);
+    ht[ht_index].hero_addr[ht[ht_index].hero_phrase_amount] = g_strdup(hero_addr);
+    ht[ht_index].hero_reply[ht[ht_index].hero_phrase_amount] = g_strdup(hero_reply);
 
     ht[ht_index].hero_phrase_amount++;
 
@@ -583,8 +583,8 @@ int game::add_enemy_phrase(
             ht[ht_index].enemy_phrase_amount,
             sizeof(char *));
 
-    ht[ht_index].enemy_addr[ht[ht_index].enemy_phrase_amount] = strdup(enemy_addr);
-    ht[ht_index].enemy_reply[ht[ht_index].enemy_phrase_amount] = strdup(enemy_reply);
+    ht[ht_index].enemy_addr[ht[ht_index].enemy_phrase_amount] = g_strdup(enemy_addr);
+    ht[ht_index].enemy_reply[ht[ht_index].enemy_phrase_amount] = g_strdup(enemy_reply);
 
     ht[ht_index].enemy_phrase_amount++;
 
@@ -596,7 +596,7 @@ int game::add_location(
         const char *name) {
     loc = add_new_element(loc, loc_amount, sizeof(location));
 
-    loc[loc_amount].name = strdup(name);
+    loc[loc_amount].name = g_strdup(name);
     loc[loc_amount].comm_amount = 0;
     loc[loc_amount].num_func = nullptr;
 
@@ -635,8 +635,8 @@ int game::add_location_command(
 
     loc[loc_index].command_func[loc[loc_index].comm_amount] = command_func;
     loc[loc_index].command_active[loc[loc_index].comm_amount] = command_active;
-    loc[loc_index].command[loc[loc_index].comm_amount] = strdup(command);
-    loc[loc_index].command_desc[loc[loc_index].comm_amount] = strdup(command_desc);
+    loc[loc_index].command[loc[loc_index].comm_amount] = g_strdup(command);
+    loc[loc_index].command_desc[loc[loc_index].comm_amount] = g_strdup(command_desc);
 
     loc[loc_index].comm_amount++;
 
@@ -667,7 +667,7 @@ int game::add_inventory(
             cur_hero->inv_amount,
             sizeof(inventory));
 
-    cur_hero->inv[cur_hero->inv_amount].name = strdup(name);
+    cur_hero->inv[cur_hero->inv_amount].name = g_strdup(name);
     cur_hero->inv[cur_hero->inv_amount].district = district;
     cur_hero->inv[cur_hero->inv_amount].events = events;
     cur_hero->inv[cur_hero->inv_amount].have = have;
@@ -699,7 +699,7 @@ int game::add_w_event(
 
     we[we_amount].type = type;
     we[we_amount].events = events;
-    we[we_amount].event = strdup(event);
+    we[we_amount].event = g_strdup(event);
 
     // активность ставим по умолчанию
     we[we_amount].active = true;
@@ -739,8 +739,8 @@ int game::add_price_list_memb(
             pl[pl_index].member_amount,
             sizeof(price_list_memb));
 
-    pl[pl_index].members[pl[pl_index].member_amount].name = strdup(name);
-    pl[pl_index].members[pl[pl_index].member_amount].comment = strdup(comment);
+    pl[pl_index].members[pl[pl_index].member_amount].name = g_strdup(name);
+    pl[pl_index].members[pl[pl_index].member_amount].comment = g_strdup(comment);
     pl[pl_index].members[pl[pl_index].member_amount].price = price;
     pl[pl_index].members[pl[pl_index].member_amount].buy_phrase_amount = 0;
 
@@ -766,7 +766,7 @@ int game::add_buy_phrase(
             pl[pl_index].members[plm_index].buy_phrase_amount,
             sizeof(char *));
 
-    pl[pl_index].members[plm_index].buy_phrase[pl[pl_index].members[plm_index].buy_phrase_amount] = strdup(buy_phrase);
+    pl[pl_index].members[plm_index].buy_phrase[pl[pl_index].members[plm_index].buy_phrase_amount] = g_strdup(buy_phrase);
 
     pl[pl_index].members[plm_index].buy_phrase_amount++;
 
@@ -782,9 +782,9 @@ int game::add_station(
         const char *unavail_reason) {
     stn = add_new_element(stn, stn_amount, sizeof(station));
 
-    stn[stn_amount].name = strdup(name);
+    stn[stn_amount].name = g_strdup(name);
     stn[stn_amount].avail = active;
-    stn[stn_amount].unavail_reason = strdup(unavail_reason);
+    stn[stn_amount].unavail_reason = g_strdup(unavail_reason);
 
     stn_amount++;
 
@@ -2325,14 +2325,14 @@ int game::start() {
         settextattr(WHITE);
 #ifdef __MINGW32__
         int wlen = 100;
-        int save = _setmode(_fileno(stdin), _O_U16TEXT);
+        int save = _setmode(STDIN_FILENO, _O_U16TEXT);
         wchar_t *wstr = (wchar_t *) malloc(wlen * sizeof(wchar_t));
         fgetws(wstr, wlen, stdin);
 
         int len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, 0, 0, 0, 0);
         user_name = (char *) malloc(len);
         WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
-        _setmode(_fileno(stdin), save);
+        _setmode(STDIN_FILENO, save);
 
         free(wstr);
 #else

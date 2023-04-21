@@ -19,6 +19,7 @@ typedef enum {
 
 extern Colors textattr;
 
+char *g_strdup(const char *src);      // замена нестандартной функции дублирования строки
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
