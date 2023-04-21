@@ -2191,10 +2191,6 @@ int game::start() {
     user_level_of_complexity,
             j, i;
 
-    char
-            *user_name,
-            *tmp;
-
     old_attr = settextattr(WHITE);
     if (access(cur_game->file_name, F_OK) != -1) {
         PRINTF("%s", mess[0]);
@@ -2316,6 +2312,8 @@ int game::start() {
         }
     }
 
+    char *user_name;
+
     // определение имени героя пользователя
     showcursor();
     for (;;) {
@@ -2338,14 +2336,26 @@ int game::start() {
 #else
         char buf[100];
         user_name = fgets(buf, sizeof(buf) - 1, stdin);
-        fseek(stdin, 0, SEEK_END);
 #endif
+        fseek(stdin, 0, SEEK_END);
 
-        tmp = user_name + strlen(user_name);
-        while ((tmp >= user_name) && ((*tmp == 10) || (*tmp == 0))) {
-            *tmp = 0;
-            tmp--;
+        // удаление пробельных символов с двух сторон
+        auto start = 0;
+        while (user_name[start] && isspace(user_name[start])) {
+            start++;
         }
+        if (i > 0) {
+            memmove(user_name, user_name + start, strlen(user_name) - start + 1);
+        }
+
+        size_t end = strlen(user_name);
+        while (end > 0 && isspace(user_name[end - 1])) {
+            end--;
+        }
+        user_name[end] = 0;
+
+        printf("<%s>\n", user_name);
+
         if (strlen(user_name) != 0) {
             if (isdigitstr(user_name)) {
                 settextattr(RED);
