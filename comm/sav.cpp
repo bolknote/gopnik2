@@ -8,7 +8,7 @@
 extern game *cur_game;
 
 int sav() {
-    FILE *sav_file = nullptr;
+    FILE *sav_file;
 
     // сообщения функции
     const char *mess[] = {
