@@ -5,12 +5,14 @@
 #include <unistd.h>
 
 #ifdef __MINGW32__
-#include <unordered_map>
 #include <conio.h>
 #include <stdio.h>
 #include <windows.h>
+#include <cstdint>
 #else
+
 #include <termios.h>
+
 #endif
 
 #include "utils.h"
@@ -26,31 +28,31 @@ void gracefulexit(int exitcode) {
 Colors settextattr(Colors new_attr) {
     switch (new_attr) {
         case RESET:
-        PRINTF("\033[39;49m");
+            PRINTF("\033[39;49m");
             break;
         case BLUE:
-        PRINTF("\033[01;34m");
+            PRINTF("\033[01;34m");
             break;
         case GREEN:
-        PRINTF("\033[01;32m");
+            PRINTF("\033[01;32m");
             break;
         case CYAN:
-        PRINTF("\033[01;36m");
+            PRINTF("\033[01;36m");
             break;
         case RED:
-        PRINTF("\033[01;31m");
+            PRINTF("\033[01;31m");
             break;
         case MAGENTA:
-        PRINTF("\033[01;35m");
+            PRINTF("\033[01;35m");
             break;
         case YELLOW:
-        PRINTF("\033[01;33m");
+            PRINTF("\033[01;33m");
             break;
         case WHITE:
-        PRINTF("\033[01;37m");
+            PRINTF("\033[01;37m");
             break;
         case BLACK:
-        PRINTF("\033[01;30m");
+            PRINTF("\033[01;30m");
             break;
         default:
             break;
@@ -221,9 +223,9 @@ int get_key(bool echo) {
     return ch;
 }
 
-const char* plural(int n, const char* q1, const char* q2, const char* q5) {
+const char *plural(int n, const char *q1, const char *q2, const char *q5) {
     static uint_fast8_t keys[] = {2, 0, 1, 1, 1, 2};
-    const char* args[] = {q1, q2, q5};
+    const char *args[] = {q1, q2, q5};
 
     return args[n % 100 > 4 && n % 100 < 20 ? 2 : keys[std::min(n % 10, 5)]];
 }
