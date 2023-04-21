@@ -17,9 +17,14 @@ typedef enum {
 #define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
 #define PRINTF(...) printf (__VA_ARGS__); fflush(stdout)
 
+// В MSYS (не путать с MSYS2) нет strdup
+#if defined(__MINGW32__) && !defined(__MINGW64_VERSION_MAJOR)
+#define strdup(s) (__extension__({ const char* __s = (s); size_t __l = strlen(__s) + 1; char* __d = (char*)malloc(__l);\
+__d ? (char*)memcpy(__d, __s, __l) : nullptr; }))
+#endif
+
 extern Colors textattr;
 
-char *g_strdup(const char *src);      // замена нестандартной функции дублирования строки
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр

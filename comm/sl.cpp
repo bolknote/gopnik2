@@ -42,7 +42,7 @@ int sl() {
             for (int i = 0; GOP2ST[i] != nullptr; i++) {
                 cur_game->st = add_new_element (cur_game->st, cur_game->st_amount, sizeof (char *));
 
-                cur_game->st[cur_game->st_amount] = g_strdup(GOP2ST[i]);
+                cur_game->st[cur_game->st_amount] = strdup(GOP2ST[i]);
                 cur_game->st_amount++;
             }
         }

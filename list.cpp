@@ -28,12 +28,12 @@ void list::add(const char *val) {
             new_p = new node();    // новый элемент
             new_p->next = nullptr;
             new_p->prev = cur_p;
-            new_p->val = g_strdup(val);
+            new_p->val = strdup(val);
             cur_p->next = new_p;
             cur_p = cur_p->next; // не забываем переходить в конец
         } else {
             cur_p = new node(); // создадим список
-            cur_p->val = g_strdup(val);
+            cur_p->val = strdup(val);
             cur_p->next = nullptr;
             cur_p->prev = nullptr;
         }
@@ -58,7 +58,7 @@ const char *list::up() {
     if (!cur_p) {
         return "";
     }
-    ret = g_strdup(cur_p->val);
+    ret = strdup(cur_p->val);
     if (cur_p->prev) {
         cur_p = cur_p->prev;
     }

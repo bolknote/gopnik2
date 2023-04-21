@@ -230,8 +230,3 @@ const char *plural(int n, const char *q1, const char *q2, const char *q5) {
     return args[n % 100 > 4 && n % 100 < 20 ? 2 : keys[std::min(n % 10, 5)]];
 }
 
-char *g_strdup(const char *src) {
-    size_t len = strlen(src) + 1;
-    char *s = (char *) malloc(len);
-    return s == nullptr ? nullptr : (char *) memcpy(s, src, len);
-}

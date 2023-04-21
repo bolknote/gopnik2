@@ -220,7 +220,7 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
 int hero::set_name(
         // имя
         const char *_name) {
-    name = g_strdup(_name);
+    name = strdup(_name);
 
     return 0;
 }
