@@ -2354,8 +2354,6 @@ int game::start() {
         }
         user_name[end] = 0;
 
-        printf("<%s>\n", user_name);
-
         if (strlen(user_name) != 0) {
             if (isdigitstr(user_name)) {
                 settextattr(RED);
