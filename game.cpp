@@ -2337,7 +2337,8 @@ int game::start() {
         free(wstr);
 #else
         char buf[100];
-        user_name = fgets(buf, 99, stdin);
+        user_name = fgets(buf, sizeof(buf), stdin);
+        fseek(stdin, 0, SEEK_END);
 #endif
 
         tmp = user_name + strlen(user_name);
