@@ -19,7 +19,7 @@ typedef enum {
 
 extern Colors textattr;
 
-const char* plural(int n, const char* q1, const char* q2, const char* q5); // выбор множественного числа
+const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
 int superrandom(int, int, int, int); // возвращает номер приращения событий, на котором выпадает текущая вероятность
@@ -44,4 +44,5 @@ DWORD set_tty_special_mode(bool = true);  // установить специал
 void restore_tty_mode(struct termios tty);
 
 struct termios set_tty_special_mode(bool = true);
+
 #endif
