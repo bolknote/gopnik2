@@ -11,7 +11,7 @@ int hp() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[1] = {
+    const char *mess[] = {
             "Это %s %i уровня\n"};
 
     int

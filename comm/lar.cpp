@@ -11,7 +11,7 @@ int lar() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[1] = {
+    const char *mess[] = {
             "Чё брать будешь?\n"};
 
     main_hero = cur_game->main_hero;

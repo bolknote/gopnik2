@@ -13,7 +13,7 @@ int wes() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[1] = {
+    const char *mess[] = {
             "У тебя нет вещей, которые ты мог бы продать\n"};
     int i;
 

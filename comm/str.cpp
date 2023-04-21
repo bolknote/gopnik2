@@ -13,7 +13,7 @@ int str() {
     hero **str_enemy;
 
     // сообщения функции
-    const char *mess[6] = {
+    const char *mess[] = {
             "Ваша басота\n",
             "Их басота\n",
             " (это ты)",
@@ -127,7 +127,7 @@ int str() {
     */
 
     // сообщения функции
-    // char *mess [0] = {};
+    // char *mess [] = {};
 
     return 0;
 }

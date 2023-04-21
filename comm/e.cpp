@@ -7,7 +7,7 @@
 extern game *cur_game;
 
 int e() {
-    const char *mess[1] = {
+    const char *mess[] = {
             "Уже уходишь? Очканул, сука?! (y/n)\n"};
     settextattr(YELLOW);
     PRINTF("%s", mess[0]);

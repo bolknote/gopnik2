@@ -8,7 +8,7 @@ extern game *cur_game;
 
 int ssl() {
     // сообщения функции
-    const char *mess[4] = {
+    const char *mess[] = {
             "Лёгкий слэм\n",
             "Агрессивный слэм\n",
             "Прыгнуть в центр круга перед рубиловом\n",

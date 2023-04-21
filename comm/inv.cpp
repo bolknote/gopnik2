@@ -11,7 +11,7 @@ int inv() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[3] = {
+    const char *mess[] = {
             " (%i шт.)",
             " не используется",
             " продано"};

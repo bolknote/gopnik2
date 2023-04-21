@@ -2158,7 +2158,7 @@ int game::set_stay_kl(
 } // end int game::set_stay_mar (int)
 
 int game::start() {
-    const char *mess[21] = {
+    const char *mess[] = {
             "Выбери, чё те надо:\n",
             "1-Начать новую игру\n",
             "2-Загрузить игру\n",

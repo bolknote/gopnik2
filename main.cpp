@@ -19,7 +19,7 @@
 
 game *cur_game;
 
-const char *level_type[43] = {
+const char *level_type[] = {
         "Опущенный", // 0 - 9
         "Полное ЧМО",
         "ЧМО",

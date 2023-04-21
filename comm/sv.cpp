@@ -15,7 +15,7 @@ int sv() {
     hero *enemy;
 
     // сообщения функции
-    const char *mess[10] = {
+    const char *mess[] = {
             "Это %s %i уровня - %s\n",
             "Сл:%i Лв:%i Жв:%i Уд:%i\n",
             "Урон %i-%i\n",

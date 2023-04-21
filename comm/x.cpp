@@ -11,7 +11,7 @@ int x() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[2] = {
+    const char *mess[] = {
             "Барыги тебе дали денег за хлам\n",
             "У тебя нет хлама\n"};
 

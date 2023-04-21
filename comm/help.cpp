@@ -11,7 +11,7 @@ int help() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[1] = {
+    const char *mess[] = {
             "Ну слушай, %s, в чём тут батва\n\n"};
 
     main_hero = cur_game->main_hero;
