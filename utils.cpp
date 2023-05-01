@@ -8,7 +8,6 @@
 #include <conio.h>
 #include <stdio.h>
 #include <windows.h>
-#include <cstdint>
 #else
 
 #include <termios.h>
@@ -224,7 +223,7 @@ int get_key(bool echo) {
 }
 
 const char *plural(int n, const char *q1, const char *q2, const char *q5) {
-    static uint_fast8_t keys[] = {2, 0, 1, 1, 1, 2};
+    static char keys[] = {2, 0, 1, 1, 1, 2};
     const char *args[] = {q1, q2, q5};
 
     return args[n % 100 > 4 && n % 100 < 20 ? 2 : keys[std::min(n % 10, 5)]];
