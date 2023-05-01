@@ -19,6 +19,8 @@ typedef enum {
 
 extern Colors textattr;
 
+char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
+
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
@@ -34,8 +36,6 @@ int get_key(bool = true);            // сосчитать код нажатой
 int get_key_async();                 // получить код нажатой клавиши не блокируя (без вывода на экран)
 
 #ifdef __MINGW32__
-char *strdup(const char *s1);        // прототип для MSYS, в utils.cpp есть weak-символ, который его перекроет
-
 #include <windows.h>
 #define SLEEP(dur) Sleep(dur)
 void restore_tty_mode(DWORD mode);        // восстановить прежний режим консоли
