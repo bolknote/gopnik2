@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -11,24 +13,23 @@ int girl() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "У тебя нет девчонки\n",
             "Твоя девчонка живёт не в этом районе\n",
             "Ну не пойдёшь же ты, как последняя сволочь, без ничего?\n",
-            "Ты расслабился, отдохнул и можешь снова творить свои гоповские дела\n"};
+            "Ты расслабился, отдохнул и можешь снова творить свои гоповские дела\n",
+    };
 
     main_hero = cur_game->main_hero;
 
     if (cur_game->open_girl == 0) {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0] << std::flush;
 
         return 0;
     }
 
     if (main_hero->station != (cur_game->open_girl - 1)) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[1]);
+        std::cout << YELLOW << mess[1] << std::flush;
 
         return 0;
     }
@@ -40,11 +41,9 @@ int girl() {
 
         main_hero->inv[game::search_inv(main_hero, "Цветы и конфеты")].have--;
 
-        settextattr(GREEN);
-        PRINTF("%s", mess[3]);
+        std::cout << GREEN << mess[3] << std::flush;
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[2]);
+        std::cout << RED << mess[2] << std::flush;
     }
 
     return 0;

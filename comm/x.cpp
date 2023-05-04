@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -11,9 +13,10 @@ int x() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Барыги тебе дали денег за хлам\n",
-            "У тебя нет хлама\n"};
+            "У тебя нет хлама\n",
+    };
 
     float
     // коэффициент
@@ -28,11 +31,9 @@ int x() {
 
         main_hero->sub_stuff(main_hero->get_stuff());
 
-        settextattr(GREEN);
-        PRINTF("%s", mess[0]);
+        std::cout << GREEN << mess[0] << std::flush;
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[1]);
+        std::cout << RED << mess[1] << std::flush;
     }
 
     return 0;

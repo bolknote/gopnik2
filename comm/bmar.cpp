@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -11,7 +13,7 @@ int bmar() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты пока не знаешь, где находятся барыги\n",
             "Ты пришёл к барыгам\n"};
 
@@ -24,14 +26,12 @@ int bmar() {
     }
 
     if (cur_game->get_open_bmar() == 0) {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0] << std::flush;
 
         return 0;
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[1]);
+    std::cout << WHITE << mess[1] << std::flush;
 
     // переход к новой локации
     cur_game->set_loc(5);

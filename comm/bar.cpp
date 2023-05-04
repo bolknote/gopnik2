@@ -1,4 +1,4 @@
-
+#include <iostream>
 
 #include "../main.h"
 #include "../hero.h"
@@ -18,11 +18,12 @@ int bar(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Да не охота жрать\n",
             "Да чё-то не охота пить\n",
             "Ты не можешь есть из-за сломанной челюсти\n",
-            "Ты не можешь пить из-за сломанной челюсти\n"};
+            "Ты не можешь пить из-за сломанной челюсти\n",
+    };
 
     int
     // добавляемое здоровье
@@ -60,11 +61,9 @@ int bar(
         *flag = 1;
     } else {
         if (main_hero->broken_jaw) {
-            settextattr(RED);
-            PRINTF("%s", plm_index ? mess[3] : mess[2]);
+            std::cout << RED << (plm_index ? mess[3] : mess[2]) << std::flush;
         } else {
-            settextattr(GREEN);
-            PRINTF("%s", plm_index ? mess[1] : mess[0]);
+            std::cout << GREEN << (plm_index ? mess[1] : mess[0]) << std::flush;
         }
     }
 

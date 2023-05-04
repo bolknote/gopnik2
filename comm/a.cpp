@@ -1,3 +1,4 @@
+#include <iostream>
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -8,7 +9,7 @@ extern game *cur_game;
 
 int a() {
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "-Тут есть пара хороших мест, куда можно сходить\n",
             "Ты узнал, где находятся барыги и качалка\n"};
 
@@ -18,11 +19,7 @@ int a() {
         cur_game->set_open_trn(1);
         cur_game->set_open_bmar(1);
 
-        settextattr(YELLOW);
-        PRINTF("%s", mess[0]);
-
-        settextattr(GREEN);
-        PRINTF("%s", mess[1]);
+        std::cout << YELLOW << mess[0] << GREEN << mess[1] << std::flush;
     }
 
     return 0;

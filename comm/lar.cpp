@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -11,8 +13,9 @@ int lar() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Чё брать будешь?\n"};
+    const std::string mess[] = {
+            "Чё брать будешь?\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -20,8 +23,7 @@ int lar() {
         return 0;
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[0]);
+    std::cout << WHITE << mess[0] << std::flush;
 
     // переход к новой локации
     cur_game->set_loc(14);

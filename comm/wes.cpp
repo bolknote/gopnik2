@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <iostream>
 
 #include "comm.h"
 #include "../main.h"
@@ -13,8 +14,9 @@ int wes() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "У тебя нет вещей, которые ты мог бы продать\n"};
+    const std::string mess[] = {
+            "У тебя нет вещей, которые ты мог бы продать\n",
+    };
     int i;
 
     main_hero = cur_game->main_hero;
@@ -38,8 +40,7 @@ int wes() {
         }
 
         if (main_hero->inv_have_amount == 0) {
-            settextattr(RED);
-            PRINTF("%s", mess[0]);
+            std::cout << RED << mess[0] << std::flush;
 
             return 0;
         }
