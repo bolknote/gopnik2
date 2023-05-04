@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cctype>
+#include <iostream>
 #include <unistd.h>
 
 #include "main.h"
@@ -831,42 +832,36 @@ int game::is_active_location_command(
 
 int game::headband() {
     _clsc();
-    settextattr(WHITE);
-    PRINTF("\n\n\n\n\n");
-    PRINTF("                                               ██\n");
-    PRINTF("                                              █  █\n");
-    PRINTF("                ███ ████ ████ █  █ █  █ █  █      █\n");
-    PRINTF("                █   █  █ █  █ █  █ █  █ █ █      █\n");
-    PRINTF("                █   █  █ █  █ ████ █ ██ ██  ██  █\n");
-    PRINTF("                █   █  █ █  █ █  █ ██ █ █ █    █\n");
-    PRINTF("                █   ████ █  █ █  █ █  █ █  █  █\n");
-    PRINTF("                                              █████\n");
-    PRINTF("\n\n\n");
-    PRINTF("                     ███ ОКОРЕНИЕ\n");
-    PRINTF("                     █ █\n");
-    PRINTF("                     █ █    █ █ УЛЬТУРНОЙ\n");
-    PRINTF("                            ██\n");
-    PRINTF("                            █ █     ██ ТОЛИЦЫ\n");
-    PRINTF("                                    █\n");
-    PRINTF("                                    ██\n");
-    PRINTF("\n\n\n\n\n\n\n");
-    settextattr(WHITE);
-    PRINTF("                     Version %4.2f Release\n\n", VERSION);
-    PRINTF("Концепция. . . . . . . . . . . . . . . . . . . . . . . . . ");
-    settextattr(YELLOW);
-    PRINTF("V.P.\n");
-    settextattr(WHITE);
-    PRINTF("Программирование . . . . . . . . . . . . . . . . . . . . ");
-    settextattr(YELLOW);
-    PRINTF("d-maxx\n");
-    settextattr(WHITE);
-    PRINTF("Порт под Linux . . . . . . . . . . . . . . . . . . . . ");
-    settextattr(YELLOW);
-    PRINTF("tiandrey\n");
-    settextattr(WHITE);
-    PRINTF("Исправление ошибок и дальнейшее портирование . . . . . ");
-    settextattr(YELLOW);
-    PRINTF("bolknote\n");
+    std::cout
+            << WHITE
+            << "\n\n\n\n\n"
+            << "                                               ██\n"
+            << "                                              █  █\n"
+            << "                ███ ████ ████ █  █ █  █ █  █      █\n"
+            << "                █   █  █ █  █ █  █ █  █ █ █      █\n"
+            << "                █   █  █ █  █ ████ █ ██ ██  ██  █\n"
+            << "                █   █  █ █  █ █  █ ██ █ █ █    █\n"
+            << "                █   ████ █  █ █  █ █  █ █  █  █\n"
+            << "                                              █████\n"
+            << "\n\n\n"
+            << "                     ███ ОКОРЕНИЕ\n"
+            << "                     █ █\n"
+            << "                     █ █    █ █ УЛЬТУРНОЙ\n"
+            << "                            ██\n"
+            << "                            █ █     ██ ТОЛИЦЫ\n"
+            << "                                    █\n"
+            << "                                    ██\n"
+            << "\n\n\n\n\n\n\n"
+            << "                     Version " << VERSION << " Release\n\n"
+            << "Концепция. . . . . . . . . . . . . . . . . . . . . . . . . "
+            << YELLOW << "V.P.\n"
+            << WHITE << "Программирование . . . . . . . . . . . . . . . . . . . . "
+            << YELLOW << "d-maxx\n"
+            << WHITE << "Порт под Linux . . . . . . . . . . . . . . . . . . . . "
+            << YELLOW << "tiandrey\n"
+            << WHITE << "Исправление ошибок и дальнейшее портирование . . . . . "
+            << YELLOW << "bolknote\n" << RESET
+            << std::flush;
 
     hidecursor();
     int ch = get_key();

@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <iostream>
 
 typedef enum {
     RESET,
@@ -21,6 +22,7 @@ extern Colors textattr;
 
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
+std::ostream &operator<<(std::ostream &os, const Colors &color); // перегрузка оператора для вывода цвета
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр

@@ -2,8 +2,9 @@
 #include <cctype>
 #include <cstdlib>
 #include <algorithm>
-#include <unistd.h>
 #include <iostream>
+#include <map>
+#include <unistd.h>
 
 #ifdef __MINGW32__
 #include <conio.h>
@@ -25,47 +26,29 @@ void gracefulexit(int exitcode) {
     exit(exitcode);
 }
 
+std::ostream &operator<<(std::ostream &os, const Colors &color) {
+    static const std::map <Colors, std::string> colorNames = {
+            {RESET,   "39;49m"},
+            {BLUE,    "01;34m"},
+            {GREEN,   "01;32m"},
+            {CYAN,    "01;36m"},
+            {RED,     "01;31m"},
+            {MAGENTA, "01;35m"},
+            {YELLOW,  "01;33m"},
+            {WHITE,   "01;37m"},
+            {BLACK,   "01;30m"},
+    };
+
+    textattr = color;
+
+    os << "\033[" << colorNames.at(color);
+    return os;
+}
+
 Colors settextattr(Colors new_attr) {
-    std::string ansi_code;
-
-    switch (new_attr) {
-        case RESET:
-            ansi_code = "39;49m";
-            break;
-        case BLUE:
-            ansi_code = "01;34m";
-            break;
-        case GREEN:
-            ansi_code = "01;32m";
-            break;
-        case CYAN:
-            ansi_code = "01;36m";
-            break;
-        case RED:
-            ansi_code = "01;31m";
-            break;
-        case MAGENTA:
-            ansi_code = "01;35m";
-            break;
-        case YELLOW:
-            ansi_code = "01;33m";
-            break;
-        case WHITE:
-            ansi_code = "01;37m";
-            break;
-        case BLACK:
-            ansi_code = "01;30m";
-            break;
-        default:
-            break;
-    }
-
-    if (!ansi_code.empty()) {
-        std::cout << "\033[" << ansi_code << std::flush;
-    }
-
     auto old_attr = textattr;
-    textattr = new_attr;
+    std::cout << new_attr << std::flush;
+
     return old_attr;
 }
 
@@ -223,7 +206,7 @@ int get_key(bool echo) {
 
     if (ch == 0x03) // Ctrl+C
     {
-        std::cout << "Ctrl+C hit, exiting...\n" << std::flush;
+        std::cout << "\nCtrl+C hit, exiting...\n" << std::flush;
         gracefulexit();
     }
 
