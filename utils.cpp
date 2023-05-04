@@ -107,8 +107,9 @@ int superrandom(
 
 void backspace(int cnt) {
     for (int i = 0; i < cnt; i++) {
-        std::cout << "\033[D" << std::flush;
+        std::cout << "\033[D";
     }
+    std::cout << std::flush;
 }
 
 void forward(int cnt) {
