@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
 
 #include "pltl.h"
 #include "../main.h"
@@ -17,7 +18,7 @@ int pltl2(
     // объект врага
     //  hero *enemy;
 
-    const char *mess[] = {
+    const std::string mess[] = {
             "Бродя по окрестностям с самыми грязными намерениями...\r\n",
             "Ты увидел, как злой маньяк развращал клёвую чиксу.\r\n",
             "Хочешь вмешаться? (y/n)\r\n",
@@ -55,26 +56,22 @@ int pltl2(
             }
 
             if (CHANCE(1, 50)) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[0]);
+                std::cout << WHITE << mess[0] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[1]);
+                std::cout << mess[1] << std::flush;
 
                 get_key();
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[2]);
+                std::cout << YELLOW << mess[2] << std::flush;
 
                 if (game::wait_answ()) {
-                    settextattr(GREEN);
-                    PRINTF("%s", mess[4]);
+                    std::cout << GREEN << mess[4] << std::flush;
 
                     get_key();
 
-                    settextattr(RED);
-                    PRINTF("%s", mess[5]);
+                    std::cout <<RED << mess[5] << std::flush;
 
                     get_key();
 
@@ -106,8 +103,7 @@ int pltl2(
 
                     ret = 2;
                 } else {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[3]);
+                    std::cout << WHITE << mess[3] << std::flush;
                 }
             }
             break;
@@ -119,8 +115,7 @@ int pltl2(
                 cur_game->open_girl = main_hero->station + 1;
                 cur_game->pltl[pltl_index].active = -1;
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[6]);
+                std::cout << YELLOW << mess[6] << std::flush;
             }
             break;
     }

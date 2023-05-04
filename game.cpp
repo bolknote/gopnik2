@@ -368,8 +368,7 @@ int game::wait_command() {
         old_attr = settextattr(BLACK);
         PRINTF("%s", loc[active_loc].name);
 
-        settextattr(WHITE);
-        PRINTF("\\");
+        std::cout << WHITE << "\\" << std::flush;
 
         for (i = 0; i < 10; i++) {
             cmd[i] = 0;
@@ -387,14 +386,14 @@ int game::wait_command() {
                 i++;
             }
             if (q == 10 || q == 13) {
-                PRINTF("\n");
+                std::cout << "\n" << std::flush;
                 break;
             }
 
             if ((q == 127 || q == 8) && i > 0) // из-за непонятных мне проблем с совместимостью BS==127
             {
                 backspace();
-                PRINTF(" ");
+                std::cout << " "  << std::flush;
                 backspace();
                 cmd[i--] = 0;
             }
@@ -404,7 +403,7 @@ int game::wait_command() {
                 if ((n > 0) && ((q == 65) || (q == 66))) {
                     while (i--) {
                         backspace();
-                        PRINTF(" ");
+                        std::cout << " " << std::flush;
                         backspace();
                     }
                     for (j = 0; j < 10; j++)
@@ -477,7 +476,7 @@ int game::wait_answ() {
             return 0;
         }
 
-        PRINTF("чё-то ты не то жмёшь\n");
+        std::cout << "чё-то ты не то жмёшь\n" << std::flush;
     }
 } // end int game::wait_answ ()
 
@@ -1318,7 +1317,7 @@ int game::gen_enemy_obj(
     if (!(enemy = new hero(ht[ht_index]))) {
         clean_mem();
 
-        fprintf(stderr, "debug: game.cpp:1921: epic fail\n");
+        std::cerr << "debug: game.cpp:" << __LINE__ << ": epic fail\n";
         gracefulexit(1);
     }
 
@@ -1695,9 +1694,10 @@ int game::new_district() {
         main_hero->district = DISTRICT_AMOUNT - 1;
 
         if (!end_of_game) {
-            settextattr(BLUE);
-            PRINTF("Ты запинал кучу мудаков и стал по-жестокому крутым\n");
-            PRINTF("Самое время отправится в общагу и отомстить коменде!\n");
+            std::cout << BLUE
+                      << "Ты запинал кучу мудаков и стал по-жестокому крутым\n"
+                      << "Самое время отправится в общагу и отомстить коменде!\n"
+                      << std::flush;
 
             end_of_game = 1;
 
@@ -1742,11 +1742,8 @@ int game::new_district() {
 
     main_hero->set_att((main_hero->district + 1) * 100);
 
-    settextattr(BLUE);
-    PRINTF("Ты стал самым крутым в этом районе. Отправляйся в следующий.\n");
-
-    settextattr(YELLOW);
-    PRINTF("Хочешь сохранить свои достижения? (y/n)\n");
+    std::cout << BLUE << "Ты стал самым крутым в этом районе. Отправляйся в следующий.\n"
+              << YELLOW << "Хочешь сохранить свои достижения? (y/n)\n" << std::flush;
 
     if (wait_answ()) {
         sav();
@@ -1870,8 +1867,7 @@ int game::buy_realiz() {
                 if (
                         (plm.no_repeat) &&
                         (main_hero->inv[inv_index].have)) {
-                    settextattr(YELLOW);
-                    PRINTF("У тебя уже это есть. Точно хочешь купить ещё раз? (y/n)\n");
+                    std::cout << YELLOW << "У тебя уже это есть. Точно хочешь купить ещё раз? (y/n)\n" << std::flush;
 
                     flag2 = wait_answ();
 
@@ -1907,8 +1903,7 @@ int game::buy_realiz() {
                 main_hero->sub_money(plm.price);
             }
         } else {
-            settextattr(RED);
-            PRINTF("не хватает бабла\n");
+            std::cout << RED << "не хватает бабла\n" << std::flush;
         }
     } else {
         if (loc[active_loc].num_func != nullptr) {

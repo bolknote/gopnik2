@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 
 #include "pltl.h"
 #include "../main.h"
@@ -16,7 +17,7 @@ int pltl0(
     // объект врага
     hero *enemy;
 
-    const char *mess[] = {
+    const std::string mess[] = {
             "Год 2xxx от р.х.\r\n",
             "Ты отправляешься из своего заполярного города в Питер поступать в универ.\r\nЕле-еле ты поступаешь в Институт Торчков, Мудаков и Отморозков.\r\nС этого момента у тебя начинается весёлая разгульная жизнь.\r\nТы не знал проблем и даже умудрялся всё сдавать, чтобы не вылететь.\r\nНо однажды, когда ты вернулся из универа в свою родную общагу на\r\nПарке Победы, ты столкнулся с комендантшой...\r\n",
             "Коменда: Задолбал ты меня, засранец! Вали из общаги!\r\n",
@@ -55,53 +56,40 @@ int pltl0(
     switch (cur_game->pltl[pltl_index].active) {
         case 0:
             if (cur_game->active_pltl == pltl_index) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
-                PRINTF("%s", mess[9]);
-
-                settextattr(YELLOW);
-                PRINTF("i.\r\n");
+                std::cout << WHITE << mess[8] << mess[9] << YELLOW << "i.\n" << std::flush;
 
                 cur_game->active_pltl = -1;
                 cur_game->pltl[pltl_index].active++;
             } else {
-                settextattr(WHITE);
-                PRINTF("%s", mess[0]);
+                std::cout << WHITE << mess[0] << std::flush;
 
                 get_key(false);
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[1]);
+                std::cout << WHITE << mess[1] << std::flush;
 
                 get_key(false);
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[2]);
+                std::cout << YELLOW << mess[2] << std::flush;
 
                 get_key(false);
 
-                settextattr(GREEN);
-                PRINTF("%s", mess[3]);
+                std::cout << GREEN << mess[3] << std::flush;
 
                 get_key(false);
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[4]);
+                std::cout << YELLOW << mess[4] << std::flush;
 
                 get_key(false);
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[5]);
+                std::cout << WHITE << mess[5] << std::flush;
 
                 get_key(false);
 
-                settextattr(RED);
-                PRINTF("%s", mess[6]);
+                std::cout << RED << mess[6] << std::flush;
 
                 get_key(false);
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[7]);
+                std::cout << WHITE << mess[7] << std::flush;
 
                 ret = 1;
                 cur_game->active_pltl = pltl_index;
@@ -115,8 +103,7 @@ int pltl0(
                     (cur_game->end_of_game) &&
                     (cur_game->stay_eog == 0) &&
                     (cur_game->active_pltl != pltl_index)) {
-                settextattr(RED);
-                PRINTF("%s", mess[22]);
+                std::cout << RED << mess[22] << std::flush;
 
                 get_key();
 
@@ -127,22 +114,15 @@ int pltl0(
                     (cur_game->stay_eog > 0) &&
                     (strcmp(cur_game->active_cmd, "eog") == 0) &&
                     (main_hero->station == 1)) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[10]);
+                std::cout << WHITE << mess[10] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[11]);
+                std::cout << mess[11] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[12]);
-
-                settextattr(RED);
-                PRINTF("%s", mess[13]);
-
-                settextattr(WHITE);
-                PRINTF("%s", mess[14]);
+                std::cout << mess[12] << RED << mess[13] << WHITE << mess[14] << std::flush;
 
                 get_key();
 
@@ -174,28 +154,23 @@ int pltl0(
                     (cur_game->active_pltl == pltl_index) &&
                     (!cur_game->enemy_init)) {
                 if (main_hero->get_health() == 0) {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[18]);
+                    std::cout << WHITE << mess[18] << std::flush;
 
                     get_key();
                 } else {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[15]);
+                    std::cout << WHITE << mess[15] << std::flush;
 
                     get_key();
 
-                    settextattr(YELLOW);
-                    PRINTF("%s", mess[16]);
+                    std::cout << YELLOW << mess[16] << std::flush;
 
                     get_key();
 
-                    settextattr(GREEN);
-                    PRINTF("%s", mess[17]);
+                    std::cout << GREEN << mess[17] << std::flush;
 
                     get_key();
 
-                    settextattr(YELLOW);
-                    PRINTF("%s", mess[20]);
+                    std::cout << YELLOW << mess[20] << std::flush;
 
                     get_key();
 
@@ -229,20 +204,17 @@ int pltl0(
                 main_hero = cur_game->main_hero;
 
                 if (main_hero->get_health() == 0) {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[18]);
+                    std::cout << WHITE << mess[18] << std::flush;
 
                     get_key();
                 } else {
                     get_key();
 
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[19]);
+                    std::cout << WHITE << mess[19] << std::flush;
 
                     get_key();
 
-                    settextattr(RED);
-                    PRINTF("%s", mess[21]);
+                    std::cout << RED << mess[21] << std::flush;
 
                     get_key();
 

@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
 
 #include "pltl.h"
 #include "../main.h"
@@ -17,7 +18,7 @@ int pltl1(
     // объект врага
     hero *enemy;
 
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты",
             "Дэвид Блэйн",
             "Бродя по окрестностям с самыми грязными намерениями...\r\n",
@@ -80,70 +81,57 @@ int pltl1(
             if (
                     (CHANCE(1, 10)) &&
                     (main_hero->get_beer() > 2)) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[2]);
+                std::cout << WHITE << mess[2] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[3]);
+                std::cout << mess[3] << std::flush;
 
                 get_key();
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[4]);
+                std::cout << YELLOW << mess[4] << std::flush;
 
                 if (game::wait_answ()) {
-                    settextattr(GREEN);
-                    PRINTF("%s: %s", mess[0], mess[5]);
+                    std::cout << GREEN << mess[0] << ": " << mess[5] << std::flush;
                 } else {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[6]);
+                    std::cout << WHITE << mess[6] << std::flush;
                 }
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s %s", mess[1], mess[7], mess[8]);
+                std::cout << BLUE << mess[1] << ": " << mess[7] << " " << mess[8] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[9]);
+                std::cout << GREEN << mess[0] << ": " << mess[9] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[10]);
+                std::cout << BLUE << mess[1] << ": " << mess[10] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[11]);
+                std::cout << GREEN << mess[0] << ": " << mess[11] << std::flush;
 
                 get_key();
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[12]);
+                std::cout << YELLOW << mess[12] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[13]);
+                std::cout << GREEN << mess[0] << ": " << mess[13] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[14]);
+                std::cout << BLUE << mess[1] << ": " << mess[14] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[15]);
+                std::cout << GREEN << mess[0] << ": " << mess[15] << std::flush;
 
                 get_key();
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[16]);
+                std::cout << WHITE << mess[16] << std::flush;
 
                 main_hero->sub_beer(main_hero->get_beer());
 
@@ -161,52 +149,43 @@ int pltl1(
                     (main_hero->get_beer() > 4) &&
                     (!main_hero->broken_jaw) &&
                     (!main_hero->broken_foot)) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[2]);
+                std::cout << WHITE << mess[2] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[3]);
+                std::cout << mess[3] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s\r\n", mess[1], mess[7]);
+                std::cout << BLUE << mess[1] << ": " << mess[7] << "\n" << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[17]);
+                std::cout << GREEN << mess[0] << ": " << mess[17] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[18]);
+                std::cout << BLUE << mess[1] << ": " << mess[18] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[19]);
+                std::cout << GREEN << mess[0] << ": " << mess[19] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[20]);
+                std::cout << BLUE << mess[1] << ": " << mess[20] << std::flush;
 
                 get_key();
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[21]);
+                std::cout << WHITE << mess[21] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[22]);
+                std::cout << GREEN << mess[0] << ": " << mess[22] << std::flush;
 
                 get_key();
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[16]);
+                std::cout << WHITE << mess[16] << std::flush;
 
                 main_hero->sub_beer(main_hero->get_beer());
                 main_hero->broken_jaw = true;
@@ -224,57 +203,48 @@ int pltl1(
                     (CHANCE(1, 10)) &&
                     (main_hero->inv[game::search_inv(main_hero, "Вельветовая куртка")].have) &&
                     (main_hero->get_money() > 50)) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[2]);
+
+                std::cout << WHITE << mess[2] << std::flush;
 
                 get_key();
 
-                PRINTF("%s", mess[3]);
+                std::cout << mess[3] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[23]);
+                std::cout << GREEN << mess[0] << ": " << mess[23] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[24]);
+                std::cout << BLUE << mess[1] << ": " << mess[24] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[25]);
+                std::cout << GREEN << mess[0] << ": " << mess[25] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[26]);
+                std::cout << BLUE << mess[1] << ": " << mess[26] << std::flush;
 
                 get_key();
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[27]);
+                std::cout << WHITE << mess[27] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[28]);
+                std::cout << GREEN << mess[0] << ": " << mess[28] << std::flush;
 
                 get_key();
 
-                settextattr(BLUE);
-                PRINTF("%s: %s", mess[1], mess[14]);
+                std::cout << BLUE << mess[1] << ": " << mess[14] << std::flush;
 
                 get_key();
 
-                settextattr(GREEN);
-                PRINTF("%s: %s", mess[0], mess[29]);
+                std::cout << GREEN << mess[0] << ": " << mess[29] << std::flush;
 
                 get_key();
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[16]);
+                std::cout << WHITE << mess[16] << std::flush;
 
                 main_hero->sub_money(main_hero->get_money());
                 main_hero->inv[game::search_inv(main_hero, "Вельветовая куртка")].have--;
@@ -293,22 +263,19 @@ int pltl1(
                         (CHANCE(1, 10)) &&
                         (main_hero->district > 2) &&
                         (main_hero->get_level() >= 35)) {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[2]);
+                    std::cout << WHITE << mess[2] << std::flush;
 
                     get_key();
 
-                    PRINTF("%s", mess[3]);
+                    std::cout << mess[3] << std::flush;
 
                     get_key();
 
-                    settextattr(BLUE);
-                    PRINTF("%s: %s", mess[1], mess[30]);
+                    std::cout << BLUE << mess[1] << ": " << mess[30] << std::flush;
 
                     get_key();
 
-                    settextattr(GREEN);
-                    PRINTF("%s: %s", mess[0], mess[31]);
+                    std::cout << GREEN << mess[0] << ": " << mess[31] << std::flush;
 
                     get_key();
 
