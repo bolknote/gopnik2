@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <unistd.h>
+#include <iostream>
 
 #ifdef __MINGW32__
 #include <conio.h>
@@ -25,36 +26,42 @@ void gracefulexit(int exitcode) {
 }
 
 Colors settextattr(Colors new_attr) {
+    std::string ansi_code;
+
     switch (new_attr) {
         case RESET:
-            PRINTF("\033[39;49m");
+            ansi_code = "39;49m";
             break;
         case BLUE:
-            PRINTF("\033[01;34m");
+            ansi_code = "01;34m";
             break;
         case GREEN:
-            PRINTF("\033[01;32m");
+            ansi_code = "01;32m";
             break;
         case CYAN:
-            PRINTF("\033[01;36m");
+            ansi_code = "01;36m";
             break;
         case RED:
-            PRINTF("\033[01;31m");
+            ansi_code = "01;31m";
             break;
         case MAGENTA:
-            PRINTF("\033[01;35m");
+            ansi_code = "01;35m";
             break;
         case YELLOW:
-            PRINTF("\033[01;33m");
+            ansi_code = "01;33m";
             break;
         case WHITE:
-            PRINTF("\033[01;37m");
+            ansi_code = "01;37m";
             break;
         case BLACK:
-            PRINTF("\033[01;30m");
+            ansi_code = "01;30m";
             break;
         default:
             break;
+    }
+
+    if (!ansi_code.empty()) {
+        std::cout << "\033[" << ansi_code << std::flush;
     }
 
     auto old_attr = textattr;
@@ -100,12 +107,12 @@ int superrandom(
 
 void backspace(int cnt) {
     for (int i = 0; i < cnt; i++) {
-        PRINTF("\033[D");
+        std::cout << "\033[D" << std::flush;
     }
 }
 
 void forward(int cnt) {
-    PRINTF("\033[%dC", cnt);
+    std::cout << "\033[" << cnt << "C" << std::flush;
 }
 
 // Количество разрядов в числе
@@ -118,11 +125,11 @@ int getdigitamount(int number) {
 }
 
 void hidecursor() {
-    PRINTF("\033[?25l");
+    std::cout << "\033[?25l" << std::flush;
 }
 
 void showcursor() {
-    PRINTF("\033[?25h");
+    std::cout << "\033[?25h" << std::flush;
 }
 
 #ifdef __MINGW32__
@@ -215,7 +222,7 @@ int get_key(bool echo) {
 
     if (ch == 0x03) // Ctrl+C
     {
-        PRINTF("Ctrl+C hit, exiting...\n");
+        std::cout << "Ctrl+C hit, exiting...\n" << std::flush;
         gracefulexit();
     }
 
