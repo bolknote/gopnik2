@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wpedantic -Wextra -ggdb -std=c++11 -funsigned-char
+CXXFLAGS = -Wall -Wpedantic -Wextra -ggdb -std=c++17 -funsigned-char
 
 SOURCES = $(wildcard *.cpp comm/*.cpp pltl/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
