@@ -1,4 +1,4 @@
-#define VERSION 1.26F
+#define VERSION 1.27F
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
