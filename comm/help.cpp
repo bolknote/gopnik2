@@ -13,7 +13,7 @@ int help() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "Ну слушай, %s, в чём тут батва\n\n",
     };
 

@@ -13,7 +13,7 @@ int sav() {
     FILE *sav_file;
 
     // сообщения функции
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "Файл \"%s\" уже существует. Хочешь пересохранить? (y/n)\n",
             "не могу открыть файл \"%s\"\n",
             "Сохраняю в файл \"%s\"...\n",
@@ -24,7 +24,7 @@ int sav() {
     // версия программы
     vers;
 
-    if (access(cur_game->file_name.data(), F_OK) != -1) {
+    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
         std::cout << YELLOW << string_format(mess[0], cur_game->file_name) << std::flush;
 
         if (game::wait_answ() == 0) {
@@ -32,7 +32,7 @@ int sav() {
         }
     }
 
-    if ((sav_file = fopen(cur_game->file_name.data(), "wb")) == nullptr) {
+    if ((sav_file = fopen(cur_game->file_name.c_str(), "wb")) == nullptr) {
         std::cout << RED << string_format(mess[1], cur_game->file_name) << std::flush;
 
         return 0;

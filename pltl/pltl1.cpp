@@ -18,7 +18,7 @@ int pltl1(
     // объект врага
     hero *enemy;
 
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "Ты",
             "Дэвид Блэйн",
             "Бродя по окрестностям с самыми грязными намерениями...\r\n",

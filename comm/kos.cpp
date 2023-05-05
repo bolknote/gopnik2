@@ -13,7 +13,7 @@ int kos() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "Чувак, да ты и так уже обдолбанный\n",
             "Ты дунул. Все навыки +1\n",
             "Нету косяков\n",

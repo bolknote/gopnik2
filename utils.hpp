@@ -3,6 +3,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 
 typedef enum {
     RESET,
@@ -26,15 +27,17 @@ extern Colors textattr;
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
 template<typename... Args>
-std::string string_format(const std::string_view format, Args... args) {
-    int size_s = std::snprintf(nullptr, 0, format.data(), args ...) + 1; // Extra space for '\0'
+std::string string_format(const std::string& format, Args&&... args) {
+    auto size_s = std::snprintf(nullptr, 0, format.c_str(),
+                                std::decay_t<Args>(args)...) + 1; // Extra space for '\0'
     if (size_s <= 0) {
         throw std::runtime_error("Error during formatting.");
     }
 
     auto size = static_cast<size_t>( size_s );
     std::unique_ptr<char[]> buf(new char[size]);
-    std::snprintf(buf.get(), size, format.data(), args ...);
+    std::snprintf(buf.get(), size, format.c_str(),
+                  std::decay_t<Args>(args)...);
     return {buf.get(), buf.get() + size - 1}; // We don't want the '\0' inside
 }
 

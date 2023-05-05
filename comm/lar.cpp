@@ -13,7 +13,7 @@ int lar() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "Чё брать будешь?\n",
     };
 

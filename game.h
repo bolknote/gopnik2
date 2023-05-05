@@ -4,7 +4,7 @@
 
 class game {
 public:
-    std::string_view file_name; // имя файла сохранения
+    std::string file_name; // имя файла сохранения
     bool load_game;           // определяет, должна ли следовать загрузка игры
     int hero_init;
     int enemy_init;

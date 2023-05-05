@@ -15,7 +15,7 @@ int loa() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string_view mess[] = {
+    const std::string mess[] = {
             "не могу загрузить файл!\n",
             "версия сохранённого файла выше версии текущей игры\n",
             "файла не сущестует либо найдено несоответсвие в его параметрах\n",
@@ -40,8 +40,8 @@ int loa() {
 
     std::cout << BLUE << string_format(mess[3], cur_game->file_name) << std::flush;
 
-    if (access(cur_game->file_name.data(), F_OK) != -1) {
-        if ((load_file = fopen(cur_game->file_name.data(), "rb")) == nullptr) {
+    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
+        if ((load_file = fopen(cur_game->file_name.c_str(), "rb")) == nullptr) {
             std::cout << RED << string_format(mess[4], cur_game->file_name) << std::flush;
 
             return -1;

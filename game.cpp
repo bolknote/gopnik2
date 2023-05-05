@@ -2182,7 +2182,7 @@ int game::start() {
             j, i;
 
     old_attr = settextattr(WHITE);
-    if (access(cur_game->file_name.data(), F_OK) != -1) {
+    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
         PRINTF("%s", mess[0]);
         settextattr(YELLOW);
         PRINTF("%s", mess[1]);
