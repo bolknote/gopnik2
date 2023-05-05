@@ -19,8 +19,7 @@ int help() {
 
     main_hero = cur_game->main_hero;
 
-    settextattr(WHITE);
-    PRINTF(mess[0].data(), main_hero->get_name());
+    std::cout << WHITE << string_format(mess[0], main_hero->get_name()) << std::flush;
 
     switch (cur_game->active_loc) {
         case 0:

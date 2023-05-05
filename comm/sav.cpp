@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <unistd.h>
 #include "comm.h"
 #include "../main.h"
@@ -11,7 +13,7 @@ int sav() {
     FILE *sav_file;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string_view mess[] = {
             "Файл \"%s\" уже существует. Хочешь пересохранить? (y/n)\n",
             "не могу открыть файл \"%s\"\n",
             "Сохраняю в файл \"%s\"...\n",
@@ -22,24 +24,21 @@ int sav() {
     // версия программы
     vers;
 
-    if (access(cur_game->file_name, F_OK) != -1) {
-        settextattr(YELLOW);
-        PRINTF(mess[0], cur_game->file_name);
+    if (access(cur_game->file_name.data(), F_OK) != -1) {
+        std::cout << YELLOW << string_format(mess[0], cur_game->file_name) << std::flush;
 
         if (game::wait_answ() == 0) {
             return 0;
         }
     }
 
-    if ((sav_file = fopen(cur_game->file_name, "wb")) == nullptr) {
-        settextattr(RED);
-        PRINTF(mess[1], cur_game->file_name);
+    if ((sav_file = fopen(cur_game->file_name.data(), "wb")) == nullptr) {
+        std::cout << RED << string_format(mess[1], cur_game->file_name) << std::flush;
 
         return 0;
     }
 
-    settextattr(BLUE);
-    PRINTF(mess[2], cur_game->file_name);
+    std::cout << BLUE << string_format(mess[2], cur_game->file_name) << std::flush;
 
     // пишем версию
     vers = VERSION;
@@ -54,7 +53,7 @@ int sav() {
     fclose(sav_file);
 
     settextattr(BLUE);
-    PRINTF("%s", mess[3]);
+    std::cout << mess[3] << std::flush;
 
     return 0;
 }

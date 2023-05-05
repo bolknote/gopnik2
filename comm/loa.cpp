@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <unistd.h>
 #include "comm.h"
 #include "../main.h"
@@ -13,7 +15,7 @@ int loa() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string_view mess[] = {
             "не могу загрузить файл!\n",
             "версия сохранённого файла выше версии текущей игры\n",
             "файла не сущестует либо найдено несоответсвие в его параметрах\n",
@@ -29,21 +31,18 @@ int loa() {
     vers;
 
     if (cur_game->num_comm > 0) {
-        settextattr(YELLOW);
-        PRINTF(mess[6], cur_game->file_name);
+        std::cout << YELLOW << string_format(mess[6], cur_game->file_name) << std::flush;
 
         if (game::wait_answ() == 0) {
             return 0;
         }
     }
 
-    settextattr(BLUE);
-    PRINTF(mess[3], cur_game->file_name);
+    std::cout << BLUE << string_format(mess[3], cur_game->file_name) << std::flush;
 
-    if (access(cur_game->file_name, F_OK) != -1) {
-        if ((load_file = fopen(cur_game->file_name, "rb")) == nullptr) {
-            settextattr(RED);
-            PRINTF(mess[4], cur_game->file_name);
+    if (access(cur_game->file_name.data(), F_OK) != -1) {
+        if ((load_file = fopen(cur_game->file_name.data(), "rb")) == nullptr) {
+            std::cout << RED << string_format(mess[4], cur_game->file_name) << std::flush;
 
             return -1;
         }
@@ -52,23 +51,20 @@ int loa() {
 
         // старый формат игры (DOS)
         if (vers < 1.13) {
-            settextattr(RED);
-            PRINTF("%s%s", mess[0], mess[7]);
+            std::cout << RED << mess[0] << mess[7] << std::flush;
             fclose(load_file);
 
             return -1;
         }
 
         if (VERSION < vers) {
-            settextattr(RED);
-            PRINTF("%s%s", mess[0], mess[1]);
+            std::cout << RED << mess[0] << mess[1] << std::flush;
             fclose(load_file);
 
             return -1;
         }
     } else {
-        settextattr(RED);
-        PRINTF("%s%s", mess[0], mess[2]);
+        std::cout << RED << mess[0] << mess[2] << std::flush;
 
         return -1;
     }
@@ -98,8 +94,7 @@ int loa() {
         cur_game->stn[1].avail = true;
     }
 
-    settextattr(BLUE);
-    PRINTF("%s", mess[5]);
+    std::cout << BLUE << mess[5] << std::flush;
 
     fclose(load_file);
 

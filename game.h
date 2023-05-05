@@ -1,10 +1,11 @@
 #include <cstdio>
-#include "utils.h"
+#include <iostream>
+#include "utils.hpp"
 
 class game {
 public:
-    char file_name[100];    // имя файла сохранения; не жлобимся, памяти всем хватит
-    bool load_game;         // определяет, должна ли следовать загрузка игры
+    std::string_view file_name;    // имя файла сохранения; не жлобимся, памяти всем хватит
+    bool load_game;           // определяет, должна ли следовать загрузка игры
     int hero_init;
     int enemy_init;
     int lads_init;

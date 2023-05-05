@@ -1,5 +1,8 @@
 #include <cstdio>
 #include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
 
 typedef enum {
     RESET,

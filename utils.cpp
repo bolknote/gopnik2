@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <string>
 #include <unistd.h>
 
 #ifdef __MINGW32__
@@ -16,7 +17,7 @@
 
 #endif
 
-#include "utils.h"
+#include "utils.hpp"
 
 Colors textattr;
 
@@ -225,4 +226,5 @@ char *g_strdup(const char *src) {
     char *s = (char *) malloc(len);
     return s == nullptr ? nullptr : (char *) memcpy(s, src, len);
 }
+
 
