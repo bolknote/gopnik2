@@ -22,6 +22,19 @@ extern Colors textattr;
 
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
+template<typename... Args>
+std::string string_format(const std::string_view format, Args... args) {
+    int size_s = std::snprintf(nullptr, 0, format.data(), args ...) + 1; // Extra space for '\0'
+    if (size_s <= 0) {
+        throw std::runtime_error("Error during formatting.");
+    }
+
+    auto size = static_cast<size_t>( size_s );
+    std::unique_ptr<char[]> buf(new char[size]);
+    std::snprintf(buf.get(), size, format.data(), args ...);
+    return {buf.get(), buf.get() + size - 1}; // We don't want the '\0' inside
+}
+
 std::ostream &operator<<(std::ostream &os, const Colors &color); // перегрузка оператора для вывода цвета
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
