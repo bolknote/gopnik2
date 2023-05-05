@@ -9,7 +9,7 @@
 extern game *cur_game;
 
 int e() {
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "Уже уходишь? Очканул, сука?! (y/n)\n",
     };
 

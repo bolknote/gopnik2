@@ -18,7 +18,7 @@ int bar(
     hero *main_hero;
 
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "Да не охота жрать\n",
             "Да чё-то не охота пить\n",
             "Ты не можешь есть из-за сломанной челюсти\n",

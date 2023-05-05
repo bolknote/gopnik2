@@ -27,7 +27,7 @@ void gracefulexit(int exitcode) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Colors &color) {
-    static const std::map <Colors, std::string> colorNames = {
+    static const std::map <Colors, std::string_view> colorNames = {
             {RESET,   "39;49m"},
             {BLUE,    "01;34m"},
             {GREEN,   "01;32m"},

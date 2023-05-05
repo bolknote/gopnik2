@@ -13,7 +13,7 @@ int bmar() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "Ты пока не знаешь, где находятся барыги\n",
             "Ты пришёл к барыгам\n"};
 

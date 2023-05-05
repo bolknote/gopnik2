@@ -9,7 +9,7 @@ extern game *cur_game;
 
 int a() {
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "-Тут есть пара хороших мест, куда можно сходить\n",
             "Ты узнал, где находятся барыги и качалка\n"};
 

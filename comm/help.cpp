@@ -13,14 +13,14 @@ int help() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "Ну слушай, %s, в чём тут батва\n\n",
     };
 
     main_hero = cur_game->main_hero;
 
     settextattr(WHITE);
-    PRINTF(mess[0].c_str(), main_hero->get_name());
+    PRINTF(mess[0].data(), main_hero->get_name());
 
     switch (cur_game->active_loc) {
         case 0:

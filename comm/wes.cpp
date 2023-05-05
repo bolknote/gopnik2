@@ -14,7 +14,7 @@ int wes() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "У тебя нет вещей, которые ты мог бы продать\n",
     };
     int i;

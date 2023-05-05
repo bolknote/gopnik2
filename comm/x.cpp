@@ -13,7 +13,7 @@ int x() {
     hero *main_hero;
 
     // сообщения функции
-    const std::string mess[] = {
+    const std::string_view mess[] = {
             "Барыги тебе дали денег за хлам\n",
             "У тебя нет хлама\n",
     };
