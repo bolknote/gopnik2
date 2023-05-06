@@ -27,11 +27,11 @@ extern Colors textattr;
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
 template<typename... Args>
-std::string string_format(const std::string& format, Args&&... args) {
+std::string string_format(const std::string &format, Args &&... args) {
     auto size_s = std::snprintf(nullptr, 0, format.c_str(),
                                 std::decay_t<Args>(args)...) + 1; // Extra space for '\0'
     if (size_s <= 0) {
-        throw std::runtime_error("Error during formatting.");
+        throw std::runtime_error("Ошибка форматирования.");
     }
 
     auto size = static_cast<size_t>( size_s );
