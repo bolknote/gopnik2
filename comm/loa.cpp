@@ -31,18 +31,18 @@ int loa() {
     vers;
 
     if (cur_game->num_comm > 0) {
-        std::cout << YELLOW << string_format(mess[6], cur_game->file_name) << std::flush;
+        std::cout << YELLOW << string_format(mess[6], std::cref(cur_game->file_name)) << std::flush;
 
         if (game::wait_answ() == 0) {
             return 0;
         }
     }
 
-    std::cout << BLUE << string_format(mess[3], cur_game->file_name) << std::flush;
+    std::cout << BLUE << string_format(mess[3], std::cref(cur_game->file_name)) << std::flush;
 
     if (access(cur_game->file_name.c_str(), F_OK) != -1) {
         if ((load_file = fopen(cur_game->file_name.c_str(), "rb")) == nullptr) {
-            std::cout << RED << string_format(mess[4], cur_game->file_name) << std::flush;
+            std::cout << RED << string_format(mess[4], std::cref(cur_game->file_name)) << std::flush;
 
             return -1;
         }
