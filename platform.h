@@ -4,8 +4,8 @@
 #undef max
 
 #define SLEEP(dur) Sleep(dur)
-void restore_tty_mode(DWORD mode);        // восстановить прежний режим консоли
-DWORD set_tty_special_mode(bool = true);  // установить специальный режим консоли для асинхронного ввода
+void restore_tty_mode(DWORD mode);        // РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂРµР¶РЅРёР№ СЂРµР¶РёРј РєРѕРЅСЃРѕР»Рё
+DWORD set_tty_special_mode(bool = true);  // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРїРµС†РёР°Р»СЊРЅС‹Р№ СЂРµР¶РёРј РєРѕРЅСЃРѕР»Рё РґР»СЏ Р°СЃРёРЅС…СЂРѕРЅРЅРѕРіРѕ РІРІРѕРґР°
 
 #elif defined(__GNUC__)
 #include <unistd.h>
