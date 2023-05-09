@@ -2,7 +2,7 @@
 #include <cstring>
 #include <cctype>
 #include <iostream>
-#include <unistd.h>
+ #include <fstream>
 
 #include "main.h"
 #include "hero.h"
@@ -10,17 +10,13 @@
 #include "comm/comm.h"
 #include "game.h"
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
+// Это всё для ввода имени игрока
+#include <windows.h>
+#include <stringapiset.h>
 #include <stdio.h>
 #include <io.h>
 #include <fcntl.h>
-#include <windows.h>
-
-// для MinGW под Windows
-#ifndef _O_U16TEXT
-#define _O_U16TEXT 0x20000
-#endif
-
 #endif
 
 extern game *cur_game;
@@ -29,7 +25,7 @@ game::game()
         : file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
           we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
     file_name = "gop2w_1.sav";
 #else
     file_name = "gop2_1.sav";
@@ -2182,7 +2178,7 @@ int game::start() {
             j, i;
 
     old_attr = settextattr(WHITE);
-    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
+    if (std::ifstream(cur_game->file_name.c_str()).good()) {
         PRINTF("%s", mess[0]);
         settextattr(YELLOW);
         PRINTF("%s", mess[1]);
@@ -2311,16 +2307,16 @@ int game::start() {
         PRINTF("%s", mess[13]);
 
         settextattr(WHITE);
-#ifdef __MINGW32__
+#ifdef ___TODO___ _MSC_VER
         int wlen = 100;
-        int save = _setmode(STDIN_FILENO, _O_U16TEXT);
+        int save = _setmode(_fileno(stdin), _O_U16TEXT);
         wchar_t *wstr = (wchar_t *) malloc(wlen * sizeof(wchar_t));
         fgetws(wstr, wlen, stdin);
 
         int len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, 0, 0, 0, 0);
         user_name = (char *) malloc(len);
         WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
-        _setmode(STDIN_FILENO, save);
+        _setmode(_fileno(stdin), save);
 
         free(wstr);
 #else

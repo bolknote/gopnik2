@@ -8,10 +8,9 @@
 #include "comm/comm.h"
 #include "pltl/pltl.h"
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
 #include <windows.h>
-
-// для MinGW под Windows
+// для Windows
 #ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
 #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
 #endif
@@ -68,7 +67,7 @@ int main() {
     // объект героя
     textattr = RESET;
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
     setvbuf(stdout, nullptr, _IOFBF, 1000);

@@ -5,11 +5,7 @@
 #include "../list.h"
 #include "../hero.h"
 #include "../game.h"
-
-#ifndef __MINGW32__
-#include <unistd.h>
-#include <termios.h>
-#endif
+#include "../platform.h"
 
 extern game *cur_game;
 

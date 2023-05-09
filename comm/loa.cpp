@@ -1,6 +1,6 @@
 #include <iostream>
+#include <fstream>
 
-#include <unistd.h>
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -40,7 +40,7 @@ int loa() {
 
     std::cout << BLUE << string_format(mess[3], std::cref(cur_game->file_name)) << std::flush;
 
-    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
+    if (std::ifstream(cur_game->file_name.c_str()).good()) {
         if ((load_file = fopen(cur_game->file_name.c_str(), "rb")) == nullptr) {
             std::cout << RED << string_format(mess[4], std::cref(cur_game->file_name)) << std::flush;
 

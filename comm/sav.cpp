@@ -1,6 +1,6 @@
 #include <iostream>
+#include <fstream>
 
-#include <unistd.h>
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -24,7 +24,7 @@ int sav() {
     // версия программы
     vers;
 
-    if (access(cur_game->file_name.c_str(), F_OK) != -1) {
+    if (std::ifstream(cur_game->file_name.c_str()).good()) {
         std::cout << YELLOW << string_format(mess[0], std::cref(cur_game->file_name)) << std::flush;
 
         if (game::wait_answ() == 0) {

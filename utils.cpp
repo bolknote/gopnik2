@@ -5,19 +5,15 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <unistd.h>
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
 #include <conio.h>
-#include <stdio.h>
-#include <windows.h>
 #else
-
 #include <termios.h>
-
 #endif
 
 #include "utils.hpp"
+#include "platform.h"
 
 Colors textattr;
 
@@ -117,7 +113,7 @@ void showcursor() {
     std::cout << "\033[?25h" << std::flush;
 }
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
 void restore_tty_mode(DWORD mode) {
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
     SetConsoleMode(hStdin, mode);
@@ -164,8 +160,8 @@ struct termios set_tty_special_mode(bool no_echo) {
 #endif
 
 int get_key_async() {
-#ifdef __MINGW32__
-    return kbhit() == 0 ? -1 : _getch();
+#ifdef _MSC_VER
+    return _kbhit() == 0 ? -1 : _getch();
 #else
     char ch;
     auto nread = read(STDIN_FILENO, &ch, 1);
@@ -176,7 +172,7 @@ int get_key_async() {
 int get_key(bool echo) {
     auto old_mode = set_tty_special_mode(!echo);
 
-#ifdef __MINGW32__
+#ifdef _MSC_VER
     int ch = _getch();
     // код, означающий, что надо получить следующий код
     if (ch == 0 || ch == 0xE0) {
