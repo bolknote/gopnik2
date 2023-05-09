@@ -2,6 +2,8 @@
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
+#include "macros.h"
+
 #include <cstddef>
 #include <cstdlib>
 #include <cstdint>
@@ -51,7 +53,7 @@ typedef struct location {
     int comm_amount;
 } location;
 
-typedef struct inventory {
+typedef PACKED_STRUCT(8, inventory_struct) {
     char *name;
 #if INTPTR_MAX == INT32_MAX
     // нужно для бинарной совместимости между 32- и 64-битными платформами
@@ -69,7 +71,7 @@ typedef struct inventory {
     int armo;
     int loss;
     int att;
-} __attribute__((__packed__, aligned(8))) inventory;
+} inventory;
 
 static_assert(sizeof(inventory) == 56, "Invalid Inventory structure");
 
