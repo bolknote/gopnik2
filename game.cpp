@@ -2307,7 +2307,7 @@ int game::start() {
         PRINTF("%s", mess[13]);
 
         settextattr(WHITE);
-#ifdef ___TODO___ _MSC_VER
+#ifdef _MSC_VER
         int wlen = 100;
         int save = _setmode(_fileno(stdin), _O_U16TEXT);
         wchar_t *wstr = (wchar_t *) malloc(wlen * sizeof(wchar_t));
@@ -2327,7 +2327,7 @@ int game::start() {
 
         // удаление пробельных символов с двух сторон
         auto start = 0;
-        while (user_name[start] && isspace(user_name[start])) {
+        while (user_name[start] && isspace(static_cast<unsigned char>(user_name[start]))) {
             start++;
         }
         if (i > 0) {
@@ -2335,7 +2335,7 @@ int game::start() {
         }
 
         size_t end = strlen(user_name);
-        while (end > 0 && isspace(user_name[end - 1])) {
+        while (end > 0 && isspace(static_cast<unsigned char>(user_name[end - 1]))) {
             end--;
         }
         user_name[end] = 0;

@@ -52,7 +52,7 @@ Colors settextattr(Colors new_attr) {
 bool isdigitstr(const char *str) {
     unsigned int i;
     for (i = 0; i < strlen(str); i++) {
-        if (!isdigit(str[i])) {
+        if (!isdigit(static_cast<unsigned char>(str[i]))) {
             return false;
         }
     }
