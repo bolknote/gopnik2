@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <fmt/format.h>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -14,9 +16,9 @@ int sav() {
 
     // сообщения функции
     const std::string mess[] = {
-            "Файл \"%s\" уже существует. Хочешь пересохранить? (y/n)\n",
-            "не могу открыть файл \"%s\"\n",
-            "Сохраняю в файл \"%s\"...\n",
+            "Файл \"{}\" уже существует. Хочешь пересохранить? (y/n)\n",
+            "не могу открыть файл \"{}\"\n",
+            "Сохраняю в файл \"{}\"...\n",
             "Игра сохранена\n"
     };
 
@@ -25,7 +27,7 @@ int sav() {
     vers;
 
     if (std::ifstream(cur_game->file_name.c_str()).good()) {
-        std::cout << YELLOW << string_format(mess[0], std::cref(cur_game->file_name)) << std::flush;
+        std::cout << YELLOW << fmt::format(mess[0], cur_game->file_name) << std::flush;
 
         if (game::wait_answ() == 0) {
             return 0;
@@ -33,12 +35,12 @@ int sav() {
     }
 
     if ((sav_file = fopen(cur_game->file_name.c_str(), "wb")) == nullptr) {
-        std::cout << RED << string_format(mess[1], std::cref(cur_game->file_name)) << std::flush;
+        std::cout << RED << fmt::format(mess[1], cur_game->file_name) << std::flush;
 
         return 0;
     }
 
-    std::cout << BLUE << string_format(mess[2], std::cref(cur_game->file_name)) << std::flush;
+    std::cout << BLUE << fmt::format(mess[2], cur_game->file_name) << std::flush;
 
     // пишем версию
     vers = VERSION;
