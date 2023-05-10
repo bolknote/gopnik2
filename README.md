@@ -69,7 +69,7 @@
 
 ## Этапы сборки
 
-- `conan profile new default`
+- `conan profile new default --detect`
 - `mkdir -p ~/.builds/gopnik2`
 - `cmake -B ~/.builds/gopnik2 -DCMAKE_BUILD_TYPE=Release`
 - `cd ~/.builds/gopnik2 && cmake --build . -- -j 10`
