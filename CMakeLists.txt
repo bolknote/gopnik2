@@ -29,14 +29,17 @@ set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
 
 find_package(fmt REQUIRED)
 
-file(GLOB SRC_FILES CONFIGURE_DEPENDS 
-    "*.h"
-    "*.cpp"
-    "comm/*.h"
-    "comm/*.cpp"
-    "pltl/*.h"
-    "pltl/*.cpp"
+file(GLOB SOURCE_FILES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/comm/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/pltl/*.cpp
 )
 
-add_executable(gop2 ${SRC_FILES})
+set(SOURCE ${SOURCE_FILES})
+
+include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/include
+)
+
+add_executable(gop2 ${SOURCE})
 target_link_libraries(gop2 PRIVATE fmt::fmt)
