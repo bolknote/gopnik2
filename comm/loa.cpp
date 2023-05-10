@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <fmt/format.h>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -19,8 +21,8 @@ int loa() {
             "не могу загрузить файл!\n",
             "версия сохранённого файла выше версии текущей игры\n",
             "файла не сущестует либо найдено несоответсвие в его параметрах\n",
-            "Загружаю из файла \"%s\"...\n",
-            "не могу открыть файл \"%s\"\n",
+            "Загружаю из файла \"{}\"...\n",
+            "не могу открыть файл \"{}\"\n",
             "Игра загружена\n",
             "При загрузке старой игры текущая будет потеряна. Ты точно этого хочешь? (y/n)\n",
             "Несовместимый формат.\n"
@@ -31,18 +33,18 @@ int loa() {
     vers;
 
     if (cur_game->num_comm > 0) {
-        std::cout << YELLOW << string_format(mess[6], std::cref(cur_game->file_name)) << std::flush;
+        std::cout << YELLOW << fmt::format(mess[6], cur_game->file_name) << std::flush;
 
         if (game::wait_answ() == 0) {
             return 0;
         }
     }
 
-    std::cout << BLUE << string_format(mess[3], std::cref(cur_game->file_name)) << std::flush;
+    std::cout << BLUE << fmt::format(mess[3], cur_game->file_name) << std::flush;
 
     if (std::ifstream(cur_game->file_name.c_str()).good()) {
         if ((load_file = fopen(cur_game->file_name.c_str(), "rb")) == nullptr) {
-            std::cout << RED << string_format(mess[4], std::cref(cur_game->file_name)) << std::flush;
+            std::cout << RED << fmt::format(mess[4], cur_game->file_name) << std::flush;
 
             return -1;
         }

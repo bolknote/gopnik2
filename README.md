@@ -59,15 +59,24 @@
 Портированная бета-версия под Linux       — @tiandrey\
 Дальнейшее портирование и развитие         — @bolknote
 
-УСТАНОВКА
+СБОРКА И ЗАПУСК
 =========
-Для компиляции понадобятся:
-- `make`
-- `gcc`
 
-Установка и запуск:
-- `make`
-- `./gop2`
+## Зависимости
+
+- `cmake`
+- `conan` < 2.0 - `pip3 install "conan<2.0"`
+
+## Этапы сборки
+
+- `conan profile new default`
+- `mkdir -p ~/.builds/gopnik2`
+- `cmake -B ~/.builds/gopnik2 -DCMAKE_BUILD_TYPE=Release`
+- `cd ~/.builds/gopnik2 && cmake --build . -- -j 10`
+
+## Запуск
+
+`~/.builds/gopnik2/gop2`
 
 ЛИЦЕНЗИЯ
 ========

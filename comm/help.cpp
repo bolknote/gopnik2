@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <fmt/format.h>
+
 #include "comm.h"
 #include "../main.h"
 #include "../list.h"
@@ -14,12 +16,12 @@ int help() {
 
     // сообщения функции
     const std::string mess[] = {
-            "Ну слушай, %s, в чём тут батва\n\n",
+            "Ну слушай, {}, в чём тут батва\n\n",
     };
 
     main_hero = cur_game->main_hero;
 
-    std::cout << WHITE << string_format(mess[0], main_hero->get_name()) << std::flush;
+    std::cout << WHITE << fmt::format(mess[0], main_hero->get_name()) << std::flush;
 
     switch (cur_game->active_loc) {
         case 0:
