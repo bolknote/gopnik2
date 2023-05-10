@@ -30,15 +30,15 @@ set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
 find_package(fmt REQUIRED)
 
 file(GLOB SOURCE_FILES CONFIGURE_DEPENDS
-        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/comm/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/pltl/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/comm/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/pltl/*.cpp
 )
 
 set(SOURCE ${SOURCE_FILES})
 
 include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/gopnik2/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/include
 )
 
 add_executable(gop2 ${SOURCE})
