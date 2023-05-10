@@ -12,7 +12,7 @@
 #include <termios.h>
 #endif
 
-#include "utils.hpp"
+#include "utils.h"
 #include "platform.h"
 
 Colors textattr;

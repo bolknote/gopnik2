@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <iostream>
-#include "utils.hpp"
+#include "utils.h"
 
 class game {
 public:
