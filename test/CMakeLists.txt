@@ -23,7 +23,14 @@ add_executable(
     r_check.cpp
 )
 
-target_compile_options(gopnik2_test PRIVATE -g)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    # using GCC
+    target_compile_options(gopnik2_test PRIVATE -g)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    # using Visual Studio C++
+    target_compile_options(gopnik2_test PRIVATE /MT)
+endif()
+
 target_link_libraries(
     gopnik2_test
     PRIVATE 
