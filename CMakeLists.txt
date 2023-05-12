@@ -41,3 +41,5 @@ include_directories(
 
 add_executable(gop2 ${SOURCE})
 target_link_libraries(gop2 PRIVATE fmt::fmt)
+
+add_subdirectory(test)
