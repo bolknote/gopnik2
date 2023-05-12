@@ -5,9 +5,6 @@ include(FetchContent)
 FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip)
 FetchContent_MakeAvailable(googletest)
 
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
 enable_testing()
 
 add_executable(
@@ -23,13 +20,7 @@ add_executable(
     r_check.cpp
 )
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    # using GCC
-    target_compile_options(gopnik2_test PRIVATE -g)
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    # using Visual Studio C++
-    target_compile_options(gopnik2_test PRIVATE /MT)
-endif()
+target_compile_options(gopnik2_test PRIVATE -g)
 
 target_link_libraries(
     gopnik2_test
