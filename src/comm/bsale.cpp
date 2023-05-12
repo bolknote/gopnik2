@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fmt/format.h>
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -14,11 +16,12 @@ int bsale(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты толкаешь следующую вещь - ",
-            "Барыги предлагают за неё %i руб. Ты согласен? (y/n)\n",
-            "Ты толкнул одну из своих вещей и получил %i руб.\n",
-            "Ты эту вещь уже продал\n"};
+            "Барыги предлагают за неё {} руб. Ты согласен? (y/n)\n",
+            "Ты толкнул одну из своих вещей и получил {} руб.\n",
+            "Ты эту вещь уже продал\n",
+    };
 
     int
     // индекс прайс-листа
@@ -76,28 +79,24 @@ int bsale(
 
         price = (int) (price * 0.5);
 
-        settextattr(WHITE);
-        PRINTF("%s", mess[0]);
-
-        settextattr(BLUE);
-        PRINTF("%s", main_hero->inv[i].name);
-
-        settextattr(YELLOW);
-        PRINTF(mess[1], price);
+        std::cout
+        << WHITE << mess[0]
+        << BLUE << main_hero->inv[i].name
+        << YELLOW << fmt::format(mess[1], price);
 
         if (game::wait_answ()) {
             main_hero->inv[i].have--;
             main_hero->add_money(price);
 
-            cur_game->supple_inv_run_over(i); // !!!
+            cur_game->supple_inv_run_over(i);
 
-            settextattr(WHITE);
-            PRINTF(mess[2], price);
+            std::cout << WHITE << fmt::format(mess[2], price);
         }
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[3]);
+        std::cout << RED << mess[3];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
