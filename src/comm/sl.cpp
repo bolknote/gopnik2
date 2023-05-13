@@ -40,10 +40,10 @@ int sl() {
     } else {
         // --gop2.st--
         if (cur_game->st_amount == 0) {
-            for (int i = 0; GOP2ST[i] != nullptr; i++) {
+            for (auto line: GOP2ST) {
                 cur_game->st = add_new_element (cur_game->st, cur_game->st_amount, sizeof (char *));
 
-                cur_game->st[cur_game->st_amount] = g_strdup(GOP2ST[i]);
+                cur_game->st[cur_game->st_amount] = g_strdup(line.c_str());
                 cur_game->st_amount++;
             }
         }
