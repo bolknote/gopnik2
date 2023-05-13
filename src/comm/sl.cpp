@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/comm/gop2_st.h>
@@ -15,14 +16,15 @@ int sl() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты вошёл в слэм\n",
             "Ты вышел из слэма\n",
             "Да чё-то не охота слэмиться\n",
             "Сломанная челюсть отбила у тебя желание слэмиться\n",
             "Сломанная нога отбила у тебя всё желание слэмиться\n",
             "Сломанные нога и челюсть отбили у тебя всякое желание слэмиться\n",
-            "В это время на сцене поют:\n"};
+            "В это время на сцене поют:\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -31,8 +33,7 @@ int sl() {
     }
 
     if (cur_game->active_loc == 13) {
-        settextattr(WHITE);
-        PRINTF("%s", mess[1]);
+        std::cout << WHITE << mess[1] << std::flush;
 
         // переход к новой локации
         cur_game->set_loc(8);
@@ -48,44 +49,38 @@ int sl() {
         }
 
         if (main_hero->add_smart()) {
-            settextattr(GREEN);
-            PRINTF("%s", mess[2]);
+            std::cout << GREEN << mess[2] << std::flush;
 
             return 0;
         }
 
         if (main_hero->broken_jaw && main_hero->broken_foot) {
-            settextattr(RED);
-            PRINTF("%s", mess[5]);
+            std::cout << RED << mess[5] << std::flush;
 
             return 0;
         }
 
         if (main_hero->broken_jaw) {
-            settextattr(RED);
-            PRINTF("%s", mess[3]);
+            std::cout << RED << mess[3] << std::flush;
 
             return 0;
         }
 
         if (main_hero->broken_foot) {
-            settextattr(RED);
-            PRINTF("%s", mess[4]);
+            std::cout << RED << mess[4] << std::flush;
 
             return 0;
         }
 
-        settextattr(WHITE);
-        PRINTF("%s", mess[0]);
+        std::cout << WHITE << mess[0];
 
         if (cur_game->st_amount > 0) {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[6]);
-
-            settextattr(BLUE);
-            PRINTF("%s", cur_game->st[GETRANDOM(-1, cur_game->st_amount - 1)]);
-            PRINTF("%s", "\n");
+            std::cout
+                << YELLOW << mess[6]
+                << BLUE << cur_game->st[GETRANDOM(-1, cur_game->st_amount - 1)] << "\n";
         }
+
+        std::cout << std::flush;
 
         // переход к новой локации
         cur_game->set_loc(13);
