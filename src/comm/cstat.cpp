@@ -1,4 +1,7 @@
 #include <ctime>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -14,7 +17,7 @@ void show_timer(time_t sec_amount) {
     time_t last_time = 0;
     hidecursor();
 
-    int max_da = getdigitamount((int) sec_amount);
+    auto max_da = fmt::to_string(sec_amount).length();
     sec_amount++;
 
     auto old_mode = set_tty_special_mode();
@@ -23,12 +26,10 @@ void show_timer(time_t sec_amount) {
         if (time(nullptr) != last_time) {
             last_time = time(nullptr);
             sec_amount--;
-            for (int da = getdigitamount((int) sec_amount); da < max_da; da++) {
-                PRINTF("0");
-            }
-            PRINTF("%ld", (long int) sec_amount);
+            std::cout << fmt::format("{:0{}d}", sec_amount, max_da);
 
             backspace(max_da);
+            std::cout << std::flush;
         } else {
             SLEEP(10);
         }
@@ -42,7 +43,7 @@ void show_timer(time_t sec_amount) {
         // Ctrl+C
         if (key == 3) {
             restore_tty_mode(old_mode);
-            PRINTF("Ctrl+C hit, exiting...\n");
+            std::cout << RESET << "\nНажали Ctrl+C, выходим…\n" << std::flush;
             gracefulexit();
         }
     }
@@ -59,11 +60,12 @@ int cstat(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты щас на этой станции находишься\n",
-            "\nТы приехал на станцию \"%s\"\n",
+            "\nТы приехал на станцию \"{}\"\n",
             "Ты вошёл в вагон и тебя со всех сторон сжала толпа.\nВ воздухе пронёсся голос машиниста:\n-Чё за мудаки держат двери?! Ща выйду - въебу!\nПоезд дёрнулся и понёсся по тёмному тоннелю...\n",
-            "До прибытия на станцию осталось "};
+            "До прибытия на станцию осталось ",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -91,24 +93,22 @@ int cstat(
                 main_hero->station = index;
             }
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[2]);
-
-            settextattr(BLUE);
-            PRINTF("%s", mess[3]);
+            std::cout
+            << YELLOW << mess[2]
+            << BLUE << mess[3]
+            << std::flush;
 
             show_timer(time);
 
-            settextattr(WHITE);
-            PRINTF(mess[1], cur_game->stn[index].name);
+            std::cout << WHITE << fmt::format(mess[1], cur_game->stn[index].name);
         } else {
-            settextattr(RED);
-            PRINTF("%s\n", cur_game->stn[index].unavail_reason);
+            std::cout << RED << cur_game->stn[index].unavail_reason << "\n";
         }
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
