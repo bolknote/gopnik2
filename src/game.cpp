@@ -1595,7 +1595,8 @@ int game::kick_realiz(
     // урон
     loss,
     // общий урон
-    loss_amount,
+    loss_amount;
+    bool
     // состояние героя до удара
     // состояние челюсти
     broken_jaw,
