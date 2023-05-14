@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -8,21 +10,18 @@ extern game *cur_game;
 
 int ssl() {
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Лёгкий слэм\n",
             "Агрессивный слэм\n",
             "Прыгнуть в центр круга перед рубиловом\n",
-            "Поучаствовать в стенке на стенку\n"};
+            "Поучаствовать в стенке на стенку\n",
+    };
 
-    int i;
-
-    for (i = 0; i < 4; i++) {
-        settextattr(WHITE);
-        PRINTF("%i - ", i + 1);
-
-        settextattr(YELLOW);
-        PRINTF("%s", mess[i]);
+    for (auto i = 0; i < 4; i++) {
+        std::cout << WHITE << (i + 1) << " - " << YELLOW << mess[i];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
