@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -17,10 +21,11 @@ int h(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Здоровье %i/%i\n",
+    const std::string mess[] = {
+            "Здоровье {}/{}\n",
             "Твои переломы залечены\n",
-            "С этим у тебя всё в порядке\n"};
+            "С этим у тебя всё в порядке\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -31,7 +36,9 @@ int h(
             if (main_hero->get_health() < main_hero->get_max_health()) {
                 main_hero->add_health(5);
 
-                PRINTF(mess[0], main_hero->get_health(), main_hero->get_max_health());
+                std::cout << fmt::format(
+                    mess[0], main_hero->get_health(), main_hero->get_max_health()
+                );
 
                 if (main_hero->get_max_health() == main_hero->get_health()) {
                     cur_game->pl[pl_index].members[plm_index].buy_phrase_print_mode = 0;
@@ -39,7 +46,7 @@ int h(
 
                 *flag = 1;
             } else {
-                PRINTF("%s", mess[2]);
+                std::cout << mess[2];
             }
             break;
 
@@ -50,16 +57,18 @@ int h(
                 main_hero->broken_jaw = false;
                 main_hero->broken_foot = false;
 
-                PRINTF("%s", mess[1]);
+                std::cout << mess[1];
 
                 cur_game->pl[pl_index].members[plm_index].buy_phrase_print_mode = 0;
 
                 *flag = 1;
             } else {
-                PRINTF("%s", mess[2]);
+                std::cout << mess[2];
             }
             break;
     }
+
+    std::cout << std::flush;
 
     if (
             (main_hero->get_health() == main_hero->get_max_health()) &&
