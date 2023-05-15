@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <algorithm>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -14,9 +17,9 @@ int gamb() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Ты поднял бабла - %i руб\n",
-            "Не фартануло - потерял %i руб\n",
+    const std::string mess[] = {
+            "Ты поднял бабла - {} руб\n",
+            "Не фартануло - потерял {} руб\n",
             "Чтобы играть надо лавэ, натряси где-нибудь пять рэ.\n",
     };
 
@@ -29,19 +32,18 @@ int gamb() {
             int money = GETRANDOM(0, 100);
             main_hero->add_money(money);
 
-            settextattr(GREEN);
-            PRINTF(mess[0], money);
+            std::cout << GREEN << fmt::format(mess[0], money);
         } else {
             int money = GETRANDOM(0, 25);
             main_hero->add_money(-money);
 
-            settextattr(RED);
-            PRINTF(mess[1], money);
+            std::cout << RED << fmt::format(mess[1], money);
         }
     } else {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[2]);
+        std::cout << YELLOW << mess[2];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
