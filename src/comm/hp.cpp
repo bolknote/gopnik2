@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,8 +15,9 @@ int hp() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Это %s %i уровня\n"};
+    const std::string mess[] = {
+            "Это {} {} уровня\n",
+    };
 
     int
     // индекс инвентаря
@@ -39,8 +44,10 @@ int hp() {
             ht_index = cur_game->search_ht("Студент");
         }
 
-        settextattr(YELLOW);
-        PRINTF(mess[0], cur_game->ht[ht_index].type, level);
+        std::cout
+            << YELLOW
+            << fmt::format(mess[0], cur_game->ht[ht_index].type, level)
+            << std::flush;
 
         cur_game->gen_enemy_obj(ht_index, level);
 
