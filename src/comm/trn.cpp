@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,9 +13,10 @@ int trn() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты пока не знаешь, где находится качалка\n",
-            "Ты пришёл в качалку\n"};
+            "Ты пришёл в качалку\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -24,14 +27,12 @@ int trn() {
     }
 
     if (cur_game->get_open_trn() == 0) {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0] << std::flush;
 
         return 0;
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[1]);
+    std::cout << WHITE << mess[1] << std::flush;
 
     // переход к новой локации
     cur_game->set_loc(7);
