@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -10,11 +12,12 @@ int mar() {
     // объект героя
     hero *main_hero;
 
-    const char *mess[] = {
+    const std::string mess[] = {
             "На базар идти пока нельзя - тебя там ищут\n",
             "Ты пока не знаешь, где в этом районе базар\n",
             "Ты пришёл на рынок\n",
-            "Ты пришёл на Апрашку\n"};
+            "Ты пришёл на Апрашку\n",
+    };
 
     int
     // индекс прайс-листа
@@ -31,21 +34,18 @@ int mar() {
     if (
             (cur_game->open_mar == 0) &&
             (main_hero->station == 0)) {
-        settextattr(RED);
-        PRINTF("%s", mess[1]);
+        std::cout << RED << mess[1] << std::flush;
 
         return 0;
     }
 
     if (cur_game->get_stay_mar() > 0) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[0]);
+        std::cout << YELLOW << mess[0] << std::flush;
 
         return 0;
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", (main_hero->station) ? (mess[3]) : (mess[2]));
+    std::cout << WHITE << (main_hero->station ? mess[3] : mess[2]) << std::flush;
 
     // переход к новой локации
     cur_game->set_loc((main_hero->station) ? (11) : (3));
