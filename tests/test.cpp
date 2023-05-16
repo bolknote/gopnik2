@@ -21,9 +21,9 @@ struct GameGuard {
     }
 };
 
-TEST_CASE("Занять 4 рубля", "[get_four_roubles]") {
+TEST_CASE("Zanyat' 4 rublya", "[get_four_roubles]") {
     GameGuard g_game;
-    SECTION("По умолчанию(Понтовость == 100)") {
+    SECTION("Po umolchaniyu(Pontovost' == 100)") {
         g_game.setup_game();
         REQUIRE(cur_game->main_hero->get_att() == 100);
         REQUIRE(cur_game->main_hero->get_money() == 0);
@@ -32,7 +32,7 @@ TEST_CASE("Занять 4 рубля", "[get_four_roubles]") {
         REQUIRE(cur_game->main_hero->get_money() == 4);
     }
 
-    SECTION("Понтовость == 1") {
+    SECTION("Pontovost' == 1") {
         g_game.setup_game();
         cur_game->main_hero->set_att(1);
         REQUIRE(cur_game->main_hero->get_att() == 1);
@@ -42,7 +42,7 @@ TEST_CASE("Занять 4 рубля", "[get_four_roubles]") {
         REQUIRE(cur_game->main_hero->get_money() == 4);
     }
 
-    SECTION("Понтовость == 0") {
+    SECTION("Pontovost' == 0") {
         g_game.setup_game();
         cur_game->main_hero->set_att(0);
         REQUIRE(cur_game->main_hero->get_att() == 0);

@@ -31,7 +31,7 @@ jobs:
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
       - name: Test
-        run: ctest --extra-verbose
+        run: cd ${{github.workspace}}/build && ctest --extra-verbose
 
       - name: Archive artifacts for Linux and MacOS
         uses: actions/upload-artifact@v1
