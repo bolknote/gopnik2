@@ -21,35 +21,53 @@ struct GameGuard {
     }
 };
 
-TEST_CASE("Zanyat' 4 rublya", "[get_four_roubles]") {
+SCENARIO("Zanyat' 4 rublya") {
     GameGuard g_game;
-    SECTION("Po umolchaniyu(Pontovost' == 100)") {
+    GIVEN("Pontovost' 100") {
         g_game.setup_game();
-        REQUIRE(cur_game->main_hero->get_att() == 100);
-        REQUIRE(cur_game->main_hero->get_money() == 0);
-        ::r();
-        REQUIRE(cur_game->main_hero->get_att() == 90);
-        REQUIRE(cur_game->main_hero->get_money() == 4);
+        THEN("Pontovost' 100 and Money 0") {
+            REQUIRE(cur_game->main_hero->get_att() == 100);
+            REQUIRE(cur_game->main_hero->get_money() == 0);
+        }
+        WHEN("Zanyal 4 rublya") {
+            ::r();
+            THEN("Pontovost' 90 and Money 4") {
+                REQUIRE(cur_game->main_hero->get_att() == 90);
+                REQUIRE(cur_game->main_hero->get_money() == 4);
+            }
+        }
     }
 
-    SECTION("Pontovost' == 1") {
+    GIVEN("Pontovost' 1") {
         g_game.setup_game();
         cur_game->main_hero->set_att(1);
-        REQUIRE(cur_game->main_hero->get_att() == 1);
-        REQUIRE(cur_game->main_hero->get_money() == 0);
-        ::r();
-        REQUIRE(cur_game->main_hero->get_att() == 0);
-        REQUIRE(cur_game->main_hero->get_money() == 4);
+        THEN("Pontovost' 1 and Money 0") {
+            REQUIRE(cur_game->main_hero->get_att() == 1);
+            REQUIRE(cur_game->main_hero->get_money() == 0);
+        }
+        WHEN("Zanyal 4 rublya") {
+            ::r();
+            THEN("Pontovost' 0 and Money 4") {
+                REQUIRE(cur_game->main_hero->get_att() == 0);
+                REQUIRE(cur_game->main_hero->get_money() == 4);
+            }
+        }
     }
 
-    SECTION("Pontovost' == 0") {
+    GIVEN("Pontovost' 0") {
         g_game.setup_game();
         cur_game->main_hero->set_att(0);
-        REQUIRE(cur_game->main_hero->get_att() == 0);
-        REQUIRE(cur_game->main_hero->get_money() == 0);
-        ::r();
-        REQUIRE(cur_game->main_hero->get_att() == 0);
-        REQUIRE(cur_game->main_hero->get_money() == 0);
+        THEN("Pontovost' 0 and Money 0") {
+            REQUIRE(cur_game->main_hero->get_att() == 0);
+            REQUIRE(cur_game->main_hero->get_money() == 0);
+        }
+        WHEN("Zanyal 4 rublya") {
+            ::r();
+            THEN("Pontovost' 0 and Money 0") {
+                REQUIRE(cur_game->main_hero->get_att() == 0);
+                REQUIRE(cur_game->main_hero->get_money() == 0);
+            }
+        }
     }
 }
 
