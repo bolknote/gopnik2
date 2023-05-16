@@ -17,6 +17,8 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 conan_cmake_autodetect(settings CPPSTD 17)
 
 conan_cmake_configure(REQUIRES fmt/9.1.0
+        GENERATORS cmake_find_package
+        REQUIRES catch2/3.3.2
         GENERATORS cmake_find_package)
 
 conan_cmake_install(PATH_OR_REFERENCE .
@@ -41,3 +43,24 @@ include_directories(
 
 add_executable(gop2 ${SOURCE})
 target_link_libraries(gop2 PRIVATE fmt::fmt)
+
+file(GLOB_RECURSE TESTS_SOURCE_FILES CONFIGURE_DEPENDS
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
+set(TESTS_SOURCE ${TESTS_SOURCE_FILES})
+
+find_package(Catch2 REQUIRED)
+add_executable(gop2_tests
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/game.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/hero.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/list.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/comm/r.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/comm/_clsc.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/comm/sav.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/comm/sstay.cpp
+        ${TESTS_SOURCE})
+target_link_libraries(gop2_tests PRIVATE fmt::fmt Catch2::Catch2WithMain)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(gop2_tests)

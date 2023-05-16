@@ -74,6 +74,9 @@
 - `cmake -B ~/.builds/gopnik2 -DCMAKE_BUILD_TYPE=Release`
 - `cd ~/.builds/gopnik2 && cmake --build . -- -j 10`
 
+## Запуск тестов
+- `cd ~/.builds/gopnik2 && ctest --extra-verbose`
+
 ## Запуск
 
 `~/.builds/gopnik2/gop2`

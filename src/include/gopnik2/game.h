@@ -4,6 +4,10 @@
 #include <iostream>
 #include <gopnik2/utils.h>
 
+// TODO: Move to subfolder for forwards
+class hero;
+class list;
+
 class game {
 public:
     std::string file_name; // имя файла сохранения
