@@ -1,4 +1,4 @@
-
+#include <iostream>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -19,9 +19,10 @@ int lar_b(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Чё-то не охота жрать\n",
-            "Ты не можешь есть из-за сломанной челюсти\n"};
+            "Ты не можешь есть из-за сломанной челюсти\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -36,11 +37,9 @@ int lar_b(
                 *flag = 1;
             } else {
                 if (main_hero->broken_jaw) {
-                    settextattr(RED);
-                    PRINTF("%s", mess[1]);
+                    std::cout << RED << mess[1] << std::flush;
                 } else {
-                    settextattr(GREEN);
-                    PRINTF("%s", mess[0]);
+                    std::cout << GREEN << mess[0] << std::flush;
                 }
             }
             break;

@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -13,7 +14,7 @@ int kl() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты не знаешь, где находится клуб\n",
             "Ты пришёл в клуб\n",
             "В клуб лучше пока не соваться - может отпинать охрана\n",
@@ -22,7 +23,8 @@ int kl() {
             "Ты пришёл в клуб \"Пятница\"\n",
             "Ты пришёл в клуб \"Порт\"\n",
             "Надпись на стене: \"Под забой и ширнуться в кайф\"\n",
-            "Ты чё! Ты же нефор! Неужели ты попрёшься в клуб, где включают одну попсу?!\n"};
+            "Ты чё! Ты же нефор! Неужели ты попрёшься в клуб, где включают одну попсу?!\n",
+    };
 
     int
     // индекс прайс-листа
@@ -37,15 +39,13 @@ int kl() {
     }
 
     if (cur_game->get_open_kl() == 0) {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0] << std::flush;
 
         return 0;
     }
 
     if (cur_game->get_stay_kl() > 0) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[2]);
+        std::cout << YELLOW << mess[2] << std::flush;
 
         return 0;
     }
@@ -54,8 +54,7 @@ int kl() {
             (main_hero->station != 0) &&
             (strcmp(main_hero->get_type(), "Нефор") != 0)) {
         if (main_hero->get_money() >= 20) {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[3]);
+            std::cout << YELLOW << mess[3] << std::flush;
 
             if (!game::wait_answ()) {
                 return 0;
@@ -63,8 +62,7 @@ int kl() {
                 main_hero->sub_money(20);
             }
         } else {
-            settextattr(RED);
-            PRINTF("%s", mess[4]);
+            std::cout << RED << mess[4] << std::flush;
 
             return 0;
         }
@@ -72,20 +70,17 @@ int kl() {
 
     if (strcmp(main_hero->get_type(), "Нефор") == 0) {
         if (main_hero->station) {
-            settextattr(WHITE);
-            PRINTF("%s", mess[6]);
-
-            settextattr(BLUE);
-            PRINTF("%s", mess[7]);
+            std::cout
+                << WHITE << mess[6]
+                << BLUE << mess[7]
+                << std::flush;
         } else {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[8]);
+            std::cout << YELLOW << mess[8] << std::flush;
 
             return 0;
         }
     } else {
-        settextattr(WHITE);
-        PRINTF("%s", (main_hero->station) ? (mess[5]) : (mess[1]));
+        std::cout << WHITE << (main_hero->station ? mess[5] : mess[1]) << std::flush;
     }
 
     // переход к новой локации

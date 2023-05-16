@@ -1,5 +1,8 @@
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -14,12 +17,13 @@ int tus() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Да чё-та не охота тусовать\n",
             "Ты тусишь на дискотеке",
             "Ты слишком сильно размахивал своими клешнями и кого-то задел...\n",
-            "Это %s %i уровня!\n",
-            "-Схуяли тут размахался, мудила?!\n"};
+            "Это {} {} уровня!\n",
+            "-Схуяли тут размахался, мудила?!\n",
+    };
 
     int
     // индекс генерируемого типа героя
@@ -36,20 +40,15 @@ int tus() {
     }
 
     if (main_hero->add_smart()) {
-        settextattr(GREEN);
-        PRINTF("%s", mess[0]);
+        std::cout << GREEN << mess[0];
     } else {
-        settextattr(GREEN);
-        PRINTF("%s", mess[1]);
-
-        settextattr(BLUE);
+        std::cout << GREEN << mess[1] << BLUE;
         main_hero->add_smart(1);
 
-        PRINTF("\n");
+        std::cout << "\n";
 
         if (CHANCE(1, 2)) {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[2]);
+            std::cout << YELLOW << mess[2];
 
             cur_game->set_stay_kl(-1);
 
@@ -59,11 +58,9 @@ int tus() {
 
             level += 2;
 
-            settextattr(YELLOW);
-            PRINTF(mess[3], cur_game->ht[ht_index].type, level);
-
-            settextattr(RED);
-            PRINTF("%s", mess[4]);
+            std::cout
+                << YELLOW << fmt::format(mess[3], cur_game->ht[ht_index].type, level)
+                << RED << mess[4];
 
             cur_game->gen_enemy_obj(ht_index, level);
 
@@ -71,6 +68,8 @@ int tus() {
             cur_game->set_loc(1);
         }
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -13,7 +15,7 @@ int v() {
     hero *lads;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Сначала надо скорешиться с местной гопотой\n",
             "Ну и как ты собрался звать свою братву? Чувак, для этого нужна мобила\n",
             "Никто не хочет за тебя впрягаться\n",
@@ -22,13 +24,13 @@ int v() {
             "-Алё, Кабан? У меня тут возникли кое-какие проблемы...\n",
             "-Не ссы, братан, ща подъедем\n",
             "Чувак, ты чё, не понял? Тебе ж сказано было - твою братву отпинали\n",
-            "Ты щас сам помогаешь своим пацанам\n"};
+            "Ты щас сам помогаешь своим пацанам\n",
+    };
 
     main_hero = cur_game->main_hero;
 
     if (cur_game->get_open_hp() == 2) {
-        settextattr(GREEN);
-        PRINTF("%s", mess[8]);
+        std::cout << GREEN << mess[8] << std::flush;
 
         return 0;
     }
@@ -37,24 +39,22 @@ int v() {
         lads = cur_game->lads;
 
         if (lads->get_health() == 0) {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[7]);
+            std::cout << YELLOW << mess[7];
         } else {
             if (main_hero->get_att() > 0) {
-                settextattr(GREEN);
-                PRINTF("%s", mess[3]);
+                std::cout << GREEN << mess[3];
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[2]);
+                std::cout << RED << mess[2];
             }
         }
+
+        std::cout << std::flush;
 
         return 0;
     }
 
     if (cur_game->stay_v > 0) {
-        settextattr(GREEN);
-        PRINTF("%s", mess[4]);
+        std::cout << GREEN << mess[4] << std::flush;
 
         return 0;
     }
@@ -64,23 +64,20 @@ int v() {
             if (main_hero->get_att() > 0) {
                 cur_game->stay_v = 5;
 
-                settextattr(GREEN);
-                PRINTF("%s", mess[5]);
-
-                settextattr(YELLOW);
-                PRINTF("%s", mess[6]);
+                std::cout
+                    << GREEN << mess[5]
+                    << YELLOW << mess[6];
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[2]);
+                std::cout << RED << mess[2];
             }
         } else {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[1]);
+            std::cout << YELLOW << mess[1];
         }
     } else {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[0]);
+        std::cout << YELLOW << mess[0];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

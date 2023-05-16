@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 
 #include <cstring>
 
@@ -14,10 +16,8 @@ int i() {
     Colors old_attr;
     // длина команды, состоящей из
     // максимального количества символов
-    size_t max_len,
+    size_t max_len;
     // длина текущей команды
-    len,
-    j;
 
     cur_game->supple_loc_run_over();
 
@@ -25,7 +25,7 @@ int i() {
 
     for (int i = 1; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
         if (cur_game->loc[cur_game->active_loc].command_active[i]) {
-            len = strlen(cur_game->loc[cur_game->active_loc].command[i]);
+            auto len = strlen(cur_game->loc[cur_game->active_loc].command[i]);
 
             if (len > max_len) {
                 max_len = len;
@@ -39,19 +39,18 @@ int i() {
 
     for (int i = 0; i < cur_game->loc[cur_game->active_loc].comm_amount; i++) {
         if (cur_game->loc[cur_game->active_loc].command_active[i]) {
-            settextattr(YELLOW);
-            PRINTF("%s", cur_game->loc[cur_game->active_loc].command[i]);
+            std::cout << YELLOW << cur_game->loc[cur_game->active_loc].command[i];
 
-            for (j = 0; j < (max_len - strlen(cur_game->loc[cur_game->active_loc].command[i])); j++) {
-                PRINTF("%s", " ");
-            }
-
-            settextattr(WHITE);
-            PRINTF("%s\n", cur_game->loc[cur_game->active_loc].command_desc[i]);
+            auto len = max_len - strlen(cur_game->loc[cur_game->active_loc].command[i]);
+            std::cout
+                << std::setw(len) << " "
+                << WHITE << cur_game->loc[cur_game->active_loc].command_desc[i] << "\n";
         }
     }
 
     settextattr(old_attr);
+
+    std::cout << std::flush;
 
     return 0;
 }

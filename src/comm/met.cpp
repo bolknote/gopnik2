@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,21 +15,20 @@ int met() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Ты пришёл на станцию \"%s\"\n",
-            "В метро пока идти нельзя - могут загрести\n"};
+    const std::string mess[] = {
+            "Ты пришёл на станцию \"{}\"\n",
+            "В метро пока идти нельзя - могут загрести\n",
+    };
 
     main_hero = cur_game->main_hero;
 
     if (cur_game->stay_met > 0) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[1]);
+        std::cout << YELLOW << mess[1] << std::flush;
 
         return 0;
     }
 
-    settextattr(WHITE);
-    PRINTF(mess[0], cur_game->stn[main_hero->station].name);
+    std::cout << WHITE << fmt::format(mess[0], cur_game->stn[main_hero->station].name) << std::flush;
 
     // переход к новой локации
     cur_game->set_loc(9);
