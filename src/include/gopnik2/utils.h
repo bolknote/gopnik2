@@ -20,7 +20,7 @@ typedef enum {
 } Colors;
 
 #define GETRANDOM(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
-#define CHANCE(m, n) (GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0)
+#define CHANCE(m, n) ((GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0))
 #define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
 #define PRINTF(...) printf (__VA_ARGS__); fflush(stdout)
 

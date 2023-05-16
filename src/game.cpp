@@ -362,9 +362,7 @@ int game::wait_command() {
 
     for (;;) {
         old_attr = settextattr(BLACK);
-        PRINTF("%s", loc[active_loc].name);
-
-        std::cout << WHITE << "\\" << std::flush;
+        std::cout << loc[active_loc].name << WHITE << "\\" << std::flush;
 
         for (i = 0; i < 10; i++) {
             cmd[i] = 0;
@@ -377,8 +375,8 @@ int game::wait_command() {
             q = get_key(false);
             if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
             {
-                PRINTF("%c", q);
                 cmd[i] = (char) q;
+                std::cout << cmd[i];
                 i++;
             }
             if (q == 10 || q == 13) {
@@ -389,7 +387,7 @@ int game::wait_command() {
             if ((q == 127 || q == 8) && i > 0) // из-за непонятных мне проблем с совместимостью BS==127
             {
                 backspace();
-                std::cout << " "  << std::flush;
+                std::cout << " ";
                 backspace();
                 cmd[i--] = 0;
             }
@@ -399,7 +397,7 @@ int game::wait_command() {
                 if ((n > 0) && ((q == 65) || (q == 66))) {
                     while (i--) {
                         backspace();
-                        std::cout << " " << std::flush;
+                        std::cout << " ";
                         backspace();
                     }
                     for (j = 0; j < 10; j++)
@@ -410,9 +408,11 @@ int game::wait_command() {
                         strcpy(cmd, cmd_list->down());
                     }
                     i = (int) strlen(cmd);
-                    PRINTF("%s", cmd);
+                    std::cout << cmd;
                 }
             }
+
+            std::cout << std::flush;
         }
 
         cmd_list->add(cmd);

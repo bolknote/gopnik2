@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -16,7 +17,7 @@ int sstay() {
     hero *lads;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Действие косяка закончилось. Все навыки -1\n",
             "Ветер протрезвил твою пьяную голову. Лв +1\n",
             "До тебя допёрло, что ты дерёшься с ветром и ты решил бросить это занятие\n",
@@ -50,13 +51,11 @@ int sstay() {
         int idx = main_hero->inv[game::search_inv(main_hero, "Мобильник")].have ? 8 : 19;
 
         cur_game->stn[5].avail = true;
-        settextattr(WHITE);
-        PRINTF("%s", mess[idx]);
+        std::cout
+            << WHITE << mess[idx]
+            << YELLOW << mess[18];
 
-        settextattr(YELLOW);
-        PRINTF("%s", mess[18]);
-
-        get_key();
+        get_key(false);
     }
 
     if (
@@ -70,44 +69,36 @@ int sstay() {
 
         if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
             if (cur_game->get_stay_mar() == 1) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
+                std::cout
+                    << WHITE << mess[8]
+                    << YELLOW << mess[9];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[9]);
-
-                get_key();
+                get_key(false);
             }
 
             if (cur_game->get_stay_kl() == 1) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
+                std::cout
+                    << WHITE << mess[8]
+                    << YELLOW << mess[10];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[10]);
-
-                get_key();
+                get_key(false);
             }
 
             if (cur_game->stay_met == 1) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
+                std::cout
+                    << WHITE << mess[8]
+                    << YELLOW << mess[11];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[11]);
-
-                get_key();
+                get_key(false);
             }
 
             // стрела #1
             if (cur_game->stay_str == 5) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[12]);
+                std::cout
+                    << WHITE << mess[12]
+                    << YELLOW << mess[14];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[14]);
-
-                get_key();
+                get_key(false);
             }
 
             // стрела #2
@@ -128,37 +119,31 @@ int sstay() {
                     main_hero->station = 0;
                 }
 
-                settextattr(WHITE);
-                PRINTF("%s", mess[12]);
+                std::cout
+                    << WHITE << mess[12]
+                    << YELLOW << mess[15];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[15]);
-
-                get_key();
+                get_key(false);
             }
 
             if (cur_game->stay_eog == 25) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
+                std::cout
+                    << WHITE << mess[8]
+                    << YELLOW << mess[16];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[16]);
-
-                get_key();
+                get_key(false);
             }
 
             if (cur_game->stay_eog == 1) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[8]);
+                std::cout
+                    << WHITE << mess[8]
+                    << YELLOW << mess[17];
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[17]);
-
-                get_key();
+                get_key(false);
             }
         }
 
-        settextattr(YELLOW);
+        std::cout << YELLOW;
 
         if (cur_game->stay_kos == 1) {
             if (
@@ -166,7 +151,7 @@ int sstay() {
                     (cur_game->num_k < 20) &&
                     (CHANCE(1, 10)) &&
                     (cur_game->end_of_game == 0)) {
-                PRINTF("%s", mess[3]);
+                std::cout << mess[3];
                 cur_game->set_loc(0);
 
                 // удаляем объект "братвы"
@@ -177,19 +162,19 @@ int sstay() {
             }
 
             main_hero->stoned = false;
-            PRINTF("%s", mess[0]);
+            std::cout << mess[0];
         }
 
         if (cur_game->stay_mh == 1) {
             if (
                     (cur_game->active_loc == 1) &&
                     (strcmp(cur_game->enemy->get_type(), "Ветер") == 0)) {
-                PRINTF("%s", mess[2]);
+                std::cout << mess[2];
                 cur_game->set_loc(0);
             }
 
             main_hero->drunk = false;
-            PRINTF("%s", mess[1]);
+            std::cout << mess[1];
         }
 
         if (cur_game->stay_v > 0) {
@@ -217,8 +202,7 @@ int sstay() {
                     lads->kick_count = lads->get_kick_count();
 
                     if (cur_game->get_open_d() != 2) {
-                        settextattr(YELLOW);
-                        PRINTF("%s", mess[4]);
+                        std::cout << YELLOW << mess[4];
                     }
                 }
 
@@ -236,13 +220,11 @@ int sstay() {
                 cur_game->set_open_hp();
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
-                    settextattr(WHITE);
-                    PRINTF("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+                    std::cout
+                        << WHITE << (main_hero->station ? mess[12] : mess[5])
+                        << YELLOW << mess[6];
 
-                    settextattr(YELLOW);
-                    PRINTF("%s", mess[6]);
-
-                    get_key();
+                    get_key(false);
                 }
             }
 
@@ -252,13 +234,11 @@ int sstay() {
                 cur_game->set_open_d();
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
-                    settextattr(WHITE);
-                    PRINTF("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+                    std::cout
+                        << WHITE << (main_hero->station ? mess[12] : mess[5])
+                        << YELLOW << mess[7];
 
-                    settextattr(YELLOW);
-                    PRINTF("%s", mess[7]);
-
-                    get_key();
+                    get_key(false);
                 }
             }
 
@@ -270,13 +250,11 @@ int sstay() {
                 cur_game->open_raid = true;
 
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
-                    settextattr(WHITE);
-                    PRINTF("%s", (main_hero->station) ? (mess[12]) : (mess[5]));
+                    std::cout
+                        << WHITE << (main_hero->station ? mess[12] : mess[5])
+                        << YELLOW << mess[13];
 
-                    settextattr(YELLOW);
-                    PRINTF("%s", mess[13]);
-
-                    get_key();
+                    get_key(false);
                 }
             }
         }
@@ -290,6 +268,8 @@ int sstay() {
         cur_game->stay_str = SUB(cur_game->stay_str, 1);
         cur_game->stay_eog = SUB(cur_game->stay_eog, 1);
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
