@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -13,8 +16,8 @@ int w() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Навстречу идёт %s %i уровня. Хочешь наехать? (y/n)\n",
+    const std::string mess[] = {
+            "Навстречу идёт {} {} уровня. Хочешь наехать? (y/n)\n",
             "Ничё не происходит\n",
             "Совсем ничё не происходит\n",
             "Слышь, браток, дело есть...",
@@ -25,9 +28,10 @@ int w() {
             "Ты смылся...\n",
             "Ты нашёл базар\n",
             "Ты спросил у прохожего, где больница\n",
-            "%s хотел наехать, но увидев у тебя чотки, решил не рисковать\n",
+            "{} хотел наехать, но увидев у тебя чотки, решил не рисковать\n",
             "Ты увидел объявление: \"Типа заходи в наш понтовый клуб\"\n",
-            "Мент хотел наехать, но, увидев тебя в очках, решил, что ты не быдло\n"};
+            "Мент хотел наехать, но, увидев тебя в очках, решил, что ты не быдло\n",
+    };
 
     int
     // индекс генерируемого типа героя
@@ -37,10 +41,9 @@ int w() {
     // индекс инвентаря
     inv_index;
 
-    const char
+    std::string
     // фразы противника и героя
-    *ph_addr,
-            *ph_reply;
+    ph_addr, ph_reply;
 
     int
     // уровень генерируемого героя
@@ -68,8 +71,7 @@ int w() {
         cur_game->open_mar = CHANCE(1, 5);
 
         if (cur_game->open_mar) {
-            settextattr(BLUE);
-            PRINTF("%s", mess[9]);
+            std::cout << BLUE << mess[9];
         }
     }
 
@@ -81,8 +83,7 @@ int w() {
         cur_game->open_rep = CHANCE(1, 5);
 
         if (cur_game->open_rep) {
-            settextattr(BLUE);
-            PRINTF("%s", mess[10]);
+            std::cout << BLUE << mess[10];
         }
     }
 
@@ -94,8 +95,7 @@ int w() {
         cur_game->set_open_kl(CHANCE(1, 5));
 
         if (cur_game->get_open_kl()) {
-            settextattr(BLUE);
-            PRINTF("%s", mess[12]);
+            std::cout << BLUE << mess[12];
         }
     }
 
@@ -117,12 +117,12 @@ int w() {
                     cur_game->we[i].active = false;
 
                     if (cur_game->we[i].type == 1) {
-                        settextattr(BLUE);
+                        std::cout << BLUE;
                     } else {
-                        settextattr(YELLOW);
+                        std::cout << YELLOW;
                     }
 
-                    PRINTF("%s\n", cur_game->we[i].event);
+                    std::cout << cur_game->we[i].event << "\n";
 
                     break;
                 }
@@ -172,8 +172,7 @@ int w() {
 
     // если противник имеет место быть
     if (level > -1) {
-        settextattr(YELLOW);
-        PRINTF(mess[0], cur_game->ht[ht_index].type, level);
+        std::cout << YELLOW << fmt::format(mess[0], cur_game->ht[ht_index].type, level);
 
         flag = 0;
 
@@ -191,11 +190,9 @@ int w() {
                 ph_reply = mess[4];
             }
 
-            settextattr(GREEN);
-            PRINTF("-%s\n", ph_addr);
-
-            settextattr(RED);
-            PRINTF("-%s\n", ph_reply);
+            std::cout
+                << GREEN << fmt::format("-{}\n", ph_addr)
+                << RED << fmt::format("-{}\n", ph_reply);
         } else {
             if (level > main_hero->get_level()) {
                 // если противник наезжает на героя
@@ -208,7 +205,7 @@ int w() {
                             (main_hero->inv[game::search_inv(main_hero, "Чотки")].have) &&
                             (CHANCE(1, 2)) &&
                             (ht_index != cur_game->search_ht("Мент"))) {
-                        PRINTF(mess[11], cur_game->ht[ht_index].type);
+                        std::cout << fmt::format(mess[11], cur_game->ht[ht_index].type);
 
                         goto then1;
                     }
@@ -217,14 +214,14 @@ int w() {
                     if (
                             (main_hero->inv[game::search_inv(main_hero, "Затемнённые очки")].have) &&
                             (ht_index == cur_game->search_ht("Мент"))) {
-                        PRINTF("%s", mess[13]);
+                        std::cout << mess[13];
 
                         goto then1;
                     }
 
                     flag = 1;
 
-                    PRINTF("%s", mess[5]);
+                    std::cout << mess[5];
 
                     if (cur_game->ht[ht_index].enemy_phrase_amount > 0) {
                         ph_index = GETRANDOM(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
@@ -236,13 +233,11 @@ int w() {
                         ph_reply = mess[7];
                     }
 
-                    settextattr(RED);
-                    PRINTF("-%s\n", ph_addr);
-
-                    settextattr(GREEN);
-                    PRINTF("-%s\n", ph_reply);
+                    std::cout
+                        << RED << fmt::format("-{}\n", ph_addr)
+                        << GREEN << fmt::format("-{}\n", ph_reply);
                 } else {
-                    PRINTF("%s", mess[8]);
+                    std::cout << mess[8];
                 }
             }
         }
@@ -288,20 +283,22 @@ int w() {
     } else {
         // выводим, что ничё не происходит
 
-        settextattr(WHITE);
+        std::cout << WHITE;
 
         if (
                 (cur_game->num_empty_w > 5) &&
                 (CHANCE(1, 5))) {
-            PRINTF("%s", mess[2]);
+            std::cout << mess[2];
         } else {
-            PRINTF("%s", mess[1]);
+            std::cout << mess[1];
         }
 
         cur_game->num_empty_w++;
     }
 
     cur_game->num_w++;
+
+    std::cout << std::flush;
 
     return 0;
 }
