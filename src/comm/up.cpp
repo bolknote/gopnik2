@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -16,9 +20,9 @@ int up(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты качаешься на тренажёрах",
-            "Ты максимально прокачал %s",
+            "Ты максимально прокачал {}",
             "живучесть\n",
             "ноги\n",
             "Ты качаешь ноги\n",
@@ -27,7 +31,8 @@ int up(
             "пресс\n",
             "силу\n",
             "Ты занимаешься со штангой и гантелями",
-            "Ты пока не можешь прокачивать опыт\n"};
+            "Ты пока не можешь прокачивать опыт\n",
+    };
 
     int
             flag2;
@@ -39,18 +44,16 @@ int up(
     switch (plm_index) {
         case 0:
             if (main_hero->add_vita()) {
-                settextattr(RED);
-                PRINTF(mess[1], mess[2]);
+                std::cout << RED << fmt::format(mess[1], mess[2]);
 
                 *flag = 0;
             } else {
-                settextattr(GREEN);
-                PRINTF("%s", mess[0]);
-
-                settextattr(BLUE);
+                std::cout
+                    << GREEN << mess[0]
+                    << BLUE;
                 main_hero->add_vita(1);
 
-                PRINTF("\n");
+                std::cout << "\n";
 
                 *flag = 1;
             }
@@ -58,13 +61,11 @@ int up(
 
         case 1:
             if (main_hero->trn_foot >= 10) {
-                settextattr(RED);
-                PRINTF(mess[1], mess[3]);
+                std::cout << RED << fmt::format(mess[1], mess[3]);
 
                 *flag = 0;
             } else {
-                settextattr(GREEN);
-                PRINTF("%s", mess[4]);
+                std::cout << GREEN << mess[4];
 
                 main_hero->trn_foot += 1;
 
@@ -74,16 +75,13 @@ int up(
 
         case 2:
             if (main_hero->add_armo()) {
-                settextattr(RED);
-                PRINTF(mess[1], mess[7]);
+                std::cout << RED << fmt::format(mess[1], mess[7]);
 
                 *flag = 0;
             } else {
-                settextattr(GREEN);
-                PRINTF("%s", mess[5]);
-
-                settextattr(BLUE);
-                PRINTF("%s", mess[6]);
+                std::cout
+                    << GREEN << mess[5]
+                    << BLUE << mess[6];
 
                 main_hero->add_armo(1);
 
@@ -93,18 +91,17 @@ int up(
 
         case 3:
             if (main_hero->add_force()) {
-                settextattr(RED);
-                PRINTF(mess[1], mess[8]);
+                std::cout << RED << fmt::format(mess[1], mess[8]);
 
                 *flag = 0;
             } else {
-                settextattr(GREEN);
-                PRINTF("%s", mess[9]);
+                std::cout
+                    << GREEN << mess[9]
+                    << BLUE;
 
-                settextattr(BLUE);
                 main_hero->add_force(1);
 
-                PRINTF("\n");
+                std::cout << "\n";
 
                 *flag = 1;
             }
@@ -112,8 +109,7 @@ int up(
 
         case 4:
             if ((main_hero->get_max_exp() - main_hero->get_exp()) < 10) {
-                settextattr(RED);
-                PRINTF("%s", mess[10]);
+                std::cout << RED << mess[10];
 
                 *flag = 0;
             } else {
@@ -130,6 +126,8 @@ int up(
     if (flag2) {
         main_hero->add_health(main_hero->get_max_health() - main_hero->get_health());
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

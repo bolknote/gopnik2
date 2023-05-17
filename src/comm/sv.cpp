@@ -1,4 +1,7 @@
 #include <cstring>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -15,17 +18,18 @@ int sv() {
     hero *enemy;
 
     // сообщения функции
-    const char *mess[] = {
-            "Это %s %i уровня - %s\n",
-            "Сл:%i Лв:%i Жв:%i Уд:%i\n",
-            "Урон %i-%i\n",
-            "Здоровье %i/%i",
-            "Точность %i%%\n",
-            "Точность 90%% - %i ударов, Точность %i удара %i%%\n",
-            "Броня %i\n",
+    const std::string mess[] = {
+            "Это {} {} уровня - {}\n",
+            "Сл:{} Лв:{} Жв:{} Уд:{}\n",
+            "Урон {}-{}\n",
+            "Здоровье {}/{}",
+            "Точность {}%\n",
+            "Точность 90% - {} ударов, Точность {} удара {}%\n",
+            "Броня {}\n",
             " Сломана челюсть",
             " Сломана нога",
-            "Это %s %i уровня\n"};
+            "Это {} {} уровня\n",
+    };
 
     const char *
             // тип обозначения героя
@@ -52,72 +56,74 @@ int sv() {
         cur_level_type = level_type[enemy->get_level()];
     }
 
-    settextattr(GREEN);
+    std::cout << GREEN;
 
     if (
             (strcmp(enemy->get_type(), "Вахтёрша") == 0) ||
             (strcmp(enemy->get_type(), "Коменда") == 0)) {
-        PRINTF(mess[9], enemy->get_type(), enemy->get_level());
+        std::cout << fmt::format(mess[9], enemy->get_type(), enemy->get_level());
     } else {
-        PRINTF(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);
+        std::cout << fmt::format(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);
     }
 
     // навыки (сила, ловкость, живучесть, удача)
-    settextattr(WHITE);
-    PRINTF(
+    std::cout
+        << WHITE
+        << fmt::format(
             mess[1],
             enemy->get_force(),
             enemy->get_smart(),
             enemy->get_vita(),
-            enemy->get_luck());
+            enemy->get_luck()
+        );
 
     // урон
-    settextattr(WHITE);
-    PRINTF(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
+    std::cout
+        << WHITE
+        << fmt::format(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
 
     // здоровье
 
     fi = (float) enemy->get_health() / (float) enemy->get_max_health();
 
     if (fi > 0.5) {
-        settextattr(GREEN);
+        std::cout << GREEN;
     } else {
         if (fi > 0.25) {
-            settextattr(YELLOW);
+            std::cout << YELLOW;
         } else {
-            settextattr(RED);
+            std::cout << RED;
         }
     }
 
-    PRINTF(mess[3], enemy->get_health(), enemy->get_max_health());
+    std::cout << fmt::format(mess[3], enemy->get_health(), enemy->get_max_health());
 
     if (enemy->broken_jaw) {
-        settextattr(RED);
-        PRINTF("%s", mess[7]);
+        std::cout << RED << mess[7];
     }
 
     if (enemy->broken_foot) {
-        settextattr(RED);
-        PRINTF("%s", mess[8]);
+        std::cout << RED << mess[8];
     }
 
-    PRINTF("\n");
+    std::cout << "\n";
 
     // точность
 
-    settextattr(WHITE);
+    std::cout << WHITE;
 
     if ((kick_count = enemy->get_kick_count()) == 1) {
-        PRINTF(mess[4], enemy->get_accuracy_of_last_kick());
+        std::cout << fmt::format(mess[4], enemy->get_accuracy_of_last_kick());
     } else {
-        PRINTF(mess[5], kick_count - 1, kick_count, enemy->get_accuracy_of_last_kick());
+        std::cout << fmt::format(mess[5], kick_count - 1, kick_count, enemy->get_accuracy_of_last_kick());
     }
 
     // броня
     if (enemy->get_armo() > 0) {
-        settextattr(GREEN);
-        PRINTF(mess[6], enemy->get_armo());
+        std::cout << GREEN << fmt::format(mess[6], enemy->get_armo());
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
