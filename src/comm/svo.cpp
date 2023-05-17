@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -14,15 +18,19 @@ int svo() {
             continue;
         }
 
-        settextattr(RED);
-        PRINTF(
-                "%s %i",
+        std::cout
+            << RED
+            << fmt::format(
+                "{} {}",
                 cur_game->str_enemy[i]->get_type(),
-                cur_game->str_enemy[i]->get_level());
-        PRINTF(
-                " (%i/%i)\n",
+                cur_game->str_enemy[i]->get_level()
+            )
+            << fmt::format(
+                " ({}/{})\n",
                 cur_game->str_enemy[i]->get_health(),
-                cur_game->str_enemy[i]->get_max_health());
+                cur_game->str_enemy[i]->get_max_health()
+            )
+            << std::flush;
     }
 
     return 0;

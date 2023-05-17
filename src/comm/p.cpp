@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,9 +13,10 @@ int p() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты угостил пацанов пивом. Твоя понтовость повысилась на 5\n",
-            "у тебя нету пива\n"};
+            "у тебя нету пива\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -21,11 +24,9 @@ int p() {
         main_hero->sub_beer(1);
         main_hero->add_att(5);
 
-        settextattr(GREEN);
-        PRINTF("%s", mess[0]);
+        std::cout << GREEN << mess[0] << std::flush;
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[1]);
+        std::cout << RED << mess[1] << std::flush;
     }
 
     return 0;

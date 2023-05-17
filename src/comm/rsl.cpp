@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <iostream>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -14,7 +15,7 @@ int rsl(
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты слэмишься",
             "С диким рёвом ты кидаешься в толпу, расталкивая всех плечами\n",
             "В диком угаре тебе кто-то заезжает по челюсти\n",
@@ -23,7 +24,8 @@ int rsl(
             "На этот раз твой заход был неудачным - тебя свалила толпа, сломав тебе ногу\n",
             "От мощного столкновения тебя беспорядочно проносит по всему партеру\n",
             "Столкновение было не самым лучшим и ты сломал всё, что только можно\n",
-            "Тебя вынесло из слэма\n"};
+            "Тебя вынесло из слэма\n"
+    };
 
     int
     // количество прибавляемой ловкость
@@ -43,13 +45,11 @@ int rsl(
         // лёгкий слэм
         case 0:
             if (CHANCE(2, 3)) {
-                settextattr(YELLOW);
-                PRINTF("%s", mess[1]);
+                std::cout << YELLOW << mess[1];
 
                 smart = 1;
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[2]);
+                std::cout << RED << mess[2];
 
                 main_hero->broken_jaw = true;
             }
@@ -58,13 +58,11 @@ int rsl(
             // агрессивный слэм
         case 1:
             if (CHANCE(1, 3)) {
-                settextattr(YELLOW);
-                PRINTF("%s", mess[3]);
+                std::cout << YELLOW << mess[3];
 
                 smart = 2;
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[2]);
+                std::cout << RED << mess[2];
 
                 main_hero->broken_jaw = true;
             }
@@ -73,13 +71,11 @@ int rsl(
             // прыжок в центр круга
         case 2:
             if (CHANCE(2, 5)) {
-                settextattr(YELLOW);
-                PRINTF("%s", mess[4]);
+                std::cout << YELLOW << mess[4];
 
                 smart = 3;
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[5]);
+                std::cout << RED << mess[5];
 
                 main_hero->broken_foot = true;
             }
@@ -88,13 +84,11 @@ int rsl(
             // стенка на стенку
         case 3:
             if (CHANCE(1, 5)) {
-                settextattr(YELLOW);
-                PRINTF("%s", mess[6]);
+                std::cout << YELLOW << mess[6];
 
                 smart = 4;
             } else {
-                settextattr(RED);
-                PRINTF("%s", mess[7]);
+                std::cout << RED << mess[7];
 
                 main_hero->broken_foot = true;
                 main_hero->broken_jaw = true;
@@ -104,23 +98,21 @@ int rsl(
 
     if (smart) {
         if (main_hero->add_smart()) {
-            settextattr(WHITE);
-            PRINTF("%s", mess[8]);
+            std::cout << WHITE << mess[8];
 
             // переход к новой локации
             cur_game->set_loc(8);
         } else {
-            settextattr(GREEN);
-            PRINTF("%s", mess[0]);
-
-            settextattr(BLUE);
+            std::cout << GREEN << mess[0] << BLUE;
             main_hero->add_smart(smart);
 
-            PRINTF("%s", "\n");
+            std::cout << "\n";
         }
     } else {
         sl();
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

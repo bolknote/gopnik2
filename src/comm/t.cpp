@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -13,10 +16,11 @@ int t() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Ты надыбал %i руб.\n",
-            "Тебя запалили! Это %s %i уровня\n",
-            "-Отдай кошелёк, урод!\n"};
+    const std::string mess[] = {
+            "Ты надыбал {} руб.\n",
+            "Тебя запалили! Это {} {} уровня\n",
+            "-Отдай кошелёк, урод!\n",
+    };
 
     int
     // сгенерированное кол-во денег
@@ -43,8 +47,7 @@ int t() {
             money = GETRANDOM(0, 20 + 20 * main_hero->district);
             main_hero->add_money(money);
 
-            settextattr(GREEN);
-            PRINTF(mess[0], money);
+            std::cout << GREEN << fmt::format(mess[0], money);
         }
 
         cur_game->num_t++;
@@ -62,17 +65,17 @@ int t() {
 
         level += 2;
 
-        settextattr(YELLOW);
-        PRINTF(mess[1], cur_game->ht[ht_index].type, level);
-
-        settextattr(RED);
-        PRINTF("%s", mess[2]);
+        std::cout
+            << YELLOW << fmt::format(mess[1], cur_game->ht[ht_index].type, level)
+            << RED << mess[2];
 
         cur_game->gen_enemy_obj(ht_index, level);
 
         // переход к новой локации
         cur_game->set_loc(1);
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

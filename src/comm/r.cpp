@@ -4,6 +4,8 @@
 #include <gopnik2/hero.h>
 #include <gopnik2/game.h>
 
+#include <iostream>
+
 extern game *cur_game;
 
 int r() {
@@ -11,9 +13,10 @@ int r() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты занял у пацанов 4 рубля. Твоя понтовость понизилась на 10\n",
-            "Ты не можешь занять денег, так как у тебя слишком низкая понтовость\n"};
+            "Ты не можешь занять денег, так как у тебя слишком низкая понтовость\n",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -21,11 +24,9 @@ int r() {
         main_hero->sub_att(10);
         main_hero->add_money(4);
 
-        settextattr(YELLOW);
-        PRINTF("%s", mess[0]);
+        std::cout << YELLOW << mess[0] << std::flush;
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[1]);
+        std::cout << RED << mess[1] << std::flush;
     }
 
     return 0;

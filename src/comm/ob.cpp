@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -13,14 +16,15 @@ int ob() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Как назло вокруг никого нету\n",
-            "Ты обул одного лоха на %i руб.!\n",
+            "Ты обул одного лоха на {} руб.!\n",
             "-Э, пацан, есть чё?\n",
             "-Слышь, есть чё по мелочи?\n",
             "-Слушай, выручи чириком, ну очень надо\n",
             "-Xуй вачё! Ты чё, сука, попутался?\n",
-            "Это %s %i уровня!\n"};
+            "Это {} {} уровня!\n",
+    };
 
     int
     // сгенерированное кол-во денег
@@ -45,24 +49,18 @@ int ob() {
 
             main_hero->add_money(money);
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[GETRANDOM(1, 4)]);
-
-            settextattr(GREEN);
-            PRINTF(mess[1], money);
+            std::cout
+                << YELLOW << mess[GETRANDOM(1, 4)]
+                << GREEN << fmt::format(mess[1], money);
         } else {
             do {
                 level = cur_game->gen_enemy(&ht_index);
             } while (level == -1);
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[2]);
-
-            settextattr(RED);
-            PRINTF("%s", mess[5]);
-
-            settextattr(YELLOW);
-            PRINTF(mess[6], cur_game->ht[ht_index].type, level);
+            std::cout
+                << YELLOW << mess[2]
+                << RED << mess[5]
+                << YELLOW << fmt::format(mess[6], cur_game->ht[ht_index].type, level);
 
             cur_game->gen_enemy_obj(ht_index, level);
 
@@ -70,9 +68,10 @@ int ob() {
             cur_game->set_loc(1);
         }
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0];
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,7 +13,7 @@ int pr() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Всякого распиздяя с улицы в притон не пустят. Отпинай сначала побольше мудаков\n",
             "Ты пришёл в притон\n",
             "-Тут на одного нашего один мудак наехал.\n",
@@ -21,7 +23,8 @@ int pr() {
             "-Э! А где пропуск? Если без пропуска, то давай пиздуй отсюда!\n",
             "Пропуска у тебя не было - тебе пришлось уйти, что б не возникло лишних проблем\n",
             "Ты пришёл в притон - общагу ИТМО\n",
-            "-На нас по-крупному наехали\n"};
+            "-На нас по-крупному наехали\n"
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -34,22 +37,18 @@ int pr() {
     if (
             (cur_game->get_open_pr() == 0) &&
             (main_hero->station == 0)) {
-        settextattr(RED);
-        PRINTF("%s", mess[0]);
+        std::cout << RED << mess[0] << std::flush;
 
         return 0;
     }
 
     if (main_hero->station) {
         if (main_hero->inv[game::search_inv(main_hero, "Пропуск в общагу")].have == 0) {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[5]);
-
-            settextattr(RED);
-            PRINTF("%s", mess[6]);
-
-            settextattr(YELLOW);
-            PRINTF("%s", mess[7]);
+            std::cout
+                << YELLOW << mess[5]
+                << RED << mess[6]
+                << YELLOW << mess[7]
+                << std::flush;
 
             cur_game->set_open_pr(0);
 
@@ -59,8 +58,7 @@ int pr() {
         }
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", (main_hero->station) ? (mess[8]) : (mess[1]));
+    std::cout << WHITE << (main_hero->station ? mess[8] : mess[1]);
 
     if (
             (cur_game->get_open_a() == 0) &&
@@ -70,26 +68,24 @@ int pr() {
     }
 
     if (cur_game->get_open_a()) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[4]);
+        std::cout << YELLOW << mess[4];
     }
 
     if (cur_game->get_open_hp()) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[2]);
+        std::cout << YELLOW << mess[2];
     }
 
     if (cur_game->get_open_d()) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[3]);
+        std::cout << YELLOW << mess[3];
     }
 
     if (
             (cur_game->open_raid) &&
             (main_hero->station == 4)) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[9]);
+        std::cout << YELLOW << mess[9];
     }
+
+    std::cout << std::flush;
 
     // переход к новой локации
     cur_game->set_loc(4);

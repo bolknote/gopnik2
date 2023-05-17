@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,10 +13,11 @@ int rep() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ты пришёл к ветеринару\n",
             "Док: Вали отсюда, ты здоров\n",
-            "Ты пока не знаешь, где находиться больница\n"};
+            "Ты пока не знаешь, где находиться больница\n"
+    };
 
     int
     // индекс прайс-листа
@@ -27,8 +30,7 @@ int rep() {
     }
 
     if (cur_game->open_rep == 0) {
-        settextattr(RED);
-        PRINTF("%s", mess[2]);
+        std::cout << RED << mess[2] << std::flush;
 
         return 0;
     }
@@ -37,8 +39,7 @@ int rep() {
             (main_hero->get_health() < main_hero->get_max_health()) ||
             (main_hero->broken_jaw) ||
             (main_hero->broken_foot)) {
-        settextattr(WHITE);
-        PRINTF("%s", mess[0]);
+        std::cout << WHITE << mess[0] << std::flush;
 
         // переход к новой локации
         cur_game->set_loc(2);
@@ -59,8 +60,7 @@ int rep() {
             cur_game->pl[pl_index].members[1].buy_phrase_print_mode = 1;
         }
     } else {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[1]);
+        std::cout << YELLOW << mess[1] << std::flush;
 
         // переход к новой локации
         cur_game->set_loc(0);

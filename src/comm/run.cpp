@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <algorithm>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -14,14 +17,14 @@ int run() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Э, ты куда, козёл!\n",
             "Э, ты куда, трусливый засранец!\n",
             "Тебе удалось съебаться.\n",
             "Тебе не удалось съебаться.\n",
             "Ты не можешь убежать на сломаной ноге..\n",
-            "Братва спалила, что ты дал по съёбам, твоя понтовость в притоне понизилась до %iю\n",
-            "Братва спалила, что ты пытался съебать, твоя понтовость в притоне понизилась до %i.\n",
+            "Братва спалила, что ты дал по съёбам, твоя понтовость в притоне понизилась до {}ю\n",
+            "Братва спалила, что ты пытался съебать, твоя понтовость в притоне понизилась до {}.\n",
             "Братва спалила, что ты дал по съёбам, твоя понтовость в притоне упала до нуля.\n",
             "Братва спалила, что ты пытался съебать, твоя понтовость в притоне упала до нуля.\n",
     };
@@ -33,8 +36,7 @@ int run() {
     }
 
     if (main_hero->broken_foot) {
-        settextattr(YELLOW);
-        PRINTF("%s", mess[4]);
+        std::cout << YELLOW << mess[4];
     } else {
         // шансы убежать
         bool run = CHANCE(50 + std::max(main_hero->get_luck(), 25), 100);
@@ -62,8 +64,7 @@ int run() {
             int att = std::min(main_hero->get_att() - 20, 0);
             main_hero->set_att(att);
 
-            settextattr(YELLOW);
-            PRINTF(mess[(att == 0 ? 8 : 6) - (int) run], att);
+            std::cout << YELLOW << fmt::format(mess[(att == 0 ? 8 : 6) - (int) run], att);
 
             // убежал со стрелки
             if (run) {
@@ -85,19 +86,19 @@ int run() {
         }
 
         if (run) {
-            settextattr(RED);
-            PRINTF("%s", mess[GETRANDOM(-1, 1)]);
-            settextattr(YELLOW);
-            PRINTF("%s", mess[2]);
+            std::cout
+                << RED << mess[GETRANDOM(-1, 1)]
+                << YELLOW << mess[2];
 
             cur_game->set_loc(0);
         } else {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[3]);
+            std::cout << YELLOW << mess[3];
             // не удалось сбежать, надо биться
             return k(true);
         }
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
