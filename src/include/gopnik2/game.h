@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <iostream>
 
-#include <gopnik2/utils.h>
 #include <gopnik2/forward.h>
 
 class game {

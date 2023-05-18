@@ -8,6 +8,7 @@
 #include <gopnik2/hero.h>
 #include <gopnik2/game.h>
 #include <gopnik2/platform.h>
+#include <gopnik2/utils.h>
 
 extern game *cur_game;
 

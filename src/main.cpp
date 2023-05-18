@@ -6,6 +6,7 @@
 #include <gopnik2/game.h>
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/pltl/pltl.h>
+#include <gopnik2/utils.h>
 
 #ifdef _MSC_VER
 #include <windows.h>

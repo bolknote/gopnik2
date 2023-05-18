@@ -4,6 +4,7 @@
 #include <gopnik2/main.h>
 #include <gopnik2/hero.h>
 #include <gopnik2/game.h>
+#include <gopnik2/utils.h>
 
 hero::hero(hero_type ht) : desc(), name(), inv(), inv_have() {
     int i;
