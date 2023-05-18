@@ -1,6 +1,5 @@
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
-#include <gopnik2/list.h>
 #include <iostream>
 
 #include <fmt/format.h>
