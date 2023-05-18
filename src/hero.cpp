@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -423,17 +426,15 @@ int hero::add_exp(
     // старое значение района
     int old_district;
 
-    settextattr(YELLOW);
+    std::cout << YELLOW;
     old_district = district;
 
     if (print_mode) {
-        PRINTF("Ты получаешь %i качков опыта\n", d);
+        std::cout << fmt::format("Ты получаешь {} качков опыта\n", d) << std::flush;
     }
 
     if ((get_exp() + d) >= get_max_exp()) {
         while ((get_exp() + d) >= get_max_exp()) {
-            // PRINTF ( "d=%i ge=%i gme=%i\n", d, get_exp (), get_max_exp ());
-
             d = (get_exp() + d) - get_max_exp();
             exp = 0;
 
@@ -443,9 +444,10 @@ int hero::add_exp(
         exp = d;
 
         if (print_mode) {
-            PRINTF(
-                    "Сейчас у тебя %i качков опыта. До следующей прокачки надо %i\n",
-                    get_exp(), get_max_exp());
+            std::cout << fmt::format(
+                "Сейчас у тебя {} качков опыта. До следующей прокачки надо {}\n",
+                get_exp(), get_max_exp()
+            ) << std::flush;
         }
     } else {
         exp += d;
@@ -491,7 +493,7 @@ int hero::add_level() {
     level++;
 
     if (print_mode) {
-        PRINTF("Понтовость увеличивается:");
+        std::cout << "Понтовость увеличивается:";
     }
 
     add_force(chance_ar[0]);
@@ -500,7 +502,7 @@ int hero::add_level() {
     add_luck(chance_ar[3]);
 
     if (print_mode) {
-        PRINTF("\n");
+        std::cout << "\n" << std::flush;
     }
 
     if (flag_health) {
@@ -511,7 +513,7 @@ int hero::add_level() {
         district++;
     }
 
-    settextattr(old_attr);
+    std::cout << old_attr;
 
     return 0;
 }
@@ -521,7 +523,7 @@ int hero::add_force(int d) {
         force += d;
 
         if (print_mode) {
-            PRINTF(" Сила +%i", d);
+            std::cout << fmt::format(" Сила +{}", d);
         }
     }
 
@@ -537,7 +539,7 @@ int hero::add_smart(int d) {
         smart += d;
 
         if (print_mode) {
-            PRINTF(" Ловкость +%i", d);
+            std::cout << fmt::format(" Ловкость +{}", d);
         }
     }
 
@@ -553,7 +555,7 @@ int hero::add_vita(int d) {
         vita += d;
 
         if (print_mode) {
-            PRINTF(" Живучесть +%i", d);
+            std::cout << fmt::format(" Живучесть +{}", d);
         }
     }
 
@@ -569,7 +571,7 @@ int hero::add_luck(int d) {
         luck += d;
 
         if (print_mode) {
-            PRINTF(" Удача +%i", d);
+            std::cout << fmt::format(" Удача +{}", d);
         }
     }
 

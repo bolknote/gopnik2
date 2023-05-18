@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -11,12 +15,11 @@ int inv() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            " (%i шт.)",
+    const std::string mess[] = {
+            " ({} шт.)",
             " не используется",
-            " продано"};
-
-    int i;
+            " продано",
+    };
 
     main_hero = cur_game->main_hero;
 
@@ -24,29 +27,27 @@ int inv() {
         return 0;
     }
 
-    for (i = 0; i < main_hero->inv_have_amount; i++) {
-        settextattr(WHITE);
-        PRINTF("%2i - ", i + 1);
-
-        settextattr(BLUE);
-        PRINTF("%s", main_hero->inv[main_hero->inv_have[i]].name);
+    for (auto i = 0; i < main_hero->inv_have_amount; i++) {
+        std::cout
+            << WHITE << fmt::format("{:2}i - ", i + 1)
+            << BLUE << main_hero->inv[main_hero->inv_have[i]].name;
 
         if (main_hero->inv[main_hero->inv_have[i]].have > 1) {
-            PRINTF(mess[0], main_hero->inv[main_hero->inv_have[i]].have);
+            std::cout << fmt::format(mess[0], main_hero->inv[main_hero->inv_have[i]].have);
         }
 
         if (!main_hero->inv[main_hero->inv_have[i]].have) {
-            settextattr(RED);
-            PRINTF("%s", mess[2]);
+            std::cout << RED << mess[2];
         } else {
             if (!main_hero->inv[main_hero->inv_have[i]].active) {
-                settextattr(RED);
-                PRINTF("%s", mess[1]);
+                std::cout << RED << mess[1];
             }
         }
 
-        PRINTF("%s", "\n");
+        std::cout << "\n";
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

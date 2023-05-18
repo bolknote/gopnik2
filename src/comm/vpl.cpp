@@ -1,4 +1,8 @@
 #include <cstring>
+#include <iostream>
+#include <iomanip>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -23,8 +27,7 @@ int vpl() {
 
     int
     // максимальное кол-во цифр в цене на товар
-    max_price,
-            i, j;
+    max_price;
 
     main_hero = cur_game->main_hero;
 
@@ -35,7 +38,7 @@ int vpl() {
 
         max_price = getdigitamount(plm[0].price);
 
-        for (i = 1; i < cur_game->pl[pl_index].member_amount; i++) {
+        for (auto i = 1; i < cur_game->pl[pl_index].member_amount; i++) {
             if (
                     (
                             ((inv_index = game::search_inv(main_hero, plm[i].name)) != -1) &&
@@ -49,7 +52,7 @@ int vpl() {
             }
         }
 
-        for (i = 0; i < cur_game->pl[pl_index].member_amount; i++) {
+        for (auto i = 0; i < cur_game->pl[pl_index].member_amount; i++) {
             if (
                     (
                             ((inv_index = game::search_inv(main_hero, plm[i].name)) != -1) &&
@@ -58,37 +61,32 @@ int vpl() {
                 continue;
             }
 
-            settextattr(YELLOW);
-            PRINTF("%2i", i + 1);
-
-            settextattr(WHITE);
-            PRINTF(" - ");
+            std::cout
+                << YELLOW << fmt::format("{:2}", i + 1)
+                << WHITE << " - ";
 
             if (main_hero->get_money() >= plm[i].price) {
-                settextattr(BLACK);
+                std::cout << BLACK;
             } else {
-                settextattr(RED);
+                std::cout << RED;
             }
 
-            j = getdigitamount(plm[i].price);
+            auto len = fmt::to_string(plm[i].price).length();
 
-            while (j < max_price) {
-                PRINTF(" ");
-                j++;
-            }
-
-            PRINTF("%i", plm[i].price);
-
-            settextattr(WHITE);
-            PRINTF(" руб. %s ", plm[i].name);
+            std::cout
+                << std::setw(max_price - len) << " "
+                << plm[i].price
+                << WHITE << fmt::format(" руб. {} ", plm[i].name);
 
             if (strlen(plm[i].comment) > 0) {
-                PRINTF("(%s)", plm[i].comment);
+                std::cout << fmt::format("(%s)", plm[i].comment);
             }
 
-            PRINTF("\n");
+            std::cout << "\n";
         }
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -15,21 +19,22 @@ int stat() {
     main_hero = cur_game->main_hero;
 
     for (i = 0; i < cur_game->stn_amount; i++) {
-        settextattr(WHITE);
-        PRINTF("%2i - ", i + 1);
+        std::cout << WHITE << fmt::format("{:2} - ", i + 1);
 
         if (main_hero->station == i) {
-            settextattr(BLACK);
+            std::cout << BLACK;
         } else {
             if (cur_game->stn[i].avail) {
-                settextattr(YELLOW);
+                std::cout << YELLOW;
             } else {
-                settextattr(RED);
+                std::cout << RED;
             }
         }
 
-        PRINTF("%s\n", cur_game->stn[i].name);
+        std::cout << cur_game->stn[i].name << "\n";
     }
+
+    std::cout << std::flush;
 
     return 0;
 }
