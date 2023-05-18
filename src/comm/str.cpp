@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -13,13 +16,14 @@ int str() {
     hero **str_enemy;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Ваша басота\n",
             "Их басота\n",
             " (это ты)",
-            "%s %i уровня",
+            "{} {} уровня",
             "Ты пришёл на пустырь. Пацаны с общаги уже были там.\n",
-            "Через пару минут подошли ублюдки из наехавшей на вас банды. Один из них\nвышел вперёд и, разинув ебало, начал что-то вещать, как вдруг чувак\nиз вашей басоты оборвал его, дав с ноги в живот. Ты просёк, что простым\nбазаром тут уже не отделаешься, и что сейчас будет нехилый махач...\n"};
+            "Через пару минут подошли ублюдки из наехавшей на вас банды. Один из них\nвышел вперёд и, разинув ебало, начал что-то вещать, как вдруг чувак\nиз вашей басоты оборвал его, дав с ноги в живот. Ты просёк, что простым\nбазаром тут уже не отделаешься, и что сейчас будет нехилый махач...\n",
+    };
 
     int
             level,
@@ -33,14 +37,13 @@ int str() {
         return 0;
     }
 
-    settextattr(YELLOW);
-    PRINTF("%s", mess[4]);
+    std::cout << YELLOW << mess[4];
 
-    get_key();
+    get_key(false);
 
-    PRINTF("%s", mess[5]);
+    std::cout << mess[5];
 
-    get_key();
+    get_key(false);
 
     str_hero = new hero *[STR_AMOUNT];
     str_enemy = new hero *[STR_AMOUNT];
@@ -91,27 +94,25 @@ int str() {
 
     // вывод списка героев
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[0]);
-
-    settextattr(GREEN);
-    PRINTF(mess[3], str_hero[0]->get_type(), str_hero[0]->get_level());
-    PRINTF("%s", mess[2]);
-    PRINTF("\n");
+    std::cout
+        << WHITE << mess[0]
+        << GREEN << fmt::format(mess[3], str_hero[0]->get_type(), str_hero[0]->get_level())
+        << mess[2] << "\n";
 
     for (i = 1; i < STR_AMOUNT; i++) {
-        PRINTF(mess[3], str_hero[i]->get_type(), str_hero[i]->get_level());
-        PRINTF("\n");
+        std::cout
+            << fmt::format(mess[3], str_hero[i]->get_type(), str_hero[i]->get_level())
+            << "\n";
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[1]);
-
-    settextattr(RED);
+    std::cout
+        << WHITE << mess[1]
+        << RED;
 
     for (i = 0; i < STR_AMOUNT; i++) {
-        PRINTF(mess[3], str_enemy[i]->get_type(), str_enemy[i]->get_level());
-        PRINTF("\n");
+        std::cout
+            << fmt::format(mess[3], str_enemy[i]->get_type(), str_enemy[i]->get_level())
+            << "\n";
     }
 
     cur_game->enemy = nullptr; // str_enemy [GETRANDOM (-1, STR_AMOUNT - 1)];
