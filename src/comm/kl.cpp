@@ -52,7 +52,7 @@ int kl() {
 
     if (
             (main_hero->station != 0) &&
-            (strcmp(main_hero->get_type(), "Нефор") != 0)) {
+            (strcmp(main_hero->get_type(), HeroTypes::NEFOR) != 0)) {
         if (main_hero->get_money() >= 20) {
             std::cout << YELLOW << mess[3] << std::flush;
 
@@ -68,7 +68,7 @@ int kl() {
         }
     }
 
-    if (strcmp(main_hero->get_type(), "Нефор") == 0) {
+    if (strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0) {
         if (main_hero->station) {
             std::cout
                 << WHITE << mess[6]

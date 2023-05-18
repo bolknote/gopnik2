@@ -150,7 +150,7 @@ int w() {
         // если герой пьяный
         if (
                 (main_hero->drunk) &&
-                ((ht_index = cur_game->search_ht("Ветер")) > -1) &&
+                ((ht_index = cur_game->search_ht(HeroTypes::VETER)) > -1) &&
                 (CHANCE(1, cur_game->ht[ht_index].events))) {
             level = main_hero->get_level();
 
@@ -159,7 +159,7 @@ int w() {
 
         // если возможна встреча с ментом
         if (
-                ((ht_index = cur_game->search_ht("Мент")) > -1) &&
+                ((ht_index = cur_game->search_ht(HeroTypes::MENT)) > -1) &&
                 (CHANCE(1, cur_game->ht[ht_index].events)) &&
                 ((main_hero->get_level() % 10) >= 5)) {
             level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
@@ -204,7 +204,7 @@ int w() {
                     if (
                             (main_hero->inv[game::search_inv(main_hero, "Чотки")].have) &&
                             (CHANCE(1, 2)) &&
-                            (ht_index != cur_game->search_ht("Мент"))) {
+                            (ht_index != cur_game->search_ht(HeroTypes::MENT))) {
                         std::cout << fmt::format(mess[11], cur_game->ht[ht_index].type);
 
                         goto then1;
@@ -213,7 +213,7 @@ int w() {
                     // если есть затемнённые очки
                     if (
                             (main_hero->inv[game::search_inv(main_hero, "Затемнённые очки")].have) &&
-                            (ht_index == cur_game->search_ht("Мент"))) {
+                            (ht_index == cur_game->search_ht(HeroTypes::MENT))) {
                         std::cout << mess[13];
 
                         goto then1;
@@ -252,11 +252,11 @@ int w() {
 
             inv_index = -1;
 
-            if (ht_index == cur_game->search_ht("Скинхед")) {
+            if (ht_index == cur_game->search_ht(HeroTypes::SKINHED)) {
                 inv_index = game::search_inv(main_hero, "Кастет");
             }
 
-            if (ht_index == cur_game->search_ht("Мент")) {
+            if (ht_index == cur_game->search_ht(HeroTypes::MENT)) {
                 inv_index = game::search_inv(main_hero, "Дубинка");
             }
 

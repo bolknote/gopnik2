@@ -279,7 +279,7 @@ int pltl1(
 
                     get_key();
 
-                    ht_index = cur_game->search_ht("Уличный маг");
+                    ht_index = cur_game->search_ht(HeroTypes::ULICHNYI_MAG);
                     level = 40;
 
                     cur_game->gen_enemy_obj(ht_index, level, 0, 0);

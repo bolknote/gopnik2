@@ -75,7 +75,7 @@ int pltl2(
 
                     get_key();
 
-                    ht_index = cur_game->search_ht("Маньяк");
+                    ht_index = cur_game->search_ht(HeroTypes::MANYAK);
                     level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
                     cur_game->gen_enemy_obj(ht_index, level);

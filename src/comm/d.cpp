@@ -83,7 +83,7 @@ int d() {
                     << YELLOW << mess[4]
                     << RED << mess[5];
 
-                ht_index = cur_game->search_ht("Мент");
+                ht_index = cur_game->search_ht(HeroTypes::MENT);
                 level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
                 std::cout
