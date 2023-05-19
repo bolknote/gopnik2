@@ -2,11 +2,8 @@
 
 #include <cstdio>
 #include <iostream>
-#include <gopnik2/utils.h>
 
-// TODO: Move to subfolder for forwards
-class hero;
-class list;
+#include <gopnik2/forward.h>
 
 class game {
 public:
