@@ -53,7 +53,8 @@ int sstay() {
         cur_game->stn[5].avail = true;
         std::cout
             << WHITE << mess[idx]
-            << YELLOW << mess[18];
+            << YELLOW << mess[18]
+            << std::flush;
 
         get_key(false);
     }
@@ -71,7 +72,8 @@ int sstay() {
             if (cur_game->get_stay_mar() == 1) {
                 std::cout
                     << WHITE << mess[8]
-                    << YELLOW << mess[9];
+                    << YELLOW << mess[9]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -79,7 +81,8 @@ int sstay() {
             if (cur_game->get_stay_kl() == 1) {
                 std::cout
                     << WHITE << mess[8]
-                    << YELLOW << mess[10];
+                    << YELLOW << mess[10]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -87,7 +90,8 @@ int sstay() {
             if (cur_game->stay_met == 1) {
                 std::cout
                     << WHITE << mess[8]
-                    << YELLOW << mess[11];
+                    << YELLOW << mess[11]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -96,7 +100,8 @@ int sstay() {
             if (cur_game->stay_str == 5) {
                 std::cout
                     << WHITE << mess[12]
-                    << YELLOW << mess[14];
+                    << YELLOW << mess[14]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -121,7 +126,8 @@ int sstay() {
 
                 std::cout
                     << WHITE << mess[12]
-                    << YELLOW << mess[15];
+                    << YELLOW << mess[15]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -129,7 +135,8 @@ int sstay() {
             if (cur_game->stay_eog == 25) {
                 std::cout
                     << WHITE << mess[8]
-                    << YELLOW << mess[16];
+                    << YELLOW << mess[16]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -137,7 +144,8 @@ int sstay() {
             if (cur_game->stay_eog == 1) {
                 std::cout
                     << WHITE << mess[8]
-                    << YELLOW << mess[17];
+                    << YELLOW << mess[17]
+                    << std::flush;
 
                 get_key(false);
             }
@@ -222,7 +230,8 @@ int sstay() {
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     std::cout
                         << WHITE << (main_hero->station ? mess[12] : mess[5])
-                        << YELLOW << mess[6];
+                        << YELLOW << mess[6]
+                        << std::flush;
 
                     get_key(false);
                 }
@@ -236,7 +245,8 @@ int sstay() {
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     std::cout
                         << WHITE << (main_hero->station ? mess[12] : mess[5])
-                        << YELLOW << mess[7];
+                        << YELLOW << mess[7]
+                        << std::flush;
 
                     get_key(false);
                 }
@@ -252,7 +262,8 @@ int sstay() {
                 if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
                     std::cout
                         << WHITE << (main_hero->station ? mess[12] : mess[5])
-                        << YELLOW << mess[13];
+                        << YELLOW << mess[13]
+                        << std::flush;
 
                     get_key(false);
                 }

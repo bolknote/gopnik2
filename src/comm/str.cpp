@@ -37,11 +37,11 @@ int str() {
         return 0;
     }
 
-    std::cout << YELLOW << mess[4];
+    std::cout << YELLOW << mess[4] << std::flush;
 
     get_key(false);
 
-    std::cout << mess[5];
+    std::cout << mess[5] << std::flush;
 
     get_key(false);
 

@@ -227,7 +227,7 @@ int k(bool skip_turn) {
 
         std::cout << YELLOW << fmt::format(
             mess[18], cur_game->enemy->get_type(), cur_game->enemy->get_level()
-        ) << std::flush;
+        );
     }
     // end стрела #1
     // -------------
@@ -278,15 +278,14 @@ int k(bool skip_turn) {
 
     if (cur_game->active_loc == 1) {
         if (cur_game->num_k == 4) {
-            std::cout << WHITE << audience_mess[0] << std::flush;
+            std::cout << WHITE << audience_mess[0];
         }
 
         if (cur_game->num_k > 4) {
             if (CHANCE(1, 5)) {
                 std::cout
                     << YELLOW
-                    << fmt::format("Голоса из толпы: {}", audience_mess[GETRANDOM(0, 9)])
-                    << std::flush;
+                    << fmt::format("Голоса из толпы: {}", audience_mess[GETRANDOM(0, 9)]);
             }
         }
     }
@@ -659,11 +658,11 @@ int k(bool skip_turn) {
 
             std::cout << mess[28];
 
-            std::cout << BLUE << fmt::format(mess[11], att);
+            std::cout << BLUE << fmt::format(mess[11], att) << std::flush;
 
             get_key(false);
 
-            std::cout << YELLOW << mess[29] << std::flush;
+            std::cout << YELLOW << mess[29];
 
             // корректная очистка
             // ----
@@ -750,7 +749,7 @@ int k(bool skip_turn) {
             main_hero->sub_stuff(main_hero->get_stuff());
             main_hero->sub_ciga(main_hero->get_ciga());
 
-            std::cout << BLUE << mess[12] << std::flush;
+            std::cout << BLUE << mess[12];
 
             // переход к новой локации
             cur_game->set_loc(0);

@@ -39,9 +39,9 @@ int d() {
     if (cur_game->get_open_d()) {
         main_hero = cur_game->main_hero;
 
-        std::cout << YELLOW << mess[0];
+        std::cout << YELLOW << mess[0] << std::flush;
 
-        get_key();
+        get_key(false);
 
         for (;;) {
             // вероятность, что повезёт
