@@ -779,6 +779,8 @@ int k(bool skip_turn) {
         }
     }
 
+    std::cout << std::flush;
+
     return 0;
 }
 
