@@ -1,6 +1,5 @@
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
-#include <gopnik2/list.h>
 #include <gopnik2/hero.h>
 #include <gopnik2/game.h>
 

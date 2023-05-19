@@ -7,7 +7,7 @@
 #include <string>
 #include <type_traits>
 
-typedef enum {
+typedef enum Colors_ : int {
     RESET,
     BLUE,
     GREEN,

@@ -9,6 +9,7 @@
 #include <gopnik2/list.h>
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/game.h>
+#include <gopnik2/utils.h>
 
 #ifdef _MSC_VER
 // Это всё для ввода имени игрока
