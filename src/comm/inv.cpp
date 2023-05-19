@@ -33,7 +33,8 @@ int inv() {
             << BLUE << main_hero->inv[main_hero->inv_have[i]].name;
 
         if (main_hero->inv[main_hero->inv_have[i]].have > 1) {
-            std::cout << fmt::format(mess[0], main_hero->inv[main_hero->inv_have[i]].have);
+            const auto have = main_hero->inv[main_hero->inv_have[i]].have;
+            std::cout << fmt::format(mess[0], have);
         }
 
         if (!main_hero->inv[main_hero->inv_have[i]].have) {
