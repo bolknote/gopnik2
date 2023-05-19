@@ -2041,9 +2041,8 @@ int game::fire_realiz(
                 std::cout << attr1 << fmt::format(mess[1], loss, hero2->get_health());
             }
 
-            hero1->inv[inv_index].have--;
-
-            std::cout << fmt::format(mess[2], hero1->inv[inv_index].have);
+            const auto have = --hero1->inv[inv_index].have;
+            std::cout << fmt::format(mess[2], have);
         } else {
             std::cout << attr2 << mess[3];
         }
