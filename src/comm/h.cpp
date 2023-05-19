@@ -29,7 +29,7 @@ int h(
 
     main_hero = cur_game->main_hero;
 
-    settextattr(GREEN);
+    std::cout << GREEN;
 
     switch (plm_index) {
         case 0:

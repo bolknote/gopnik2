@@ -79,7 +79,7 @@ int vpl() {
                 << WHITE << fmt::format(" руб. {} ", plm[i].name);
 
             if (strlen(plm[i].comment) > 0) {
-                std::cout << fmt::format("(%s)", plm[i].comment);
+                std::cout << fmt::format("({})", plm[i].comment);
             }
 
             std::cout << "\n";

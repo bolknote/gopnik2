@@ -58,18 +58,18 @@ public:
     inventory *inv;
     int inv_amount;
     int district;
-    bool broken_jaw;
-    bool broken_foot;
+    bool broken_jaw;      // сломана челюсть
+    bool broken_foot;     // сломана нога
     int trn_foot;         // прокачка ног
     int kick_count;       // кол-во ударов для битвы
     int empty_kick_count; // кол-во пустых ударов героя
-    bool stoned;
-    bool drunk;
-    int old_att;         // старая понтовость в притоне
-    int station;         // станция метро
-    int *inv_have;       // индексы инвентаря, которым владеет герой
-    int inv_have_amount; // кол-во инвентаря, которым владеет герой
-    bool str_free;       // используется для режима стрелы; указывает, "свободен" ли в данный момент герой
+    bool stoned;          // признак обдолбанности
+    bool drunk;           // признак того, что герой пьян
+    int old_att;          // старая понтовость в притоне
+    int station;          // станция метро
+    int *inv_have;        // индексы инвентаря, которым владеет герой
+    int inv_have_amount;  // кол-во инвентаря, которым владеет герой
+    bool str_free;        // используется для режима стрелы; указывает, "свободен" ли в данный момент герой
 
     explicit hero(hero_type);
 

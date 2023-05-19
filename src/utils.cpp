@@ -19,7 +19,7 @@ Colors textattr;
 
 void gracefulexit(int exitcode) {
     showcursor();
-    settextattr(RESET);
+    std::cout << RESET;
     exit(exitcode);
 }
 

@@ -455,7 +455,7 @@ int game::wait_command() {
         //    cmd_list->scrolldown();
     }
 
-    settextattr(old_attr);
+    std::cout << old_attr;
     delete cmd_list;
     cmd_list_init = 0;
 
@@ -1490,15 +1490,17 @@ int game::gen_kick_count() const {
             main_hero->kick_count = main_hero->get_kick_count() - enemy->get_kick_count() + 1;
         }
 
-        settextattr(GREEN);
-        PRINTF(
-                "Из-за твоей хорошей ловкости враг сможет пнуть тебя %i раз(а) вместо %i\n",
-                enemy->kick_count, enemy->get_kick_count());
-
-        settextattr(RED);
-        PRINTF(
-                "Из-за хорошей ловкости врага ты сможешь пнуть его %i раз(а) вместо %i\n",
-                main_hero->kick_count, main_hero->get_kick_count());
+        std::cout
+            << GREEN
+            << fmt::format(
+                "Из-за твоей хорошей ловкости враг сможет пнуть тебя {} раз(а) вместо {}\n",
+                enemy->kick_count, enemy->get_kick_count()
+            )
+            << RED
+            << fmt::format(
+                "Из-за хорошей ловкости врага ты сможешь пнуть его {} раз(а) вместо {}\n",
+                main_hero->kick_count, main_hero->get_kick_count()
+            );
     } else {
         enemy->kick_count = enemy->get_kick_count();
         main_hero->kick_count = main_hero->get_kick_count();
@@ -1638,7 +1640,7 @@ int game::kick_realiz(
             /*
                   if (strcmp (HeroTypes::BRATVA_S_OBSCHAGI, hero1->get_type ()) == 0)
                   {
-            PRINTF ( "Урон: %i / %i %i \n", loss, hero1->empty_kick_count, empty_k_count);
+            std::cout << fmt::format ( "Урон: {} / {} {} \n", loss, hero1->empty_kick_count, empty_k_count);
                   }
             */
         } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
@@ -1890,8 +1892,7 @@ int game::buy_realiz() {
                     (plm.buy_phrase_print_mode)) {
                 i = GETRANDOM(-1, plm.buy_phrase_amount - 1);
 
-                settextattr(YELLOW);
-                PRINTF("%s\n", plm.buy_phrase[i]);
+                std::cout << YELLOW << plm.buy_phrase[i] << "\n";
             }
 
             // вызываем функцию по обработке прайс-листа
@@ -2146,14 +2147,14 @@ int game::set_stay_kl(
 } // end int game::set_stay_mar (int)
 
 int game::start() {
-    const char *mess[] = {
+    const std::string mess[] = {
             "Выбери, чё те надо:\n",
             "1-Начать новую игру\n",
             "2-Загрузить игру\n",
             "3-Выйти\n",
             "Ты можешь начать...\n",
-            "%i-...с места быстрого сохранения\n",
-            "%i-...с %iого района\n",
+            "{}-...с места быстрого сохранения\n",
+            "{}-...с {}ого района\n",
             "чё-то ты не то жмёшь\n",
             "Выбери, кем ты будешь:\n", // 8
             "Выбери уровень сложности:\n",
@@ -2167,7 +2168,8 @@ int game::start() {
             "Подтсан   - нормальный чувак, зря не понтуется, беспредела не мутит.\n            бонус - гёрлфренд\n",
             "Отморозок - тупой корявый мудак, но если врежет, мало не покажется.\n            бонус - качалка на Петроградской\n",
             "Гопник    - гоп он и есть гоп, тут вопросов быть не должно.\n            бонус - возможность разводить лохов на деньги\n",
-            "Нефор     - грёбанный позер, по сути, такой же урод, как и все остальные.\n            бонус - бесплатная проходка в клуб на Сенной\n"};
+            "Нефор     - грёбанный позер, по сути, такой же урод, как и все остальные.\n            бонус - бесплатная проходка в клуб на Сенной\n",
+    };
 
     // старый видеоатрибут
     Colors old_attr;
@@ -2181,11 +2183,9 @@ int game::start() {
 
     old_attr = settextattr(WHITE);
     if (std::ifstream(cur_game->file_name.c_str()).good()) {
-        PRINTF("%s", mess[0]);
-        settextattr(YELLOW);
-        PRINTF("%s", mess[1]);
-        PRINTF("%s", mess[2]);
-        PRINTF("%s", mess[3]);
+        std::cout
+            << mess[0]
+            << YELLOW << mess[1] << mess[2] << mess[3];
 
         do {
             i = 0;
@@ -2206,14 +2206,13 @@ int game::start() {
 
                 default:
                     i = 1;
-                    settextattr(RED);
-                    PRINTF("%s", mess[7]);
+                    std::cout << RED << mess[7];
             }
         } while (i);
 
         if (load_game) {
             showcursor();
-            settextattr(old_attr);
+            std::cout << old_attr;
             goto exit;
         }
     }
@@ -2222,31 +2221,27 @@ int game::start() {
     if (pltl_amount > 0) {
         pltl[0].plot_line_func(0);
     }
-    settextattr(WHITE);
-    PRINTF("%s", mess[8]);
+    std::cout
+        << WHITE << mess[8]
+        << YELLOW;
 
-    settextattr(YELLOW);
     j = 0;
 
     for (i = 0; i < ht_amount; i++) {
         if (is_gamer_hero_type(i)) {
-            PRINTF("%i-%s\n", i + 1, ht[i].type);
+            std::cout << fmt::format("{}-{}\n", i + 1, ht[i].type);
             j++;
         }
     }
 
-    PRINTF("%i-%s\n", j + 1, mess[16]);
+    std::cout << fmt::format("{}-{}\n", j + 1, mess[16]);
 
     // определение типа героя пользователя
     for (;;) {
         user_ht_index = get_key(false);
 
         if ((user_ht_index - '1') == j) {
-            settextattr(BLUE);
-            PRINTF("%s", mess[17]);
-            PRINTF("%s", mess[18]);
-            PRINTF("%s", mess[19]);
-            PRINTF("%s", mess[20]);
+            std::cout << BLUE << mess[17] << mess[18] << mess[19] << mess[20];
             continue;
         }
 
@@ -2256,8 +2251,7 @@ int game::start() {
             user_ht_index -= '1';
             break;
         } else {
-            settextattr(RED);
-            PRINTF("%s", mess[7]);
+            std::cout << RED << mess[7];
         }
     }
 
@@ -2278,13 +2272,9 @@ int game::start() {
             break;
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[9]);
-
-    settextattr(YELLOW);
-    PRINTF("%s", mess[10]);
-    PRINTF("%s", mess[11]);
-    PRINTF("%s", mess[12]);
+    std::cout
+        << WHITE << mess[9]
+        << YELLOW << mess[10] << mess[11] << mess[12];
 
     for (;;) {
         user_level_of_complexity = get_key(false);
@@ -2295,8 +2285,7 @@ int game::start() {
             user_level_of_complexity -= '1';
             break;
         } else {
-            settextattr(RED);
-            PRINTF("%s", mess[7]);
+            std::cout << RED << mess[7];
         }
     }
 
@@ -2305,10 +2294,10 @@ int game::start() {
     // определение имени героя пользователя
     showcursor();
     for (;;) {
-        settextattr(GREEN);
-        PRINTF("%s", mess[13]);
+        std::cout
+            << GREEN << mess[13]
+            << WHITE;
 
-        settextattr(WHITE);
 #ifdef _MSC_VER
         int wlen = 100;
         int save = _setmode(_fileno(stdin), _O_U16TEXT);
@@ -2344,14 +2333,12 @@ int game::start() {
 
         if (strlen(user_name) != 0) {
             if (isdigitstr(user_name)) {
-                settextattr(RED);
-                PRINTF("%s", mess[14]);
+                std::cout << RED << mess[14];
             } else {
                 break;
             }
         } else {
-            settextattr(RED);
-            PRINTF("%s", mess[15]);
+            std::cout << RED << mess[15];
         }
     }
 
@@ -2367,7 +2354,7 @@ int game::start() {
 
     active_loc = 0;
 
-    settextattr(old_attr);
+    std::cout << old_attr;
 
     return 0;
 } // end int game::start ()

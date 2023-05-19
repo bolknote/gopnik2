@@ -54,8 +54,7 @@ int sav() {
 
     fclose(sav_file);
 
-    settextattr(BLUE);
-    std::cout << mess[3] << std::flush;
+    std::cout << BLUE << mess[3] << std::flush;
 
     return 0;
 }

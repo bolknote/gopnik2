@@ -1,4 +1,7 @@
 #include <cstring>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -15,48 +18,54 @@ int s() {
     hero *main_hero;
 
     // сообщения функции
-    const char *mess[] = {
-            "Ты %s %i уровня - %s ",
+    const std::string mess[] = {
+            "Ты {} {} уровня - {} ",
             "Твоё погоняло: ",
-            "Сейчас у тебя %i опыта, а для прокачки надо %i\n",
+            "Сейчас у тебя {} опыта, а для прокачки надо {}\n",
             "Сл:",
             "Лв:",
             "Жв:",
             "Уд:",
             "Феньки:\n",
-            " (Всё +%i)",
-            "Сила +%i, ",
-            "Ловкость +%i, ",
-            "Живучесть +%i, ",
-            "Удача +%i, ",
+            " (Всё +{})",
+            "Сила +{}, ",
+            "Ловкость +{}, ",
+            "Живучесть +{}, ",
+            "Удача +{}, ",
             "У тебя есть:\n",
             "Урон ",
-            "Здоровье %i/%i",
-            "Точность %i%%\n",
-            "Точность 90%% - %i ударов, Точность %i удара %i%%\n",
+            "Здоровье {}/{}",
+            "Точность {}%\n",
+            "Точность 90% - {} ударов, Точность {} удара {}%\n",
             "Броня ",
-            "Пиво %.1f л.\n",
+            "Пиво {:.1f} л.\n",
             "Пива нету\n",
-            "Бабки %i руб.\n",
+            "Бабки {} руб.\n",
             "Бабла нету\n",
-            "Косяки %i\n",
-            "Хлам %i\n",
+            "Косяки {}\n",
+            "Хлам {}\n",
             " Сломана челюсть",
             " Сломана нога",
             "Обдолбанный ",
             "Бухой",
-            " (%i шт.)",
-            " (%i %s)"
+            " ({} шт.)",
+            " ({} {})"
     };
 
-    const auto printf_quant = [&mess](const inventory inv) {
+    const auto format_quant = [&mess](const inventory inv) {
         if (inv.have > 1) {
             if (strcmp(inv.name, "Батарейка") == 0) {
-                PRINTF(mess[30], inv.have, plural(inv.have, "заряд", "заряда", "зарядов"));
+                return fmt::format(
+                    mess[30],
+                    inv.have,
+                    plural(inv.have, "заряд", "заряда", "зарядов")
+                );
             } else {
-                PRINTF(mess[29], inv.have);
+                return fmt::format(mess[29], inv.have);
             }
         }
+
+        return std::string("");
     };
 
     const char *
@@ -90,31 +99,27 @@ int s() {
         cur_level_type = level_type[main_hero->get_level()];
     }
 
-    settextattr(GREEN);
-    PRINTF(mess[0], main_hero->get_type(), main_hero->get_level(), cur_level_type);
-
-    settextattr(RED);
+    std::cout
+        << GREEN << fmt::format(
+            mess[0], main_hero->get_type(), main_hero->get_level(), cur_level_type
+        )
+        << RED;
 
     if (main_hero->stoned) {
-        PRINTF("%s", mess[27]);
+        std::cout << mess[27];
     }
 
     if (main_hero->drunk) {
-        PRINTF("%s", mess[28]);
+        std::cout << mess[28];
     }
 
-    PRINTF("\n");
-
-    settextattr(GREEN);
-    PRINTF("%s", mess[1]);
+    std::cout << "\n" << GREEN << mess[1];
 
     // имя
-    settextattr(WHITE);
-    PRINTF("%s\n", main_hero->get_name());
+    std::cout << WHITE << main_hero->get_name() << "\n";
 
     // опыт
-    settextattr(YELLOW);
-    PRINTF(mess[2], main_hero->get_exp(), main_hero->get_max_exp());
+    std::cout << YELLOW << fmt::format(mess[2], main_hero->get_exp(), main_hero->get_max_exp());
 
     // навыки (сила, ловкость, живучесть, удача)
 
@@ -127,53 +132,49 @@ int s() {
         }
     }
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[3]);
+    std::cout << WHITE << mess[3];
 
     if (
             (force > 0) ||
             (main_hero->stoned)) {
-        settextattr(BLUE);
+        std::cout << BLUE;
     }
 
-    PRINTF("%i ", main_hero->get_force());
-
-    settextattr(WHITE);
-    PRINTF("%s", mess[4]);
+    std::cout
+        << main_hero->get_force() << " "
+        << WHITE << mess[4];
 
     if (
             (smart > 0) ||
             (main_hero->stoned)) {
-        settextattr(BLUE);
+        std::cout << BLUE;
     }
 
     if (main_hero->drunk) {
-        settextattr(RED);
+        std::cout << RED;
     }
 
-    PRINTF("%i ", main_hero->get_smart());
-
-    settextattr(WHITE);
-    PRINTF("%s", mess[5]);
+    std::cout
+        << main_hero->get_smart() << " "
+        << WHITE << mess[5];
 
     if (
             (vita > 0) ||
             (main_hero->stoned)) {
-        settextattr(BLUE);
+        std::cout << BLUE;
     }
 
-    PRINTF("%i ", main_hero->get_vita());
-
-    settextattr(WHITE);
-    PRINTF("%s", mess[6]);
+    std::cout
+        << main_hero->get_vita() << " "
+        << WHITE << mess[6];
 
     if (
             (luck > 0) ||
             (main_hero->stoned)) {
-        settextattr(BLUE);
+        std::cout << BLUE;
     }
 
-    PRINTF("%i\n", main_hero->get_luck());
+    std::cout << main_hero->get_luck() << "\n";
 
     // феньки
 
@@ -188,42 +189,40 @@ int s() {
 
             if ((force > 0) || (smart > 0) || (vita > 0) || (luck > 0)) {
                 if (flag == 0) {
-                    settextattr(WHITE);
-                    PRINTF("%s", mess[7]);
-
-                    settextattr(BLUE);
+                    std::cout
+                        << WHITE << mess[7]
+                        << BLUE;
 
                     flag = 1;
                 }
 
-                PRINTF("%s", main_hero->inv[i].name);
+                std::cout << main_hero->inv[i].name;
 
                 if ((force == smart) && (smart == vita) && (vita == luck)) {
-                    PRINTF(mess[8], force);
+                    std::cout << fmt::format(mess[8], force);
                 } else {
-                    PRINTF(" (");
+                    std::cout << " (";
 
                     if (force > 0) {
-                        PRINTF(mess[9], force);
+                        std::cout << fmt::format(mess[9], force);
                     }
 
                     if (smart > 0) {
-                        PRINTF(mess[10], smart);
+                        std::cout << fmt::format(mess[10], smart);
                     }
 
                     if (vita > 0) {
-                        PRINTF(mess[11], vita);
+                        std::cout << fmt::format(mess[11], vita);
                     }
 
                     if (luck > 0) {
-                        PRINTF(mess[12], luck);
+                        std::cout << fmt::format(mess[12], luck);
                     }
 
-                    PRINTF("%c%c)", 8, 8);
+                    std::cout << "\b\b)";
                 }
 
-                printf_quant(main_hero->inv[i]);
-                PRINTF("\n");
+                std::cout << format_quant(main_hero->inv[i]) << "\n";
             }
         }
     }
@@ -242,164 +241,156 @@ int s() {
                 (main_hero->inv[i].armo == 0) &&
                 (main_hero->inv[i].loss == 0)) {
             if (flag == 0) {
-                settextattr(WHITE);
-                PRINTF("%s", mess[13]);
+                std::cout << WHITE << mess[13];
 
                 flag = 1;
             }
 
             if (main_hero->inv[i].active) {
-                settextattr(BLUE);
+                std::cout << BLUE;
             } else {
-                settextattr(RED);
+                std::cout << RED;
             }
 
-            PRINTF("%s", main_hero->inv[i].name);
-
-            printf_quant(main_hero->inv[i]);
-            PRINTF("\n");
+            std::cout << main_hero->inv[i].name << format_quant(main_hero->inv[i]) << "\n";
         }
     }
 
     // урон
 
-    settextattr(WHITE);
-    PRINTF("%s", mess[14]);
+    std::cout << WHITE << mess[14];
 
     flag = 0;
 
     for (i = 0; i < main_hero->inv_amount; i++) {
         if ((main_hero->inv[i].have) && (main_hero->inv[i].loss > 0)) {
             if (flag == 0) {
-                settextattr(BLUE);
-                PRINTF("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
+                std::cout
+                    << BLUE
+                    << fmt::format("{}-{}", main_hero->get_min_loss(), main_hero->get_max_loss());
                 flag = 1;
             }
 
             if (main_hero->inv[i].active == 1) {
-                settextattr(BLUE);
-                PRINTF(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].loss);
+                std::cout
+                    << BLUE
+                    << fmt::format(" {}(+{})", main_hero->inv[i].name, main_hero->inv[i].loss);
             } else {
-                settextattr(RED);
-                PRINTF(" %s", main_hero->inv[i].name);
+                std::cout << RED << " " << main_hero->inv[i].name;
             }
 
-            printf_quant(main_hero->inv[i]);
+            std::cout << format_quant(main_hero->inv[i]);
         }
     }
 
     if (flag == 0) {
-        PRINTF("%i-%i", main_hero->get_min_loss(), main_hero->get_max_loss());
+        std::cout << fmt::format("{}-{}", main_hero->get_min_loss(), main_hero->get_max_loss());
     }
 
-    PRINTF("%s", "\n");
+    std::cout << "\n";
 
     // здоровье
 
     fi = (float) main_hero->get_health() / (float) main_hero->get_max_health();
 
     if (fi > 0.5) {
-        settextattr(GREEN);
+        std::cout << GREEN;
     } else {
         if (fi > 0.25) {
-            settextattr(YELLOW);
+            std::cout << YELLOW;
         } else {
-            settextattr(RED);
+            std::cout << RED;
         }
     }
 
-    PRINTF(mess[15], main_hero->get_health(), main_hero->get_max_health());
+    std::cout << fmt::format(mess[15], main_hero->get_health(), main_hero->get_max_health());
 
     if (main_hero->broken_jaw) {
-        settextattr(RED);
-        PRINTF("%s", mess[25]);
+        std::cout << RED << mess[25];
     }
 
     if (main_hero->broken_foot) {
-        settextattr(RED);
-        PRINTF("%s", mess[26]);
+        std::cout << RED << mess[26];
     }
 
-    PRINTF("%s", "\n");
+    std::cout << "\n";
 
     // точность
 
-    settextattr(WHITE);
+    std::cout << WHITE;
 
     if ((kick_count = main_hero->get_kick_count()) == 1) {
-        PRINTF(mess[16], main_hero->get_accuracy_of_last_kick());
+        std::cout << fmt::format(
+            mess[16], main_hero->get_accuracy_of_last_kick()
+        );
     } else {
-        PRINTF(mess[17], kick_count - 1, kick_count, main_hero->get_accuracy_of_last_kick());
+        std::cout << fmt::format(
+            mess[17], kick_count - 1, kick_count, main_hero->get_accuracy_of_last_kick()
+        );
     }
 
     // броня
 
     if (main_hero->get_armo() > 0) {
-        settextattr(GREEN);
-        PRINTF("%s", mess[18]);
+        std::cout << GREEN << mess[18];
 
         flag = 0;
 
         for (i = 0; i < main_hero->inv_amount; i++) {
             if ((main_hero->inv[i].have) && (main_hero->inv[i].armo > 0)) {
                 if (flag == 0) {
-                    settextattr(BLUE);
-                    PRINTF("%i", main_hero->get_armo());
+                    std::cout << BLUE << main_hero->get_armo();
                     flag = 1;
                 }
 
                 if (main_hero->inv[i].active == 1) {
-                    settextattr(BLUE);
-                    PRINTF(" %s(+%i)", main_hero->inv[i].name, main_hero->inv[i].armo);
+                    std::cout
+                        << BLUE
+                        << fmt::format(" {}(+{})", main_hero->inv[i].name, main_hero->inv[i].armo);
                 } else {
-                    settextattr(RED);
-                    PRINTF(" %s", main_hero->inv[i].name);
+                    std::cout << RED << " " << main_hero->inv[i].name;
                 }
 
-                printf_quant(main_hero->inv[i]);
+                std::cout << format_quant(main_hero->inv[i]);
             }
         }
 
         if (flag == 0) {
-            PRINTF("%i", main_hero->get_armo());
+            std::cout << main_hero->get_armo();
         }
 
-        PRINTF("%s", "\n");
+        std::cout << "\n";
     }
 
     // пиво
 
     if (main_hero->get_beer() > 0) {
-        settextattr(WHITE);
-        PRINTF(mess[19], main_hero->get_beer() * .5);
+        std::cout << WHITE << fmt::format(mess[19], main_hero->get_beer() * .5);
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[20]);
+        std::cout << RED << mess[20];
     }
 
     // бабки
 
     if (main_hero->get_money() > 0) {
-        settextattr(WHITE);
-        PRINTF(mess[21], main_hero->get_money());
+        std::cout << WHITE << fmt::format(mess[21], main_hero->get_money());
     } else {
-        settextattr(RED);
-        PRINTF("%s", mess[22]);
+        std::cout << RED << mess[22];
     }
 
     // косяки
 
     if (main_hero->get_ciga() > 0) {
-        settextattr(WHITE);
-        PRINTF(mess[23], main_hero->get_ciga());
+        std::cout << WHITE << fmt::format(mess[23], main_hero->get_ciga());
     }
 
     // хлам
 
     if (main_hero->get_stuff() > 0) {
-        settextattr(WHITE);
-        PRINTF(mess[24], main_hero->get_stuff());
+        std::cout << WHITE << fmt::format(mess[24], main_hero->get_stuff());
     }
+
+    std::cout << std::flush;
 
     return 0;
 }

@@ -48,9 +48,7 @@ int i() {
         }
     }
 
-    settextattr(old_attr);
-
-    std::cout << std::flush;
+    std::cout << old_attr << std::flush;
 
     return 0;
 }
