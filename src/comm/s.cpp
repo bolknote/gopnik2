@@ -347,9 +347,12 @@ int s() {
                 }
 
                 if (main_hero->inv[i].active == 1) {
+                    const auto name = main_hero->inv[i].name;
+                    const auto armo = main_hero->inv[i].armo;
+
                     std::cout
                         << BLUE
-                        << fmt::format(" {}(+{})", main_hero->inv[i].name, main_hero->inv[i].armo);
+                        << fmt::format(" {}(+{})", name, armo);
                 } else {
                     std::cout << RED << " " << main_hero->inv[i].name;
                 }
