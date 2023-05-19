@@ -272,9 +272,12 @@ int s() {
             }
 
             if (main_hero->inv[i].active == 1) {
+                const auto name = main_hero->inv[i].name;
+                const auto loss = main_hero->inv[i].loss;
+
                 std::cout
                     << BLUE
-                    << fmt::format(" {}(+{})", main_hero->inv[i].name, main_hero->inv[i].loss);
+                    << fmt::format(" {}(+{})", name, loss);
             } else {
                 std::cout << RED << " " << main_hero->inv[i].name;
             }
