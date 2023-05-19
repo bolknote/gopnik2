@@ -1688,7 +1688,7 @@ int game::kick_realiz(
     }
 
     return loss_amount;
-} // end int game::kick_realiz (hero *, hero *, int, str::string[], int, int)
+} // end int game::kick_realiz (hero *, hero *, int, str::string *, int, int)
 
 int game::new_district() {
     if (main_hero->district >= DISTRICT_AMOUNT) {
