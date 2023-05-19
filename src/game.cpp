@@ -1178,8 +1178,8 @@ int game::supple_loc_run_over() {
     active_loc = 8;
 
     loc[active_loc].command_active[is_active_location_command("meet")] = main_hero->station == 2 && open_girl == 0;
-    loc[active_loc].command_active[is_active_location_command("tus")] = strcmp(main_hero->get_type(), "Нефор") != 0;
-    loc[active_loc].command_active[is_active_location_command("sl")] = strcmp(main_hero->get_type(), "Нефор") == 0;
+    loc[active_loc].command_active[is_active_location_command("tus")] = strcmp(main_hero->get_type(), HeroTypes::NEFOR) != 0;
+    loc[active_loc].command_active[is_active_location_command("sl")] = strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0;
 
     // стрела
     active_loc = 12;
@@ -1452,7 +1452,7 @@ int game::gen_enemy_obj(
     if (CHANCE(1, 5)) {
         int i_sh = game::search_inv(main_hero, "Шокер");
 
-        if (!main_hero->inv[i_sh].have && strcmp(enemy->get_type(), "Мент") == 0) {
+        if (!main_hero->inv[i_sh].have && strcmp(enemy->get_type(), HeroTypes::MENT) == 0) {
             game::add_inventory(
                     enemy,
                     inv[i_sh].name,
@@ -1634,7 +1634,7 @@ int game::kick_realiz(
             }
 
             /*
-                  if (strcmp ("Братва с общаги", hero1->get_type ()) == 0)
+                  if (strcmp (HeroTypes::BRATVA_S_OBSCHAGI, hero1->get_type ()) == 0)
                   {
             PRINTF ( "Урон: %i / %i %i \n", loss, hero1->empty_kick_count, empty_k_count);
                   }
@@ -1759,9 +1759,9 @@ int game::new_station() const {
             j;
 
     if (main_hero->station != 0) {
-        ht[search_ht("Студент")].active = true;
-        ht[search_ht("Эмокид")].active = true;
-        ht[search_ht("Интеллигент")].active = true;
+        ht[search_ht(HeroTypes::STUDENT)].active = true;
+        ht[search_ht(HeroTypes::EMOKID)].active = true;
+        ht[search_ht(HeroTypes::INTELLIGENT)].active = true;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 0;
@@ -1782,7 +1782,7 @@ int game::new_station() const {
         pl_index = search_pl(8);
         pl[pl_index].members[2].price = 10;
 
-        if (strcmp(main_hero->get_type(), "Нефор") == 0) {
+        if (strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0) {
             pl[pl_index].members[3].price = 15;
         }
 
@@ -1794,9 +1794,9 @@ int game::new_station() const {
             }
         }
     } else {
-        ht[search_ht("Студент")].active = false;
-        ht[search_ht("Эмокид")].active = false;
-        ht[search_ht("Интеллигент")].active = false;
+        ht[search_ht(HeroTypes::STUDENT)].active = false;
+        ht[search_ht(HeroTypes::EMOKID)].active = false;
+        ht[search_ht(HeroTypes::INTELLIGENT)].active = false;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 1;

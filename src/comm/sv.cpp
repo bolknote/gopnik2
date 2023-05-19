@@ -59,8 +59,8 @@ int sv() {
     std::cout << GREEN;
 
     if (
-            (strcmp(enemy->get_type(), "Вахтёрша") == 0) ||
-            (strcmp(enemy->get_type(), "Коменда") == 0)) {
+            (strcmp(enemy->get_type(), HeroTypes::VAHTERSHA) == 0) ||
+            (strcmp(enemy->get_type(), HeroTypes::KOMENDA) == 0)) {
         std::cout << fmt::format(mess[9], enemy->get_type(), enemy->get_level());
     } else {
         std::cout << fmt::format(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);

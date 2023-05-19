@@ -28,7 +28,7 @@ int sl() {
 
     main_hero = cur_game->main_hero;
 
-    if (strcmp(main_hero->get_type(), "Нефор") != 0) {
+    if (strcmp(main_hero->get_type(), HeroTypes::NEFOR) != 0) {
         return 0;
     }
 

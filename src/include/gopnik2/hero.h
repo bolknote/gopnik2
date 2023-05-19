@@ -2,6 +2,37 @@
 
 #include <cstdio>
 
+namespace HeroTypes {
+    // Геймерксие типы героев
+    const char * const PODTSAN = "Подтсан";
+    const char * const OTMOROZOK = "Отморозок";
+    const char * const GOPNIK = "Гопник";
+    const char * const NEFOR = "Нефор";
+
+    // Остальные типы героев
+    const char * const BRATVA = "Братва";
+    const char * const BRATVA_S_OBSCHAGI = "Братва с общаги";
+    const char * const BESPREDELSCHIK = "Беспредельщик";
+    const char * const DOHLYAK = "Дохляк";
+    const char * const NARK = "Нарк";
+    const char * const MENT = "Мент";
+    const char * const VETER = "Ветер";
+    const char * const SKINHED = "Скинхед";
+
+    // Специальные типы, которые встречаются в сценах
+    const char * const OHRANNIK = "Охранник";
+    const char * const MANYAK = "Маньяк";
+
+    // Персонажи в центре города
+    const char * const STUDENT = "Студент";
+    const char * const EMOKID = "Эмокид";
+    const char * const INTELLIGENT = "Интеллигент";
+
+    const char * const VAHTERSHA = "Вахтёрша";
+    const char * const KOMENDA = "Коменда";
+    const char * const ULICHNYI_MAG = "Уличный маг";
+};
+
 class hero {
     int desc[4];  // начальные навыки
     int level_of_complexity;
