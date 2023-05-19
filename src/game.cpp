@@ -1493,13 +1493,17 @@ int game::gen_kick_count() const {
         std::cout
             << GREEN
             << fmt::format(
-                "Из-за твоей хорошей ловкости враг сможет пнуть тебя {} раз(а) вместо {}\n",
-                enemy->kick_count, enemy->get_kick_count()
+                "Из-за твоей хорошей ловкости враг сможет пнуть тебя {} раз{} вместо {}\n",
+                enemy->kick_count,
+                plural(enemy->kick_count, "", "а", ""),
+                enemy->get_kick_count()
             )
             << RED
             << fmt::format(
-                "Из-за хорошей ловкости врага ты сможешь пнуть его {} раз(а) вместо {}\n",
-                main_hero->kick_count, main_hero->get_kick_count()
+                "Из-за хорошей ловкости врага ты сможешь пнуть его {} раз{} вместо {}\n",
+                main_hero->kick_count,
+                plural(enemy->kick_count, "", "а", ""),
+                main_hero->get_kick_count()
             );
     } else {
         enemy->kick_count = enemy->get_kick_count();
