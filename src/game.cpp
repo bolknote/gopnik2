@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <fmt/format.h>
+
 #include <gopnik2/main.h>
 #include <gopnik2/hero.h>
 #include <gopnik2/list.h>
@@ -1588,7 +1590,7 @@ int game::kick_realiz(
         // максимальное кол-во пустых ударов
         int empty_k_count,
         // сообщения для вывода
-        const char **mess,
+        const std::string * mess,
         // видеоатрибуты
         Colors attr1,
         Colors attr2) {
@@ -1650,42 +1652,43 @@ int game::kick_realiz(
         }
 
         if (mess != nullptr) {
-            settextattr(attr1);
+            std::cout << attr1;
 
             if (i > 1) {
-                PRINTF("%s", mess[0]);
+                std::cout << mess[0];
             }
 
             if (broken_jaw != hero2->broken_jaw) {
-                PRINTF("%s", mess[1]);
+                std::cout << mess[1];
 
                 // если есть зубная защита
                 if (
                         (search_inv(hero2, "Зубная защита боксёров") != -1) &&
                         (hero2->inv[search_inv(hero2, "Зубная защита боксёров")].have)) {
-                    PRINTF("%s", mess[6]);
+                    std::cout << mess[6];
                 }
             }
 
             if (broken_foot != hero2->broken_foot) {
-                PRINTF("%s", mess[2]);
+                std::cout << mess[2];
             }
 
             if (loss > 0) {
                 if (double_loss) {
-                    PRINTF("%s", mess[3]);
+                    std::cout << mess[3];
                 }
 
-                PRINTF(mess[4], loss, hero2->get_health());
+                std::cout << fmt::format(mess[4], loss, hero2->get_health());
             } else {
-                settextattr(attr2);
-                PRINTF("%s", mess[5]);
+                std::cout << attr2 << mess[5];
             }
+
+            std::cout << std::flush;
         }
     }
 
     return loss_amount;
-} // end int game::kick_realiz (hero *, hero *, int, char **, int, int)
+} // end int game::kick_realiz (hero *, hero *, int, str::string[], int, int)
 
 int game::new_district() {
     if (main_hero->district >= DISTRICT_AMOUNT) {
@@ -1942,7 +1945,7 @@ int game::shock_realiz(
         // максимальное кол-во ударов впустую
         int empty_k_count,
         // сообщения для вывода
-        const char **mess,
+        const std::string *mess,
         // видеоатрибуты
         Colors attr1,
         Colors attr2) {
@@ -1973,27 +1976,26 @@ int game::shock_realiz(
     if (mess != nullptr) {
         if (hero1->inv[inv_index].have > 0) {
             if (loss == 0) {
-                settextattr(attr2);
-                PRINTF("%s", mess[0]);
+                std::cout << attr2 << mess[0];
             } else {
-                settextattr(attr1);
-                PRINTF(mess[1], loss, hero2->get_health());
+                std::cout << attr1 << fmt::format(mess[1], loss, hero2->get_health());
             }
 
             hero1->inv[inv_index].have--;
 
             if (CHANCE(1, 200)) {
-                PRINTF("%s", mess[3]);
+                std::cout << mess[3];
                 hero1->inv[search_inv(hero1, "Шокер")].have = false;
             }
         } else {
-            settextattr(attr2);
-            PRINTF("%s", mess[2]);
+            std::cout << attr2 << mess[2];
         }
+
+        std::cout << std::flush;
     }
 
     return 0;
-} // int game::shock_realiz (hero *, hero *, int, char **, int, int)
+} // int game::shock_realiz (hero *, hero *, int, std::string *, int, int)
 
 int game::fire_realiz(
         // герой, производящий выстрел
@@ -2003,7 +2005,7 @@ int game::fire_realiz(
         // максимальное кол-во пустых выстрелов
         int empty_k_count,
         // сообщения для вывода
-        const char **mess,
+        const std::string * mess,
         // видеоатрибуты
         Colors attr1,
         Colors attr2) {
@@ -2034,24 +2036,23 @@ int game::fire_realiz(
     if (mess != nullptr) {
         if (hero1->inv[inv_index].have > 0) {
             if (loss == 0) {
-                settextattr(attr2);
-                PRINTF("%s", mess[0]);
+                std::cout << attr2 << mess[0];
             } else {
-                settextattr(attr1);
-                PRINTF(mess[1], loss, hero2->get_health());
+                std::cout << attr1 << fmt::format(mess[1], loss, hero2->get_health());
             }
 
             hero1->inv[inv_index].have--;
 
-            PRINTF(mess[2], hero1->inv[inv_index].have);
+            std::cout << fmt::format(mess[2], hero1->inv[inv_index].have);
         } else {
-            settextattr(attr2);
-            PRINTF("%s", mess[3]);
+            std::cout << attr2 << mess[3];
         }
+
+        std::cout << std::flush;
     }
 
     return 0;
-} // int game::fire_realize (hero *, hero *, int, char **, int, int)
+} // int game::fire_realize (hero *, hero *, int, std::string, int, int)
 
 bool game::get_open_pr() {
     return (main_hero->station) ? (open_pr2) : (open_pr1);

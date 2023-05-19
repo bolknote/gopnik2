@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
+
+#include <fmt/format.h>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
@@ -24,32 +27,32 @@ int k(bool skip_turn) {
     hero *hero2;
 
     // сообщения функции
-    const char *mess[] = {
+    const std::string mess[] = {
             "Чё машешь копытами? Ищи мудака, которого будешь пинать!\n",
             "Враг сдох\n",
             "Ты сдох\n",
-            "Ты надыбал %s",
-            "А у %sа был косячок.\n",
+            "Ты надыбал {}",
+            "А у {}а был косячок.\n",
             "Пиво победителю!\n",
             "Сматывайся, пока мусора не нагрянули!\n",
             "Ты стал настолько крут, что можешь заходить в местный притон!\n",
             "Твою братву отпинали\n",
             "Твоей братве надоело париться из-за такого беспонтового пацана\n",
             "Ты отпинал этого мудака! Пацаны этого не забудут.\n",
-            "Твоя понтовость в притоне повысилась на %i\n",
+            "Твоя понтовость в притоне повысилась на {}\n",
             "Пацаны отвезли тебя в больницу, а то бы ты сдох\n",
             "Вы не надыбали бабла, но ты помог пацанам отбиться от ментов\n",
             "Мотай быстрее, пока охрана не отпинала!\n",
             "Делай отсюда ноги, пока не подошло подкрепление!\n",
             "У тебя нет пистолета\n",
             "Ты чё, в центре города стрелять вздумал?! Мигом менты накроют!\n",
-            "Сейчас на тебя замахнулся %s %i уровня\n",
+            "Сейчас на тебя замахнулся {} {} уровня\n",
             "Один из твоих корешей запинал одного врага!\n",
             "Один из врагов запинал твоего кореша!\n",
             "К тебе присоединился один твой кореш\n",
             "К тебе присоединился ещё один твой кореш\n",
             "Эти ублюдки запинали всех твоих корешей! Ты просто обязан отомстить!\n",
-            "Ты запинал последнего врага и вдруг понял, что стоишь один среди %i трупов\n",
+            "Ты запинал последнего врага и вдруг понял, что стоишь один среди {} трупов\n",
             "Самое время делать ноги, пока никто не спалил!\n",
             "На некоторое время ты схоронился в общаге, где бурно отпраздновал с пацанами\nпобеду неимоверным количеством выпитого пива и выкуренных косяков.\n",
             "Вы запинали этих ублюдков, в который раз доказав свою правоту!\nНакупив бухла, вы отправились в общагу праздновать победу\n",
@@ -57,51 +60,55 @@ int k(bool skip_turn) {
             "Прошло энное количество дней. Сейчас ты бухой и обдолбанный\nстоишь у стен общаги и вновь готов творить свои гоповские дела!\n",
             "У тебя нет шокера\n",
             "Враг валяется в отключке\n",
-            "Ты случайно пнул камень, под которым нашёл %i рубл%s.\n",
+            "Ты случайно пнул камень, под которым нашёл {} рубл{}.\n",
     };
 
     // сообщения при ударе героя
-    const char *hero_kick_mess[] = {
+    const std::string hero_kick_mess[] = {
             "Из-за большой ловкости ты можешь ударить ещё раз\n",
             "Точный удар! Ты сломал врагу челюсть!\n",
             "Отличный удар! Ты сломал врагу ногу!\n",
             "Двойной урон! ",
-            "Ты ударил врага на %iз. У него осталось %i.\n",
+            "Ты ударил врага на {}з. У него осталось {}.\n",
             "Ты промазал\n",
-            ""};
+            "",
+    };
 
     // сообщения при ударе врага
-    const char *enemy_kick_mess[] = {
+    const std::string enemy_kick_mess[] = {
             "Из-за хорошей ловкости враг может ударить ещё раз\n",
             "Тебе сломали челюсть\n",
             "Тебе сломали ногу\n",
             "Тебе нехило врезали! ",
-            "Враг ударил тебя на %iз. У тебя осталось %i.\n",
+            "Враг ударил тебя на {}з. У тебя осталось {}.\n",
             "Враг промазал\n",
-            "Защита не спасла твои кривые клыки\n"};
+            "Защита не спасла твои кривые клыки\n"
+    };
 
     // сообщения при ударе "братвы"
-    const char *lads_kick_mess[] = {
+    const std::string lads_kick_mess[] = {
             "Из-за своей хорошей ловкости братва может ударить ещё раз\n",
             "Один из твоих корешей как следует зарядил врагу по челюсти\n",
             "Один из твоих корешей как следует зарядил врагу по ноге\n",
             "",
-            "Братва отпинала врага на %iз. У него осталось %i.\n",
+            "Братва отпинала врага на {}з. У него осталось {}.\n",
             "Братва промазала\n",
-            ""};
+            ""
+    };
 
     // сообщения при ударе кореша
-    const char *pal_kick_mess[] = {
+    const std::string pal_kick_mess[] = {
             "Из-за своей хорошей ловкости он может ударить ещё раз\n",
             "Он как следует зарядил врагу по челюсти\n",
             "Он как следует зарядил врагу по ноге\n",
             "",
-            "Он ударил врага на %iз. У врага осталось %i.\n",
+            "Он ударил врага на {}з. У врага осталось {}.\n",
             "Он промазал\n",
-            ""};
+            "",
+    };
 
     // фразы зрителей
-    const char *audience_mess[] = {
+    const std::string audience_mess[] = {
             "Начинают собираться зрители\n",
             "Делайте ваши ставки!\n",
             "Чувак, не подведи! Я на тебя полтинник поставил!\n",
@@ -111,19 +118,21 @@ int k(bool skip_turn) {
             "Чё-то хуёво вы дерётесь.\n",
             "Сильнее бей!\n",
             "Вот вчера тоже одного пинали, а потом подошла его басота...\n",
-            "И куда только менты смотрят!\n"};
+            "И куда только менты смотрят!\n"
+    };
 
     // сообщения при выстреле героя
-    const char *hero_fire_mess[] = {
+    const std::string hero_fire_mess[] = {
             "Это был хреновый выстрел.\n",
-            "Ты выстрелил и ранил врага на %iз. У него осталось %i.\n",
-            " Осталось %i патронов\n",
-            "Чем стрелять собрался? Патронов-то нету\n"};
+            "Ты выстрелил и ранил врага на {}з. У него осталось {}.\n",
+            " Осталось {} патронов\n",
+            "Чем стрелять собрался? Патронов-то нету\n"
+    };
 
     // сообщения при ударе шокером
-    const char *hero_shok_mess[] = {
+    const std::string hero_shok_mess[] = {
             "Ты промахнулся, не достал противника.\n",
-            "Ты ударил врага шокером на %iз. У него осталось %i.\n",
+            "Ты ударил врага шокером на {}з. У него осталось {}.\n",
             "Шокер разряжен, батарейка сдохла.\n",
             "В шокере что-то хлопнуло и запахло палёной изоляцией — сломался.\n",
     };
@@ -162,13 +171,16 @@ int k(bool skip_turn) {
 
     if (cur_game->active_loc == 0) {
         if (CHANCE(1, 1000)) {
-            settextattr(YELLOW);
             int money = GETRANDOM(1, 5);
-            PRINTF(mess[32], money, plural(money, "рубль", "рубля", "рублей"));
+            std::cout << YELLOW << fmt::format(
+                mess[32],
+                money,
+                plural(money, "рубль", "рубля", "рублей")
+            ) << std::flush;
+
             cur_game->main_hero->add_money(money);
         } else {
-            settextattr(YELLOW);
-            PRINTF("%s", mess[0]);
+            std::cout << YELLOW << mess[0] << std::flush;;
         }
 
         return 0;
@@ -209,13 +221,13 @@ int k(bool skip_turn) {
         // но на всякий случай...
         if (cur_game->enemy == nullptr) {
             cur_game->enemy = cur_game->str_enemy[0];
-            // PRINTF ("%s","gotofight\n"); // !!!
 
             goto end_fight;
         }
 
-        settextattr(YELLOW);
-        PRINTF(mess[18], cur_game->enemy->get_type(), cur_game->enemy->get_level());
+        std::cout << YELLOW << fmt::format(
+            mess[18], cur_game->enemy->get_type(), cur_game->enemy->get_level()
+        ) << std::flush;
     }
     // end стрела #1
     // -------------
@@ -231,8 +243,7 @@ int k(bool skip_turn) {
         inv_index = game::search_inv(main_hero, "Пистолет");
 
         if (main_hero->inv[inv_index].have == 0) {
-            settextattr(RED);
-            PRINTF("%s", mess[16]);
+            std::cout << RED << mess[16] << std::flush;
 
             return 0;
         } else {
@@ -240,8 +251,7 @@ int k(bool skip_turn) {
 
 
             if (main_hero->inv[inv_index].have == 0) {
-                settextattr(RED);
-                PRINTF("%s", mess[17]);
+                std::cout << RED << mess[17] << std::flush;
 
                 return 0;
             } else {
@@ -252,8 +262,7 @@ int k(bool skip_turn) {
         inv_index = game::search_inv(main_hero, "Шокер");
 
         if (main_hero->inv[inv_index].have == 0) {
-            settextattr(RED);
-            PRINTF("%s", mess[30]);
+            std::cout << RED << mess[30] << std::flush;
 
             return 0;
         } else {
@@ -269,14 +278,15 @@ int k(bool skip_turn) {
 
     if (cur_game->active_loc == 1) {
         if (cur_game->num_k == 4) {
-            settextattr(WHITE);
-            PRINTF("%s", audience_mess[0]);
+            std::cout << WHITE << audience_mess[0] << std::flush;
         }
 
         if (cur_game->num_k > 4) {
             if (CHANCE(1, 5)) {
-                settextattr(YELLOW);
-                PRINTF("Голоса из толпы: %s", audience_mess[GETRANDOM(0, 9)]);
+                std::cout
+                    << YELLOW
+                    << fmt::format("Голоса из толпы: {}", audience_mess[GETRANDOM(0, 9)])
+                    << std::flush;
             }
         }
     }
@@ -318,12 +328,12 @@ int k(bool skip_turn) {
             }
 
             if (cur_game->str_hero[j]->str_free) {
-                settextattr(GREEN);
+                std::cout << GREEN;
 
                 if (i == 0) {
-                    PRINTF("%s", mess[21]);
+                    std::cout << mess[21];
                 } else {
-                    PRINTF("%s", mess[22]);
+                    std::cout << mess[22];
                 }
 
                 game::kick_realiz(
@@ -334,8 +344,7 @@ int k(bool skip_turn) {
                 if (cur_game->str_hero[j]->get_health() == 0) {
                     cur_game->str_hero[j]->str_free = false;
 
-                    settextattr(RED);
-                    PRINTF("%s", mess[20]);
+                    std::cout << RED << mess[20];
                 }
 
                 i++;
@@ -358,15 +367,13 @@ int k(bool skip_turn) {
             lads->sub_health(lads_loss);
 
             if ((lads->get_health() == 0) && (enemy->get_health() > 0)) {
-                settextattr(RED);
-                PRINTF("%s", mess[8]);
+                std::cout << RED << mess[8];
             }
         } else {
             delete cur_game->lads;
             cur_game->lads_init = 0;
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[9]);
+            std::cout << YELLOW << mess[9];
         }
     }
 
@@ -436,14 +443,12 @@ int k(bool skip_turn) {
             if (hero1->get_health() == 0) {
                 j++;
 
-                settextattr(RED);
-                PRINTF("%s", mess[20]);
+                std::cout << RED << mess[20];
             }
 
             // выводим сообщение, что запинали противника
             if (hero2->get_health() == 0) {
-                settextattr(GREEN);
-                PRINTF("%s", mess[19]);
+                std::cout << GREEN << mess[19];
 
                 // делаем свободным текущего союзника
                 hero1->str_free = true;
@@ -456,8 +461,7 @@ int k(bool skip_turn) {
                 (j == (STR_AMOUNT - 1))) {
             cur_game->str_dead_mess = 1;
 
-            settextattr(RED);
-            PRINTF("%s", mess[23]);
+            std::cout << RED << mess[23];
         }
 
         // если текущий противник главного героя мёртв,
@@ -485,8 +489,7 @@ int k(bool skip_turn) {
         cur_game->num_k = 0;
         main_hero->empty_kick_count = 0;
 
-        settextattr(GREEN);
-        PRINTF("%s", strcmp(cur_game->active_cmd, "sh") == 0 ? mess[31] : mess[1]);
+        std::cout << GREEN << (strcmp(cur_game->active_cmd, "sh") == 0 ? mess[31] : mess[1]);
 
         old_level = main_hero->get_level();
         old_district = main_hero->add_exp(
@@ -497,13 +500,13 @@ int k(bool skip_turn) {
 
         // перебор инвентаря противника
 
-        settextattr(BLUE);
+        std::cout << BLUE;
 
         for (i = 0; i < enemy->inv_amount; i++) {
             inv_index = game::search_inv(main_hero, enemy->inv[i].name);
 
             main_hero->inv[inv_index].have++;
-            PRINTF(mess[3], main_hero->inv[inv_index].name);
+            std::cout << fmt::format(mess[3], main_hero->inv[inv_index].name);
 
             // дополнительные заморочки с русским языком...
             if (strcmp(
@@ -511,10 +514,10 @@ int k(bool skip_turn) {
                     strlen(main_hero->inv[inv_index].name) - 1,
                     "а") == 0) {
                 backspace();
-                PRINTF("%s", "у");
+                std::cout << "у";
             }
 
-            PRINTF("%s", "\n");
+            std::cout << "\n";
 
             // дополнительный перебор инвентаря...
             cur_game->supple_inv_run_over(inv_index);
@@ -541,12 +544,12 @@ int k(bool skip_turn) {
         }
 
         if (enemy->get_ciga() > 0) {
-            PRINTF(mess[4], enemy->get_type());
+            std::cout << fmt::format(mess[4], enemy->get_type());
 
             main_hero->add_ciga(enemy->get_ciga());
         }
 
-        PRINTF("%s", mess[5]);
+        std::cout << mess[5];
 
         new_loc = 0;
 
@@ -554,24 +557,21 @@ int k(bool skip_turn) {
         if (cur_game->get_stay_mar() == -1) {
             cur_game->set_stay_mar(20);
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[6]);
+            std::cout << YELLOW << mess[6];
         }
 
         // борьба в клубе
         if (cur_game->get_stay_kl() == -1) {
             cur_game->set_stay_kl(40);
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[14]);
+            std::cout << YELLOW << mess[14];
         }
 
         // борьба в метро
         if (cur_game->stay_met == -1) {
             cur_game->stay_met = 10;
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[15]);
+            std::cout << YELLOW << mess[15];
         }
 
         // открытие доступа к притону
@@ -582,8 +582,7 @@ int k(bool skip_turn) {
                 (cur_game->get_open_pr() == 0)) {
             cur_game->set_open_pr();
 
-            settextattr(BLUE);
-            PRINTF("%s", mess[7]);
+            std::cout << BLUE << mess[7];
         }
 
         // отпин мудака в притоне
@@ -592,11 +591,9 @@ int k(bool skip_turn) {
             cur_game->set_open_hp(0);
             new_loc = 4;
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[10]);
-
-            settextattr(BLUE);
-            PRINTF(mess[11], enemy->get_max_health());
+            std::cout
+                << YELLOW << mess[10]
+                << BLUE << fmt::format(mess[11], enemy->get_max_health());
         }
 
 
@@ -611,11 +608,9 @@ int k(bool skip_turn) {
                 cur_game->set_open_d(0);
                 new_loc = 4;
 
-                settextattr(YELLOW);
-                PRINTF("%s", mess[13]);
-
-                settextattr(BLUE);
-                PRINTF(mess[11], att);
+                std::cout
+                    << YELLOW << mess[13]
+                    << BLUE << fmt::format(mess[11], att);
             }
         }
 
@@ -652,25 +647,23 @@ int k(bool skip_turn) {
             main_hero->broken_foot = false;
             main_hero->broken_jaw = false;
 
-            settextattr(YELLOW);
+            std::cout << YELLOW;
 
             if (cur_game->str_dead_mess) {
-                PRINTF(mess[24], STR_AMOUNT * 2 - 1);
-                PRINTF("%s", mess[25]);
-                PRINTF("%s", mess[26]);
+                std::cout
+                    << fmt::format(mess[24], STR_AMOUNT * 2 - 1)
+                    << mess[25] << mess[26];
             } else {
-                PRINTF("%s", mess[27]);
+                std::cout << mess[27];
             }
 
-            PRINTF("%s", mess[28]);
+            std::cout << mess[28];
 
-            settextattr(BLUE);
-            PRINTF(mess[11], att);
+            std::cout << BLUE << fmt::format(mess[11], att);
 
-            get_key();
+            get_key(false);
 
-            settextattr(YELLOW);
-            PRINTF("%s", mess[29]);
+            std::cout << YELLOW << mess[29] << std::flush;
 
             // корректная очистка
             // ----
@@ -703,6 +696,7 @@ int k(bool skip_turn) {
         // переход к новой локации
         cur_game->set_loc(new_loc);
 
+        std::cout << std::flush;
         return 0;
     }
 
@@ -756,15 +750,13 @@ int k(bool skip_turn) {
             main_hero->sub_stuff(main_hero->get_stuff());
             main_hero->sub_ciga(main_hero->get_ciga());
 
-            settextattr(BLUE);
-            PRINTF("%s", mess[12]);
+            std::cout << BLUE << mess[12] << std::flush;
 
             // переход к новой локации
             cur_game->set_loc(0);
         } else {
-            settextattr(RED);
-            PRINTF("%s", mess[2]);
-            get_key();
+            std::cout << RED << mess[2] << std::flush;
+            get_key(false);
         }
 
         // удаляем объект "братвы"
@@ -777,6 +769,8 @@ int k(bool skip_turn) {
             delete enemy;
             cur_game->enemy_init = 0;
         }
+
+        std::cout << std::flush;
 
         if (cur_game->active_loc == 0) {
             return 0;
