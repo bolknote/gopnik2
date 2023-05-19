@@ -505,7 +505,8 @@ int k(bool skip_turn) {
             inv_index = game::search_inv(main_hero, enemy->inv[i].name);
 
             main_hero->inv[inv_index].have++;
-            std::cout << fmt::format(mess[3], main_hero->inv[inv_index].name);
+            const auto name = main_hero->inv[inv_index].name;
+            std::cout << fmt::format(mess[3], name);
 
             // дополнительные заморочки с русским языком...
             if (strcmp(
