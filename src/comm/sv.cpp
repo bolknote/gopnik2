@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #include <fmt/format.h>
 
@@ -31,29 +32,10 @@ int sv() {
             "Это {} {} уровня\n",
     };
 
-    const char *
-            // тип обозначения героя
-            cur_level_type;
-
-    int
-    // количество возможных ударов
-    kick_count;
-
-    float
-            fi;
-
     enemy = cur_game->enemy;
 
     if (enemy == nullptr) {
         return 0;
-    }
-
-    // уровень и тип героя
-
-    if (enemy->get_level() > 42) {
-        cur_level_type = level_type[42];
-    } else {
-        cur_level_type = level_type[enemy->get_level()];
     }
 
     std::cout << GREEN;
@@ -63,6 +45,8 @@ int sv() {
             (strcmp(enemy->get_type(), HeroTypes::KOMENDA) == 0)) {
         std::cout << fmt::format(mess[9], enemy->get_type(), enemy->get_level());
     } else {
+        // уровень и тип героя
+        const auto cur_level_type = level_type[std::min(enemy->get_level(), 42)];
         std::cout << fmt::format(mess[0], enemy->get_type(), enemy->get_level(), cur_level_type);
     }
 
@@ -83,8 +67,7 @@ int sv() {
         << fmt::format(mess[2], enemy->get_min_loss(), enemy->get_max_loss());
 
     // здоровье
-
-    fi = (float) enemy->get_health() / (float) enemy->get_max_health();
+    const auto fi = (float) enemy->get_health() / (float) enemy->get_max_health();
 
     if (fi > 0.5) {
         std::cout << GREEN;
@@ -109,10 +92,12 @@ int sv() {
     std::cout << "\n";
 
     // точность
-
     std::cout << WHITE;
 
-    if ((kick_count = enemy->get_kick_count()) == 1) {
+    // количество возможных ударов
+    const auto kick_count = enemy->get_kick_count();
+
+    if (kick_count == 1) {
         std::cout << fmt::format(mess[4], enemy->get_accuracy_of_last_kick());
     } else {
         std::cout << fmt::format(mess[5], kick_count - 1, kick_count, enemy->get_accuracy_of_last_kick());
