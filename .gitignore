@@ -6,3 +6,4 @@
 .DS_Store
 /gop2*.sav
 build/
+cmake-build-debug/
