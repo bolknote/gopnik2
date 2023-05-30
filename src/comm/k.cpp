@@ -180,7 +180,7 @@ int k(bool skip_turn) {
 
             cur_game->main_hero->add_money(money);
         } else {
-            std::cout << YELLOW << mess[0] << std::flush;;
+            std::cout << YELLOW << mess[0] << std::flush;
         }
 
         return 0;

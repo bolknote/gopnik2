@@ -31,7 +31,7 @@ namespace HeroTypes {
     const char * const VAHTERSHA = "Вахтёрша";
     const char * const KOMENDA = "Коменда";
     const char * const ULICHNYI_MAG = "Уличный маг";
-};
+}
 
 class hero {
     int desc[4];  // начальные навыки
