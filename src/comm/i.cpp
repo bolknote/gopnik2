@@ -43,7 +43,7 @@ int i() {
 
             auto len = max_len - strlen(cur_game->loc[cur_game->active_loc].command[i]);
             std::cout
-                << std::setw(len) << " "
+                << std::setw((int) len) << " "
                 << WHITE << cur_game->loc[cur_game->active_loc].command_desc[i] << "\n";
         }
     }
