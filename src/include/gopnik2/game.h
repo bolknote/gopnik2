@@ -131,7 +131,7 @@ public:
     static int headband();                               // показать заставку
     int create_hero(int, const char *, int);
 
-    int get_number_of_sav_file(int); // получить номер текущего сохранённого файла
+    // int get_number_of_sav_file(int); // получить номер текущего сохранённого файла
     int start();
 
     int set_loc(int);                                              // смена локации
