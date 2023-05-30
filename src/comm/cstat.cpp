@@ -17,7 +17,7 @@ void show_timer(time_t sec_amount) {
     time_t last_time = 0;
     hidecursor();
 
-    auto max_da = fmt::to_string(sec_amount).length();
+    auto max_da = (int) fmt::to_string(sec_amount).length();
     sec_amount++;
 
     auto old_mode = set_tty_special_mode();
