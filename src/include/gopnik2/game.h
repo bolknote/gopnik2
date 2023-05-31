@@ -83,7 +83,7 @@ public:
 
     ~game();
 
-    int clean_mem() const;    // очитска динамических массивов
+    void clean_mem();    // очитска динамических массивов
     int save(FILE *);         // сохранение игры в файл
     int load(FILE *, float);  // загрузка игры из файла
     int wait_command();       // ожидание команды пользователя
@@ -125,7 +125,7 @@ public:
 
     int add_plot_line(FP3);
 
-    int is_gamer_hero_type(int) const;
+    [[nodiscard]] bool is_gamer_hero_type(int) const;
 
     int is_active_location_command(const char *) const; // никогда не называйте так команды
     static int headband();                               // показать заставку
@@ -138,21 +138,21 @@ public:
     static int get_min_exp_for_level(
             int);                                // минимальное количество опыта, которое нужно добавить, чтобы достичь заданного уровня
     static int search_inv(hero *, const char *);                          // поиск инвентаря по имени
-    int search_pl(int) const;                                            // поиск прайс-листа по индексу локации
-    int search_ht(const char *) const;                                   // поиск индекса типа героя по названию типа
+    [[nodiscard]] int search_pl(int) const;                               // поиск прайс-листа по индексу локации
+    int search_ht(const char *) const;                                    // поиск индекса типа героя по названию типа
     int search_plm_price(int *, int *,
                          const char *) const;              // поиск цены на элемент прайс-листа по его названию
-    int supple_inv_run_over(int) const;                                  // перебор инвентаря
+    void supple_inv_run_over(int);                                  // перебор инвентаря
     int supple_loc_run_over();                                     // перебор списка локаций
-    int supple_pl_run_over() const;                                      // перебор прайс-листов
+    void supple_pl_run_over() const;                                      // перебор прайс-листов
     int supple_pltl_run_over() const;                                    // перебор функций обработки сюжетных линий
     int gen_enemy(int *) const;                                          // сгенерировать тип и уровень врага
     int gen_enemy_obj(int, int, int = 1, int = 1);                 // сгенерировать объект героя
-    int gen_kick_count() const;                                          // расчёт количества ударов героя и противника
+    void gen_kick_count();                                          // расчёт количества ударов героя и противника
     static int kick(hero *, hero *, int, int *);                          // сгенерировать урон удара
     static int kick_realiz(hero *, hero *, int, const std::string *, Colors, Colors); // реализация ударов
     int new_district();                                            // обновление параметров при смене района
-    int new_station() const;                                             // обновление параметров при смене станции
+    void new_station();                                             // обновление параметров при смене станции
     int buy_realiz();                                              // реализация покупки товара
     static int fire(hero *, hero *);                                      // сгенерировать урон выстрела
     static int fire_realiz(hero *, hero *, int, const std::string *, Colors, Colors); // реализация выстрела

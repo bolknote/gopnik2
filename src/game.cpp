@@ -122,7 +122,7 @@ game::~game() {
     }
 }
 
-int game::clean_mem() const {
+void game::clean_mem() {
     int i, j, k;
 
     // **ht**
@@ -244,10 +244,7 @@ int game::clean_mem() const {
     if (pltl_amount > 0) {
         free(pltl);
     }
-    // ********
-
-    return 0;
-} // end int game::clean_mem ()
+} // end void game::clean_mem ()
 
 int game::save(FILE *sav_file) {
     fwrite(&num_w, sizeof(num_w), 1, sav_file);
@@ -803,16 +800,16 @@ int game::add_plot_line(
     return pltl_amount - 1;
 } // end int game::add_plot_line (FP3)
 
-int game::is_gamer_hero_type(
+bool game::is_gamer_hero_type(
         // индекс типа героя
         int ht_index) const {
     if (ht_index < ht_amount) // !!!
     {
         return ht[ht_index].gamer;
     } else {
-        return 0;
+        return false;
     }
-} // end int game::is_gamer_hero_type (int)
+} // end bool game::is_gamer_hero_type (int)
 
 int game::is_active_location_command(
         // команда
@@ -1074,9 +1071,9 @@ int game::search_plm_price(
     return price;
 } // end int game::search_plm_price (int *, int *, TEXT)
 
-int game::supple_inv_run_over(
+void game::supple_inv_run_over(
         // индекс инвентаря
-        int inv_index) const {
+        int inv_index) {
     int j;
 
     for (j = 0; j < main_hero->inv_amount; j++) {
@@ -1124,9 +1121,7 @@ int game::supple_inv_run_over(
             }
         }
     }
-
-    return 0;
-} // end int game::supple_inv_run_over (int)
+} // end void game::supple_inv_run_over (int)
 
 int game::supple_loc_run_over() {
     // текущая активная локация
@@ -1194,7 +1189,7 @@ int game::supple_loc_run_over() {
     return 0;
 } // end int game::supple_loc_run_over ()
 
-int game::supple_pl_run_over() const {
+void game::supple_pl_run_over() const {
     // -- выглядит тупо, а куда деваться? что-то совершенствовать уже влом...
 
     int
@@ -1217,9 +1212,7 @@ int game::supple_pl_run_over() const {
 
         pl[pl_index].members[4].price = 60 * ((main_hero->station) ? (2) : (1));
     }
-
-    return 0;
-} // end int game::supple_pl_run_over ()
+} // end void game::supple_pl_run_over ()
 
 int game::supple_pltl_run_over() const {
     int i, ret;
@@ -1478,7 +1471,7 @@ int game::gen_enemy_obj(
     return 0;
 } // end int game::gen_enemy_obj (int, int, int)
 
-int game::gen_kick_count() const {
+void game::gen_kick_count() {
     if (
             (main_hero->get_kick_count() > 1) &&
             (enemy->get_kick_count() > 1)) {
@@ -1509,9 +1502,7 @@ int game::gen_kick_count() const {
         enemy->kick_count = enemy->get_kick_count();
         main_hero->kick_count = main_hero->get_kick_count();
     }
-
-    return 0;
-} // int game::gen_kick_count ()
+} // void game::gen_kick_count ()
 
 int game::kick(
         // герой, производящий удар
@@ -1759,7 +1750,7 @@ int game::new_district() {
     return 0;
 } // end int game::new_district ()
 
-int game::new_station() const {
+void game::new_station() {
     int
             pl_index;
 
@@ -1827,9 +1818,7 @@ int game::new_station() const {
             }
         }
     }
-
-    return 0;
-} // end int game::new_station ()
+} // end void game::new_station ()
 
 int game::buy_realiz() {
     // элемент прайс-листа
