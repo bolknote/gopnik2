@@ -122,7 +122,7 @@ game::~game() {
     }
 }
 
-void game::clean_mem() {
+void game::clean_mem() const {
     int i, j, k;
 
     // **ht**
@@ -1073,7 +1073,7 @@ int game::search_plm_price(
 
 void game::supple_inv_run_over(
         // индекс инвентаря
-        int inv_index) {
+        int inv_index) const {
     int j;
 
     for (j = 0; j < main_hero->inv_amount; j++) {
@@ -1750,7 +1750,7 @@ int game::new_district() {
     return 0;
 } // end int game::new_district ()
 
-void game::new_station() {
+void game::new_station() const {
     int
             pl_index;
 

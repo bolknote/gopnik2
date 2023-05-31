@@ -83,7 +83,7 @@ public:
 
     ~game();
 
-    void clean_mem();    // очитска динамических массивов
+    void clean_mem() const;    // очитска динамических массивов
     int save(FILE *);         // сохранение игры в файл
     int load(FILE *, float);  // загрузка игры из файла
     int wait_command();       // ожидание команды пользователя
@@ -142,7 +142,7 @@ public:
     int search_ht(const char *) const;                                    // поиск индекса типа героя по названию типа
     int search_plm_price(int *, int *,
                          const char *) const;              // поиск цены на элемент прайс-листа по его названию
-    void supple_inv_run_over(int);                                  // перебор инвентаря
+    void supple_inv_run_over(int) const;                                  // перебор инвентаря
     int supple_loc_run_over();                                     // перебор списка локаций
     void supple_pl_run_over() const;                                      // перебор прайс-листов
     int supple_pltl_run_over() const;                                    // перебор функций обработки сюжетных линий
@@ -152,7 +152,7 @@ public:
     static int kick(hero *, hero *, int, int *);                          // сгенерировать урон удара
     static int kick_realiz(hero *, hero *, int, const std::string *, Colors, Colors); // реализация ударов
     int new_district();                                            // обновление параметров при смене района
-    void new_station();                                             // обновление параметров при смене станции
+    void new_station() const;                                             // обновление параметров при смене станции
     int buy_realiz();                                              // реализация покупки товара
     static int fire(hero *, hero *);                                      // сгенерировать урон выстрела
     static int fire_realiz(hero *, hero *, int, const std::string *, Colors, Colors); // реализация выстрела
