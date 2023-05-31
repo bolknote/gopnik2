@@ -23,7 +23,7 @@ int raid() {
         cur_game->open_raid = false;
         cur_game->stay_str = 10;
 
-        std::cout << YELLOW << mess[GETRANDOM(-1, 1)] << std::flush;
+        std::cout << YELLOW << mess[getRandom(-1, 1)] << std::flush;
     }
 
     return 0;

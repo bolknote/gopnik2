@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <random>
 
 #ifdef _MSC_VER
 #include <conio.h>
@@ -69,7 +70,7 @@ int superrandom(
     int i = start;
     int j = 0;
 
-    while ((j < amount) && (GETRANDOM(-1, N) != 0)) {
+    while ((j < amount) && (getRandom(-1, N) != 0)) {
         j++;
         (flag) ? (i++) : (i--);
         if (i == amount) {
@@ -223,4 +224,10 @@ char *g_strdup(const char *src) {
     return s == nullptr ? nullptr : (char *) memcpy(s, src, len);
 }
 
+int getRandom(int min, int max) {
+    static std::random_device rd;
+    static std::mt19937 generator(rd());
+    std::uniform_int_distribution<> distribution(min + 1, max);
+    return distribution(generator);
+}
 

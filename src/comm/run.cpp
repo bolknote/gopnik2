@@ -87,7 +87,7 @@ int run() {
 
         if (run) {
             std::cout
-                << RED << mess[GETRANDOM(-1, 1)]
+                << RED << mess[getRandom(-1, 1)]
                 << YELLOW << mess[2];
 
             cur_game->set_loc(0);

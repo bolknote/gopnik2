@@ -49,7 +49,7 @@ int d() {
                 std::cout << YELLOW << mess[1] << mess[2];
 
                 main_hero->add_att(20);
-                main_hero->add_money(GETRANDOM(19, 20 + 20 * main_hero->district));
+                main_hero->add_money(getRandom(19, 20 + 20 * main_hero->district));
 
                 std::cout << BLUE << fmt::format(mess[3], 20) << std::flush;
 
@@ -84,7 +84,7 @@ int d() {
                     << RED << mess[5];
 
                 ht_index = cur_game->search_ht(HeroTypes::MENT);
-                level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
+                level = getRandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
                 std::cout
                 << YELLOW << fmt::format(mess[7], level)

@@ -19,8 +19,7 @@ typedef enum Colors_ : int {
     BLACK,
 } Colors;
 
-#define GETRANDOM(min, max) ((rand() % (int)((max) - (min))) + (min) + 1)
-#define CHANCE(m, n) ((GETRANDOM(0, (int)(n)) <= (m)) ? (1) : (0))
+#define CHANCE(m, n) ((getRandom(0, (int)(n)) <= (m)) ? (1) : (0))
 #define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
 
 extern Colors textattr;
@@ -28,6 +27,7 @@ extern Colors textattr;
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
 std::ostream &operator<<(std::ostream &os, const Colors &color); // перегрузка оператора для вывода цвета
+int getRandom(int, int);             // получение случайного числа в диапазоне от первого+1 до второго
 const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр

@@ -29,12 +29,12 @@ int gamb() {
         int luck = std::max(main_hero->get_luck() / 10, 2);
 
         if (CHANCE(1, 5 - luck)) {
-            int money = GETRANDOM(0, 100);
+            int money = getRandom(0, 100);
             main_hero->add_money(money);
 
             std::cout << GREEN << fmt::format(mess[0], money);
         } else {
-            int money = GETRANDOM(0, 25);
+            int money = getRandom(0, 25);
             main_hero->add_money(-money);
 
             std::cout << RED << fmt::format(mess[1], money);

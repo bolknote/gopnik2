@@ -77,7 +77,7 @@ int sl() {
         if (cur_game->st_amount > 0) {
             std::cout
                 << YELLOW << mess[6]
-                << BLUE << cur_game->st[GETRANDOM(-1, cur_game->st_amount - 1)] << "\n";
+                << BLUE << cur_game->st[getRandom(-1, cur_game->st_amount - 1)] << "\n";
         }
 
         std::cout << std::flush;

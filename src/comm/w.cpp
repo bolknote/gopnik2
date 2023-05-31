@@ -162,7 +162,7 @@ int w() {
                 ((ht_index = cur_game->search_ht(HeroTypes::MENT)) > -1) &&
                 (CHANCE(1, cur_game->ht[ht_index].events)) &&
                 ((main_hero->get_level() % 10) >= 5)) {
-            level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
+            level = getRandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
             goto then;
         }
@@ -181,7 +181,7 @@ int w() {
             flag = 1;
 
             if (cur_game->ht[ht_index].hero_phrase_amount > 0) {
-                ph_index = GETRANDOM(-1, cur_game->ht[ht_index].hero_phrase_amount - 1);
+                ph_index = getRandom(-1, cur_game->ht[ht_index].hero_phrase_amount - 1);
 
                 ph_addr = cur_game->ht[ht_index].hero_addr[ph_index];
                 ph_reply = cur_game->ht[ht_index].hero_reply[ph_index];
@@ -224,7 +224,7 @@ int w() {
                     std::cout << mess[5];
 
                     if (cur_game->ht[ht_index].enemy_phrase_amount > 0) {
-                        ph_index = GETRANDOM(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
+                        ph_index = getRandom(-1, cur_game->ht[ht_index].enemy_phrase_amount - 1);
 
                         ph_addr = cur_game->ht[ht_index].enemy_addr[ph_index];
                         ph_reply = cur_game->ht[ht_index].enemy_reply[ph_index];

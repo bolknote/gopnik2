@@ -67,7 +67,7 @@ int stdi() {
             std::cout << RED << mess[4];
 
             ht_index = cur_game->search_ht(HeroTypes::OHRANNIK);
-            level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
+            level = getRandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
             std::cout << YELLOW << fmt::format(mess[5], level);
 

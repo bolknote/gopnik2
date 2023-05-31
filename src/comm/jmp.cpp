@@ -37,7 +37,7 @@ int jmp() {
         // индекс генерируемого типа героя
         auto ht_index = cur_game->search_ht(HeroTypes::MENT);
         // уровень генерируемого героя
-        auto level = GETRANDOM(main_hero->get_level() + 1, main_hero->get_level() + 5);
+        auto level = getRandom(main_hero->get_level() + 1, main_hero->get_level() + 5);
 
         std::cout
             << YELLOW << mess[1]

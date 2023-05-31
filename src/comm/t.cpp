@@ -44,7 +44,7 @@ int t() {
         if (CHANCE(1, events)) {
             flag = 1;
         } else {
-            money = GETRANDOM(0, 20 + 20 * main_hero->district);
+            money = getRandom(0, 20 + 20 * main_hero->district);
             main_hero->add_money(money);
 
             std::cout << GREEN << fmt::format(mess[0], money);

@@ -1259,7 +1259,7 @@ int game::gen_enemy(
     i = 0;
 
     for (;;) {
-        i = GETRANDOM(-1, ht_amount - 1);
+        i = getRandom(-1, ht_amount - 1);
 
         if (ht[i].active == 0) {
             continue;
@@ -1330,7 +1330,7 @@ int game::gen_enemy_obj(
             enemy->add_force(main_hero->get_armo());
 
             while (CHANCE(3, 5)) {
-                enemy->add_force(GETRANDOM(3, 5));
+                enemy->add_force(getRandom(3, 5));
             }
         }
 
@@ -1339,7 +1339,7 @@ int game::gen_enemy_obj(
                 (main_hero->get_kick_count() > 1) &&
                 (CHANCE(1, 2))) {
             while (enemy->get_kick_count() < main_hero->get_kick_count()) {
-                enemy->add_smart(GETRANDOM(5, 10));
+                enemy->add_smart(getRandom(5, 10));
             }
         }
 
@@ -1352,7 +1352,7 @@ int game::gen_enemy_obj(
             if (
                     (((float) enemy->get_force() / (float) main_hero->get_force()) < 2) &&
                     (main_hero->get_armo() > 5)) {
-                enemy->add_armo(GETRANDOM((int) main_hero->get_armo() / 2, main_hero->get_armo()));
+                enemy->add_armo(getRandom((int) main_hero->get_armo() / 2, main_hero->get_armo()));
             }
         }
 
@@ -1430,12 +1430,12 @@ int game::gen_enemy_obj(
 
     // генерируем деньги противника
     if ((ht[ht_index].money_events > 0) && (CHANCE(1, ht[ht_index].money_events))) {
-        enemy->add_money(GETRANDOM(0, 20 + 20 * main_hero->district));
+        enemy->add_money(getRandom(0, 20 + 20 * main_hero->district));
     }
 
     // генерируем хлам противника
     if ((ht[ht_index].stuff_events > 0) && (CHANCE(1, ht[ht_index].stuff_events))) {
-        enemy->add_stuff(GETRANDOM(0, 10 + 10 * main_hero->district));
+        enemy->add_stuff(getRandom(0, 10 + 10 * main_hero->district));
     }
 
     // генерируем самокрутки противника
@@ -1524,9 +1524,9 @@ int game::kick(
             (CHANCE(exact, 100))) {
         // что б не было зацикливаний
         if (hero1->get_max_loss() > hero2->get_armo()) {
-            loss = SUB(GETRANDOM(hero1->get_min_loss() - 1, hero1->get_max_loss()), hero2->get_armo());
+            loss = SUB(getRandom(hero1->get_min_loss() - 1, hero1->get_max_loss()), hero2->get_armo());
         } else {
-            loss = GETRANDOM(hero1->get_min_loss() - 1, hero1->get_max_loss());
+            loss = getRandom(hero1->get_min_loss() - 1, hero1->get_max_loss());
         }
 
         // -- блин, вообще не втыкаю, как такое может получаться?
@@ -1883,7 +1883,7 @@ int game::buy_realiz() {
             if (
                     (plm.buy_phrase_amount > 0) &&
                     (plm.buy_phrase_print_mode)) {
-                i = GETRANDOM(-1, plm.buy_phrase_amount - 1);
+                i = getRandom(-1, plm.buy_phrase_amount - 1);
 
                 std::cout << YELLOW << plm.buy_phrase[i] << "\n";
             }
@@ -1923,7 +1923,7 @@ int game::fire(
     if (
             (!CHANCE(1, hero1->get_luck() + 1)) &&
             (CHANCE(1, (hero2->get_luck() < 10) ? (hero2->get_luck()) : (10)))) {
-        loss = GETRANDOM(40, 160);
+        loss = getRandom(40, 160);
     }
 
     hero2->sub_health(loss);

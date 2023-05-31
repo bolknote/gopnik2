@@ -290,7 +290,7 @@ int pltl1(
                     enemy->add_smart(41 - enemy->get_smart());
                     enemy->add_vita(58 - enemy->get_vita());
 
-                    enemy->add_armo(GETRANDOM((int) main_hero->get_armo() / 2, main_hero->get_armo()));
+                    enemy->add_armo(getRandom((int) main_hero->get_armo() / 2, main_hero->get_armo()));
 
                     enemy->add_health(enemy->get_max_health() - enemy->get_health());
 

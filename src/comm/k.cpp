@@ -171,7 +171,7 @@ int k(bool skip_turn) {
 
     if (cur_game->active_loc == 0) {
         if (CHANCE(1, 1000)) {
-            int money = GETRANDOM(1, 5);
+            int money = getRandom(1, 5);
             std::cout << YELLOW << fmt::format(
                 mess[32],
                 money,
@@ -213,7 +213,7 @@ int k(bool skip_turn) {
             while (
                     (old_enemy == cur_game->enemy) ||
                     (cur_game->enemy->get_health() == 0)) {
-                cur_game->enemy = cur_game->str_enemy[str_enemy_index = GETRANDOM(-1, STR_AMOUNT - 1)];
+                cur_game->enemy = cur_game->str_enemy[str_enemy_index = getRandom(-1, STR_AMOUNT - 1)];
             }
         }
 
@@ -285,7 +285,7 @@ int k(bool skip_turn) {
             if (CHANCE(1, 5)) {
                 std::cout
                     << YELLOW
-                    << fmt::format("Голоса из толпы: {}", audience_mess[GETRANDOM(0, 9)]);
+                    << fmt::format("Голоса из толпы: {}", audience_mess[getRandom(0, 9)]);
             }
         }
     }
@@ -539,7 +539,7 @@ int k(bool skip_turn) {
                 (main_hero->get_money() < cur_game->pl[0].members[1].price) &&
                 ((main_hero->broken_jaw) ||
                  (main_hero->broken_foot))) {
-            main_hero->add_money(GETRANDOM(cur_game->pl[0].members[1].price - main_hero->get_money() - 1,
+            main_hero->add_money(getRandom(cur_game->pl[0].members[1].price - main_hero->get_money() - 1,
                                            cur_game->pl[0].members[1].price));
         }
 

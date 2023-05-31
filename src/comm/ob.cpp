@@ -45,12 +45,12 @@ int ob() {
     if (CHANCE(1, 3)) {
         // вероятность, что повезёт
         if (CHANCE(1, 2)) {
-            money = GETRANDOM(0, 10 + 10 * main_hero->district);
+            money = getRandom(0, 10 + 10 * main_hero->district);
 
             main_hero->add_money(money);
 
             std::cout
-                << YELLOW << mess[GETRANDOM(1, 4)]
+                << YELLOW << mess[getRandom(1, 4)]
                 << GREEN << fmt::format(mess[1], money);
         } else {
             do {
