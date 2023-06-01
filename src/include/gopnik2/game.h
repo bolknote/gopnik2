@@ -148,7 +148,7 @@ public:
     int supple_pltl_run_over() const;                                    // перебор функций обработки сюжетных линий
     int gen_enemy(int *) const;                                          // сгенерировать тип и уровень врага
     int gen_enemy_obj(int, int, int = 1, int = 1);                 // сгенерировать объект героя
-    void gen_kick_count();                                          // расчёт количества ударов героя и противника
+    void gen_kick_count() const;                                          // расчёт количества ударов героя и противника
     static int kick(hero *, hero *, int, int *);                          // сгенерировать урон удара
     static int kick_realiz(hero *, hero *, int, const std::string *, Colors, Colors); // реализация ударов
     int new_district();                                            // обновление параметров при смене района

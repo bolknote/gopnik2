@@ -1471,7 +1471,7 @@ int game::gen_enemy_obj(
     return 0;
 } // end int game::gen_enemy_obj (int, int, int)
 
-void game::gen_kick_count() {
+void game::gen_kick_count() const {
     if (
             (main_hero->get_kick_count() > 1) &&
             (enemy->get_kick_count() > 1)) {
