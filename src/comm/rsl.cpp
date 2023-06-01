@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include <iostream>
 
 #include <gopnik2/comm/comm.h>

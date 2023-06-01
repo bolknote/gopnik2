@@ -1,5 +1,3 @@
-#include <cstdlib>
-
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/main.h>
 #include <gopnik2/hero.h>
