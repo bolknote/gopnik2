@@ -64,12 +64,11 @@
 
 ## Зависимости
 
-- `cmake`
-- `conan` < 2.0 - `pip3 install "conan<2.0"`
+- `cmake` >= 3.14
+- `gcc`, `clang` или `MSVC`
 
 ## Этапы сборки
 
-- `conan profile new default --detect`
 - `mkdir -p ~/.builds/gopnik2`
 - `cmake -B ~/.builds/gopnik2 -DCMAKE_BUILD_TYPE=Release`
 - `cd ~/.builds/gopnik2 && cmake --build . -- -j 10`
