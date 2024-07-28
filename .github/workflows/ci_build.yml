@@ -12,15 +12,6 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Install Conan
-        id: conan
-        uses: turtlebrowser/get-conan@main
-        with:
-          version: 1.59.0
-
-      - name: Setup Conan Profile
-        run: conan profile new --detect default
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
