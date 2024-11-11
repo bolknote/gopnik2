@@ -1,9 +1,9 @@
 #pragma once
 
 #include <cstdio>
-#include <iostream>
-
-#include <gopnik2/forward.h>
+#include <string>
+#include "gopnik2/forward.h"
+#include "gopnik2/main.h"
 
 class game {
 public:

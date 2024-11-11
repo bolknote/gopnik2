@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gopnik2/main.h"
+
 class list {
     node *cur_p;
 

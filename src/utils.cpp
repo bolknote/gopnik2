@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <random>
+#include <array>
 
 #ifdef _MSC_VER
 #include <conio.h>
