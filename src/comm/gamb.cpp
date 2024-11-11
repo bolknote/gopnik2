@@ -33,7 +33,7 @@ int gamb() {
 
             std::cout << GREEN << fmt::format(mess[0], money);
         } else {
-            int money = getRandom(0, 25);
+            int money = std::max(getRandom(0, 25), main_hero->get_money());
             main_hero->add_money(-money);
 
             std::cout << RED << fmt::format(mess[1], money);
