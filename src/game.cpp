@@ -1182,6 +1182,8 @@ int game::supple_loc_run_over() {
     active_loc = 12;
     loc[active_loc].command_active[is_active_location_command("f")] =
             main_hero->inv[search_inv(main_hero, "Пистолет")].have;
+    loc[active_loc].command_active[is_active_location_command("sh")] =
+            main_hero->inv[search_inv(main_hero, "Шокер")].have;
     loc[active_loc].command_active[is_active_location_command("run")] = main_hero->get_level_of_complexity() == 0;
 
     active_loc = cur_active_loc;
