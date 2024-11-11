@@ -17,7 +17,7 @@ int bsale(
 
     // сообщения функции
     const std::string mess[] = {
-            "Ты толкаешь следующую вещь - \n",
+            "Ты толкаешь следующую вещь - ",
             "Барыги предлагают за неё {} руб. Ты согласен? (y/n)\n",
             "Ты толкнул одну из своих вещей и получил {} руб.\n",
             "Ты эту вещь уже продал\n",
@@ -81,7 +81,7 @@ int bsale(
 
         std::cout
         << WHITE << mess[0]
-        << BLUE << main_hero->inv[i].name
+        << BLUE << main_hero->inv[i].name << "\n"
         << YELLOW << fmt::format(mess[1], price);
 
         if (game::wait_answ()) {
