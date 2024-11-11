@@ -7,3 +7,4 @@
 /gop2*.sav
 build/
 cmake-build-debug/
+/.cache
