@@ -29,7 +29,7 @@ int inv() {
 
     for (auto i = 0; i < main_hero->inv_have_amount; i++) {
         std::cout
-            << WHITE << fmt::format("{:2}i - ", i + 1)
+            << WHITE << fmt::format("{:2} - ", i + 1)
             << BLUE << main_hero->inv[main_hero->inv_have[i]].name;
 
         if (main_hero->inv[main_hero->inv_have[i]].have > 1) {
