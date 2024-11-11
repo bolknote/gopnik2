@@ -208,11 +208,15 @@ int get_key(bool echo) {
     return ch;
 }
 
-const char *plural(int n, const char *q1, const char *q2, const char *q5) {
-    static char keys[] = {2, 0, 1, 1, 1, 2};
-    const char *args[] = {q1, q2, q5};
+std::string plural(int n, const std::string& q1, const std::string& q2, const std::string& q5) {
+    static const std::array<int, 6> keys = {2, 0, 1, 1, 1, 2};
+    const std::array<std::string, 3> args = {q1, q2, q5};
 
-    return args[n % 100 > 4 && n % 100 < 20 ? 2 : keys[std::min(n % 10, 5)]];
+    if (n % 100 > 4 && n % 100 < 20) {
+        return args[2];
+    } else {
+        return args[keys[std::min(n % 10, 5)]];
+    }
 }
 
 char *g_strdup(const char *src) {

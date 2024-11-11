@@ -28,7 +28,7 @@ char *g_strdup(const char *src);     // замена g_strdup, эта фукнц
 
 std::ostream &operator<<(std::ostream &os, const Colors &color); // перегрузка оператора для вывода цвета
 int getRandom(int, int);             // получение случайного числа в диапазоне от первого+1 до второго
-const char *plural(int n, const char *q1, const char *q2, const char *q5); // выбор множественного числа
+std::string plural(int n, const std::string& q1, const std::string& q2, const std::string& q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
 bool isdigitstr(const char *);       // состоит ли строка исключительно из символов цифр
 int superrandom(int, int, int, int); // возвращает номер приращения событий, на котором выпадает текущая вероятность
