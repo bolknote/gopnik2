@@ -24,16 +24,8 @@ jobs:
       - name: Test
         run: cd ${{github.workspace}}/build && ctest --extra-verbose
 
-      - name: Archive artifacts for Linux and MacOS
-        uses: actions/upload-artifact@v1
-        if: ${{ matrix.os != 'windows-latest' }}
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}
-          path: build/gop2
-
-      - name: Archive artifacts for Windows
-        uses: actions/upload-artifact@v1
-        if: ${{ matrix.os == 'windows-latest' }}
-        with:
-          name: ${{ matrix.os }}
-          path: build/${{env.BUILD_TYPE}}/gop2.exe
+          path: ${{ matrix.os == 'windows-latest' && 'build/' + env.BUILD_TYPE + '/gop2.exe' || 'build/gop2' }}
