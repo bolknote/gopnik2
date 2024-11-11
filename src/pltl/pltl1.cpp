@@ -82,11 +82,11 @@ int pltl1(
                     (main_hero->get_beer() > 2)) {
                 std::cout << WHITE << mess[2] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << mess[3] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << YELLOW << mess[4] << std::flush;
 
@@ -96,39 +96,39 @@ int pltl1(
                     std::cout << WHITE << mess[6] << std::flush;
                 }
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[7] << " " << mess[8] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[9] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[10] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[11] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << YELLOW << mess[12] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[13] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[14] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[15] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << WHITE << mess[16] << std::flush;
 
