@@ -150,39 +150,39 @@ int pltl1(
                     (!main_hero->broken_foot)) {
                 std::cout << WHITE << mess[2] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << mess[3] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[7] << "\n" << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[17] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[18] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[19] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[20] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << WHITE << mess[21] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[22] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << WHITE << mess[16] << std::flush;
 
