@@ -43,7 +43,7 @@
                                           █
                                           ██
 
-                             version 1.27 Release
+                             version 1.28 Release
 
 ОБ ИГРЕ
 =======

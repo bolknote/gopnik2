@@ -1,6 +1,6 @@
 #pragma once
 
-#define VERSION 1.27F
+#define VERSION 1.28F
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
