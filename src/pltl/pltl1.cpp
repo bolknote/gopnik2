@@ -205,43 +205,43 @@ int pltl1(
 
                 std::cout << WHITE << mess[2] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << mess[3] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[23] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[24] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[25] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[26] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << WHITE << mess[27] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[28] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << BLUE << mess[1] << ": " << mess[14] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << GREEN << mess[0] << ": " << mess[29] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << WHITE << mess[16] << std::flush;
 
@@ -264,19 +264,19 @@ int pltl1(
                         (main_hero->get_level() >= 35)) {
                     std::cout << WHITE << mess[2] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << mess[3] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << BLUE << mess[1] << ": " << mess[30] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << GREEN << mess[0] << ": " << mess[31] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     ht_index = cur_game->search_ht(HeroTypes::ULICHNYI_MAG);
                     level = 40;
