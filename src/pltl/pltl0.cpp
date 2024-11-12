@@ -105,7 +105,7 @@ int pltl0(
                     (cur_game->active_pltl != pltl_index)) {
                 std::cout << RED << mess[22] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 cur_game->pltl[pltl_index].active = -1;
             }
@@ -116,15 +116,15 @@ int pltl0(
                     (main_hero->station == 1)) {
                 std::cout << WHITE << mess[10] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << mess[11] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 std::cout << mess[12] << RED << mess[13] << WHITE << mess[14] << std::flush;
 
-                get_key();
+                get_key(false);
 
                 cur_game->stay_eog = 0;
 
@@ -156,23 +156,23 @@ int pltl0(
                 if (main_hero->get_health() == 0) {
                     std::cout << WHITE << mess[18] << std::flush;
 
-                    get_key();
+                    get_key(false);
                 } else {
                     std::cout << WHITE << mess[15] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << YELLOW << mess[16] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << GREEN << mess[17] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << YELLOW << mess[20] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     ht_index = cur_game->search_ht(HeroTypes::KOMENDA);
                     level = 47;
@@ -206,17 +206,17 @@ int pltl0(
                 if (main_hero->get_health() == 0) {
                     std::cout << WHITE << mess[18] << std::flush;
 
-                    get_key();
+                    get_key(false);
                 } else {
-                    get_key();
+                    get_key(false);
 
                     std::cout << WHITE << mess[19] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     std::cout << RED << mess[21] << std::flush;
 
-                    get_key();
+                    get_key(false);
 
                     cur_game->pltl[pltl_index].active = -1;
                 }
