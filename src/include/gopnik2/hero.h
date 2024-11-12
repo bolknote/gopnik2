@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gopnik2/main.h"
 #include <cstdio>
 
 namespace HeroTypes {
