@@ -73,7 +73,7 @@ game::game()
     open_a2 = false;
     open_kl1 = false;
     open_kl2 = true;
-    open_girl = false;
+    open_girl = 0;
     open_str = 0;
     open_raid = false;
     open_ob = false;
@@ -2234,7 +2234,7 @@ int game::start() {
 
     switch (user_ht_index) {
         case 0:
-            open_girl = true;
+            open_girl = 1;
             break;
 
         case 1:
