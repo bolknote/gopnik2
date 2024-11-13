@@ -10,7 +10,7 @@
 #include <gopnik2/utils.h>
 
 
-hero::hero(hero_type ht) : desc(), name(), inv(), inv_have() {
+hero::hero(hero_type ht) : name(), desc(), inv(), inv_have() {
     int i;
 
     level_of_complexity = 0;
