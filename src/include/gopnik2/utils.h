@@ -22,7 +22,7 @@ extern Colors textattr;
 
 char *g_strdup(const char *src);     // замена g_strdup, эта фукнция есть не везде
 
-std::ostream &operator<<(std::ostream &os, const Colors &color); // перегрузка оператора для вывода цвета
+std::ostream &operator<<(std::ostream &os, const Colors color); // перегрузка оператора для вывода цвета
 int getRandom(int, int);             // получение случайного числа в диапазоне от первого+1 до второго
 std::string plural(int n, const std::string& q1, const std::string& q2, const std::string& q5); // выбор множественного числа
 Colors settextattr(Colors);          // сменить цвет
