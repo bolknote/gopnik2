@@ -75,7 +75,7 @@ int run() {
                     cur_game->str_enemy_amount = 0;
                 }
 
-                if (cur_game->str_enemy_amount) {
+                if (cur_game->str_hero_amount) {
                     delete[] cur_game->str_enemy;
                     cur_game->str_hero_amount = 0;
                 }
