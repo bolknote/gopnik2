@@ -193,7 +193,7 @@ int get_key(bool echo) {
 
     do {
         nread = read(STDIN_FILENO, &c, 4);
-    } while (nread == 0);
+    } while (nread < 1);
 
     int ch = nread == 1 ? c[0] : c[nread - 1] + 0xFF;
 #endif
