@@ -35,10 +35,10 @@ namespace HeroTypes {
 }
 
 class hero {
-    int desc[4];  // начальные навыки
-    int level_of_complexity;
     char *name;
     char *type;
+    int desc[4];  // начальные навыки
+    int level_of_complexity;
     int exp;
     int level;
     int force;
