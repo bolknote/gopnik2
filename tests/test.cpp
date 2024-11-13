@@ -6,6 +6,7 @@
 #include <gopnik2/main.h>
 #include <gopnik2/game.h>
 #include <gopnik2/hero.h>
+#include <gopnik2/hero_type.h>
 
 ::game *cur_game;
 
@@ -15,7 +16,7 @@ struct GameGuard {
     void setup_game() {
         this->p_game = std::make_shared<::game>();
 
-        this->p_game->add_hero_type(HeroTypes::PODTSAN, 1, 3, 3, 3, 3, 0, 11, 1, 5, 0, 0, 0, 2, 2, 0);
+        this->p_game->add_hero_type(HeroType::PODTSAN, 1, 3, 3, 3, 3, 0, 11, 1, 5, 0, 0, 0, 2, 2, 0);
         this->p_game->create_hero(0, "HeroName", 2);
         cur_game = this->p_game.get();
     }

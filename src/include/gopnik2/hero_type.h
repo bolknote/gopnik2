@@ -9,10 +9,13 @@
 class HeroType {
 public:
     enum Value : uint8_t {
+        // Геймерские типы героев
         PODTSAN = 0,
         OTMOROZOK,
         GOPNIK,
         NEFOR,
+
+        // Остальные типы героев
         BRATVA,
         BRATVA_S_OBSCHAGI,
         BESPREDELSCHIK,
@@ -21,14 +24,22 @@ public:
         MENT,
         VETER,
         SKINHED,
+
+        // Специальные типы, которые встречаются в сценах
         OHRANNIK,
         MANYAK,
+        ULICHNYI_MAG,
+
+        // Персонажи в центре города
         STUDENT,
         EMOKID,
         INTELLIGENT,
+
+        // Боссы
         VAHTERSHA,
         KOMENDA,
-        ULICHNYI_MAG,
+
+        // Конец массива
         Count,
     };
 
