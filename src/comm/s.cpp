@@ -52,7 +52,7 @@ int s() {
             " ({} {})"
     };
 
-    const auto format_quant = [&mess](const inventory inv) {
+    const auto format_quant = [&mess](const inventory &inv) {
         if (inv.have > 1) {
             if (strcmp(inv.name, "Батарейка") == 0) {
                 return fmt::format(
@@ -65,7 +65,7 @@ int s() {
             }
         }
 
-        return std::string("");
+        return std::string();
     };
 
     const char *
