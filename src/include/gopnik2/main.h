@@ -4,11 +4,12 @@
 #define STR_AMOUNT 6
 #define DISTRICT_AMOUNT 4
 
-#include "macros.h"
-
 #include <cstddef>
 #include <cstdlib>
 #include <cstdint>
+
+#include "macros.h"
+#include "gopnik2/hero_type.h"
 
 typedef int (*FP)();
 
@@ -23,7 +24,7 @@ typedef struct node {
 } node;
 
 typedef struct hero_type {
-    char *type;
+    HeroType type;
     bool gamer;
     int desc[4]; // начальные навыки
     int min_level_inc;

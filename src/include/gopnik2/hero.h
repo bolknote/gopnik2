@@ -1,42 +1,15 @@
 #pragma once
 
-#include "gopnik2/main.h"
 #include <cstdio>
-
-namespace HeroTypes {
-    // Геймерксие типы героев
-    const char * const PODTSAN = "Подтсан";
-    const char * const OTMOROZOK = "Отморозок";
-    const char * const GOPNIK = "Гопник";
-    const char * const NEFOR = "Нефор";
-
-    // Остальные типы героев
-    const char * const BRATVA = "Братва";
-    const char * const BRATVA_S_OBSCHAGI = "Братва с общаги";
-    const char * const BESPREDELSCHIK = "Беспредельщик";
-    const char * const DOHLYAK = "Дохляк";
-    const char * const NARK = "Нарк";
-    const char * const MENT = "Мент";
-    const char * const VETER = "Ветер";
-    const char * const SKINHED = "Скинхед";
-
-    // Специальные типы, которые встречаются в сценах
-    const char * const OHRANNIK = "Охранник";
-    const char * const MANYAK = "Маньяк";
-
-    // Персонажи в центре города
-    const char * const STUDENT = "Студент";
-    const char * const EMOKID = "Эмокид";
-    const char * const INTELLIGENT = "Интеллигент";
-
-    const char * const VAHTERSHA = "Вахтёрша";
-    const char * const KOMENDA = "Коменда";
-    const char * const ULICHNYI_MAG = "Уличный маг";
-}
+#include <string>
+#include <string>
+#include <fmt/core.h>
+#include "gopnik2/main.h"
+#include "gopnik2/hero_type.h"
 
 class hero {
-    char *name;
-    char *type;
+    std::string name;
+    HeroType type;
     int desc[4];  // начальные навыки
     int level_of_complexity;
     int exp;
@@ -78,13 +51,15 @@ public:
 
     int set_level_of_complexity(int);
 
-    int set_name(const char *);
+    void set_name(const std::string&);
 
     int set_att(int);
 
-    char *get_name();
+    std::string get_name() const;
 
-    char *get_type();
+    std::string get_type() const;
+
+    bool is_type(const HeroType&) const;
 
     int get_exp() const;
 

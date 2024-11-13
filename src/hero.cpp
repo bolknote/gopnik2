@@ -62,8 +62,6 @@ hero::hero(hero_type ht) : name(), desc(), inv(), inv_have() {
 hero::~hero() {
     int i;
 
-    free(name);
-
     if (inv_amount > 0) {
         for (i = 0; i < inv_amount; i++) {
             free(inv[i].name);
@@ -126,14 +124,15 @@ void hero::save(FILE *sav_file) {
     fwrite(inv_have, sizeof(int), inv_have_amount, sav_file);
 
     size_t len;
-
-    len = strlen(name) + 1;
+    len = name.size() + 1;
     fwrite(&len, sizeof(len), 1, sav_file);
-    fwrite(name, sizeof(char), len, sav_file);
+    fwrite(name.c_str(), sizeof(char), len, sav_file);
 
-    len = strlen(type) + 1;
+    std::string type_str = type.ToString();
+
+    len = type_str.size() + 1;
     fwrite(&len, sizeof(len), 1, sav_file);
-    fwrite(type, sizeof(char), len, sav_file);
+    fwrite(type_str.c_str(), sizeof(char), len, sav_file);
 }
 
 void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
@@ -197,18 +196,20 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
     size_t len;
     fread(&len, sizeof(len), 1, load_file);
 
-    free(name);
-
-    name = (char *) malloc(sizeof(char) * len);
-    fread(name, sizeof(char), len, load_file);
+    char* name_str = (char *) malloc(sizeof(char) * len);
+    fread(name_str, sizeof(char), len, load_file);
+    name = name_str;
+    free(name_str);
 
     fread(&len, sizeof(len), 1, load_file);
 
     char *type_name = (char *) malloc(sizeof(char) * len);
     fread(type_name, sizeof(char), len, load_file);
 
+    auto hero_type = HeroType::FromString(type_name);
+
     for (int i = 0; i < ht_amount; i++) {
-        if (ht[i].gamer && strcmp(ht[i].type, type_name) == 0) {
+        if (ht[i].gamer && ht[i].type == hero_type) {
             type = ht[i].type;
             break;
         }
@@ -217,12 +218,8 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
     free(type_name);
 }
 
-int hero::set_name(
-        // имя
-        const char *_name) {
-    name = g_strdup(_name);
-
-    return 0;
+void hero::set_name(const std::string& _name) {
+    name = _name;
 }
 
 int hero::set_att(
@@ -235,12 +232,16 @@ int hero::set_att(
 
 // функции получения характеристик героя
 
-char *hero::get_name() {
+std::string hero::get_name() const {
     return name;
 }
 
-char *hero::get_type() {
-    return type;
+std::string hero::get_type() const {
+    return type.ToString();
+}
+
+bool hero::is_type(const HeroType &_type) const {
+    return type == _type;
 }
 
 int hero::get_exp() const {

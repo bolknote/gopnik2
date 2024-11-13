@@ -175,7 +175,7 @@ int sstay() {
         if (cur_game->stay_mh == 1) {
             if (
                     (cur_game->active_loc == 1) &&
-                    (strcmp(cur_game->enemy->get_type(), HeroTypes::VETER) == 0)) {
+                    (cur_game->enemy->is_type(HeroType::VETER))) {
                 std::cout << mess[2];
                 cur_game->set_loc(0);
             }
@@ -194,7 +194,7 @@ int sstay() {
 
                     // создаём объект "братвы"
 
-                    ht_index = cur_game->search_ht((main_hero->station) ? (HeroTypes::BRATVA_S_OBSCHAGI) : (HeroTypes::BRATVA));
+                    ht_index = cur_game->search_ht(main_hero->station ? HeroType::BRATVA_S_OBSCHAGI : HeroType::BRATVA);
 
                     cur_game->lads = new hero(cur_game->ht[ht_index]);
 
@@ -204,7 +204,7 @@ int sstay() {
 
                     lads->print_mode = 0;
 
-                    lads->set_name(HeroTypes::BRATVA);
+                    lads->set_name(HeroType(HeroType::BRATVA).ToString());
                     lads->add_exp(game::get_min_exp_for_level(main_hero->get_level() + main_hero->district * 3));
                     lads->kick_count = lads->get_kick_count();
 

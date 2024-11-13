@@ -41,7 +41,7 @@ int hp() {
         if (
                 (main_hero->district > 1) &&
                 (!main_hero->inv[game::search_inv(main_hero, "Пропуск в общагу")].have)) {
-            ht_index = cur_game->search_ht(HeroTypes::STUDENT);
+            ht_index = cur_game->search_ht(HeroType::STUDENT);
         }
 
         std::cout
@@ -52,7 +52,7 @@ int hp() {
         cur_game->gen_enemy_obj(ht_index, level);
 
         if (
-                (ht_index == cur_game->search_ht(HeroTypes::STUDENT)) &&
+                (ht_index == cur_game->search_ht(HeroType::STUDENT)) &&
                 (game::search_inv(cur_game->enemy, "Пропуск в общагу") == -1)) {
             inv_index = game::search_inv(main_hero, "Пропуск в общагу");
 

@@ -1,4 +1,3 @@
-#include <cstring>
 #include <iostream>
 
 #include <fmt/format.h>
@@ -34,7 +33,7 @@ int tus() {
 
     main_hero = cur_game->main_hero;
 
-    if (strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0) {
+    if (main_hero->is_type(HeroType::NEFOR)) {
         return 0;
     }
 

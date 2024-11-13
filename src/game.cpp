@@ -147,8 +147,6 @@ void game::clean_mem() const {
                 free(ht[i].enemy_addr);
                 free(ht[i].enemy_reply);
             }
-
-            free(ht[i].type);
         }
 
         free(ht);
@@ -468,7 +466,7 @@ int game::wait_answ() {
 
 int game::add_hero_type(
         // название типа героя
-        const char *type,
+        const HeroType type,
         // является ли геймерским типом
         int gamer,
         // начальная сила
@@ -503,7 +501,7 @@ int game::add_hero_type(
         int ciga_events) {
     ht = add_new_element(ht, ht_amount, sizeof(hero_type));
 
-    ht[ht_amount].type = g_strdup(type);
+    ht[ht_amount].type = type;
     ht[ht_amount].gamer = gamer;
 
     ht[ht_amount].desc[0] = force;
@@ -999,26 +997,23 @@ int game::search_pl(
 } // end int game::search_pl (int)
 
 int game::search_ht(
-        // название типа героя
-        const char *type) const {
-    int
+    // тип героя (HeroType)
+    HeroType type) const {
+
     // индекс типа героя
-    ht_index;
+    int ht_index = -1;
 
-    int i;
-
-    ht_index = -1;
-
-    for (i = 0; i < ht_amount; i++) {
-        if (strcmp(ht[i].type, type) == 0) {
+    // цикл для поиска типа героя в массиве ht
+    for (int i = 0; i < ht_amount; ++i) {
+        // сравнение типа героя в ht[i] с переданным type
+        if (ht[i].type == type) {
             ht_index = i;
-
             break;
         }
     }
 
     return ht_index;
-} // end int game::search_ht (TEXT)
+} // end int game::search_ht (HeroType)
 
 int game::search_plm_price(
         // индекс прайс-листа
@@ -1165,8 +1160,8 @@ int game::supple_loc_run_over() {
     active_loc = 8;
 
     loc[active_loc].command_active[is_active_location_command("meet")] = main_hero->station == 2 && open_girl == 0;
-    loc[active_loc].command_active[is_active_location_command("tus")] = strcmp(main_hero->get_type(), HeroTypes::NEFOR) != 0;
-    loc[active_loc].command_active[is_active_location_command("sl")] = strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0;
+    loc[active_loc].command_active[is_active_location_command("tus")] = !main_hero->is_type(HeroType::NEFOR);
+    loc[active_loc].command_active[is_active_location_command("sl")] = !main_hero->is_type(HeroType::NEFOR);
 
     // стрела
     active_loc = 12;
@@ -1421,7 +1416,7 @@ int game::gen_enemy_obj(
     if (CHANCE(1, 5)) {
         int i_sh = game::search_inv(main_hero, "Шокер");
 
-        if (!main_hero->inv[i_sh].have && strcmp(enemy->get_type(), HeroTypes::MENT) == 0) {
+        if (!main_hero->inv[i_sh].have && enemy->is_type(HeroType::MENT)) {
             game::add_inventory(
                     enemy,
                     inv[i_sh].name,
@@ -1607,7 +1602,7 @@ int game::kick_realiz(
             }
 
             /*
-                  if (strcmp (HeroTypes::BRATVA_S_OBSCHAGI, hero1->get_type ()) == 0)
+                  if (hero1->is_type(BRATVA_S_OBSCHAGI))
                   {
             std::cout << fmt::format ( "Урон: {} / {} {} \n", loss, hero1->empty_kick_count, empty_k_count);
                   }
@@ -1733,9 +1728,9 @@ void game::new_station() const {
             j;
 
     if (main_hero->station != 0) {
-        ht[search_ht(HeroTypes::STUDENT)].active = true;
-        ht[search_ht(HeroTypes::EMOKID)].active = true;
-        ht[search_ht(HeroTypes::INTELLIGENT)].active = true;
+        ht[search_ht(HeroType::STUDENT)].active = true;
+        ht[search_ht(HeroType::EMOKID)].active = true;
+        ht[search_ht(HeroType::INTELLIGENT)].active = true;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 0;
@@ -1756,7 +1751,7 @@ void game::new_station() const {
         pl_index = search_pl(8);
         pl[pl_index].members[2].price = 10;
 
-        if (strcmp(main_hero->get_type(), HeroTypes::NEFOR) == 0) {
+        if (main_hero->is_type(HeroType::NEFOR)) {
             pl[pl_index].members[3].price = 15;
         }
 
@@ -1768,9 +1763,9 @@ void game::new_station() const {
             }
         }
     } else {
-        ht[search_ht(HeroTypes::STUDENT)].active = false;
-        ht[search_ht(HeroTypes::EMOKID)].active = false;
-        ht[search_ht(HeroTypes::INTELLIGENT)].active = false;
+        ht[search_ht(HeroType::STUDENT)].active = false;
+        ht[search_ht(HeroType::EMOKID)].active = false;
+        ht[search_ht(HeroType::INTELLIGENT)].active = false;
 
         pl_index = search_pl(5);
         main_hero->inv[search_inv(main_hero, pl[pl_index].members[3].name)].district = 1;

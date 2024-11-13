@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "gopnik2/forward.h"
+#include "gopnik2/hero.h"
 #include "gopnik2/main.h"
 
 class game {
@@ -91,7 +92,7 @@ public:
     int load(FILE *, float);  // загрузка игры из файла
     int wait_command();       // ожидание команды пользователя
     static int wait_answ();   // ожидание ответа пользователя
-    int add_hero_type(const char *, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
+    int add_hero_type(const HeroType, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
 
     int add_hero_phrase(int, const char *, const char *) const;
 
@@ -142,7 +143,7 @@ public:
             int);                                // минимальное количество опыта, которое нужно добавить, чтобы достичь заданного уровня
     static int search_inv(hero *, const char *);                          // поиск инвентаря по имени
     [[nodiscard]] int search_pl(int) const;                               // поиск прайс-листа по индексу локации
-    int search_ht(const char *) const;                                    // поиск индекса типа героя по названию типа
+    int search_ht(HeroType) const;                                    // поиск индекса типа героя по названию типа
     int search_plm_price(int *, int *,
                          const char *) const;              // поиск цены на элемент прайс-листа по его названию
     void supple_inv_run_over(int) const;                                  // перебор инвентаря

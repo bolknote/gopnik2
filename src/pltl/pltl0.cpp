@@ -128,7 +128,7 @@ int pltl0(
 
                 cur_game->stay_eog = 0;
 
-                ht_index = cur_game->search_ht(HeroTypes::VAHTERSHA);
+                ht_index = cur_game->search_ht(HeroType::VAHTERSHA);
                 level = 38;
 
                 cur_game->gen_enemy_obj(ht_index, level, 0, 0);
@@ -174,7 +174,7 @@ int pltl0(
 
                     get_key(false);
 
-                    ht_index = cur_game->search_ht(HeroTypes::KOMENDA);
+                    ht_index = cur_game->search_ht(HeroType::KOMENDA);
                     level = 47;
 
                     cur_game->gen_enemy_obj(ht_index, level, 0, 0);

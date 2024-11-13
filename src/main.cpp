@@ -97,60 +97,60 @@ int main() {
     }
 
     // сначала добавляем геймерские типы героев (не более 9)
-    cur_game->add_hero_type(HeroTypes::PODTSAN, 1, 3, 3, 3, 3, 0, 10, 1, 5, 0, 0, 0, 2, 2, 0);
-    cur_game->add_hero_type(HeroTypes::OTMOROZOK, 1, 5, 2, 4, 1, 0, 10, 1, 0, 5, 5, 0, 2, 2, 0);
-    cur_game->add_hero_type(HeroTypes::GOPNIK, 1, 4, 3, 3, 2, 0, 10, 1, 0, 5, 5, 0, 2, 2, 0);
-    cur_game->add_hero_type(HeroTypes::NEFOR, 1, 3, 3, 4, 2, 0, 10, 1, 5, 0, 0, 0, 2, 2, 0);
+    cur_game->add_hero_type(HeroType::PODTSAN, 1, 3, 3, 3, 3, 0, 10, 1, 5, 0, 0, 0, 2, 2, 0);
+    cur_game->add_hero_type(HeroType::OTMOROZOK, 1, 5, 2, 4, 1, 0, 10, 1, 0, 5, 5, 0, 2, 2, 0);
+    cur_game->add_hero_type(HeroType::GOPNIK, 1, 4, 3, 3, 2, 0, 10, 1, 0, 5, 5, 0, 2, 2, 0);
+    cur_game->add_hero_type(HeroType::NEFOR, 1, 3, 3, 4, 2, 0, 10, 1, 5, 0, 0, 0, 2, 2, 0);
 
     // потом добавляем остальные типы героев
 
-    cur_game->add_hero_type(HeroTypes::BRATVA, 0, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    cur_game->add_hero_type(HeroTypes::BRATVA_S_OBSCHAGI, 0, 5, 5, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::BRATVA, 0, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::BRATVA_S_OBSCHAGI, 0, 5, 5, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    cur_game->add_hero_type(HeroTypes::BESPREDELSCHIK, 0, 5, 2, 3, 2, 2, 10, 1, 0, 0, 3, 0, 2, 2, 0);
-    cur_game->add_hero_type(HeroTypes::DOHLYAK, 0, 1, 1, 1, 1, 0, 10, 1, 10, 0, 0, 0, 5, 5, 0);
+    cur_game->add_hero_type(HeroType::BESPREDELSCHIK, 0, 5, 2, 3, 2, 2, 10, 1, 0, 0, 3, 0, 2, 2, 0);
+    cur_game->add_hero_type(HeroType::DOHLYAK, 0, 1, 1, 1, 1, 0, 10, 1, 10, 0, 0, 0, 5, 5, 0);
 
-    ht_index = cur_game->add_hero_type(HeroTypes::NARK, 0, 1, 2, 5, 4, 0, 10, 1, 0, 0, 0, 0, 0, 0, 2);
+    ht_index = cur_game->add_hero_type(HeroType::NARK, 0, 1, 2, 5, 4, 0, 10, 1, 0, 0, 0, 0, 0, 0, 2);
 
     cur_game->add_hero_phrase(ht_index, "Эй, нарик, косячка не найдётся?", "Отвали! Сам третий день абстяжный!");
     cur_game->add_enemy_phrase(ht_index, "Я на измене! Я на измене!", "Охренеть тебя штырит...");
 
-    ht_index = cur_game->add_hero_type(HeroTypes::MENT, 0, 4, 4, 2, 2, 0, 100, 0, 0, 0, 0, 0, 2, 2, 0);
+    ht_index = cur_game->add_hero_type(HeroType::MENT, 0, 4, 4, 2, 2, 0, 100, 0, 0, 0, 0, 0, 2, 2, 0);
 
     cur_game->add_hero_phrase(ht_index, "Чё, мент поганый, на меня уставился? Хорька ищешь?",
                               "Ах ты змеёныш! Я те, сука, ща поговорю...");
     cur_game->add_enemy_phrase(ht_index, "Оба-на! Вот тебя-то, гопаря хренова, я и искал...",
                                "Ща пойдёшь больницу искать!");
 
-    ht_index = cur_game->add_hero_type(HeroTypes::VETER, 0, 1, 1, 1, 1, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+    ht_index = cur_game->add_hero_type(HeroType::VETER, 0, 1, 1, 1, 1, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0);
 
     cur_game->add_hero_phrase(ht_index, "Ты чё, сука? Нарываешься?!", "(ветер сохранял гордое молчание)");
 
-    ht_index = cur_game->add_hero_type(HeroTypes::SKINHED, 0, 5, 2, 3, 2, 3, 50, 1, 0, 0, 0, 0, 2, 2, 0);
+    ht_index = cur_game->add_hero_type(HeroType::SKINHED, 0, 5, 2, 3, 2, 3, 50, 1, 0, 0, 0, 0, 2, 2, 0);
 
     cur_game->add_hero_phrase(ht_index, "Э, скин, ты по жизни такой урод был или только когда побрился?",
                               "А ну заткнул пасть, говно! Да я из тебя ща калеку сделаю!");
     cur_game->add_enemy_phrase(ht_index, "Слышь, пацан, а ты случайно не хачик?", "А тебе случайно не въебать?");
 
     // специальные типы, которые встречаются в сценах
-    cur_game->add_hero_type(HeroTypes::OHRANNIK, 0, 5, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    cur_game->add_hero_type(HeroTypes::MANYAK, 0, 6, 3, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::OHRANNIK, 0, 5, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::MANYAK, 0, 6, 3, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     // типы героев, появляющиеся в центре города
 
-    ht_index = cur_game->add_hero_type(HeroTypes::STUDENT, 0, 3, 3, 2, 4, 0, 5, 0, 10, 0, 0, 2, 2, 2, 0);
+    ht_index = cur_game->add_hero_type(HeroType::STUDENT, 0, 3, 3, 2, 4, 0, 5, 0, 10, 0, 0, 2, 2, 2, 0);
 
     cur_game->add_hero_phrase(ht_index, "Эй, студент, ты из какого универа?", "А ты по пинками суди!");
     cur_game->add_enemy_phrase(ht_index, "С какого хуя тут ошиваешься?", "Явно не с твоего");
 
-    ht_index = cur_game->add_hero_type(HeroTypes::EMOKID, 0, 2, 3, 4, 3, 0, 5, 0, 5, 0, 0, 0, 2, 2, 0);
+    ht_index = cur_game->add_hero_type(HeroType::EMOKID, 0, 2, 3, 4, 3, 0, 5, 0, 5, 0, 0, 0, 2, 2, 0);
 
     cur_game->add_hero_phrase(ht_index, "Интересно, вот если тебя, эмо, отпинать, будешь ли ты ещё хуёвей выглядеть?",
                               "Делай, что хочешь, только не трогай чёлку!");
     cur_game->add_enemy_phrase(ht_index, "Ты тру эмо или позер?",
                                "Я антиэмо, чувак. И для тебя это не самый лучший поворот событий.");
 
-    ht_index = cur_game->add_hero_type(HeroTypes::INTELLIGENT, 0, 2, 2, 4, 4, 0, 5, 0, 5, 0, 0, 0, 2, 2, 0);
+    ht_index = cur_game->add_hero_type(HeroType::INTELLIGENT, 0, 2, 2, 4, 4, 0, 5, 0, 5, 0, 0, 0, 2, 2, 0);
 
     cur_game->add_hero_phrase(ht_index, "Эй, четырёхглазый, а где тут библиотека?",
                               "Для таких ублюдков, как ты, библиотека навсегда закрыта!");
@@ -158,9 +158,9 @@ int main() {
                                "А? Чё? Кто такой Чернышевский?");
 
     // специальные типы, которые встречаются в сценах
-    cur_game->add_hero_type(HeroTypes::VAHTERSHA, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    cur_game->add_hero_type(HeroTypes::KOMENDA, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    cur_game->add_hero_type(HeroTypes::ULICHNYI_MAG, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::VAHTERSHA, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::KOMENDA, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    cur_game->add_hero_type(HeroType::ULICHNYI_MAG, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     // добавляем локации игры
     loc_index = cur_game->add_location("");

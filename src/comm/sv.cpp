@@ -40,9 +40,7 @@ int sv() {
 
     std::cout << GREEN;
 
-    if (
-            (strcmp(enemy->get_type(), HeroTypes::VAHTERSHA) == 0) ||
-            (strcmp(enemy->get_type(), HeroTypes::KOMENDA) == 0)) {
+    if (enemy->is_type(HeroType::VAHTERSHA) || enemy->is_type(HeroType::KOMENDA)) {
         std::cout << fmt::format(mess[9], enemy->get_type(), enemy->get_level());
     } else {
         // уровень и тип героя

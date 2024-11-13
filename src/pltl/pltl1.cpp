@@ -278,7 +278,7 @@ int pltl1(
 
                     get_key(false);
 
-                    ht_index = cur_game->search_ht(HeroTypes::ULICHNYI_MAG);
+                    ht_index = cur_game->search_ht(HeroType::ULICHNYI_MAG);
                     level = 40;
 
                     cur_game->gen_enemy_obj(ht_index, level, 0, 0);
