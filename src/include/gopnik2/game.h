@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <cstdio>
 #include <string>
+#include <vector>
+
 #include "gopnik2/forward.h"
 #include "gopnik2/main.h"
 
@@ -79,7 +81,7 @@ public:
     int stay_str;
     int stay_eog;
     int st_amount;
-    char **st; // матерные стихи для слэма
+    std::vector<std::string> st; // матерные стихи для слэма
     game();
 
     ~game();

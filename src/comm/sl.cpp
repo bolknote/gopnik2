@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <vector>
 
 #include <gopnik2/comm/comm.h>
 #include <gopnik2/comm/gop2_st.h>
@@ -37,12 +38,10 @@ int sl() {
         // переход к новой локации
         cur_game->set_loc(8);
     } else {
-        // --gop2.st--
+        // в оригинале это было содержимое файла "gop2.st"
         if (cur_game->st_amount == 0) {
             for (const auto& line: GOP2ST) {
-                cur_game->st = add_new_element (cur_game->st, cur_game->st_amount, sizeof (char *));
-
-                cur_game->st[cur_game->st_amount] = g_strdup(line.c_str());
+                cur_game->st.push_back(line);
                 cur_game->st_amount++;
             }
         }

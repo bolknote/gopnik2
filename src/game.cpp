@@ -230,16 +230,6 @@ void game::clean_mem() const {
     }
     // ************
 
-    // **st**
-    if (st_amount > 0) {
-        for (i = 0; i < st_amount; i++) {
-            free(st[i]);
-        }
-
-        free(st);
-    }
-    // ******
-
     // **pltl**
     if (pltl_amount > 0) {
         free(pltl);
