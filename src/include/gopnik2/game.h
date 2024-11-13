@@ -58,7 +58,7 @@ public:
     bool open_a2;
     bool open_kl1;
     bool open_kl2;
-    uint8_t open_girl; // индекс станции - 1, на которой живёт девушка (0 — девушки нет)
+    uint8_t open_girl; // (индекс станции - 1), на которой живёт девушка (0 — девушки нет)
     uint8_t open_str;
     bool open_raid;
     bool open_ob;
