@@ -83,9 +83,9 @@ node *list::del(node *p) {
     if (p->prev) {
         p->prev->next = p->next;
     }
-    if (p->val) {
-        free(p->val);
-    }
+
+    free(p->val);
+
     if (p->next) {
         tmp_p = p->next;
     } else {

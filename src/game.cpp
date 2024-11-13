@@ -1308,13 +1308,7 @@ int game::gen_enemy_obj(
         enemy_init = 0;
     }
 
-    if (!(enemy = new hero(ht[ht_index]))) {
-        clean_mem();
-
-        std::cerr << "debug: game.cpp:" << __LINE__ << ": epic fail\n";
-        gracefulexit(1);
-    }
-
+    enemy = new hero(ht[ht_index]);
     enemy_init = 1;
 
     enemy->print_mode = 0;

@@ -189,9 +189,7 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
         }
     }
 
-    if (inv_have != nullptr) {
-        free(inv_have);
-    }
+    free(inv_have);
 
     fread(&inv_have_amount, sizeof(inv_have_amount), 1, load_file);
     fread(inv_have, sizeof(int), inv_have_amount, load_file);
@@ -199,9 +197,7 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
     size_t len;
     fread(&len, sizeof(len), 1, load_file);
 
-    if (name != nullptr) {
-        free(name);
-    }
+    free(name);
 
     name = (char *) malloc(sizeof(char) * len);
     fread(name, sizeof(char), len, load_file);
