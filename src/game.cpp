@@ -1192,27 +1192,15 @@ int game::supple_loc_run_over() {
 } // end int game::supple_loc_run_over ()
 
 void game::supple_pl_run_over() const {
-    // -- выглядит тупо, а куда деваться? что-то совершенствовать уже влом...
+    int pl_index = search_pl(7);
+    int price_multiplier = main_hero->station ? 2 : 1;
 
-    int
-            pl_index;
+    for (int i = 1; i <= 3; ++i) {
+        if (main_hero->district >= i) {
+            int price = i == 3 ? 60 : 40;
 
-    if (main_hero->district >= 1) {
-        pl_index = search_pl(7);
-
-        pl[pl_index].members[2].price = 40 * ((main_hero->station) ? (2) : (1));
-    }
-
-    if (main_hero->district >= 2) {
-        pl_index = search_pl(7);
-
-        pl[pl_index].members[3].price = 40 * ((main_hero->station) ? (2) : (1));
-    }
-
-    if (main_hero->district >= 3) {
-        pl_index = search_pl(7);
-
-        pl[pl_index].members[4].price = 60 * ((main_hero->station) ? (2) : (1));
+            pl[pl_index].members[i + 1].price = price * price_multiplier;
+        }
     }
 } // end void game::supple_pl_run_over ()
 
