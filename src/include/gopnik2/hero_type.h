@@ -39,7 +39,7 @@ public:
         VAHTERSHA,
         KOMENDA,
 
-        // Конец массива
+        // Количество элементов в enum
         Count,
     };
 
