@@ -9,7 +9,6 @@
 #include <gopnik2/game.h>
 #include <gopnik2/utils.h>
 
-
 hero::hero(hero_type ht) : name(), desc(), inv(), inv_have() {
     int i;
 

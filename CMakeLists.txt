@@ -53,6 +53,7 @@ set(TESTS_SOURCE ${TESTS_SOURCE_FILES})
 
 add_executable(gop2_tests
     ${CMAKE_CURRENT_SOURCE_DIR}/src/game.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/hero_type.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/hero.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/list.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp

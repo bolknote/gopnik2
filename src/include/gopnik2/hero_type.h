@@ -2,7 +2,6 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <stdexcept>
 #include <string_view>
 #include <fmt/core.h>
 
@@ -48,18 +47,9 @@ public:
     constexpr operator Value() const { return value; }
     explicit operator bool() const = delete;
 
-    std::string ToString() const {
-        return std::string(heroTypeStrings[value]);
-    }
+    std::string ToString() const;
 
-    static HeroType FromString(const std::string& str) {
-        for (size_t i = 0; i < static_cast<size_t>(Value::Count); ++i) {
-            if (std::string(heroTypeStrings[i]) == str) {
-                return HeroType(static_cast<Value>(i + 1));
-            }
-        }
-        throw std::invalid_argument("Неизвестный тип героя: " + str);
-    }
+    static HeroType FromString(const std::string& str);
 
 private:
     Value value;
