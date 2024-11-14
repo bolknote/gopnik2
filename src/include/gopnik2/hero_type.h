@@ -45,9 +45,8 @@ public:
 
     HeroType() = default;
     constexpr HeroType(Value type) : value(type) { }
-
-    // Оператор для использования в switch и сравнениях
     constexpr operator Value() const { return value; }
+    explicit operator bool() const = delete;
 
     std::string ToString() const {
         return std::string(heroTypeStrings[value]);
