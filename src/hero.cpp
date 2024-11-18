@@ -194,18 +194,15 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
 
     size_t len;
     fread(&len, sizeof(len), 1, load_file);
-
-    char* name_str = (char *) malloc(sizeof(char) * len);
-    fread(name_str, sizeof(char), len, load_file);
-    name = name_str;
-    free(name_str);
+    name.resize(len);
+    fread(name.data(), sizeof(char), len, load_file);
 
     fread(&len, sizeof(len), 1, load_file);
 
-    char *type_name = (char *) malloc(sizeof(char) * len);
-    fread(type_name, sizeof(char), len, load_file);
+    std::unique_ptr<char[]> type_name(new char[len]);
+    fread(type_name.get(), sizeof(char), len, load_file);
 
-    auto hero_type = HeroType::FromString(type_name);
+    auto hero_type = HeroType::FromString(type_name.get());
 
     for (int i = 0; i < ht_amount; i++) {
         if (ht[i].gamer && ht[i].type == hero_type) {
@@ -213,8 +210,6 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
             break;
         }
     }
-
-    free(type_name);
 }
 
 void hero::set_name(const std::string& _name) {
