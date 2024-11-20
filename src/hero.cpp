@@ -1,7 +1,10 @@
+#include <cstddef>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <memory>
+#include <iostream>
+#include <array>
 
 #include <fmt/format.h>
 
@@ -136,34 +139,39 @@ void hero::save(FILE *sav_file) {
 }
 
 void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
-    fread(&level, sizeof(level), 1, load_file);
-    fread(&level_of_complexity, sizeof(level_of_complexity), 1, load_file);
-    fread(&district, sizeof(district), 1, load_file);
-    fread(&broken_jaw, sizeof(broken_jaw), 1, load_file);
-    fread(&broken_foot, sizeof(broken_foot), 1, load_file);
-    fread(&trn_foot, sizeof(trn_foot), 1, load_file);
-    fread(&kick_count, sizeof(kick_count), 1, load_file);
-    fread(&empty_kick_count, sizeof(empty_kick_count), 1, load_file);
-    fread(&stoned, sizeof(stoned), 1, load_file);
-    fread(&drunk, sizeof(drunk), 1, load_file);
-    fread(&old_att, sizeof(old_att), 1, load_file);
-    fread(&station, sizeof(station), 1, load_file);
-    fread(&str_free, sizeof(str_free), 1, load_file);
-    fread(&print_mode, sizeof(print_mode), 1, load_file);
-    fread(&force, sizeof(force), 1, load_file);
-    fread(&smart, sizeof(smart), 1, load_file);
-    fread(&vita, sizeof(vita), 1, load_file);
-    fread(&luck, sizeof(luck), 1, load_file);
-    fread(&health, sizeof(health), 1, load_file);
-    fread(&exp, sizeof(exp), 1, load_file);
-    fread(&armo, sizeof(armo), 1, load_file);
-    fread(&money, sizeof(money), 1, load_file);
-    fread(&beer, sizeof(beer), 1, load_file);
-    fread(&stuff, sizeof(stuff), 1, load_file);
-    fread(&ciga, sizeof(ciga), 1, load_file);
-    fread(&att1, sizeof(att1), 1, load_file);
-    fread(&att2, sizeof(att2), 1, load_file);
-    fread(&desc, sizeof(desc), 1, load_file);
+  std::array<std::pair<void *, size_t>, 28> vars = {
+      {{&level, sizeof(level)},
+       {&level_of_complexity, sizeof(level_of_complexity)},
+       {&district, sizeof(district)},
+       {&broken_jaw, sizeof(broken_jaw)},
+       {&broken_foot, sizeof(broken_foot)},
+       {&trn_foot, sizeof(trn_foot)},
+       {&kick_count, sizeof(kick_count)},
+       {&empty_kick_count, sizeof(empty_kick_count)},
+       {&stoned, sizeof(stoned)},
+       {&drunk, sizeof(drunk)},
+       {&old_att, sizeof(old_att)},
+       {&station, sizeof(station)},
+       {&str_free, sizeof(str_free)},
+       {&print_mode, sizeof(print_mode)},
+       {&force, sizeof(force)},
+       {&smart, sizeof(smart)},
+       {&vita, sizeof(vita)},
+       {&luck, sizeof(luck)},
+       {&health, sizeof(health)},
+       {&exp, sizeof(exp)},
+       {&armo, sizeof(armo)},
+       {&money, sizeof(money)},
+       {&beer, sizeof(beer)},
+       {&stuff, sizeof(stuff)},
+       {&ciga, sizeof(ciga)},
+       {&att1, sizeof(att1)},
+       {&att2, sizeof(att2)},
+       {&desc, sizeof(desc)}}};
+
+    for (const auto& [var, size] : vars) {
+        fread(var, size, 1, load_file);
+    }
 
     if (ver > 1.16) {
         if (inv != nullptr) {
