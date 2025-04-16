@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cstring>
+#include <string>
 
 #include <gopnik2/main.h>
 #include <gopnik2/list.h>
@@ -18,9 +19,9 @@ list::~list() {
     }
 }
 
-void list::add(const char *val) {
+void list::add(const std::string& val) {
     node *new_p;
-    if (strlen(val)) {
+    if (!val.empty()) {
         if (cur_p) // список не пуст
         {
             while (cur_p->next)
@@ -28,19 +29,19 @@ void list::add(const char *val) {
             new_p = new node();    // новый элемент
             new_p->next = nullptr;
             new_p->prev = cur_p;
-            new_p->val = g_strdup(val);
+            new_p->val = g_strdup(val.c_str());
             cur_p->next = new_p;
             cur_p = cur_p->next; // не забываем переходить в конец
         } else {
             cur_p = new node(); // создадим список
-            cur_p->val = g_strdup(val);
+            cur_p->val = g_strdup(val.c_str());
             cur_p->next = nullptr;
             cur_p->prev = nullptr;
         }
     }
 }
 
-const char *list::down() {
+std::string list::down() {
     if (!cur_p) {
         return "";
     }
@@ -50,20 +51,19 @@ const char *list::down() {
         return "";
     }
 
-    return cur_p->val;
+    return cur_p->val ? cur_p->val : "";
 }
 
-const char *list::up() {
-    char *ret;
+std::string list::up() {
     if (!cur_p) {
         return "";
     }
-    ret = g_strdup(cur_p->val);
     if (cur_p->prev) {
         cur_p = cur_p->prev;
+        return cur_p->val ? cur_p->val : "";
+    } else {
+        return "";
     }
-
-    return ret;
 }
 
 node *list::del(node *p) {

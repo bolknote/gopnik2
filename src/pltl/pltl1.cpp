@@ -66,7 +66,7 @@ int pltl1(
 
     if (
             (
-                    (strcmp(cur_game->active_cmd, "w") != 0) ||
+                    (cur_game->active_cmd != "w") ||
                     (cur_game->active_loc != 0) ||
                     (cur_game->num_empty_w < 3)) &&
             (cur_game->active_pltl != pltl_index)) {

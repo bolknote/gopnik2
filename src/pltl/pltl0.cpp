@@ -112,7 +112,7 @@ int pltl0(
 
             if (
                     (cur_game->stay_eog > 0) &&
-                    (strcmp(cur_game->active_cmd, "eog") == 0) &&
+                    (cur_game->active_cmd == "eog") &&
                     (main_hero->station == 1)) {
                 std::cout << WHITE << mess[10] << std::flush;
 

@@ -337,12 +337,10 @@ int game::wait_command() {
     // значение, возвращённое функцией обработки команды
     ret,
             pltl_ret,
-            i, j, n, q;
+            i, n, q;
 
-    char
     // буфер для команды пользователя
-    cmd[20];
-
+    std::string cmd;
     cmd_list = new list();
     cmd_list_init = 1;
 
@@ -352,10 +350,7 @@ int game::wait_command() {
         old_attr = settextattr(BLACK);
         std::cout << loc[active_loc].name << WHITE << "\\" << std::flush;
 
-        for (i = 0; i < 10; i++) {
-            cmd[i] = 0;
-        }
-
+        cmd.clear();
         i = 0;
 
         for (;;) // считывание команды пользователя
@@ -363,8 +358,8 @@ int game::wait_command() {
             q = get_key(false);
             if ((q >= 32) && (q <= 126) && (i < 10)) // печатные символы ^_^
             {
-                cmd[i] = (char) q;
-                std::cout << cmd[i];
+                cmd += (char)q;
+                std::cout << (char)q;
                 i++;
             }
             if (q == 10 || q == 13) {
@@ -377,7 +372,8 @@ int game::wait_command() {
                 backspace();
                 std::cout << " ";
                 backspace();
-                cmd[i--] = 0;
+                cmd.pop_back();
+                i--;
             }
 
             if (q >= 0xFF) {
@@ -388,14 +384,13 @@ int game::wait_command() {
                         std::cout << " ";
                         backspace();
                     }
-                    for (j = 0; j < 10; j++)
-                        cmd[j] = 0;
+                    cmd.clear();
                     if (q == 65) {
-                        strcpy(cmd, cmd_list->up());
+                        cmd = cmd_list->up();
                     } else {
-                        strcpy(cmd, cmd_list->down());
+                        cmd = cmd_list->down();
                     }
-                    i = (int) strlen(cmd);
+                    i = cmd.length();
                     std::cout << cmd;
                 }
             }
@@ -404,10 +399,10 @@ int game::wait_command() {
         }
 
         cmd_list->add(cmd);
-        strcpy(active_cmd, cmd);
+        active_cmd = cmd;
         n++;
 
-        comm_index = is_active_location_command(cmd);
+        comm_index = is_active_location_command(cmd.c_str());
         comm_func = loc[active_loc].command_func[comm_index];
 
         if (comm_index != -1) {
@@ -423,7 +418,7 @@ int game::wait_command() {
                 ret = comm_func();
             }
             num_comm++;
-            strcpy(active_cmd, "");
+            active_cmd.clear();
 
             if (pltl_ret == 0) {
                 supple_pltl_run_over(); // -- test
@@ -433,11 +428,10 @@ int game::wait_command() {
                 break;
             }
         } else {
-            if (isdigitstr(cmd)) {
+            if (isdigitstr(cmd.c_str())) {
                 buy_realiz();
             }
         }
-        //    cmd_list->scrolldown();
     }
 
     std::cout << old_attr;
@@ -1806,7 +1800,7 @@ int game::buy_realiz() {
     supple_pl_run_over();
 
     pl_index = search_pl(active_loc);
-    plm_index = (int) strtod(active_cmd, nullptr) - 1;
+    plm_index = (int) strtod(active_cmd.c_str(), nullptr) - 1;
 
     if (
             (pl_index != -1) &&

@@ -43,7 +43,7 @@ int mh() {
                 if (cur_game->stay_mh > 0) {
                     std::cout << YELLOW << mess[5];
                 } else {
-                    if (strcmp(cur_game->active_cmd, "mh") == 0) {
+                    if (cur_game->active_cmd == "mh") {
                         d = main_hero->get_beer();
                     } else {
                         d = 1;

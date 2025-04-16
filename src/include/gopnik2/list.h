@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "gopnik2/main.h"
 
 class list {
@@ -10,9 +11,9 @@ public:
 
     ~list();
 
-    void add(const char *);
+    void add(const std::string&);
 
-    const char *down();       // идти к последнему элементу списка
-    const char *up();         // идти к первому элементу списка
+    std::string down();       // идти к последнему элементу списка
+    std::string up();         // идти к первому элементу списка
     node *del(node *);        // удалить узел
 };

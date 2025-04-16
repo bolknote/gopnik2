@@ -238,7 +238,7 @@ int k(bool skip_turn) {
     flag = 1;
 
     // если дана команда выстрела
-    if (strcmp(cur_game->active_cmd, "f") == 0) {
+    if (cur_game->active_cmd == "f") {
         inv_index = game::search_inv(main_hero, "Пистолет");
 
         if (main_hero->inv[inv_index].have == 0) {
@@ -257,7 +257,7 @@ int k(bool skip_turn) {
                 flag = 0;
             }
         }
-    } else if (strcmp(cur_game->active_cmd, "sh") == 0) {
+    } else if (cur_game->active_cmd == "sh") {
         inv_index = game::search_inv(main_hero, "Шокер");
 
         if (main_hero->inv[inv_index].have == 0) {
@@ -487,7 +487,7 @@ int k(bool skip_turn) {
         cur_game->num_k = 0;
         main_hero->empty_kick_count = 0;
 
-        std::cout << GREEN << (strcmp(cur_game->active_cmd, "sh") == 0 ? mess[31] : mess[1]);
+        std::cout << GREEN << (cur_game->active_cmd == "sh" ? mess[31] : mess[1]);
 
         old_level = main_hero->get_level();
         old_district = main_hero->add_exp(

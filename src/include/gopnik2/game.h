@@ -38,7 +38,7 @@ public:
     plot_line *pltl;
     int pltl_amount;
     int active_loc;            // индекс активной локации
-    char active_cmd[10];       // активная команда
+    std::string active_cmd;    // активная команда
     int active_pltl;           // индекс активной сюжетной линии
     int num_comm;              // счётчик команд пользователя
     int new_district_norealiz; // был ли произведён переход в новый район

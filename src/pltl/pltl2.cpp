@@ -48,7 +48,7 @@ int pltl2(
     switch (cur_game->pltl[pltl_index].active) {
         case 0:
             if (
-                    (strcmp(cur_game->active_cmd, "w") != 0) ||
+                    (cur_game->active_cmd != "w") ||
                     (cur_game->active_loc != 0) ||
                     (cur_game->num_empty_w < 3)) {
                 return 0;

@@ -61,11 +61,11 @@ int sstay() {
     if (
             (
                     (cur_game->active_loc == 0) &&
-                    (strcmp(cur_game->active_cmd, "w") == 0)) ||
+                    (cur_game->active_cmd == "w")) ||
             ((cur_game->active_loc == 1) &&
-             ((strcmp(cur_game->active_cmd, "k") == 0) ||
-             (strcmp(cur_game->active_cmd, "sh") == 0) ||
-              (strcmp(cur_game->active_cmd, "f") == 0)))) {
+             ((cur_game->active_cmd == "k") ||
+             (cur_game->active_cmd == "sh") ||
+              (cur_game->active_cmd == "f")))) {
 
         if (main_hero->inv[game::search_inv(main_hero, "Мобильник")].have) {
             if (cur_game->get_stay_mar() == 1) {
