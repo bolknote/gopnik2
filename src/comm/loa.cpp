@@ -49,7 +49,13 @@ struct CharacterInfo {
 CharacterInfo read_character_info(const std::string& filename) {
     CharacterInfo character_info = {"", "", 0}; // Инициализация
     
-    std::unique_ptr<FILE, decltype(&fclose)> load_file(fopen(filename.c_str(), "rb"), &fclose);
+    FILE* file = nullptr;
+#ifdef _MSC_VER
+    errno_t err = fopen_s(&file, filename.c_str(), "rb");
+#else
+    file = fopen(filename.c_str(), "rb");
+#endif
+    std::unique_ptr<FILE, decltype(&fclose)> load_file(file, &fclose);
     if (!load_file) {
         return character_info;
     }

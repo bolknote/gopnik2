@@ -41,7 +41,7 @@ public:
                 return nullptr;
             }
         }
-        strncpy(result.d_name, findData.cFileName, MAX_PATH);
+        strncpy_s(result.d_name, MAX_PATH, findData.cFileName, MAX_PATH);
         return &result;
     }
 };
@@ -52,6 +52,10 @@ inline DIR* opendir(const char* path) {
 
 inline void closedir(DIR* dir) {
     delete dir;
+}
+
+inline dirent* readdir(DIR* dir) {
+    return dir->readdir();
 }
 
 #else

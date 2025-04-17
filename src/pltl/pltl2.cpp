@@ -111,7 +111,7 @@ int pltl2(
             if (
                     (!cur_game->enemy_init) &&
                     (main_hero->get_health() > 0)) {
-                cur_game->open_girl = main_hero->station + 1;
+                cur_game->open_girl = static_cast<uint8_t>(main_hero->station + 1);
                 cur_game->pltl[pltl_index].active = -1;
 
                 std::cout << YELLOW << mess[6] << std::flush;

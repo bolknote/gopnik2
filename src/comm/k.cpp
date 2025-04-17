@@ -13,11 +13,11 @@ extern game *cur_game;
 
 int k(bool skip_turn) {
     // объект героя
-    hero *main_hero;
+    hero *main_hero = nullptr;
     // объект врага
     hero *enemy = nullptr;
     // объект "братвы"
-    hero *lads;
+    hero *lads = nullptr;
 
     hero *old_enemy;
 
@@ -145,7 +145,7 @@ int k(bool skip_turn) {
     old_level,
     // режим стрелы
     // индекс противника
-    str_enemy_index,
+    str_enemy_index = 0,
     // индекс союзника
     str_hero_index,
     // кол-во пустых ударов героя
@@ -166,7 +166,7 @@ int k(bool skip_turn) {
     // относительное здоровье противника
     enemy_rel_health,
     // относительное здоровье героя
-    hero_rel_health;
+    hero_rel_health = 0;
 
     if (cur_game->active_loc == 0) {
         if (CHANCE(1, 1000)) {
