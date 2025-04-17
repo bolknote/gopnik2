@@ -24,7 +24,7 @@ int x() {
 
     main_hero = cur_game->main_hero;
 
-    k = (main_hero->station) ? (0.8) : (0.5);
+    k = static_cast<float>(main_hero->station ? 0.8 : 0.5);
 
     if (main_hero->get_stuff() > 0) {
         main_hero->add_money((int) ((float) main_hero->get_stuff() * k) + 1);

@@ -3,8 +3,9 @@
 #include <cctype>
 #include <iostream>
 #include <fstream>
-#include <dirent.h>
-
+#include <vector>
+#include <algorithm>
+#include "platform.h"
 #include <fmt/format.h>
 
 #include <gopnik2/main.h>

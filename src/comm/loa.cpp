@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include <dirent.h>
+#include "platform.h"
 #include <fmt/format.h>
 #include <iomanip>
 #include <array>
