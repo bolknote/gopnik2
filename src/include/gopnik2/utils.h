@@ -37,3 +37,6 @@ void gracefulexit(int = 0);          // выйти, восстановив ко�
 int get_key(bool = true);            // сосчитать код нажатой клавиши
 
 int get_key_async();                 // получить код нажатой клавиши не блокируя (без вывода на экран)
+
+// Finds the maximum numerical suffix for save files matching pattern and extension, returns 0 if none.
+int find_max_save_index(const std::string &pattern, const std::string &extension);

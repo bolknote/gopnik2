@@ -3,6 +3,7 @@
 #include <cctype>
 #include <iostream>
 #include <fstream>
+#include <dirent.h>
 
 #include <fmt/format.h>
 
@@ -25,14 +26,9 @@
 extern game *cur_game;
 
 game::game()
-        : file_name(), main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
+        : main_hero(), enemy(), lads(), cmd_list(), str_hero(), str_enemy(), ht(), loc(),
           we(), pl(), stn(), pltl(), active_loc(), active_cmd(), st() {
 
-#ifdef _MSC_VER
-    file_name = "gop2w_1.sav";
-#else
-    file_name = "gop2_1.sav";
-#endif
 
     load_game = false;
 
@@ -872,52 +868,6 @@ int game::create_hero(
     return 0;
 } // end int game::create_hero (int, TEXT, int)
 
-/*int game::get_number_of_sav_file (
-                           // параметр начала нового поиска
-                           int find_first = 0
-                         )
-{
-
-  int
-    done;
-
-  for (;;)
-  {
-    if (find_first)
-    {
-      done = findfirst ("gop2_?.sav", &ffblk, 0);
-      find_first = 0;
-    }
-    else
-    {
-      done = findnext (&ffblk);
-    }
-
-    if (done == 0)
-    {
-      if (
-   (ffblk.ff_name [5] >= 49)
-     &&
-   (ffblk.ff_name [5] <= 52)
- )
-      {
-
-return (int) (ffblk.ff_name [5] - 48);
-      }
-      else
-      {
-continue;
-      }
-    }
-    else
-    {
-      return 0;
-    }
-  }
-  return 0;
-#warning Deprecate get_number_of_sav_file
-} // end int game::get_number_of_sav_file (int)
-*/
 
 int game::set_loc(
         // индекс локации
@@ -2137,8 +2087,15 @@ int game::start() {
     user_level_of_complexity,
             j, i;
 
+#ifdef _MSC_VER
+    const std::string pattern = "gop2w_";
+#else
+    const std::string pattern = "gop2_";
+#endif
+    const std::string extension = ".sav";
+
     old_attr = settextattr(WHITE);
-    if (std::ifstream(cur_game->file_name.c_str()).good()) {
+    if (find_max_save_index(pattern, extension) != 0) {
         std::cout
             << mess[0]
             << YELLOW << mess[1] << mess[2] << mess[3];

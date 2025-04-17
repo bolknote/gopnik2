@@ -203,8 +203,9 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
 
     size_t len;
     fread(&len, sizeof(len), 1, load_file);
-    name.resize(len);
-    fread(name.data(), sizeof(char), len, load_file);
+    std::unique_ptr<char[]> name_buf(new char[len]);
+    fread(name_buf.get(), sizeof(char), len, load_file);
+    name = std::string(name_buf.get(), len - 1); // -1 to exclude null terminator
 
     fread(&len, sizeof(len), 1, load_file);
 
