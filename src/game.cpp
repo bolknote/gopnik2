@@ -120,7 +120,7 @@ game::~game() {
 }
 
 void game::clean_mem() const {
-    int i, j, k;
+    int i, j;
 
     // **ht**
     if (ht_amount > 0) {
@@ -181,23 +181,6 @@ void game::clean_mem() const {
 
     // **pl**
     if (pl_amount > 0) {
-        for (i = 0; i < pl_amount; i++) {
-            for (j = 0; j < pl[i].member_amount; j++) {
-                if (pl[i].members[j].buy_phrase_amount > 0) {
-                    for (k = 0; k < pl[i].members[j].buy_phrase_amount; k++) {
-                        free(pl[i].members[j].buy_phrase[k]);
-                    }
-
-                    free(pl[i].members[j].buy_phrase);
-                }
-
-                free(pl[i].members[j].name);
-                free(pl[i].members[j].comment);
-            }
-
-            free(pl[i].members);
-        }
-
         free(pl);
     }
     // ******
@@ -704,9 +687,9 @@ int game::add_price_list_memb(
         // индекс прайс-листа
         int pl_index,
         // название товара
-        const char *name,
+        const std::string& name,
         // комментарий к товару
-        const char *comment,
+        const std::string& comment,
         // цена на товар
         int price) const {
     pl[pl_index].members = add_new_element(
@@ -714,8 +697,8 @@ int game::add_price_list_memb(
             pl[pl_index].member_amount,
             sizeof(price_list_memb));
 
-    pl[pl_index].members[pl[pl_index].member_amount].name = g_strdup(name);
-    pl[pl_index].members[pl[pl_index].member_amount].comment = g_strdup(comment);
+    pl[pl_index].members[pl[pl_index].member_amount].name = name;
+    pl[pl_index].members[pl[pl_index].member_amount].comment = comment;
     pl[pl_index].members[pl[pl_index].member_amount].price = price;
     pl[pl_index].members[pl[pl_index].member_amount].buy_phrase_amount = 0;
 
@@ -735,14 +718,8 @@ int game::add_buy_phrase(
         // индекс элемента прайс-листа
         int plm_index,
         // фраза при покупке
-        const char *buy_phrase) const {
-    pl[pl_index].members[plm_index].buy_phrase = add_new_element(
-            pl[pl_index].members[plm_index].buy_phrase,
-            pl[pl_index].members[plm_index].buy_phrase_amount,
-            sizeof(char *));
-
-    pl[pl_index].members[plm_index].buy_phrase[pl[pl_index].members[plm_index].buy_phrase_amount] = g_strdup(buy_phrase);
-
+        const std::string& buy_phrase) const {
+    pl[pl_index].members[plm_index].buy_phrase.push_back(buy_phrase);
     pl[pl_index].members[plm_index].buy_phrase_amount++;
 
     return (pl[pl_index].members[plm_index].buy_phrase_amount - 1);
@@ -897,29 +874,15 @@ int game::get_min_exp_for_level(
     return min_exp_for_level;
 } // end int game::get_min_exp_for_level (int)
 
-int game::search_inv(
-        // объект героя
-        hero *cur_hero,
-        // имя, по которому производится поиск
-        const char *name) {
-    int
-    // индекс инвентаря
-    inv_index;
-
-    int i;
-
-    inv_index = -1;
-
-    for (i = 0; i < cur_hero->inv_amount; i++) {
-        if (strcmp(cur_hero->inv[i].name, name) == 0) {
-            inv_index = i;
-
-            break;
+int game::search_inv(hero *cur_hero, const std::string& name) {
+    for (int i = 0; i < cur_hero->inv_amount; i++) {
+        if (cur_hero->inv[i].name == name) {
+            return i;
         }
     }
 
-    return inv_index;
-} // end int game::search_inv (hero *, TEXT)
+    return -1;
+}
 
 int game::search_pl(
         // индекс локации
@@ -983,7 +946,7 @@ int game::search_plm_price(
         }
 
         for (j = j_start; j < pl[i].member_amount; j++) {
-            if (strcmp(pl[i].members[j].name, name) == 0) {
+            if (pl[i].members[j].name == name) {
                 price = pl[i].members[j].price;
 
                 *pl_index = i;

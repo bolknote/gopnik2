@@ -7,6 +7,8 @@
 #include <cstddef>
 #include <cstdlib>
 #include <cstdint>
+#include <string>
+#include <vector>
 
 #include "macros.h"
 #include "gopnik2/hero_type.h"
@@ -86,10 +88,10 @@ typedef struct w_event {
 } w_event;
 
 typedef struct price_list_memb {
-    char *name;
-    char *comment;
+    std::string name;
+    std::string comment;
     int price;
-    char **buy_phrase;
+    std::vector<std::string> buy_phrase;
     int buy_phrase_amount;
     int buy_phrase_print_mode;
     bool no_repeat; // ex-warn_mess

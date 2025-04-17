@@ -121,9 +121,9 @@ public:
 
     int add_price_list(int, FP2);
 
-    int add_price_list_memb(int, const char *, const char *, int) const;
+    int add_price_list_memb(int, const std::string&, const std::string&, int) const;
 
-    int add_buy_phrase(int, int, const char *) const;
+    int add_buy_phrase(int, int, const std::string&) const;
 
     int add_station(const char *, int, const char *);
 
@@ -141,7 +141,7 @@ public:
     int set_loc(int);                                              // смена локации
     static int get_min_exp_for_level(
             int);                                // минимальное количество опыта, которое нужно добавить, чтобы достичь заданного уровня
-    static int search_inv(hero *, const char *);                          // поиск инвентаря по имени
+    static int search_inv(hero *, const std::string&);                          // поиск инвентаря по имени
     [[nodiscard]] int search_pl(int) const;                               // поиск прайс-листа по индексу локации
     int search_ht(HeroType) const;                                    // поиск индекса типа героя по названию типа
     int search_plm_price(int *, int *,

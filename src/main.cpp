@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 #include <gopnik2/main.h>
 #include <gopnik2/hero.h>
@@ -224,7 +225,7 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &h);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Залечить царапины", "", 3);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Залечить царапины"), std::string(""), 3);
 
     cur_game->add_buy_phrase(pl_index, plm_index,
                              "Док: Что-то я тебе не те таблетки дал... Ладно, не поспишь пару деньков");
@@ -233,7 +234,7 @@ int main() {
     cur_game->add_buy_phrase(pl_index, plm_index,
                              "Док: Что, опять шов разошёлся?! В следующий раз со своими нитками придёшь!");
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Починить переломы", "", 7);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Починить переломы"), std::string(""), 7);
 
     cur_game->add_buy_phrase(pl_index, plm_index,
                              "Док: Ого! Охренеть у тебя переломы! Как ты только по дороге сюда не сдох");
@@ -250,40 +251,40 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &b);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Стакан семок", "прибавляет 3з", 2);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Стакан семок"), std::string("прибавляет 3з"), 2);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Семки - лучшая еда гопника!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну чё, полузгаем?");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Семки - лучшая еда гопника!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну чё, полузгаем?"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Пиво 0.5 л.", "прибавляет 5з", 5);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Пиво 0.5 л."), std::string("прибавляет 5з"), 5);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Пиво - лучшее топливо для твоего организма!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Пейте, дети, пиво своего разлива!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Что? Только \"Ебалтика\" осталась? Ладно, давай");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Пиво - лучшее топливо для твоего организма!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Пейте, дети, пиво своего разлива!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Что? Только \"Ебалтика\" осталась? Ладно, давай"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Шапка-пидорка", "броня +1", 10);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Шапка-пидорка"), std::string("броня +1"), 10);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну теперь точно голову не проломят");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну теперь точно голову не проломят"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Спортивный костюм abibas", "броня +3", 30);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Спортивный костюм abibas"), std::string("броня +3"), 30);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну теперь прямо весь на понтах");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну теперь прямо весь на понтах"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Бутсы", "урон +1", 20);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Бутсы"), std::string("урон +1"), 20);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Будешь пинать ими всяких козлов!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Будешь пинать ими всяких козлов!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Спортивный костюм adidas", "броня +4", 40);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Спортивный костюм adidas"), std::string("броня +4"), 40);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Прям вылитый гопник");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Прям вылитый гопник"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Понтовые бутсы", "урон +2", 40);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Понтовые бутсы"), std::string("урон +2"), 40);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Такими бутсами и позвоночник не грех переломить");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Такими бутсами и позвоночник не грех переломить"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Кожанка", "броня +5", 50);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Кожанка"), std::string("броня +5"), 50);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Теперь вообще крутой стал");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Теперь вообще крутой стал"));
 
     loc_index = cur_game->add_location("Притон");
 
@@ -313,45 +314,45 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &bb);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Косяк", "", 8);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Косяк"), std::string(""), 8);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ща как дуну!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Покурил гашиша и жизнь хороша!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ща как дуну!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Покурил гашиша и жизнь хороша!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Зубная защита боксёров", "защищает от удара в челюсть", 15);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Зубная защита боксёров"), std::string("защищает от удара в челюсть"), 15);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Теперь тебе не страшны стоматологи");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Теперь тебе не страшны стоматологи"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Чотки", "уменьшают вероятность наезда", 20);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Чотки"), std::string("уменьшают вероятность наезда"), 20);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну ты прям авторитет!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну ты прям авторитет!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Кастет", "урон +4", 50);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Кастет"), std::string("урон +4"), 50);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Кастет взял? Явно что-то нехорошее замыслил...");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Кастет взял? Явно что-то нехорошее замыслил..."));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Дубинка", "урон +6", 80);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Дубинка"), std::string("урон +6"), 80);
 
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Дубинку прикупил?! Слушай, а ведь с тобой уже опасно связываться...");
+                             std::string("Дубинку прикупил?! Слушай, а ведь с тобой уже опасно связываться..."));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Тесак", "урон +8", 120);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Тесак"), std::string("урон +8"), 120);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну теперь тебя за километр обходить будут!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну теперь тебя за километр обходить будут!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Пистолет", "урон до 80", 0);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Пистолет"), std::string("урон до 80"), 0);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "О Боже мой! У него пистолет! Спасайся кто может!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("О Боже мой! У него пистолет! Спасайся кто может!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Патроны", "5 штук", 0);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Патроны"), std::string("5 штук"), 0);
 
     cur_game->pl[pl_index].members[plm_index].no_repeat = false;
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Держи 5 пуль");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Держи 5 пуль"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Глушитель", "сможешь стрелять в центре города", 0);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Глушитель"), std::string("сможешь стрелять в центре города"), 0);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну теперь тебя менты не заплят");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну теперь тебя менты не заплят"));
 
     loc_index = cur_game->add_location("Барыги\\Продажа вещей");
 
@@ -375,11 +376,11 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &up);
 
-    cur_game->add_price_list_memb(pl_index, "Качаться на тренажёрах", "Живучесть +1", 30);
-    cur_game->add_price_list_memb(pl_index, "Качать ноги", "уменьшение вероятности, что их сломают", 20);
-    cur_game->add_price_list_memb(pl_index, "Качать пресс", "Броня +1", 0);
-    cur_game->add_price_list_memb(pl_index, "Заниматься со штангой и гантелями", "Сила +1", 0);
-    cur_game->add_price_list_memb(pl_index, "Прокачать 10 качков опыта", "", 0);
+    cur_game->add_price_list_memb(pl_index, std::string("Качаться на тренажёрах"), std::string("Живучесть +1"), 30);
+    cur_game->add_price_list_memb(pl_index, std::string("Качать ноги"), std::string("уменьшение вероятности, что их сломают"), 20);
+    cur_game->add_price_list_memb(pl_index, std::string("Качать пресс"), std::string("Броня +1"), 0);
+    cur_game->add_price_list_memb(pl_index, std::string("Заниматься со штангой и гантелями"), std::string("Сила +1"), 0);
+    cur_game->add_price_list_memb(pl_index, std::string("Прокачать 10 качков опыта"), std::string(""), 0);
 
     loc_index = cur_game->add_location("Клуб");
 
@@ -395,28 +396,28 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &bar);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Закуска", "прибавляет 6з", 3);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Закуска"), std::string("прибавляет 6з"), 3);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ничё так орешки, вкусные");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ничё так орешки, вкусные"));
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Сухари оказались жёстче, чем ты думал - пришлось пожертововать двумя зубами");
+                             std::string("Сухари оказались жёстче, чем ты думал - пришлось пожертововать двумя зубами"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Разливное пиво 0.5 л.", "прибавляет 15з", 8);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Разливное пиво 0.5 л."), std::string("прибавляет 15з"), 8);
 
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "В который раз ты подумал - какую же всё-таки мочу продают в ларьках");
+                             std::string("В который раз ты подумал - какую же всё-таки мочу продают в ларьках"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Коктейль", "прибавляет 20з", 0);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Коктейль"), std::string("прибавляет 20з"), 0);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Блядь, какую же херню туда намешали?");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Блядь, какую же херню туда намешали?"));
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Э, бармен, а чё у тя коктейль тормозной жидкостью отдаёт?\nА, так и надо? Тогда без базара...");
+                             std::string("Э, бармен, а чё у тя коктейль тормозной жидкостью отдаёт?\nА, так и надо? Тогда без базара..."));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Водка 50 гр.", "прибавляет половину здоровья", 0);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Водка 50 гр."), std::string("прибавляет половину здоровья"), 0);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ух! Хорошо пошла!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ух! Хорошо пошла!"));
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Чего-то у меня в глазах потемнело. Водка точно из этилового спирта?");
+                             std::string("Чего-то у меня в глазах потемнело. Водка точно из этилового спирта?"));
 
     loc_index = cur_game->add_location("Метро");
 
@@ -431,22 +432,22 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, nullptr);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Жетон", "", 7);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Жетон"), std::string(""), 7);
 
     cur_game->pl[pl_index].members[plm_index].no_repeat = false;
 
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Кассирша: Скока-скока жетонов? Ебать тя в рот, не можешь громче сказать!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Кассирша: Бля, ты б мне ещё копеечными монетами отсыпал!");
+                             std::string("Кассирша: Скока-скока жетонов? Ебать тя в рот, не можешь громче сказать!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Кассирша: Бля, ты б мне ещё копеечными монетами отсыпал!"));
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Кассирша: Сдачу тебе ещё надо? Умный что ли, считать умеешь? Видел у входа\n          бак мусора? Так вот завтра мы таких умников, как ты, закопаем\n          туда и вывезем на грузовиках. Следующий, ёпт!");
+                             std::string("Кассирша: Сдачу тебе ещё надо? Умный что ли, считать умеешь? Видел у входа\n          бак мусора? Так вот завтра мы таких умников, как ты, закопаем\n          туда и вывезем на грузовиках. Следующий, ёпт!"));
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Кассирша: Глухой, что ли! Ещё раз повторяю - бери жетон и вали! Чё сказал?\n          Тебя не спросила, урод, когда мне включать микрофон. Следующий!");
+                             std::string("Кассирша: Глухой, что ли! Ещё раз повторяю - бери жетон и вали! Чё сказал?\n          Тебя не спросила, урод, когда мне включать микрофон. Следующий!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Проездной", "", 80);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Проездной"), std::string(""), 80);
 
     cur_game->add_buy_phrase(pl_index, plm_index,
-                             "Кассирша: Чё, раздолбай, деньги появились? Бери свой проездной и что б больше\n          я тебя возле кассы не видела!");
+                             std::string("Кассирша: Чё, раздолбай, деньги появились? Бери свой проездной и что б больше\n          я тебя возле кассы не видела!"));
 
     loc_index = cur_game->add_location("Метро\\Перрон");
 
@@ -470,30 +471,29 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, nullptr);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Затемнённые очки", "что б менты не узнали", 10);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Затемнённые очки"), std::string("что б менты не узнали"), 10);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "О! Да тебя щас даже родная мать не узнает!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("О! Да тебя щас даже родная мать не узнает!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Цветы и конфеты", "для твоей пассии", 15);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Цветы и конфеты"), std::string("для твоей пассии"), 15);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Чё, к дефчонке своей намылился?");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Чё, к дефчонке своей намылился?"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Мобильник", "сможешь вызывать помощь во время битвы", 50);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Мобильник"), std::string("сможешь вызывать помощь во время битвы"), 50);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "С мобилой ты, конечно, выглядешь намного солидней");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("С мобилой ты, конечно, выглядешь намного солидней"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Барсетка",
-                                              "увеличивает полученную понтовость в притоне в 2 раза", 40);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Барсетка"), std::string(""), 0);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Терь тя все уважать будут!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Терь тя все уважать будут!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Кепка", "броня +2", 16);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Кепка"), std::string("броня +2"), 16);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну крутой стал, аж слов нет!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну крутой стал, аж слов нет!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Вельветовая куртка", "броня +8", 60);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Вельветовая куртка"), std::string("броня +8"), 60);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Терь крутой, что дальше некуда!");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Терь крутой, что дальше некуда!"));
 
     loc_index = cur_game->add_location("Стрела");
 
@@ -556,17 +556,17 @@ int main() {
 
     pl_index = cur_game->add_price_list(loc_index, &lar_b);
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Стакан семок", "прибавляет 3з", 2);
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Стакан семок"), std::string("прибавляет 3з"), 2);
 
-    cur_game->add_buy_phrase(pl_index, plm_index, "Семки - лучшая еда гопника!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ну чё, полузгаем?");
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Семки - лучшая еда гопника!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ну чё, полузгаем?"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Шаверма", "прибавляет 13з", 7);
-    cur_game->add_buy_phrase(pl_index, plm_index, "Щас похаваем!");
-    cur_game->add_buy_phrase(pl_index, plm_index, "Ух, сука, горячая!");
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Шаверма"), std::string("прибавляет 13з"), 7);
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Щас похаваем!"));
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Ух, сука, горячая!"));
 
-    plm_index = cur_game->add_price_list_memb(pl_index, "Батарейка", "для шокера", 25);
-    cur_game->add_buy_phrase(pl_index, plm_index, "Давай-ка её сюда!");
+    plm_index = cur_game->add_price_list_memb(pl_index, std::string("Батарейка"), std::string("для шокера"), 25);
+    cur_game->add_buy_phrase(pl_index, plm_index, std::string("Давай-ка её сюда!"));
 
     cur_game->pl[pl_index].members[plm_index].no_repeat = false;
 

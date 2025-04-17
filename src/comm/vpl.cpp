@@ -78,7 +78,7 @@ int vpl() {
                 << plm[i].price
                 << WHITE << fmt::format(" руб. {} ", plm[i].name);
 
-            if (strlen(plm[i].comment) > 0) {
+            if (plm[i].comment.length() > 0) {
                 std::cout << fmt::format("({})", plm[i].comment);
             }
 
