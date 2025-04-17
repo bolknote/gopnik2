@@ -232,93 +232,91 @@ void game::clean_mem() const {
 } // end void game::clean_mem ()
 
 int game::save(FILE *sav_file) {
-    fwrite(&num_w, sizeof(num_w), 1, sav_file);
-    fwrite(&num_empty_w, sizeof(num_empty_w), 1, sav_file);
-    fwrite(&num_t, sizeof(num_t), 1, sav_file);
-    fwrite(&stay_mar1, sizeof(stay_mar1), 1, sav_file);
-    fwrite(&stay_mar2, sizeof(stay_mar2), 1, sav_file);
-    fwrite(&stay_kos, sizeof(stay_kos), 1, sav_file);
-    fwrite(&stay_mh, sizeof(stay_mh), 1, sav_file);
-    fwrite(&open_mar, sizeof(open_mar), 1, sav_file);
-    fwrite(&open_rep, sizeof(open_rep), 1, sav_file);
-    fwrite(&open_pr1, sizeof(open_pr1), 1, sav_file);
-    fwrite(&open_pr2, sizeof(open_pr2), 1, sav_file);
-    fwrite(&open_hp1, sizeof(open_hp1), 1, sav_file);
-    fwrite(&open_hp2, sizeof(open_hp2), 1, sav_file);
-    fwrite(&open_d1, sizeof(open_d1), 1, sav_file);
-    fwrite(&open_d2, sizeof(open_d2), 1, sav_file);
-    fwrite(&open_trn1, sizeof(open_trn1), 1, sav_file);
-    fwrite(&open_trn2, sizeof(open_trn2), 1, sav_file);
-    fwrite(&open_bmar1, sizeof(open_bmar1), 1, sav_file);
-    fwrite(&open_bmar2, sizeof(open_bmar2), 1, sav_file);
-    fwrite(&open_kl1, sizeof(open_kl1), 1, sav_file);
-    fwrite(&open_kl2, sizeof(open_kl2), 1, sav_file);
-    fwrite(&stay_kl1, sizeof(stay_kl1), 1, sav_file);
-    fwrite(&stay_kl2, sizeof(stay_kl2), 1, sav_file);
-    fwrite(&open_girl, sizeof(open_girl), 1, sav_file);
-    fwrite(&stay_met, sizeof(stay_met), 1, sav_file);
-    fwrite(&new_district_norealiz, sizeof(new_district_norealiz), 1, sav_file);
-    fwrite(&open_raid, sizeof(open_raid), 1, sav_file);
-    fwrite(&open_str, sizeof(open_str), 1, sav_file);
-    fwrite(&stay_str, sizeof(stay_str), 1, sav_file);
-    fwrite(&open_ob, sizeof(open_ob), 1, sav_file);
-    fwrite(&end_of_game, sizeof(end_of_game), 1, sav_file);
-    fwrite(&stay_eog, sizeof(stay_eog), 1, sav_file);
-
-    fwrite(&pltl_amount, sizeof(pltl_amount), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&num_w, sizeof(num_w), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&num_empty_w, sizeof(num_empty_w), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&num_t, sizeof(num_t), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_mar1, sizeof(stay_mar1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_mar2, sizeof(stay_mar2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_kos, sizeof(stay_kos), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_mh, sizeof(stay_mh), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_mar, sizeof(open_mar), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_rep, sizeof(open_rep), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_pr1, sizeof(open_pr1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_pr2, sizeof(open_pr2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_hp1, sizeof(open_hp1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_hp2, sizeof(open_hp2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_d1, sizeof(open_d1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_d2, sizeof(open_d2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_trn1, sizeof(open_trn1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_trn2, sizeof(open_trn2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_bmar1, sizeof(open_bmar1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_bmar2, sizeof(open_bmar2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_kl1, sizeof(open_kl1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_kl2, sizeof(open_kl2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_kl1, sizeof(stay_kl1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_kl2, sizeof(stay_kl2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_girl, sizeof(open_girl), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_met, sizeof(stay_met), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&new_district_norealiz, sizeof(new_district_norealiz), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_raid, sizeof(open_raid), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_str, sizeof(open_str), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_str, sizeof(stay_str), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&open_ob, sizeof(open_ob), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&end_of_game, sizeof(end_of_game), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stay_eog, sizeof(stay_eog), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&pltl_amount, sizeof(pltl_amount), 1, sav_file);
 
     for (int i = 0; i < pltl_amount; i++) {
-        fwrite(&pltl[i].active, sizeof(pltl[i].active), 1, sav_file);
+        [[maybe_unused]] auto _ = fwrite(&pltl[i].active, sizeof(pltl[i].active), 1, sav_file);
     }
 
     // доступность станции «Чёрная речка»
-    fwrite(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, sav_file);
 
     return 0;
 } // end int game::save (FILE *)
 
 int game::load(FILE *load_file, float ver) {
-    fread(&num_w, sizeof(num_w), 1, load_file);
-    fread(&num_empty_w, sizeof(num_empty_w), 1, load_file);
-    fread(&num_t, sizeof(num_t), 1, load_file);
-    fread(&stay_mar1, sizeof(stay_mar1), 1, load_file);
-    fread(&stay_mar2, sizeof(stay_mar2), 1, load_file);
-    fread(&stay_kos, sizeof(stay_kos), 1, load_file);
-    fread(&stay_mh, sizeof(stay_mh), 1, load_file);
-    fread(&open_mar, sizeof(open_mar), 1, load_file);
-    fread(&open_rep, sizeof(open_rep), 1, load_file);
-    fread(&open_pr1, sizeof(open_pr1), 1, load_file);
-    fread(&open_pr2, sizeof(open_pr2), 1, load_file);
-    fread(&open_hp1, sizeof(open_hp1), 1, load_file);
-    fread(&open_hp2, sizeof(open_hp2), 1, load_file);
-    fread(&open_d1, sizeof(open_d1), 1, load_file);
-    fread(&open_d2, sizeof(open_d2), 1, load_file);
-    fread(&open_trn1, sizeof(open_trn1), 1, load_file);
-    fread(&open_trn2, sizeof(open_trn2), 1, load_file);
-    fread(&open_bmar1, sizeof(open_bmar1), 1, load_file);
-    fread(&open_bmar2, sizeof(open_bmar2), 1, load_file);
-    fread(&open_kl1, sizeof(open_kl1), 1, load_file);
-    fread(&open_kl2, sizeof(open_kl2), 1, load_file);
-    fread(&stay_kl1, sizeof(stay_kl1), 1, load_file);
-    fread(&stay_kl2, sizeof(stay_kl2), 1, load_file);
-    fread(&open_girl, sizeof(open_girl), 1, load_file);
-    fread(&stay_met, sizeof(stay_met), 1, load_file);
-    fread(&new_district_norealiz, sizeof(new_district_norealiz), 1, load_file);
-    fread(&open_raid, sizeof(open_raid), 1, load_file);
-    fread(&open_str, sizeof(open_str), 1, load_file);
-    fread(&stay_str, sizeof(stay_str), 1, load_file);
-    fread(&open_ob, sizeof(open_ob), 1, load_file);
-    fread(&end_of_game, sizeof(end_of_game), 1, load_file);
-    fread(&stay_eog, sizeof(stay_eog), 1, load_file);
-
-    fread(&pltl_amount, sizeof(pltl_amount), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&num_w, sizeof(num_w), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&num_empty_w, sizeof(num_empty_w), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&num_t, sizeof(num_t), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_mar1, sizeof(stay_mar1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_mar2, sizeof(stay_mar2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_kos, sizeof(stay_kos), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_mh, sizeof(stay_mh), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_mar, sizeof(open_mar), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_rep, sizeof(open_rep), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_pr1, sizeof(open_pr1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_pr2, sizeof(open_pr2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_hp1, sizeof(open_hp1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_hp2, sizeof(open_hp2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_d1, sizeof(open_d1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_d2, sizeof(open_d2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_trn1, sizeof(open_trn1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_trn2, sizeof(open_trn2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_bmar1, sizeof(open_bmar1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_bmar2, sizeof(open_bmar2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_kl1, sizeof(open_kl1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_kl2, sizeof(open_kl2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_kl1, sizeof(stay_kl1), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_kl2, sizeof(stay_kl2), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_girl, sizeof(open_girl), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_met, sizeof(stay_met), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&new_district_norealiz, sizeof(new_district_norealiz), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_raid, sizeof(open_raid), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_str, sizeof(open_str), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_str, sizeof(stay_str), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&open_ob, sizeof(open_ob), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&end_of_game, sizeof(end_of_game), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&stay_eog, sizeof(stay_eog), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&pltl_amount, sizeof(pltl_amount), 1, load_file);
 
     for (int i = 0; i < pltl_amount; i++) {
-        fread(&pltl[i].active, sizeof(pltl[i].active), 1, load_file);
+        [[maybe_unused]] auto _ = fread(&pltl[i].active, sizeof(pltl[i].active), 1, load_file);
     }
 
     if (ver > 1.20) {
-        fread(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, load_file);
+        [[maybe_unused]] auto _ = fread(&cur_game->stn[5].avail, sizeof(cur_game->stn[5].avail), 1, load_file);
     }
 
     return 0;

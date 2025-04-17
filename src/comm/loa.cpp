@@ -55,7 +55,8 @@ CharacterInfo read_character_info(const std::string& filename) {
 #else
     file = fopen(filename.c_str(), "rb");
 #endif
-    std::unique_ptr<FILE, decltype(&fclose)> load_file(file, &fclose);
+    auto file_deleter = [](FILE* f) { if (f) fclose(f); };
+    std::unique_ptr<FILE, decltype(file_deleter)> load_file(file, file_deleter);
     if (!load_file) {
         return character_info;
     }
@@ -187,18 +188,19 @@ std::string get_latest_save_file() {
 std::pair<hero*, game*> load_game_objects(FILE* load_file, float& vers) {
     hero* main_hero = nullptr;
 
-    fread(&vers, sizeof(vers), 1, load_file);
+    if (fread(&vers, sizeof(vers), 1, load_file) != 1) {
+        std::cout << RED << mess[0] << mess[7] << std::flush;
+        return {nullptr, nullptr};
+    }
 
     // старый формат игры (DOS)
     if (vers < 1.13) {
         std::cout << RED << mess[0] << mess[7] << std::flush;
-        fclose(load_file);
         return {nullptr, nullptr};
     }
 
     if (VERSION < vers) {
         std::cout << RED << mess[0] << mess[1] << std::flush;
-        fclose(load_file);
         return {nullptr, nullptr};
     }
 

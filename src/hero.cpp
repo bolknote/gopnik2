@@ -85,57 +85,57 @@ int hero::set_level_of_complexity(
 }
 
 void hero::save(FILE *sav_file) {
-    fwrite(&level, sizeof(level), 1, sav_file);
-    fwrite(&level_of_complexity, sizeof(level_of_complexity), 1, sav_file);
-    fwrite(&district, sizeof(district), 1, sav_file);
-    fwrite(&broken_jaw, sizeof(broken_jaw), 1, sav_file);
-    fwrite(&broken_foot, sizeof(broken_foot), 1, sav_file);
-    fwrite(&trn_foot, sizeof(trn_foot), 1, sav_file);
-    fwrite(&kick_count, sizeof(kick_count), 1, sav_file);
-    fwrite(&empty_kick_count, sizeof(empty_kick_count), 1, sav_file);
-    fwrite(&stoned, sizeof(stoned), 1, sav_file);
-    fwrite(&drunk, sizeof(drunk), 1, sav_file);
-    fwrite(&old_att, sizeof(old_att), 1, sav_file);
-    fwrite(&station, sizeof(station), 1, sav_file);
-    fwrite(&str_free, sizeof(str_free), 1, sav_file);
-    fwrite(&print_mode, sizeof(print_mode), 1, sav_file);
-    fwrite(&force, sizeof(force), 1, sav_file);
-    fwrite(&smart, sizeof(smart), 1, sav_file);
-    fwrite(&vita, sizeof(vita), 1, sav_file);
-    fwrite(&luck, sizeof(luck), 1, sav_file);
-    fwrite(&health, sizeof(health), 1, sav_file);
-    fwrite(&exp, sizeof(exp), 1, sav_file);
-    fwrite(&armo, sizeof(armo), 1, sav_file);
-    fwrite(&money, sizeof(money), 1, sav_file);
-    fwrite(&beer, sizeof(beer), 1, sav_file);
-    fwrite(&stuff, sizeof(stuff), 1, sav_file);
-    fwrite(&ciga, sizeof(ciga), 1, sav_file);
-    fwrite(&att1, sizeof(att1), 1, sav_file);
-    fwrite(&att2, sizeof(att2), 1, sav_file);
-    fwrite(&desc, sizeof(desc), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&level, sizeof(level), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&level_of_complexity, sizeof(level_of_complexity), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&district, sizeof(district), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&broken_jaw, sizeof(broken_jaw), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&broken_foot, sizeof(broken_foot), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&trn_foot, sizeof(trn_foot), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&kick_count, sizeof(kick_count), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&empty_kick_count, sizeof(empty_kick_count), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stoned, sizeof(stoned), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&drunk, sizeof(drunk), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&old_att, sizeof(old_att), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&station, sizeof(station), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&str_free, sizeof(str_free), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&print_mode, sizeof(print_mode), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&force, sizeof(force), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&smart, sizeof(smart), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&vita, sizeof(vita), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&luck, sizeof(luck), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&health, sizeof(health), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&exp, sizeof(exp), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&armo, sizeof(armo), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&money, sizeof(money), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&beer, sizeof(beer), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&stuff, sizeof(stuff), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&ciga, sizeof(ciga), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&att1, sizeof(att1), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&att2, sizeof(att2), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&desc, sizeof(desc), 1, sav_file);
 
-    fwrite(&inv_amount, sizeof(inv_amount), 1, sav_file);
-    fwrite(inv, sizeof (inventory), inv_amount, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&inv_amount, sizeof(inv_amount), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(inv, sizeof (inventory), inv_amount, sav_file);
 
     for (int i = 0; i < inv_amount; i++) {
         size_t len = strlen(inv[i].name) + 1;
-        fwrite(&len, sizeof(len), 1, sav_file);
-        fwrite(inv[i].name, sizeof(char), len, sav_file);
+        [[maybe_unused]] auto _ = fwrite(&len, sizeof(len), 1, sav_file);
+        [[maybe_unused]] auto _ = fwrite(inv[i].name, sizeof(char), len, sav_file);
     }
 
-    fwrite(&inv_have_amount, sizeof(inv_have_amount), 1, sav_file);
-    fwrite(inv_have, sizeof(int), inv_have_amount, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&inv_have_amount, sizeof(inv_have_amount), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(inv_have, sizeof(int), inv_have_amount, sav_file);
 
     size_t len;
     len = name.size() + 1;
-    fwrite(&len, sizeof(len), 1, sav_file);
-    fwrite(name.c_str(), sizeof(char), len, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&len, sizeof(len), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(name.c_str(), sizeof(char), len, sav_file);
 
     std::string type_str = type.ToString();
 
     len = type_str.size() + 1;
-    fwrite(&len, sizeof(len), 1, sav_file);
-    fwrite(type_str.c_str(), sizeof(char), len, sav_file);
+    [[maybe_unused]] auto _ = fwrite(&len, sizeof(len), 1, sav_file);
+    [[maybe_unused]] auto _ = fwrite(type_str.c_str(), sizeof(char), len, sav_file);
 }
 
 void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
@@ -170,7 +170,7 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
        {&desc, sizeof(desc)}}};
 
     for (const auto& [var, size] : vars) {
-        fread(var, size, 1, load_file);
+        [[maybe_unused]] auto _ = fread(var, size, 1, load_file);
     }
 
     if (ver > 1.16) {
@@ -182,29 +182,29 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
             free(inv);
         }
 
-        fread(&inv_amount, sizeof(inv_amount), 1, load_file);
+        [[maybe_unused]] auto _ = fread(&inv_amount, sizeof(inv_amount), 1, load_file);
 
         inv = (inventory *) malloc(sizeof(inventory) * inv_amount);
-        fread(inv, sizeof(inventory), inv_amount, load_file);
+        [[maybe_unused]] auto _ = fread(inv, sizeof(inventory), inv_amount, load_file);
 
         for (int i = 0; i < inv_amount; i++) {
             size_t len;
-            fread(&len, sizeof(len), 1, load_file);
+            [[maybe_unused]] auto _ = fread(&len, sizeof(len), 1, load_file);
 
             inv[i].name = (char *) malloc(sizeof(char) * len);
-            fread(inv[i].name, sizeof(char), len, load_file);
+            [[maybe_unused]] auto _ = fread(inv[i].name, sizeof(char), len, load_file);
         }
     }
 
     free(inv_have);
 
-    fread(&inv_have_amount, sizeof(inv_have_amount), 1, load_file);
-    fread(inv_have, sizeof(int), inv_have_amount, load_file);
+    [[maybe_unused]] auto _ = fread(&inv_have_amount, sizeof(inv_have_amount), 1, load_file);
+    [[maybe_unused]] auto _ = fread(inv_have, sizeof(int), inv_have_amount, load_file);
 
     size_t len;
-    fread(&len, sizeof(len), 1, load_file);
+    [[maybe_unused]] auto _ = fread(&len, sizeof(len), 1, load_file);
     std::unique_ptr<char[]> name_buf(new char[len]);
-    fread(name_buf.get(), sizeof(char), len, load_file);
+    [[maybe_unused]] auto _ = fread(name_buf.get(), sizeof(char), len, load_file);
     name = std::string(name_buf.get(), len - 1); // -1 to exclude null terminator
 
     fread(&len, sizeof(len), 1, load_file);
