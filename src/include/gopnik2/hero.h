@@ -8,42 +8,44 @@
 #include "gopnik2/hero_type.h"
 
 class hero {
-    std::string name;
-    HeroType type;
-    int desc[4];  // начальные навыки
-    int level_of_complexity;
-    int exp;
-    int level;
-    int force;
-    int smart;
-    int vita;
-    int luck;
-    int health; // здоровье
-    int armo;   // броня
-    int money;  // бабки
-    int beer;   // пиво; было float, стал int - нехуй, все равно по поллитра
-    int stuff;  // хлам
-    int ciga;   // косяки, ёба, не самокрутки! самокрутки - с табаком
-    int att1;   // понтовость
-    int att2;   // понтовость
+    // Основные характеристики героя
+    std::string name;     // Имя героя
+    HeroType type;        // Тип героя (например, гопник, подтсан и т.д.)
+    int desc[4];          // Начальные навыки героя
+    int level_of_complexity; // Уровень сложности игры
+    int exp;              // Опыт героя
+    int level;            // Уровень героя
+    int force;            // Сила героя
+    int smart;            // Интеллект героя
+    int vita;             // Живучесть героя
+    int luck;             // Удача героя
+    int health;           // Текущее здоровье героя
+    int armo;             // Текущая броня героя
+    int money;            // Количество денег
+    int beer;             // Количество пива (в поллитрах)
+    int stuff;            // Количество хлама
+    int ciga;             // Количество косяков (не самокруток!)
+    int att1;             // Первый показатель понтовости
+    int att2;             // Второй показатель понтовости
 
 public:
-    int print_mode; // режим вывода сообщений
-    inventory *inv;
-    int inv_amount;
-    int district;
-    bool broken_jaw;      // сломана челюсть
-    bool broken_foot;     // сломана нога
-    int trn_foot;         // прокачка ног
-    int kick_count;       // кол-во ударов для битвы
-    int empty_kick_count; // кол-во пустых ударов героя
-    bool stoned;          // признак обдолбанности
-    bool drunk;           // признак того, что герой пьян
-    int old_att;          // старая понтовость в притоне
-    int station;          // станция метро
-    int *inv_have;        // индексы инвентаря, которым владеет герой
-    int inv_have_amount;  // кол-во инвентаря, которым владеет герой
-    bool str_free;        // используется для режима стрелы; указывает, «свободен» ли в данный момент герой
+    // Публичные свойства
+    int print_mode;       // Режим вывода сообщений в игре
+    inventory *inv;       // Указатель на инвентарь героя
+    int inv_amount;       // Количество предметов в инвентаре
+    int district;         // Текущий район нахождения героя
+    bool broken_jaw;      // Флаг сломанной челюсти
+    bool broken_foot;     // Флаг сломанной ноги
+    int trn_foot;         // Уровень прокачки ног
+    int kick_count;       // Количество ударов в бою
+    int empty_kick_count; // Количество промахов в бою
+    bool stoned;          // Флаг состояния наркотического опьянения
+    bool drunk;           // Флаг состояния алкогольного опьянения
+    int old_att;          // Предыдущее значение понтовости в притоне
+    int station;          // Текущая станция метро
+    int *inv_have;        // Массив индексов предметов, которыми владеет герой
+    int inv_have_amount;  // Количество предметов во владении героя
+    bool str_free;        // Флаг свободы героя в режиме стрелы
 
     explicit hero(hero_type);
 
