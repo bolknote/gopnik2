@@ -408,7 +408,7 @@ int game::wait_command() {
                 break;
             }
         } else {
-            if (isdigitstr(cmd.c_str())) {
+            if (isdigitstr(cmd)) {
                 buy_realiz();
             }
         }
@@ -834,7 +834,7 @@ int game::create_hero(
         // индекс типа героя
         int ht_index,
         // имя героя
-        const char *name,
+        const std::string& name,
         // уровень сложности
         int level_of_complexity = 0) {
     main_hero = new hero(ht[ht_index]);
@@ -2058,6 +2058,8 @@ int game::start() {
 #endif
     const std::string extension = ".sav";
 
+    std::string user_name = "";
+
     old_attr = settextattr(WHITE);
     if (find_max_save_index(pattern, extension) != 0) {
         std::cout
@@ -2166,8 +2168,6 @@ int game::start() {
         }
     }
 
-    char *user_name;
-
     // определение имени героя пользователя
     showcursor();
     for (;;) {
@@ -2176,17 +2176,21 @@ int game::start() {
             << WHITE;
 
 #ifdef _MSC_VER
+        char *cuser_name;
+
         int wlen = 100;
         int save = _setmode(_fileno(stdin), _O_U16TEXT);
         wchar_t *wstr = (wchar_t *) malloc(wlen * sizeof(wchar_t));
         fgetws(wstr, wlen, stdin);
 
         int len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, 0, 0, 0, 0);
-        user_name = (char *) malloc(len);
+        cuser_name = (char *) malloc(len);
         WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
         _setmode(_fileno(stdin), save);
 
+        user_name = cuser_name;
         free(wstr);
+        free(cuser_name);
 #else
         char buf[100];
         user_name = fgets(buf, sizeof(buf) - 1, stdin);
@@ -2194,28 +2198,17 @@ int game::start() {
         fseek(stdin, 0, SEEK_END);
 
         // удаление пробельных символов с двух сторон
-        auto start = 0;
-        while (user_name[start] && isspace(static_cast<unsigned char>(user_name[start]))) {
-            start++;
-        }
-        if (i > 0) {
-            memmove(user_name, user_name + start, strlen(user_name) - start + 1);
-        }
+        user_name.erase(0,user_name.find_first_not_of(" \n\r\t"));
+        user_name.erase(user_name.find_last_not_of(" \n\r\t") + 1);
 
-        size_t end = strlen(user_name);
-        while (end > 0 && isspace(static_cast<unsigned char>(user_name[end - 1]))) {
-            end--;
-        }
-        user_name[end] = 0;
-
-        if (strlen(user_name) != 0) {
+        if (user_name.empty()) {
+            std::cout << RED << mess[15];
+        } else {
             if (isdigitstr(user_name)) {
                 std::cout << RED << mess[14];
             } else {
                 break;
             }
-        } else {
-            std::cout << RED << mess[15];
         }
     }
 

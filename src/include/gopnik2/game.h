@@ -133,7 +133,7 @@ public:
 
     int is_active_location_command(const char *) const; // никогда не называйте так команды
     static int headband();                               // показать заставку
-    int create_hero(int, const char *, int);
+    int create_hero(int, const std::string& name, int);
 
     // int get_number_of_sav_file(int); // получить номер текущего сохранённого файла
     int start();

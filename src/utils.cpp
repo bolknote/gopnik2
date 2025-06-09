@@ -51,14 +51,8 @@ Colors settextattr(Colors new_attr) {
     return old_attr;
 }
 
-bool isdigitstr(const char *str) {
-    unsigned int i;
-    for (i = 0; i < strlen(str); i++) {
-        if (!isdigit(static_cast<unsigned char>(str[i]))) {
-            return false;
-        }
-    }
-    return true;
+bool isdigitstr(const std::string& str) {
+    return std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isdigit(c); });
 }
 
 int superrandom(
