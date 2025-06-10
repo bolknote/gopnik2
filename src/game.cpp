@@ -2185,7 +2185,7 @@ int game::start() {
 
         int len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, 0, 0, 0, 0);
         cuser_name = (char *) malloc(len);
-        WideCharToMultiByte(CP_UTF8, 0, wstr, -1, user_name, len, 0, 0);
+        WideCharToMultiByte(CP_UTF8, 0, wstr, -1, cuser_name, len, 0, 0);
         _setmode(_fileno(stdin), save);
 
         user_name = cuser_name;
