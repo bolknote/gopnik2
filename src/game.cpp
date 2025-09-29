@@ -1402,10 +1402,10 @@ int game::kick(
         // расчет урона с учетом брони
         loss = SUB(getRandom(MAX(hero1->get_min_loss() - 1, 0), hero1->get_max_loss()), hero2->get_armo());
 
+        // критический удар (двойной урон) - удача защищающегося может спасти
         if (
                 (!(hero1->broken_foot)) &&
-                (!(CHANCE(1, hero1->get_luck() + 1))) &&
-                (CHANCE(exact, 100))) {
+                (CHANCE(1, hero2->get_luck() + 1))) {
             loss *= 2;
             *double_loss = 1;
         }
