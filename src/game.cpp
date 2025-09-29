@@ -1399,18 +1399,8 @@ int game::kick(
     if (
             (!(CHANCE(1, hero1->get_luck() + 1))) &&
             (CHANCE(exact, 100))) {
-        // что б не было зацикливаний
-        if (hero1->get_max_loss() > hero2->get_armo()) {
-            loss = SUB(getRandom(hero1->get_min_loss() - 1, hero1->get_max_loss()), hero2->get_armo());
-        } else {
-            loss = getRandom(hero1->get_min_loss() - 1, hero1->get_max_loss());
-        }
-
-        // -- блин, вообще не втыкаю, как такое может получаться?
-        if (loss < 0) // !!!
-        {
-            loss = 0;
-        }
+        // расчет урона с учетом брони
+        loss = SUB(getRandom(MAX(hero1->get_min_loss() - 1, 0), hero1->get_max_loss()), hero2->get_armo());
 
         if (
                 (!(hero1->broken_foot)) &&

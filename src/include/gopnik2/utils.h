@@ -17,6 +17,7 @@ typedef enum Colors_ : int {
 
 #define CHANCE(m, n) ((getRandom(0, (int)(n)) <= (m)) ? (1) : (0))
 #define SUB(cur, d) ((cur) >= 0) ? (((cur) - (d)) < 0) ? (0) : ((cur) - (d)) : (cur)
+#define MAX(a,b) (((a)>(b))?(a):(b))
 
 extern Colors textattr;
 
