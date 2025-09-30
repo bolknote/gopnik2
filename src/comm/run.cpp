@@ -89,6 +89,15 @@ int run() {
                 << RED << mess[getRandom(-1, 1)]
                 << YELLOW << mess[2];
 
+            // Если убегаем из активного боя в квесте общаги, восстанавливаем доступ к eog
+            if (cur_game->active_pltl == 0 && main_hero->station == 1 && cur_game->enemy_init == 1) {
+                cur_game->stay_eog = std::max(cur_game->stay_eog, 50);
+                // Откатываем состояние квеста, чтобы можно было повторить
+                if (cur_game->pltl[0].active == 2) {
+                    cur_game->pltl[0].active = 1;
+                }
+            }
+
             cur_game->set_loc(0);
         } else {
             std::cout << YELLOW << mess[3];

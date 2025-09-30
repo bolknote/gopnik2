@@ -152,7 +152,8 @@ int pltl0(
 
             if (
                     (cur_game->active_pltl == pltl_index) &&
-                    (!cur_game->enemy_init)) {
+                    (!cur_game->enemy_init) &&
+                    (cur_game->active_loc == 1)) {
                 if (main_hero->get_health() == 0) {
                     std::cout << WHITE << mess[18] << std::flush;
 
@@ -192,7 +193,6 @@ int pltl0(
 
                     ret = 1;
                     cur_game->pltl[pltl_index].active++;
-                    cur_game->active_pltl = -1;
 
                     cur_game->gen_kick_count();
                 }
@@ -200,7 +200,7 @@ int pltl0(
             break;
 
         case 2:
-            if (!cur_game->enemy_init) {
+            if (!cur_game->enemy_init && cur_game->active_loc == 1) {
                 main_hero = cur_game->main_hero;
 
                 if (main_hero->get_health() == 0) {
@@ -220,6 +220,7 @@ int pltl0(
 
                     cur_game->pltl[pltl_index].active = -1;
                 }
+                cur_game->active_pltl = -1;
             }
             break;
     }

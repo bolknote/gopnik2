@@ -550,7 +550,12 @@ int k(bool skip_turn) {
 
         std::cout << mess[5];
 
-        new_loc = 0;
+        // Для активных сюжетных квестов сохраняем текущую локацию
+        if (cur_game->active_pltl != -1) {
+            new_loc = cur_game->active_loc;
+        } else {
+            new_loc = 0;
+        }
 
         // борьба на рынке
         if (cur_game->get_stay_mar() == -1) {
