@@ -6,8 +6,6 @@
 extern game *cur_game;
 
 int _sv() {
-    hero *main_hero = cur_game->main_hero;
-    
     cur_game->enemy_desc = 1;
 
     s();

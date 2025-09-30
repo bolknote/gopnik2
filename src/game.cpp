@@ -1805,6 +1805,11 @@ int game::fire(
             (!CHANCE(1, hero1->get_luck() + 1)) &&
             (CHANCE(1, (hero2->get_luck() < 10) ? (hero2->get_luck()) : (10)))) {
         loss = getRandom(40, 160);
+
+        // критический выстрел, удача защищающегося может спасти
+        if (!hero1->broken_foot && !hero1->broken_jaw && !CHANCE(1, hero2->get_luck() + 1)) {
+            loss *= 2;
+        }
     }
 
     hero2->sub_health(loss);
