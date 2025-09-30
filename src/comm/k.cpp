@@ -585,7 +585,7 @@ int k(bool skip_turn) {
         }
 
         // отпин мудака в притоне
-        if (cur_game->get_open_hp() == 2) {
+        if ((cur_game->get_open_hp() == 2) && (cur_game->active_loc == 1)) {
             main_hero->add_att(enemy->get_max_health());
             cur_game->set_open_hp(0);
             new_loc = 4;
@@ -597,7 +597,7 @@ int k(bool skip_turn) {
 
 
         // отпин мента в притоне
-        if (cur_game->get_open_d() == 2) {
+        if ((cur_game->get_open_d() == 2) && (cur_game->active_loc == 1)) {
             att = enemy->get_max_health() - (main_hero->old_att - main_hero->get_att());
 
             if (att > 0) {
