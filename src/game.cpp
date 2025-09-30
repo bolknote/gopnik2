@@ -1399,16 +1399,19 @@ int game::kick(
     if (
             (!(CHANCE(1, hero1->get_luck() + 1))) &&
             (CHANCE(exact, 100))) {
-        // расчет урона с учетом брони
-        loss = SUB(getRandom(MAX(hero1->get_min_loss() - 1, 0), hero1->get_max_loss()), hero2->get_armo());
+        // генерируем базовый урон
+        loss = getRandom(MAX(hero1->get_min_loss() - 1, 0), hero1->get_max_loss());
 
         // критический удар (двойной урон) - удача защищающегося может спасти
         if (
                 (!(hero1->broken_foot)) &&
-                (CHANCE(1, hero2->get_luck() + 1))) {
+                (!(CHANCE(1, hero2->get_luck() + 1)))) {
             loss *= 2;
             *double_loss = 1;
         }
+
+        // применяем броню ПОСЛЕ крита
+        loss = SUB(loss, hero2->get_armo());
 
         if (loss > 0) {
             if (
@@ -1440,7 +1443,14 @@ int game::kick(
             }
         }
 
+        int health_before = hero2->get_health();
         hero2->sub_health(loss);
+        int health_after = hero2->get_health();
+        
+        // ОТЛАДКА: проверка изменения здоровья
+        if (loss > 0 && health_after > health_before) {
+            std::cout << fmt::format("\n!!! БАГ: урон={}, HP до={}, HP после={}\n", loss, health_before, health_after);
+        }
     }
 
     return loss;
@@ -1499,20 +1509,24 @@ int game::kick_realiz(
                 loss = kick(hero1, hero2, 90, &double_loss);
             }
 
+            // если промах и не достигнут лимит промахов - инкрементируем счетчик
+            if (loss == 0) {
+                hero1->empty_kick_count++;
+            }
+
             /*
                   if (hero1->is_type(BRATVA_S_OBSCHAGI))
                   {
             std::cout << fmt::format ( "Урон: {} / {} {} \n", loss, hero1->empty_kick_count, empty_k_count);
                   }
             */
-        } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
+        } while ((loss == 0) && (hero1->empty_kick_count < empty_k_count));
 
         loss_amount += loss;
 
+        // сбрасываем счетчик промахов при успешном ударе
         if (loss > 0) {
             hero1->empty_kick_count = 0;
-        } else {
-            hero1->empty_kick_count++;
         }
 
         if (mess != nullptr) {
@@ -1825,12 +1839,16 @@ int game::shock_realiz(
     if (hero1->inv[inv_index].have > 0) {
         do {
             loss = (fire(hero1, hero2) + 1) / 2;
-        } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
 
+            // если промах и не достигнут лимит промахов - инкрементируем счетчик
+            if (loss == 0) {
+                hero1->empty_kick_count++;
+            }
+        } while ((loss == 0) && (hero1->empty_kick_count < empty_k_count));
+
+        // сбрасываем счетчик промахов при успешном ударе
         if (loss > 0) {
             hero1->empty_kick_count = 0;
-        } else {
-            hero1->empty_kick_count++;
         }
     }
 
@@ -1885,12 +1903,16 @@ int game::fire_realiz(
     if (hero1->inv[inv_index].have > 0) {
         do {
             loss = fire(hero1, hero2);
-        } while ((loss == 0) && (hero1->empty_kick_count == empty_k_count));
 
+            // если промах и не достигнут лимит промахов - инкрементируем счетчик
+            if (loss == 0) {
+                hero1->empty_kick_count++;
+            }
+        } while ((loss == 0) && (hero1->empty_kick_count < empty_k_count));
+
+        // сбрасываем счетчик промахов при успешном ударе
         if (loss > 0) {
             hero1->empty_kick_count = 0;
-        } else {
-            hero1->empty_kick_count++;
         }
     }
 

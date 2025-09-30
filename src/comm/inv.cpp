@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 #include <fmt/format.h>
 
@@ -19,6 +20,7 @@ int inv() {
             " ({} шт.)",
             " не используется",
             " продано",
+            " не используется, есть проездной",
     };
 
     main_hero = cur_game->main_hero;
@@ -28,20 +30,30 @@ int inv() {
     }
 
     for (auto i = 0; i < main_hero->inv_have_amount; i++) {
+        int inv_idx = main_hero->inv_have[i];
+        
         std::cout
             << WHITE << fmt::format("{:2} - ", i + 1)
-            << BLUE << main_hero->inv[main_hero->inv_have[i]].name;
+            << BLUE << main_hero->inv[inv_idx].name;
 
-        if (main_hero->inv[main_hero->inv_have[i]].have > 1) {
-            const auto have = main_hero->inv[main_hero->inv_have[i]].have;
+        if (main_hero->inv[inv_idx].have > 1) {
+            const auto have = main_hero->inv[inv_idx].have;
             std::cout << fmt::format(mess[0], have);
         }
 
-        if (!main_hero->inv[main_hero->inv_have[i]].have) {
+        if (!main_hero->inv[inv_idx].have) {
             std::cout << RED << mess[2];
         } else {
-            if (!main_hero->inv[main_hero->inv_have[i]].active) {
+            if (!main_hero->inv[inv_idx].active) {
                 std::cout << RED << mess[1];
+            }
+            
+            // если есть проездной, жетон можно продать
+            if (strcmp(main_hero->inv[inv_idx].name, "Жетон") == 0) {
+                int proezdnoy_idx = game::search_inv(main_hero, "Проездной");
+                if (proezdnoy_idx != -1 && main_hero->inv[proezdnoy_idx].have > 0) {
+                    std::cout << RED << mess[3];
+                }
             }
         }
 

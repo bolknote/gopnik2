@@ -751,14 +751,14 @@ void hero::create_hero_inventory() {
     game::add_inventory(this, "Проездной", 0, 10, 0, 0, 0, 0, 0, 0, 0);
     game::add_inventory(this, "Жетон", 0, 2, 0, 0, 0, 0, 0, 0, 0);
     game::add_inventory(this, "Пропуск в общагу", 0, 2, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(this, "Пистолет", 3, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(this, "Патроны", 3, 0, 0, 0, 0, 0, 0, 0, 0);
-    game::add_inventory(this, "Глушитель", 3, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Пистолет", 3, 200, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Патроны", 3, 100, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Глушитель", 3, 60, 0, 0, 0, 0, 0, 0, 0);
 
     int inv_index = game::add_inventory(this, "Барсетка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     this->inv[inv_index].att = 2;
 
-    game::add_inventory(this, "Шокер", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    game::add_inventory(this, "Шокер", 0, 100, 0, 0, 0, 0, 0, 0, 0);
     game::add_inventory(this, "Батарейка", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 }

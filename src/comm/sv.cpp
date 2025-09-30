@@ -30,6 +30,7 @@ int sv() {
             " Сломана челюсть",
             " Сломана нога",
             "Это {} {} уровня\n",
+            " (сдох)",
     };
 
     enemy = cur_game->enemy;
@@ -85,6 +86,11 @@ int sv() {
 
     if (enemy->broken_foot) {
         std::cout << RED << mess[8];
+    }
+
+    // пометка, если враг сдох
+    if (enemy->get_health() == 0) {
+        std::cout << YELLOW << mess[10];
     }
 
     std::cout << "\n";
