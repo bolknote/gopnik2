@@ -185,3 +185,29 @@ SCENARIO("Save and Load game state") {
     }
 }
 
+SCENARIO("HeroType ToString and FromString consistency") {
+    GIVEN("All hero types") {
+        WHEN("Converting to string and back") {
+            THEN("Should get the same type") {
+                // Проверяем все геймерские типы
+                REQUIRE(HeroType::FromString("Подтсан") == HeroType::PODTSAN);
+                REQUIRE(HeroType::FromString("Отморозок") == HeroType::OTMOROZOK);
+                REQUIRE(HeroType::FromString("Гопник") == HeroType::GOPNIK);
+                REQUIRE(HeroType::FromString("Нефор") == HeroType::NEFOR);
+                
+                // Проверяем обратное преобразование
+                REQUIRE(HeroType(HeroType::PODTSAN).ToString() == "Подтсан");
+                REQUIRE(HeroType(HeroType::OTMOROZOK).ToString() == "Отморозок");
+                REQUIRE(HeroType(HeroType::GOPNIK).ToString() == "Гопник");
+                REQUIRE(HeroType(HeroType::NEFOR).ToString() == "Нефор");
+                
+                // Проверяем круговое преобразование
+                REQUIRE(HeroType::FromString(HeroType(HeroType::PODTSAN).ToString()) == HeroType::PODTSAN);
+                REQUIRE(HeroType::FromString(HeroType(HeroType::OTMOROZOK).ToString()) == HeroType::OTMOROZOK);
+                REQUIRE(HeroType::FromString(HeroType(HeroType::GOPNIK).ToString()) == HeroType::GOPNIK);
+                REQUIRE(HeroType::FromString(HeroType(HeroType::NEFOR).ToString()) == HeroType::NEFOR);
+            }
+        }
+    }
+}
+
