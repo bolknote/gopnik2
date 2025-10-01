@@ -57,7 +57,7 @@ int meet() {
         for (;;) {
             // вероятность, что повезёт
             if (CHANCE(1, 30)) {
-                cur_game->open_girl = main_hero->station + 1;
+                cur_game->open_girl = static_cast<uint8_t>(main_hero->station + 1);
 
                 std::cout << GREEN << mess[10];
 

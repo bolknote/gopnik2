@@ -52,6 +52,7 @@ CharacterInfo read_character_info(const std::string& filename) {
     FILE* file = nullptr;
 #ifdef _MSC_VER
     errno_t err = fopen_s(&file, filename.c_str(), "rb");
+    (void)err; // Suppress unused variable warning
 #else
     file = fopen(filename.c_str(), "rb");
 #endif
@@ -244,7 +245,12 @@ int loa() {
 
     std::cout << BLUE << fmt::format(mess[3], cur_game->file_name) << std::flush;
 
+#ifdef _MSC_VER
+    errno_t err = fopen_s(&load_file, cur_game->file_name.c_str(), "rb");
+    if (err != 0 || load_file == nullptr) {
+#else
     if ((load_file = fopen(cur_game->file_name.c_str(), "rb")) == nullptr) {
+#endif
         std::cout << RED << fmt::format(mess[4], cur_game->file_name) << std::flush;
         return -1;
     }
