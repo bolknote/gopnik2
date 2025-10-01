@@ -135,3 +135,25 @@ ap add_new_element(
 
     return cur_ap;
 }
+
+template<>
+inline price_list_memb* add_new_element<price_list_memb*>(
+        price_list_memb* cur_ap,
+        int amount,
+        size_t /* size */
+) {
+    price_list_memb* new_ap = new price_list_memb[amount + 1];
+
+    // Перемещаем существующие элементы через move constructor
+    for (int i = 0; i < amount; i++) {
+        new_ap[i] = std::move(cur_ap[i]);
+    }
+
+    // Новый элемент уже инициализирован конструктором по умолчанию
+    // Удаляем старый массив
+    if (amount > 0) {
+        delete[] cur_ap;
+    }
+
+    return new_ap;
+}
