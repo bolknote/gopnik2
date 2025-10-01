@@ -9,3 +9,4 @@ build/
 cmake-build-debug/
 /.cache
 /.PVS-Studio/
+compile_commands.json
