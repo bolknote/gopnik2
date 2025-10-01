@@ -85,5 +85,5 @@
                                           █
                                           ██
 
-                             version 1.29 Release
+                             version 1.30 Release
 ```
