@@ -153,6 +153,7 @@ struct termios set_tty_special_mode(bool no_echo) {
 #endif
 
 int get_key_async() {
+    std::cout.flush();
 #ifdef _MSC_VER
     return _kbhit() == 0 ? -1 : _getch();
 #else
@@ -163,6 +164,7 @@ int get_key_async() {
 }
 
 int get_key(bool echo) {
+    std::cout.flush();
     auto old_mode = set_tty_special_mode(!echo);
 
 #ifdef _MSC_VER
