@@ -124,9 +124,10 @@ SCENARIO("Save and Load game state") {
         WHEN("Game is saved and loaded") {
             // Создаем временный файл для сохранения во временной директории
             std::filesystem::path temp_file = std::filesystem::temp_directory_path() / "gopnik2_test_save.sav";
+            std::string temp_file_str = temp_file.string();
             
             // Сохраняем игру
-            FILE* save_file = fopen(temp_file.c_str(), "wb");
+            FILE* save_file = fopen(temp_file_str.c_str(), "wb");
             REQUIRE(save_file != nullptr);
             
             // Записываем актуальную версию программы
@@ -146,7 +147,7 @@ SCENARIO("Save and Load game state") {
             cur_game->num_w = 999;
             
             // Загружаем игру обратно
-            FILE* load_file = fopen(temp_file.c_str(), "rb");
+            FILE* load_file = fopen(temp_file_str.c_str(), "rb");
             REQUIRE(load_file != nullptr);
             
             // Считываем версию (как в loa.cpp)
