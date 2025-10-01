@@ -317,7 +317,8 @@ int game::wait_command() {
     // значение, возвращённое функцией обработки команды
     ret,
             pltl_ret,
-            i, n, q;
+            n, q;
+    size_t i;
 
     // буфер для команды пользователя
     std::string cmd;
@@ -1833,7 +1834,7 @@ int game::shock_realiz(
     // индекс инвентаря
     inv_index,
     // урон
-    loss;
+    loss = 0;
 
     if (hero1->get_health() == 0) {
         return 0;
@@ -1897,7 +1898,7 @@ int game::fire_realiz(
     // индекс инвентаря
     inv_index,
     // урон
-    loss;
+    loss = 0;
 
     if (hero1->get_health() == 0) {
         return 0;
@@ -1976,13 +1977,13 @@ int game::set_open_pr(int d) {
 } // end int game::set_open_pr (int)
 
 int game::set_open_hp(int d) {
-    (main_hero->station) ? (open_hp2 = d) : (open_hp1 = d);
+    (main_hero->station) ? (open_hp2 = static_cast<uint8_t>(d)) : (open_hp1 = static_cast<uint8_t>(d));
 
     return 0;
 } // end int game::set_open_hp (int)
 
 int game::set_open_d(int d) {
-    (main_hero->station) ? (open_d2 = d) : (open_d1 = d);
+    (main_hero->station) ? (open_d2 = static_cast<uint8_t>(d)) : (open_d1 = static_cast<uint8_t>(d));
 
     return 0;
 } // end int game::set_open_d (int)
