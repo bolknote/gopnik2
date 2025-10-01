@@ -17,7 +17,7 @@ include(FetchContent)
 FetchContent_Declare(
     fmt
     GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-    GIT_TAG 11.2.0
+    GIT_TAG 12.0.0
     GIT_SHALLOW    TRUE
     GIT_PROGRESS   TRUE  
 )
@@ -27,7 +27,7 @@ FetchContent_MakeAvailable(fmt)
 FetchContent_Declare(
     catch2
     GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.8.1
+    GIT_TAG v3.11.0
     GIT_SHALLOW    TRUE
     GIT_PROGRESS   TRUE     
 )
