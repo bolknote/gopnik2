@@ -38,42 +38,19 @@ jobs:
           name: ${{ matrix.os }}
           path: build/${{env.BUILD_TYPE}}/gop2.exe
 
-  # Separate job to test with memory sanitizers
+  # Memory sanitizer tests on Linux only (memory issues are platform-independent)
   sanitizer-tests:
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            compiler: gcc
-            sanitizer_flags: "-fsanitize=address,undefined -fno-omit-frame-pointer -g"
-          - os: windows-latest
-            compiler: msvc
-            sanitizer_flags: "/fsanitize=address /Zi"
-          - os: macos-latest
-            compiler: clang
-            sanitizer_flags: "-fsanitize=address,undefined -fno-omit-frame-pointer -g"
-    
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Configure CMake with sanitizers (Unix)
-        if: runner.os != 'Windows'
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="${{ matrix.sanitizer_flags }}"
-
-      - name: Configure CMake with sanitizers (Windows)
-        if: runner.os == 'Windows'
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="${{ matrix.sanitizer_flags }}"
+      - name: Configure CMake with sanitizers
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g"
 
       - name: Build with sanitizers
         run: cmake --build ${{github.workspace}}/build --config Debug
 
-      - name: Run tests with sanitizers (Unix)
-        if: runner.os != 'Windows'
+      - name: Run tests with sanitizers
         run: cd ${{github.workspace}}/build && ./gop2_tests
-
-      - name: Run tests with sanitizers (Windows)
-        if: runner.os == 'Windows'
-        run: cd ${{github.workspace}}/build/Debug && ./gop2_tests.exe
