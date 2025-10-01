@@ -816,7 +816,6 @@ int game::headband() {
             << std::flush;
 
     hidecursor();
-    clear_keyboard_buffer();
     int ch = get_key();
     showcursor();
 
