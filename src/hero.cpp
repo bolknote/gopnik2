@@ -182,19 +182,29 @@ void hero::load(FILE *load_file, hero_type *ht, int ht_amount, float ver) {
             }
 
             free(inv);
+            inv = nullptr;
         }
 
         fread(&inv_amount, sizeof(inv_amount), 1, load_file);
 
-        inv = (inventory *) malloc(sizeof(inventory) * inv_amount);
-        fread(inv, sizeof(inventory), inv_amount, load_file);
+        if (inv_amount > 0) {
+            inv = (inventory *) malloc(sizeof(inventory) * inv_amount);
+            fread(inv, sizeof(inventory), inv_amount, load_file);
 
-        for (int i = 0; i < inv_amount; i++) {
-            size_t len;
-            fread(&len, sizeof(len), 1, load_file);
+            // Обнуляем указатели name после чтения структуры, так как они содержат мусорные адреса
+            for (int i = 0; i < inv_amount; i++) {
+                inv[i].name = nullptr;
+            }
 
-            inv[i].name = (char *) malloc(sizeof(char) * len);
-            fread(inv[i].name, sizeof(char), len, load_file);
+            for (int i = 0; i < inv_amount; i++) {
+                size_t len;
+                fread(&len, sizeof(len), 1, load_file);
+
+                inv[i].name = (char *) malloc(sizeof(char) * len);
+                fread(inv[i].name, sizeof(char), len, load_file);
+            }
+        } else {
+            inv = nullptr;
         }
     }
 
