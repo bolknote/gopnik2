@@ -22,16 +22,36 @@
 
 ## Этапы сборки
 
+### Linux / macOS
+
 - `mkdir -p ~/.builds/gopnik2`
 - `cmake -B ~/.builds/gopnik2 -DCMAKE_BUILD_TYPE=Release`
 - `cd ~/.builds/gopnik2 && cmake --build . -- -j 10`
 
+### Windows (Visual Studio)
+
+- `cmake -B build -DCMAKE_BUILD_TYPE=Release`
+- `cmake --build build --config Release -- /m:10`
+
+где `/m:10` — количество потоков для параллельной сборки (аналог `-j` для make).
+
+**Важно:** Для MSBuild нужно указывать `--config Release` при сборке, а не только `-DCMAKE_BUILD_TYPE=Release` при конфигурации.
+
 ## Запуск тестов
+
+### Linux / macOS
 - `cd ~/.builds/gopnik2 && ctest --extra-verbose`
+
+### Windows
+- `cd build && ctest -C Release --extra-verbose`
 
 ## Запуск
 
+### Linux / macOS
 `~/.builds/gopnik2/gop2`
+
+### Windows
+`build\Release\gop2.exe`
 
 ЛИЦЕНЗИЯ
 ========
