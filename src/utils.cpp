@@ -152,6 +152,14 @@ struct termios set_tty_special_mode(bool no_echo) {
 
 #endif
 
+void clear_keyboard_buffer() {
+#ifdef _MSC_VER
+    while (_kbhit()) {
+        _getch();
+    }
+#endif
+}
+
 int get_key_async() {
 #ifdef _MSC_VER
     return _kbhit() == 0 ? -1 : _getch();
@@ -166,6 +174,7 @@ int get_key(bool echo) {
     auto old_mode = set_tty_special_mode(!echo);
 
 #ifdef _MSC_VER
+    clear_keyboard_buffer();
     int ch = _getch();
     // код, означающий, что надо получить следующий код
     if (ch == 0 || ch == 0xE0) {
