@@ -145,15 +145,15 @@ inline price_list_memb* add_new_element<price_list_memb*>(
     price_list_memb* new_ap = new price_list_memb[amount + 1];
 
     // Перемещаем существующие элементы через move constructor
-    for (int i = 0; i < amount; i++) {
-        new_ap[i] = std::move(cur_ap[i]);
+    if (amount > 0 && cur_ap != nullptr) {
+        for (int i = 0; i < amount; i++) {
+            new_ap[i] = std::move(cur_ap[i]);
+        }
+        // Удаляем старый массив
+        delete[] cur_ap;
     }
 
     // Новый элемент уже инициализирован конструктором по умолчанию
-    // Удаляем старый массив
-    if (amount > 0) {
-        delete[] cur_ap;
-    }
 
     return new_ap;
 }
