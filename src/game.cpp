@@ -2191,7 +2191,7 @@ int game::start() {
     for (;;) {
         std::cout
             << GREEN << mess[13]
-            << WHITE;
+            << WHITE << std::flush;
 
 #ifdef _MSC_VER
         char *cuser_name;
@@ -2220,10 +2220,10 @@ int game::start() {
         user_name.erase(user_name.find_last_not_of(" \n\r\t") + 1);
 
         if (user_name.empty()) {
-            std::cout << RED << mess[15];
+            std::cout << RED << mess[15] << std::flush;
         } else {
             if (isdigitstr(user_name)) {
-                std::cout << RED << mess[14];
+                std::cout << RED << mess[14] << std::flush;
             } else {
                 break;
             }

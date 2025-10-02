@@ -67,6 +67,8 @@ const char *level_type[] = {
 int main() {
     // объект героя
     textattr = RESET;
+    
+    std::cout << std::unitbuf;
 
 #ifdef _MSC_VER
     SetConsoleCP(CP_UTF8);
